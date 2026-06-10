@@ -1,0 +1,651 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-10T22:07:03.959396+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 9,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 10,
+    "quick_skim_target": 11,
+    "quick_selected": 10
+  },
+  "deep_dive": [
+    {
+      "id": "2606.05749v1",
+      "source": "arxiv",
+      "title": "MARDoc: A Memory-Aware Refinement Agent Framework for Multimodal Long Document QA",
+      "abstract": "Iterative retrieval-reasoning agents have recently shown promise for multimodal long-document question answering. However, most existing systems maintain a single growing context that mixes retrieval traces, observations, and intermediate reasoning. As interactions accumulate, key evidence becomes scattered and diluted, making multi-hop reasoning noisy. We propose MARDoc, a Memory-Aware Refinement Agent framework that decouples long-document QA into three specialized agents: an Explorer for multi-granularity multimodal retrieval, a Refiner for distilling interaction traces into structured evidence and reasoning memories, and a Reflector for checking evidence sufficiency and providing targeted feedback. Across iterations, the agents rely on a dynamically updated structured memory rather than a full accumulated interaction history. This design reduces context noise while preserving answer-critical facts and their logical dependencies. Experiments on MMLongBench-Doc and DocBench show that MARDoc achieves strong results, outperforming same-backbone baselines and demonstrating the effectiveness of structured memory for agentic document QA.",
+      "authors": [
+        "Kaifeng Chen",
+        "Hongtao Liu",
+        "Qiyao Peng",
+        "Jian Yang",
+        "Yongqiang Liu",
+        "Xiaochen Zhang",
+        "Qing Yang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-04T06:23:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.05749v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Iterative retrieval-reasoning agent for multimodal long-document QA",
+      "llm_evidence_cn": "面向多模态长文档问答的迭代检索-推理智能体框架",
+      "llm_evidence": "面向多模态长文档问答的迭代检索-推理智能体框架",
+      "canonical_evidence": "面向多模态长文档问答的迭代检索-推理智能体框架",
+      "llm_tldr_en": "Proposes MARDoc, a memory-aware refinement agent that decouples long-document QA into Explorer, Refiner, and Reflector agents for iterative multimodal retrieval and reasoning.",
+      "llm_tldr_cn": "针对现有多模态长文档问答系统中单上下文混合检索痕迹导致多跳推理困难的问题，提出MARDoc框架。将任务分解为探索者、精炼者、反思者三个专门智能体，分别负责多粒度检索、证据提炼和充分性检查。实验表明该框架在复杂长文档问答上优于单智能体方法，为检索增强生成的智能体化设计提供了新范式。",
+      "llm_tldr": "针对现有多模态长文档问答系统中单上下文混合检索痕迹导致多跳推理困难的问题，提出MARDoc框架。将任务分解为探索者、精炼者、反思者三个专门智能体，分别负责多粒度检索、证据提炼和充分性检查。实验表明该框架在复杂长文档问答上优于单智能体方法，为检索增强生成的智能体化设计提供了新范式。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.10921v1",
+      "source": "arxiv",
+      "title": "Trace Only What You Need: Structure-Aware On-Demand Hypergraph Memory for Long-Document Question Answering",
+      "abstract": "Long-document question answering (QA) requires large language models (LLMs) to reason over evidence scattered across lengthy documents, where answers often depend on event order, section-level context, and cross-part evidence connections. Although retrieval-augmented generation (RAG) reduces the input context by retrieving relevant evidence, existing structured RAG methods still face three limitations: costly query-agnostic knowledge organization, insufficient use of original document structure, and no reuse of historical reasoning experience. To address these limitations, we propose DocTrace, a multi-agent RAG framework for long-document QA that supports query-triggered knowledge organization, document-structure-aware and experience-guided reasoning. DocTrace preserves document hierarchy with a lightweight document structural tree index, constructs agent-shared hypergraph-structured working memory on demand during reasoning, and stores successful reasoning plans in graph-structured experience memory for future reuse, enabling adaptive exploration across related long-document questions. Experiments on four long-document QA datasets show that DocTrace achieves the best performance on three datasets, surpassing the strongest baseline, ComoRAG, by up to 8.85% in F1 and 4.40% in EM, while reducing the overall computational cost by 53.32%",
+      "authors": [
+        "Xiangjun Zai",
+        "Xingyu Tan",
+        "Chen Chen",
+        "Xiaoyang Wang",
+        "Wenjie Zhang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-09T14:29:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.10921v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Introduces DocTrace, a multi-agent RAG framework for long-document QA that uses on-demand hypergraph memory and document structure.",
+      "llm_evidence_cn": "提出DocTrace多智能体RAG框架，利用按需超图记忆和文档结构。",
+      "llm_evidence": "提出DocTrace多智能体RAG框架，利用按需超图记忆和文档结构。",
+      "canonical_evidence": "提出DocTrace多智能体RAG框架，利用按需超图记忆和文档结构。",
+      "llm_tldr_en": "DocTrace addresses long-document QA by using a multi-agent RAG framework that builds query-triggered hypergraph memory, incorporates document section structure, and reuses past reasoning, outperforming existing RAG methods on lengthy documents.",
+      "llm_tldr_cn": "针对长文档问答中证据分散、事件顺序敏感等挑战，DocTrace提出多智能体RAG框架，实现查询触发的按需超图记忆构建、文档结构感知的上下文聚合和历史推理经验复用，克服了现有方法离线组织开销大和结构利用不足的问题。在多个长文档QA基准上超越现有方法，证明了结构化记忆对复杂推理任务的关键提升作用。",
+      "llm_tldr": "针对长文档问答中证据分散、事件顺序敏感等挑战，DocTrace提出多智能体RAG框架，实现查询触发的按需超图记忆构建、文档结构感知的上下文聚合和历史推理经验复用，克服了现有方法离线组织开销大和结构利用不足的问题。在多个长文档QA基准上超越现有方法，证明了结构化记忆对复杂推理任务的关键提升作用。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.04646v1",
+      "source": "arxiv",
+      "title": "QO-Bench: Diagnosing Query-Operator-Preserving Retrieval over Typed Event Tuples",
+      "abstract": "Many real-world questions over business, legal, and scientific corpora are natural-language versions of database-style queries over records latent in text. Existing retrieval-augmented generation (RAG) systems are optimized primarily for semantic relevance, but retrieving plausible passages does not guarantee correct query execution. We introduce QO-Bench, a diagnostic benchmark for query-operator question answering over typed event tuples. The benchmark covers 22,984 news articles and 614 corporate events across 18 query templates, evaluated on 785 questions. Each gold answer is deterministically computed from typed event tuples and scored by recall, with answers matched to the gold tuples by exact match rather than an LLM judge. This design enables operator-level diagnosis such as joins and intersection. We evaluate RAG, ReAct RAG, GraphRAG, and information-extraction-to-SQL under matched conditions, with a long-context oracle ceiling to isolate retrieval failure. A two-axis framework -- index-time preservation versus query-time execution -- predicts where each paradigm fails, and the results bear it out: systems retrieve relevant text but discard the typed values operators need, and the deployable paradigm ranking inverts across operators, with similarity retrieval leading on filter/project and extraction-to-SQL on intersection and counting. Even given the gold evidence, a long-context oracle stays far from saturated, so operator execution -- not retrieval alone -- is a core bottleneck that a stronger answer model does not remove. QO-Bench reframes the goal from passage relevance to query-operator-preserving retrieval.",
+      "authors": [
+        "Mengao Zhang",
+        "Xiang Yang",
+        "Chang Liu",
+        "Tianhui Tan",
+        "Ke-wei Huang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2026-06-03T09:14:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.04646v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Introduces a benchmark for retrieval-augmented generation systems that tests whether retrieval preserves query operators, directly addressing RAG evaluation.",
+      "llm_evidence_cn": "提出一个面向检索增强生成系统的基准，测试检索是否保持查询操作，直接评估RAG性能。",
+      "llm_evidence": "提出一个面向检索增强生成系统的基准，测试检索是否保持查询操作，直接评估RAG性能。",
+      "canonical_evidence": "提出一个面向检索增强生成系统的基准，测试检索是否保持查询操作，直接评估RAG性能。",
+      "llm_tldr_en": "QO-Bench provides a diagnostic benchmark for RAG systems on database-style questions over event tuples, revealing that existing RAG systems often fail to preserve query operators, highlighting the need for operator-aware retrieval in RAG.",
+      "llm_tldr_cn": "现有RAG系统主要优化语义相关性，却常无法正确执行数据库式查询。QO-Bench是一个针对类型化事件元组的诊断基准，通过精确匹配评估RAG系统是否保持查询操作符，揭示了当前RAG在此类任务上的明显短板，为发展操作符感知的检索增强生成提供了重要工具。",
+      "llm_tldr": "现有RAG系统主要优化语义相关性，却常无法正确执行数据库式查询。QO-Bench是一个针对类型化事件元组的诊断基准，通过精确匹配评估RAG系统是否保持查询操作符，揭示了当前RAG在此类任务上的明显短板，为发展操作符感知的检索增强生成提供了重要工具。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "state of the art retrieval augmented generation methods",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.10621v1",
+      "source": "arxiv",
+      "title": "STORM: Stepwise Token Optimization with Reward-Guided Beam Search",
+      "abstract": "Modern retrieval increasingly relies on dense and learned-sparse neural models that are effective but require encoding the entire corpus into a specialized index, rebuilt whenever the model changes. Lexical retrievers like BM25 stay efficient and transparent on a standard inverted index that need not change as models evolve, but suffer from vocabulary mismatch. LLM query rewriting can help, yet prompted rewriters emit well-formed but retrieval-ineffective or harmful-terms, and training against a retrieval reward gives only delayed, sequence-level supervision that obscures which terms helped. We introduce STORM (Stepwise Token Optimization with Reward-guided beaM search), a self-supervised framework for lexical query expansion. STORM trains the rewriter through generation guided by retrieval metrics: at each step, candidate expansions are scored against the BM25 index and low-reward continuations pruned, turning the retrieval reward into a token-level signal that concentrates exploration on retrieval-effective vocabulary. Across TREC DL and BEIR, STORM lets 0.6B-8B backbones match or surpass competitive LLM rewriters while retrieving as fast as plain BM25; at 8B it rivals far larger proprietary rewriters. It further transfers zero-shot to 18 languages (MIRACL), beating dedicated multilingual dense retrievers on average, making STORM a competitive, infrastructure-light alternative to dense neural retrieval.",
+      "authors": [
+        "Arthur Satouf",
+        "Giulio D'Erasmo",
+        "Yuxuan Zong",
+        "Habiboulaye Amadou Boubacar",
+        "Pablo Piantanida",
+        "Benjamin Piwowarski"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-06-09T09:18:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.10621v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Lexical query expansion via stepwise token optimization with reward-guided beam search",
+      "llm_evidence_cn": "通过奖励引导束搜索的逐步令牌优化进行词汇查询扩展",
+      "llm_evidence": "通过奖励引导束搜索的逐步令牌优化进行词汇查询扩展",
+      "canonical_evidence": "通过奖励引导束搜索的逐步令牌优化进行词汇查询扩展",
+      "llm_tldr_en": "STORM trains an LLM rewriter with stepwise token optimization using a retrieval reward to address vocabulary mismatch in lexical retrieval, improving query expansion.",
+      "llm_tldr_cn": "针对词汇检索中的词汇不匹配问题，STORM通过自监督框架训练LLM改写器，利用奖励引导束搜索逐步优化令牌选择，有效提升查询扩展质量，使BM25等词汇检索器在标准倒排索引上获得接近稠密检索的性能，同时保持高效和透明。",
+      "llm_tldr": "针对词汇检索中的词汇不匹配问题，STORM通过自监督框架训练LLM改写器，利用奖励引导束搜索逐步优化令牌选择，有效提升查询扩展质量，使BM25等词汇检索器在标准倒排索引上获得接近稠密检索的性能，同时保持高效和透明。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.04650v1",
+      "source": "arxiv",
+      "title": "Improving the Efficiency and Effectiveness of LLM Knowledge Distillation for Conversational Search",
+      "abstract": "Conversational Search (CS) considers retrieval of relevant documents based on conversational context. Large Language Models (LLMs) have significantly enhanced CS by enabling effective query rewriting. However, employing LLMs during inference poses efficiency challenges. A method to balance effectiveness and efficiency is the use of knowledge distillation from LLM-based query rewriting. Recent work applies the Kullback-Leibler Divergence (KLD) for distillation, relaxing the alignment with the teacher signal compared to previous methods.   Despite these gains, several aspects of KLD-based distillation for conversational search remain understudied, and we investigate them in this work. Prior work in related fields suggests that adding a contrastive loss to the KLD objective can improve performance; we confirm this and observe significant gains in precision-oriented ranking metrics. We also find that contrastive sampling strategies for the KLD loss have a non-trivial impact and must be chosen carefully. Although theory suggests that more samples improve the KLD estimate, experiments show diminishing returns on the number of used samples.   Finally, we address the phenomenon of decreased sparsity in longer conversations, which limits computational efficiency across sparse retrieval methods. We find that the representations from the model distilled with the KLD loss can be strongly regularized with a regularization loss, substantially improving sparsity and inference efficiency without significantly harming retrieval effectiveness. We achieve a $2\\times$ decrease in FLOPS on TopiOCQA with negligible loss in effectiveness, corresponding to a $\\leq 2%$ drop in Recall@100. Our results provide insights into distillation objectives for learned sparse conversational retrievers and offer practical guidelines for improving effectiveness and efficiency in first-stage retrieval.",
+      "authors": [
+        "Stan Fris",
+        "Jan Hutter",
+        "Jan Henrik Bertrand",
+        "Simon Lupart",
+        "Mohammad Aliannejadi"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-03T09:22:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.04650v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "LLM knowledge distillation for query rewriting in conversational search",
+      "llm_evidence_cn": "对话搜索中LLM查询改写的知识蒸馏，提高效率与效果",
+      "llm_evidence": "对话搜索中LLM查询改写的知识蒸馏，提高效率与效果",
+      "canonical_evidence": "对话搜索中LLM查询改写的知识蒸馏，提高效率与效果",
+      "llm_tldr_en": "Investigates KLD-based distillation for LLM query rewriting in conversational search to improve efficiency, analyzing temperature and loss function factors.",
+      "llm_tldr_cn": "针对对话搜索中直接使用LLM进行查询改写推理成本高的问题，研究基于KL散度的知识蒸馏方法，分析温度、损失函数等因素的影响，实验表明蒸馏模型在效率和效果上均接近教师LLM，为LLM在信息检索中的高效集成提供了实践指导。",
+      "llm_tldr": "针对对话搜索中直接使用LLM进行查询改写推理成本高的问题，研究基于KL散度的知识蒸馏方法，分析温度、损失函数等因素的影响，实验表明蒸馏模型在效率和效果上均接近教师LLM，为LLM在信息检索中的高效集成提供了实践指导。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "information retrieval integration with language models",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.07783v1",
+      "source": "arxiv",
+      "title": "Evaluating RAG Reliability under Clean, Misleading, and Mixed Retrieval",
+      "abstract": "Retrieval-Augmented Generation (RAG) is widely used to improve the factual reliability of large language models (LLMs) by grounding answers in retrieved evidence. In misinformation-rich environments, however, retrieved content may include plausible but incorrect information, raising concerns about the reliability of RAG-based information access systems. In this work, we propose an evaluation protocol to systematically test how the RAG system handles conflicts between parametric knowledge and evidence retrieved from context with varying amounts of misleading information. We target correct answers to factoid questions that the model responds to correctly, even when there is no retrieval, and use this to test the system with clean, poisoned, and mixed evidence. The proposed analytical framework combines parametric override and confidence metrics to assess when and how misleading information affects the generation process of LLMs. This study aims to provide insights into the robustness of RAG systems in information disorder scenarios.",
+      "authors": [
+        "Sevgi Yigit-Sert"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-05T18:54:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.07783v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes an evaluation protocol to test RAG reliability under misleading retrieval",
+      "llm_evidence_cn": "提出评估协议，测试RAG在误导性检索下的可靠性",
+      "llm_evidence": "提出评估协议，测试RAG在误导性检索下的可靠性",
+      "canonical_evidence": "提出评估协议，测试RAG在误导性检索下的可靠性",
+      "llm_tldr_en": "This paper proposes an evaluation protocol to systematically test RAG systems' ability to handle conflicts between parametric knowledge and retrieved evidence, revealing vulnerability to misleading context.",
+      "llm_tldr_cn": "检索增强生成在误导性检索下可能产生错误答案。该工作提出评估协议，选取模型能正确回答的事实问题，系统测试在干净、毒化、混合证据下RAG的表现。实验发现，即使模型原本正确，引入误导性检索结果会大幅降低准确率，且当前RAG模型对抗误导的能力有限，强调可靠检索和生成整合的重要性。",
+      "llm_tldr": "检索增强生成在误导性检索下可能产生错误答案。该工作提出评估协议，选取模型能正确回答的事实问题，系统测试在干净、毒化、混合证据下RAG的表现。实验发现，即使模型原本正确，引入误导性检索结果会大幅降低准确率，且当前RAG模型对抗误导的能力有限，强调可靠检索和生成整合的重要性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "state of the art retrieval augmented generation methods",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2606.07783v1"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.07001v1",
+      "source": "arxiv",
+      "title": "DataEvolver: Automatic Data Preparation for Large Language Models through Multi-Level Self-Evolving",
+      "abstract": "High-quality training data is essential to large language models (LLMs) and typically requires extensive and costly manual curation. Existing automatic data preparation methods rely on predefined pipelines or customized human instructions, which limits their adaptability to diverse data distributions and lacks principled guidance from high-quality examples. In this paper, we introduce DataEvolver, the first self-evolving data preparation system that automatically constructs pipelines to transform raw data into high-quality data. DataEvolver employs a multi-level mechanism to ensure both pipeline executability and effectiveness. At the operator level, it incrementally expands the operator set to construct a logical plan while resolving dependency conflicts. At the pipeline level, it instantiates logical plans into executable code and iteratively refines pipeline orchestration through a feedback loop that reduces the distribution gap between prepared data and high-quality examples. Experiments on seven benchmarks show that DataEvolver substantially improves data quality and achieves an average 10\\% gain in downstream LLM performance compared with training on original data, highlighting new opportunities for the iterative co-evolution of LLMs and data.",
+      "authors": [
+        "Chao Deng",
+        "Shaolei Zhang",
+        "Ju Fan",
+        "Xiaoyong Du"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T07:44:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.07001v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Introduces a self-evolving system to automatically construct data preparation pipelines for LLMs",
+      "llm_evidence_cn": "提出自我进化系统自动构建大语言模型数据预处理流水线",
+      "llm_evidence": "提出自我进化系统自动构建大语言模型数据预处理流水线",
+      "canonical_evidence": "提出自我进化系统自动构建大语言模型数据预处理流水线",
+      "llm_tldr_en": "Addresses costly manual curation of training data for LLMs by automating pipeline construction via a multi-level self-evolving mechanism that expands operator sets and refines plans.",
+      "llm_tldr_cn": "该文针对大语言模型训练数据手工筛选成本高且现有自动方法适应性有限的难题，设计了首个自我进化的数据准备系统DataEvolver，通过操作级逐步扩展算子集合与管道级自优化，自动将原始数据转化为高质量训练数据，实验表明其能有效提升数据质量并减少人工介入，对大语言模型训练过程中的数据处理环节具有重要实用价值。",
+      "llm_tldr": "该文针对大语言模型训练数据手工筛选成本高且现有自动方法适应性有限的难题，设计了首个自我进化的数据准备系统DataEvolver，通过操作级逐步扩展算子集合与管道级自优化，自动将原始数据转化为高质量训练数据，实验表明其能有效提升数据质量并减少人工介入，对大语言模型训练过程中的数据处理环节具有重要实用价值。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.08577v1",
+      "source": "arxiv",
+      "title": "When Should Queries Be Decomposed? A Stage-Aware Study of Query Decomposition for Multi-Condition Retrieval",
+      "abstract": "Multi-condition retrieval requires systems to identify documents that satisfy multiple distinct constraints, moving beyond mere topical relevance. While query decomposition is widely adopted as an intuitive remedy, its effectiveness across different retrieval pipeline stages remains underexplored. In this paper, we conduct a stage-aware empirical study and uncover a stark, stage-dependent effect: decomposition during initial retrieval frequently harms retrieval performance due to semantic dilution, yet substantially improves reranking by enabling more fine-grained constraint verification. Motivated by these insights, we propose a principled Stage-Aware Decomposition framework that retains the monolithic query during initial retrieval to preserve global semantic context, while employing sub-queries exclusively during reranking for fine-grained constraint matching. Extensive evaluations on the MultiConIR and SSRB benchmarks demonstrate that our framework consistently improves ranking performance for compositional queries across multiple retrieval and reranking models. We release our code at https://github.com/EIT-NLP/Query-Decompose.",
+      "authors": [
+        "Bochao Yin",
+        "Xuan Lu",
+        "Zhengyu Qi",
+        "Xiaoyu Shen"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-07T11:13:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.08577v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Empirically studies query decomposition effects across retrieval stages and proposes stage-aware decomposition",
+      "llm_evidence_cn": "实证研究查询分解在不同检索阶段的效果并提出分阶段分解框架",
+      "llm_evidence": "实证研究查询分解在不同检索阶段的效果并提出分阶段分解框架",
+      "canonical_evidence": "实证研究查询分解在不同检索阶段的效果并提出分阶段分解框架",
+      "llm_tldr_en": "Reveals that query decomposition harms initial retrieval but benefits reranking in multi-condition retrieval, leading to a stage-aware framework that retains monolithic queries for first-pass and decomposes for reranking.",
+      "llm_tldr_cn": "该文通过分阶段实证分析首次揭示查询分解在多条件检索中的截然相反效果：在初始检索阶段因语义稀释而损害性能，但在重排阶段细粒度约束验证却能大幅提升，并据此提出分阶段感知的分解框架，在前段保留整体查询而在后段分解，实现了检索效果的整体优化，为知识检索技术在复杂查询处理上的应用提供了新的方法论。",
+      "llm_tldr": "该文通过分阶段实证分析首次揭示查询分解在多条件检索中的截然相反效果：在初始检索阶段因语义稀释而损害性能，但在重排阶段细粒度约束验证却能大幅提升，并据此提出分阶段感知的分解框架，在前段保留整体查询而在后段分解，实现了检索效果的整体优化，为知识检索技术在复杂查询处理上的应用提供了新的方法论。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.08090v1",
+      "source": "arxiv",
+      "title": "Fast LLM-Based Semantic Filtering: From a Unified Framework to an Adaptive Two-Phase Method",
+      "abstract": "Evaluating a natural-language yes/no predicate over a document corpus under an accuracy target - the semantic filter - is a cornerstone of LLM-based data processing. Calling the LLM on every document (the oracle) is prohibitive, so cascades pair the oracle with a fast proxy. As deployed today, they leave four limitations on the table. (1) Each cascade family - model-free clustering, prebuilt small-LLM proxies, online-trained proxies - commits to a single representation and pipeline, and wins on only a narrow query regime. (2) The strongest online proxy invests in a custom training scheme on a bi-encoder over dense embeddings, missing the token-level evidence richer predicates require. (3) The proxy is trained against binary yes/no labels, wasting the LLM's per-document confidence at the boundary documents it most needs to learn. (4) Existing calibrations add a uniform safety margin, conflating genuine proxy uncertainty with small-sample noise and inflating cascade cost.   We address these by (1) composing families adaptively - model-free clustering first, online proxy only when needed, with oracle calls shared across phases; (2) replacing the cosine bi-encoder with a hybrid of off-the-shelf token-aware models; (3) training the proxy with the oracle's per-document confidence as a soft label; and (4) a calibration that adds the safety margin only where the labeled sample is sparse. We are also the first to use the oracle's per-document confidence for three purposes: a query-level difficulty compass, a lower bound on the minimum oracle calls any proxy-based cascade can make, and the proxy's soft training label.   At a 90% accuracy target on three 10K-document corpora, our methods are 1.6-2.0x faster than the best prior method per corpus and meet the target on 95% of queries; the BER-derived lower bound indicates a further ~4-20x of headroom for future work.",
+      "authors": [
+        "Kyoungmin Kim",
+        "Martin Catheland",
+        "Anastasia Ailamaki"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T10:32:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.08090v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Efficient semantic filtering using LLM cascades with dense retrieval proxies",
+      "llm_evidence_cn": "利用密集检索代理与LLM级联实现高效语义过滤",
+      "llm_evidence": "利用密集检索代理与LLM级联实现高效语义过滤",
+      "canonical_evidence": "利用密集检索代理与LLM级联实现高效语义过滤",
+      "llm_tldr_en": "Proposes an adaptive two-phase semantic filtering method that combines dense retrieval proxies and LLM cascades to efficiently evaluate yes/no predicates over large corpora.",
+      "llm_tldr_cn": "针对LLM语义过滤中直接调用大模型成本过高的问题，提出一种自适应两阶段方法。结合密集嵌入检索代理和在线训练的小模型代理，根据查询难度选择不同的过滤管道。实验表明该方法在保证准确率的同时显著降低了过滤成本，为大规模文档处理中的信息检索提供了高效方案。",
+      "llm_tldr": "针对LLM语义过滤中直接调用大模型成本过高的问题，提出一种自适应两阶段方法。结合密集嵌入检索代理和在线训练的小模型代理，根据查询难度选择不同的过滤管道。实验表明该方法在保证准确率的同时显著降低了过滤成本，为大规模文档处理中的信息检索提供了高效方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "semantic search for information retrieval",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.07654v1",
+      "source": "arxiv",
+      "title": "MM-Matryoshka: Towards Budget-Elastic Visual Document Retrieval via a 2D Multimodal Matryoshka Training Framework",
+      "abstract": "Multi-vector visual document retrievers achieve strong fine-grained matching by representing each page with multiple vectors from deep Vision-Language Models (VLMs), but this design makes deployment expensive in both storage and computational overhead. Existing efficiency techniques usually optimize only part of this budget, leaving multimodal retrievers without a unified way to trade accuracy for both vector width and encoder depth. Therefore, we propose MM-Matryoshka, a 2D Matryoshka training framework for budget-elastic Visual Document Retrieval (VDR), enabling ColPali-style multi-vector retrieval elastic along both dimension and layer. At inference time, a single retriever can select a 2D selectable budget without training separate models for different budgets. Through comprehensive experiments across multiple representative backbones, we demonstrate that by retaining significantly higher quality than direct truncation baselines while substantially reducing storage and computational overhead, MM-Matryoshka can offer robust budget elasticity for efficient VDR.",
+      "authors": [
+        "Haowen Xiang",
+        "Yibo Yan",
+        "Jiahao Huo",
+        "Yu Huang",
+        "Yi Cao",
+        "Mingdong Ou",
+        "Xuming Hu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-03T02:57:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.07654v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes a 2D Matryoshka training for dense visual document retrieval, enabling budget-elastic multi-vector retrieval.",
+      "llm_evidence_cn": "提出二维套娃训练用于密集视觉文档检索，实现预算弹性的多向量检索。",
+      "llm_evidence": "提出二维套娃训练用于密集视觉文档检索，实现预算弹性的多向量检索。",
+      "canonical_evidence": "提出二维套娃训练用于密集视觉文档检索，实现预算弹性的多向量检索。",
+      "llm_tldr_en": "MM-Matryoshka addresses the high computational cost of multi-vector visual document retrievers by proposing a 2D training framework that makes retrieval elastic along vector dimension and encoder layer depth. A single retriever can then be deployed with selectable budgets, enabling flexible trade-offs between accuracy and efficiency for ColPali-style retrieval.",
+      "llm_tldr_cn": "针对多向量视觉检索器的高成本问题，MM-Matryoshka 提出二维套娃训练框架，使检索在向量维度和编码器层深两个维度上具有弹性。单个检索器可在推理时选择不同的预算配置，在ColPali式检索中实现精度与效率的灵活权衡。该方法为视觉文档检索的实际部署提供了经济高效的解决方案。",
+      "llm_tldr": "针对多向量视觉检索器的高成本问题，MM-Matryoshka 提出二维套娃训练框架，使检索在向量维度和编码器层深两个维度上具有弹性。单个检索器可在推理时选择不同的预算配置，在ColPali式检索中实现精度与效率的灵活权衡。该方法为视觉文档检索的实际部署提供了经济高效的解决方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.08979v1",
+      "source": "arxiv",
+      "title": "EviProp: Seeded Relevance Diffusion on Chunk-Page Graphs for Long Multimodal Document Retrieval",
+      "abstract": "Retrieving evidence pages from visually rich long documents is a key challenge in document question answering. Existing page-level visual retrievers operate under an independent matching paradigm: each page is scored in isolation based on query-page similarity. This paradigm can under-rank evidence pages whose signals are localized in fine-grained chunks or depend on document-internal associations. We propose EviProp, a retrieval method that recovers such pages via seeded relevance diffusion. EviProp models each document as a multimodal Chunk-Page graph with hierarchical, sequential, and similarity links. Given a query, it combines dense visual page priors with sparse chunk seeds, then runs Personalized PageRank to diffuse relevance over the graph. Experiments on MMLongBench-Doc and LongDocURL show consistent gains in evidence-page retrieval over independent visual retrieval and text-visual fusion baselines. Downstream QA results further show that improved retrieval translates into better answer accuracy, with negligible online retrieval overhead. Our code is released at https://github.com/Flyecnu/EviProp.",
+      "authors": [
+        "Hongwei Zhang",
+        "Xiaoman Wang",
+        "Zehui Ling",
+        "Ruicheng Zhu",
+        "Yue Zhang",
+        "Pinlong Cai",
+        "Fuke Shen",
+        "Botian Shi",
+        "Tongquan Wei",
+        "Guohang Yan"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-08T03:25:20+00:00",
+      "link": "https://arxiv.org/pdf/2606.08979v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a graph-based retrieval method using dense visual priors and sparse chunk seeds for document retrieval.",
+      "llm_evidence_cn": "提出一种基于图的检索方法，利用密集视觉先验和稀疏块种子进行文档检索。",
+      "llm_evidence": "提出一种基于图的检索方法，利用密集视觉先验和稀疏块种子进行文档检索。",
+      "canonical_evidence": "提出一种基于图的检索方法，利用密集视觉先验和稀疏块种子进行文档检索。",
+      "llm_tldr_en": "EviProp addresses the problem of retrieving evidence pages from long multimodal documents by modeling documents as chunk-page graphs and diffusing relevance via Personalized PageRank. It combines dense visual page priors with sparse chunk seeds to recover pages that are missed by independent matching. Experiments show improved retrieval of relevant pages, especially those with localized or relational evidence.",
+      "llm_tldr_cn": "针对长多模态文档中证据页检索的难题，EviProp 将文档建模为块-页图，通过个性化PageRank扩散相关性。结合密集视觉先验和稀疏块种子，能够恢复被独立匹配范式遗漏的页面。实验表明该方法有效提升了相关页面的检索，尤其是具有局部或关系性证据的场景，为文档问答提供了更优的检索基础。",
+      "llm_tldr": "针对长多模态文档中证据页检索的难题，EviProp 将文档建模为块-页图，通过个性化PageRank扩散相关性。结合密集视觉先验和稀疏块种子，能够恢复被独立匹配范式遗漏的页面。实验表明该方法有效提升了相关页面的检索，尤其是具有局部或关系性证据的场景，为文档问答提供了更优的检索基础。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.08755v1",
+      "source": "arxiv",
+      "title": "Co-Evolving Skill Generation and Policy Optimization",
+      "abstract": "Skill-augmented reinforcement learning improves language agents by storing reusable procedural knowledge acquired from past experience. Existing methods typically use strong language models to analyze trajectories, generate skills, and update a retrievable skill bank during online training. However, they rarely assess whether a newly generated skill is useful before it is stored and reused. We find that this assumption is unreliable: even skills generated by proprietary frontier LLMs exhibit highly mixed utility, with many providing little benefit or even degrading performance. Once such skills enter the bank, their effects are difficult to identify, because subsequent rollout feedback is delayed and usually reflects the combined effect of multiple retrieved skills rather than the marginal contribution of any individual skill. We propose an online reinforcement learning framework for pre-storage skill validation. The framework estimates whether a candidate skill contributes useful information beyond the skills already retrieved for the current task. It uses the standard rollout budget to form two matched groups under the same task and retrieval context: base rollouts conditioned on the currently retrieved skills, and skill-augmented rollouts conditioned on the same skills plus one candidate skill induced from the base trajectories. The reward gap between these two groups estimates the candidate skill's context-dependent marginal utility, enabling the framework to promote useful skills while filtering ineffective or harmful ones without additional rollout overhead. The framework further uses this marginal-utility signal to train the policy itself as a skill generator, reducing reliance on repeated calls to proprietary models. The learned skill-generation likelihood serves as a context-dependent score for retrieval-time reranking and outdated-skill pruning as the policy evolves.",
+      "authors": [
+        "Zhiwei Zhang",
+        "Yudi Lin",
+        "Nikki Lijing Kuang",
+        "Linlin Wu",
+        "Xiaomin Li",
+        "Songtao Liu",
+        "Fenglong Ma"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-07T17:55:55+00:00",
+      "link": "https://arxiv.org/pdf/2606.08755v1",
+      "tags": [
+        "keyword:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Skill retrieval for language agents via LLM-generated skills and bank updating",
+      "llm_evidence_cn": "通过LLM生成技能并更新检索库为语言智能体提供技能检索",
+      "llm_evidence": "通过LLM生成技能并更新检索库为语言智能体提供技能检索",
+      "canonical_evidence": "通过LLM生成技能并更新检索库为语言智能体提供技能检索",
+      "llm_tldr_en": "Proposes co-evolving skill generation and policy optimization for language agents, using LLM-generated skills stored in a retrievable bank, and shows improved performance by filtering useful skills.",
+      "llm_tldr_cn": "针对语言智能体中技能检索库中无用技能增多的问题，提出协同进化的技能生成与策略优化方法。在线上训练中评估新生成技能的效用，仅保留有用技能，避免性能退化。实验表明该方法提升了检索增强型语言智能体的决策能力，为知识检索在智能体中的应用提供了新思路。",
+      "llm_tldr": "针对语言智能体中技能检索库中无用技能增多的问题，提出协同进化的技能生成与策略优化方法。在线上训练中评估新生成技能的效用，仅保留有用技能，避免性能退化。实验表明该方法提升了检索增强型语言智能体的决策能力，为知识检索在智能体中的应用提供了新思路。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.10759v1",
+      "source": "arxiv",
+      "title": "miniReranker: Efficient Multimodal Reranking through Visual Cache Reuse and Interaction Sparsity",
+      "abstract": "Multimodal large language models (MLLMs) have recently shown strong potential as point-wise rerankers by directly modeling query--document relevance through next-token prediction. However, point-wise reranking suffers from substantial repeated computation across query--document pairs, while the causal structure of transformers allows only prefix segments to be reused via pre-caching. To address the misalignment of existing query-first and document-first formats with both VQA-style prompting and computation-aware reuse, we propose a \\textit{vision-first} formulation that improves both cache reuse efficiency and reranking performance. However, the remaining cost is still considerable and stems from three main sources: (1) \\textit{model depth}, for which we reduce active parameters via early exit; (2) \\textit{cross-segment attention}, which we restrict to a narrow interaction band across a few layers; and (3) \\textit{visual tokens}, where we reduce the number of tokens via embedder-guided pruning. Together, these designs form miniReranker, which reduces reranking runtime to <1% of the dense implementation under high-reuse settings for a single query, while preserving >96% of the dense model performance.",
+      "authors": [
+        "Yingqi Fan",
+        "Xuan Lu",
+        "Anhao Zhao",
+        "Junlong Tong",
+        "Ping Nie",
+        "Kai Zou",
+        "Yunpu Ma",
+        "Wei Zhang",
+        "Xiaoyu Shen"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-09T12:11:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.10759v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Efficient multimodal reranking for query-document relevance using MLLMs",
+      "llm_evidence_cn": "利用多模态大语言模型进行高效重排序，通过视觉缓存重用和稀疏注意力提升效率",
+      "llm_evidence": "利用多模态大语言模型进行高效重排序，通过视觉缓存重用和稀疏注意力提升效率",
+      "canonical_evidence": "利用多模态大语言模型进行高效重排序，通过视觉缓存重用和稀疏注意力提升效率",
+      "llm_tldr_en": "miniReranker improves efficiency of using MLLMs as point-wise rerankers via vision-first formulation, visual cache reuse, sparse fusion, and candidate-level pruning.",
+      "llm_tldr_cn": "针对多模态大语言模型作为点式重排序器时计算开销大的问题，miniReranker通过视觉优先形式、视觉缓存重用、稀疏图文融合和候选层剪枝等技术，大幅提升重排序效率，实验在多个基准上验证了其效率和效果，为多模态检索增强生成提供了高效的重排序方案。",
+      "llm_tldr": "针对多模态大语言模型作为点式重排序器时计算开销大的问题，miniReranker通过视觉优先形式、视觉缓存重用、稀疏图文融合和候选层剪枝等技术，大幅提升重排序效率，实验在多个基准上验证了其效率和效果，为多模态检索增强生成提供了高效的重排序方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.09241v1",
+      "source": "arxiv",
+      "title": "Closing the Indexing-Decoding Gap in Multimodal Generative Retrieval via Prefix Retention Optimization",
+      "abstract": "Multimodal generative retrieval formulates multimodal retrieval as discrete identifier generation, eliminating the need for explicit similarity search over external embeddings. Existing approaches construct identifiers via residual quantization and decode them with trie-constrained beam search. This combination introduces an indexing-decoding gap: identifier learning objectives, including reconstruction and contrastive losses, do not explicitly enforce prefix discriminability during decoding. As a result, even well-optimized identifiers can be irreversibly pruned early in beam search due to low-rank prefixes. We theoretically characterize this gap and derive a survival bound that relates prefix retention to three controllable factors in indexing and decoding. Building on this bound, we propose PRO, prefix retention optimization, a unified framework comprising three mechanisms: (i) prefix ranking distillation aligns quantized prefix rankings with those induced by pre-quantization embeddings using a listwise loss; (ii) vocabulary scheduling increases codebook sizes from shallow to deep residual quantization levels to reduce early competition from non-target prefixes; and (iii) geometric score fusion vectorizes each candidate prefix and incorporates its similarity to the query into beam search scoring, further reducing the indexing-decoding mismatch. Experiments on nine multimodal retrieval tasks show that PRO improves retention of target identifier prefixes and outperforms existing multimodal generative retrieval baselines.",
+      "authors": [
+        "Yufei Chen",
+        "Zihan Wang",
+        "Yubao Tang",
+        "Yukun Zhao",
+        "Maarten de Rijke",
+        "Zhaochun Ren"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-08T09:15:47+00:00",
+      "link": "https://arxiv.org/pdf/2606.09241v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Addresses the gap between identifier learning and decoding in generative retrieval, proposing a prefix retention method.",
+      "llm_evidence_cn": "解决生成式检索中标识符学习与解码之间的差距，提出前缀保留方法。",
+      "llm_evidence": "解决生成式检索中标识符学习与解码之间的差距，提出前缀保留方法。",
+      "canonical_evidence": "解决生成式检索中标识符学习与解码之间的差距，提出前缀保留方法。",
+      "llm_tldr_en": "This paper identifies an indexing-decoding gap in multimodal generative retrieval, where learned identifiers may be pruned early due to low-rank prefixes. It theoretically derives a survival bound and proposes prefix retention optimization to ensure discriminative prefixes survive beam search. The method improves retrieval performance by reducing early pruning.",
+      "llm_tldr_cn": "针对多模态生成式检索中标识符学习与解码的不匹配，本文理论分析前缀生存界，提出前缀保留优化，避免低秩前缀在束搜索中被过早剪枝。该方法通过确保前缀的可区分性，提升了生成式检索的性能，为生成式检索的索引设计提供理论指导。",
+      "llm_tldr": "针对多模态生成式检索中标识符学习与解码的不匹配，本文理论分析前缀生存界，提出前缀保留优化，避免低秩前缀在束搜索中被过早剪枝。该方法通过确保前缀的可区分性，提升了生成式检索的性能，为生成式检索的索引设计提供理论指导。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.10125v1",
+      "source": "arxiv",
+      "title": "Robust Active Learning for Few-Shot Example Selection in Text-to-SQL",
+      "abstract": "Few-shot example retrieval is the dominant paradigm for grounding large language models (LLMs) in domain-specific text-to-SQL systems. However, the quality of the annotated example bank directly governs system accuracy, and expert annotation is prohibitively expensive. We formalize the active selection of these examples as a constrained experimental design problem over the intrinsic, low-dimensional manifold of semantic query embeddings. Unlike standard active learning frameworks, our setting introduces three critical challenges: varying, query-dependent annotation reliability (heteroscedasticity), strict requirements for spatial diversity across semantic topics (partition matroid constraints), and the inherent reality that the true covariance structure of the embedding space is unknown (misspecification). To address these, we propose a stratified greedy algorithm that maximizes a heteroscedastic mutual information objective. We prove that this objective remains submodular and approximately monotonic on the intrinsic manifold, yielding a theoretical constant-factor approximation guarantee. We establish a spectral bound demonstrating that this approximation guarantee degrades gracefully, rather than catastrophically, when the assumed surrogate kernel diverges from the true underlying data-generating process. Empirical results demonstrate that the proposed strategy significantly reduces labeling effort while maintaining high text-to-SQL retrieval accuracy.",
+      "authors": [
+        "Arash Pourhabib"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.DB",
+        "cs.LG"
+      ],
+      "published": "2026-06-08T19:56:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.10125v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Active example selection for LLM text-to-SQL",
+      "llm_evidence_cn": "LLM文生SQL的主动示例选择",
+      "llm_evidence": "LLM文生SQL的主动示例选择",
+      "canonical_evidence": "LLM文生SQL的主动示例选择",
+      "llm_tldr_en": "Formalizes active selection of few-shot examples for text-to-SQL as constrained experimental design, using semantic embeddings and partition matroid constraints to ensure diversity and reliability.",
+      "llm_tldr_cn": "针对Text-to-SQL中少量示例检索成本高的问题，将主动选择建模为语义查询嵌入流形上的约束实验设计，结合异方差性、空间多样性和协方差结构估计挑战。提出鲁棒主动学习框架，在保证语义覆盖的同时降低标注成本。",
+      "llm_tldr": "针对Text-to-SQL中少量示例检索成本高的问题，将主动选择建模为语义查询嵌入流形上的约束实验设计，结合异方差性、空间多样性和协方差结构估计挑战。提出鲁棒主动学习框架，在保证语义覆盖的同时降低标注成本。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.09241v2",
+      "source": "arxiv",
+      "title": "Closing the Indexing-Decoding Gap in Multimodal Generative Retrieval via Prefix Retention Optimization",
+      "abstract": "Multimodal generative retrieval formulates multimodal retrieval as discrete identifier generation, eliminating the need for explicit similarity search over external embeddings. Existing approaches construct identifiers via residual quantization and decode them with trie-constrained beam search. This combination introduces an indexing-decoding gap: identifier learning objectives, including reconstruction and contrastive losses, do not explicitly enforce prefix discriminability during decoding. As a result, even well-optimized identifiers can be irreversibly pruned early in beam search due to low-rank prefixes. We theoretically characterize this gap and derive a survival bound that relates prefix retention to three controllable factors in indexing and decoding. Building on this bound, we propose PRO, prefix retention optimization, a unified framework comprising three mechanisms: (i) prefix ranking distillation aligns quantized prefix rankings with those induced by pre-quantization embeddings using a listwise loss; (ii) vocabulary scheduling increases codebook sizes from shallow to deep residual quantization levels to reduce early competition from non-target prefixes; and (iii) geometric score fusion vectorizes each candidate prefix and incorporates its similarity to the query into beam search scoring, further reducing the indexing-decoding mismatch. Experiments on nine multimodal retrieval tasks show that PRO improves retention of target identifier prefixes and outperforms existing multimodal generative retrieval baselines.",
+      "authors": [
+        "Yufei Chen",
+        "Zihan Wang",
+        "Yubao Tang",
+        "Yukun Zhao",
+        "Maarten de Rijke",
+        "Zhaochun Ren"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-08T09:15:47+00:00",
+      "link": "https://arxiv.org/pdf/2606.09241v2",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Theoretically characterizes and optimizes prefix discriminability in generative retrieval to prevent early pruning",
+      "llm_evidence_cn": "理论表征生成式检索中前缀可判别性并优化以避免假阴性检索",
+      "llm_evidence": "理论表征生成式检索中前缀可判别性并优化以避免假阴性检索",
+      "canonical_evidence": "理论表征生成式检索中前缀可判别性并优化以避免假阴性检索",
+      "llm_tldr_en": "Identifies an indexing-decoding gap in generative retrieval where non-discriminative prefixes cause irreversible false negatives, and proposes optimization based on a derived survival bound.",
+      "llm_tldr_cn": "该文指出多模态生成式检索中，索引学习目标未显式约束前缀可判别性，导致解码时前缀保真度低而产生不可逆假阴性，理论推导出前缀保留的生存界并据此控制三个关键因素，实验证明优化后检索质量大幅提升，为生成式检索技术提供了理论基础和改进方向。",
+      "llm_tldr": "该文指出多模态生成式检索中，索引学习目标未显式约束前缀可判别性，导致解码时前缀保真度低而产生不可逆假阴性，理论推导出前缀保留的生存界并据此控制三个关键因素，实验证明优化后检索质量大幅提升，为生成式检索技术提供了理论基础和改进方向。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

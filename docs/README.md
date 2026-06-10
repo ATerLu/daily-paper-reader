@@ -6,139 +6,70 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-01 ~ 2026-06-10
-- 运行时间：2026-06-10 07:10:35 UTC
+- 最新运行日期：2026-06-10
+- 运行时间：2026-06-10 22:18:39 UTC
 - 运行状态：成功
-- 本次总论文数：39
-- 精读区：28
-- 速读区：11
+- 本次总论文数：16
+- 精读区：6
+- 速读区：10
 
 ### 今日简报（AI）
-旬度精读两篇满分论文，聚焦法律问答的归因重排序与外学子图增强推理。  
-重排序结合归因提升引用质量，而推理增强通过外学子图补全逻辑链，两大方向均实现稳定性能跃升。  
-建议关注重排序的归因可解释性及子图生成的结构化引导，这两项技术或成下一轮检索与推理改进的突破口。
-- 详情：[/20260601-20260610/README](/20260601-20260610/README)
+1) 今日精读+速读16篇论文，重点拆解了长文档问答的记忆代理框架与多模态检索的效率优化方案。  
+2) 最值得看的方向：MARDoc与Trace Only What You Need提出的结构感知按需记忆，为长文档QA开辟代理式动态记忆新路径；MM-Matryoshka的预算弹性视觉检索和miniReranker的稀疏重排序，则直击视觉文档理解中的成本效率痛点。  
+3) 建议读者优先实验两类记忆机制在图文混排长文档上的效果，再用DataEvolver自动化数据准备降低适配门槛。
+- 详情：[/202606/10/README](/202606/10/README)
 
 ### 精读区论文标签
-1. [Re-Ranking Through an Attribution Lens for Citation Quality in Legal QA](/20260601-20260610/2606.03728v1-re-ranking-through-an-attribution-lens-for-citation-quality-in-legal-qa)  
+1. [MARDoc: A Memory-Aware Refinement Agent Framework for Multimodal Long Document QA](/202606/10/2606.05749v1-mardoc-a-memory-aware-refinement-agent-framework-for-multimodal-long-document-qa)  
    标签：评分：10.0/10、query:rag-llm
-   evidence：在归因分数上训练交叉编码器对段落重排序，提升RAG中引用对齐
-2. [Stepwise Reasoning Enhancement for LLMs via External Subgraph Generation](/20260601-20260610/2606.04454v1-stepwise-reasoning-enhancement-for-llms-via-external-subgraph-generation)  
+   evidence：面向多模态长文档问答的迭代检索-推理智能体框架
+2. [Trace Only What You Need: Structure-Aware On-Demand Hypergraph Memory for Long-Document Question Answering](/202606/10/2606.10921v1-trace-only-what-you-need-structure-aware-on-demand-hypergraph-memory-for-long-document-question-answering)  
    标签：评分：10.0/10、query:rag-llm
-   evidence：通过查询相关子图检索实现逐步推理，是LLM的检索增强生成方法
-3. [Agent-Orchestrated Adaptive RAG: A Comparative Study on Structured and Multi-Hop Retrieval](/20260601-20260610/2606.05658v1-agent-orchestrated-adaptive-rag-a-comparative-study-on-structured-and-multi-hop-retrieval)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：提出自适应RAG框架，包含查询分解、迭代检索和自我反思评估
-4. [QCFuse: Query-Aware Cache Fusion via Compressed View for Efficient RAG Serving](/20260601-20260610/2606.05875v1-qcfuse-query-aware-cache-fusion-via-compressed-view-for-efficient-rag-serving)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：基于压缩视图的查询感知缓存融合方法，高效服务于RAG预填充
-5. [HKVM-RAG: Key-Value-Separated Hypergraph Evidence Organization for Multi-Hop RAG](/20260601-20260610/2606.07218v1-hkvm-rag-key-value-separated-hypergraph-evidence-organization-for-multi-hop-rag)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：基于超图的键值分离证据组织方法，用于多跳RAG
-6. [Self-Conditioned Positional HNSW for Overlap-Aware Retrieval in Chunked-Document RAG Systems: Method and Industrial Evidence-Quality Audit](/20260601-20260610/2606.01542v1-self-conditioned-positional-hnsw-for-overlap-aware-retrieval-in-chunked-document-rag-systems-method-and-industrial-evidence-quality-audit)  
+   evidence：提出DocTrace多智能体RAG框架，利用按需超图记忆和文档结构。
+3. [QO-Bench: Diagnosing Query-Operator-Preserving Retrieval over Typed Event Tuples](/202606/10/2606.04646v1-qo-bench-diagnosing-query-operator-preserving-retrieval-over-typed-event-tuples)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出SCP-HNSW方法，解决RAG检索中分块重叠导致的冗余问题
-7. [RCEM: Embedder Equipped with Query Rewriting Skill for Robust Conversational Search in Distributional Shift](/20260601-20260610/2606.01697v1-rcem-embedder-equipped-with-query-rewriting-skill-for-robust-conversational-search-in-distributional-shift)  
+   evidence：提出一个面向检索增强生成系统的基准，测试检索是否保持查询操作，直接评估RAG性能。
+4. [STORM: Stepwise Token Optimization with Reward-Guided Beam Search](/202606/10/2606.10621v1-storm-stepwise-token-optimization-with-reward-guided-beam-search)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：蒸馏LLM查询改写能力的对话稠密检索模型，增强RAG中的稠密检索
-8. [When Knowledge Is Not Free: Cost-Aware Evidence Selection in Retrieval-Augmented Generation](/20260601-20260610/2606.02245v1-when-knowledge-is-not-free-cost-aware-evidence-selection-in-retrieval-augmented-generation)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：引入成本感知的RAG设置，在证据访问预算下进行选择
-9. [Forget Attention: Importance-Aware Attention Is All You Need](/20260601-20260610/2606.02332v1-forget-attention-importance-aware-attention-is-all-you-need)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：新型混合注意力机制SISA，将状态空间模型的重要性融合进Transformer注意力
-10. [Forget Attention: Importance-Aware Attention Is All You Need](/20260601-20260610/2606.02332v2-forget-attention-importance-aware-attention-is-all-you-need)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出融合状态空间模型重要性的软注意力机制，推动大语言模型架构发展。
-11. [Attention Calibration for Position-Fair Dense Information Retrieval](/20260601-20260610/2606.02737v1-attention-calibration-for-position-fair-dense-information-retrieval)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出推理时注意力校准消除稠密检索模型位置偏差
-12. [Do Neural Retrievers Prefer Certain Documents? Evidence of Learned Relevance Priors](/20260601-20260610/2606.02814v1-do-neural-retrievers-prefer-certain-documents-evidence-of-learned-relevance-priors)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：研究稠密检索模型中的文档级相关性先验，揭示神经检索器偏差
-13. [Structures Facilitate Retrieve, Rerank, and Generate](/20260601-20260610/2606.03247v1-structures-facilitate-retrieve-rerank-and-generate)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出SF-Re2G利用文档结构改进文献对话系统中的检索、重排和生成
-14. [Generalizing Graph Foundation Models via Hyperbolic Retrieval-Augmented Generation](/20260601-20260610/2606.03307v2-generalizing-graph-foundation-models-via-hyperbolic-retrieval-augmented-generation)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出图基础模型的双曲检索增强生成方法，是一种新颖的RAG方法
-15. [Code-on-Graph: Iterative Programmatic Reasoning via Large Language Models on Knowledge Graphs](/20260601-20260610/2606.03705v1-code-on-graph-iterative-programmatic-reasoning-via-large-language-models-on-knowledge-graphs)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：LLM生成代码灵活检索知识图谱并推理，突破预定义操作符的限制，增强知识访问能力。
-16. [MM-BizRAG: Rethinking Multimodal Retrieval-Augmented Generation for General Purpose Enterprise Q&A](/20260601-20260610/2606.04231v1-mm-bizrag-rethinking-multimodal-retrieval-augmented-generation-for-general-purpose-enterprise-qa)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出面向企业文档的文档结构感知拆分用于多模态RAG
-17. [LazyAttention: Efficient Retrieval-Augmented Generation with Deferred Positional Encoding](/20260601-20260610/2606.04302v1-lazyattention-efficient-retrieval-augmented-generation-with-deferred-positional-encoding)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：引入LazyAttention，通过KV缓存中延迟位置编码实现高效RAG
-18. [Rethinking LoRA Memory Through the Lens of KV Cache Compression](/20260601-20260610/2606.05698v1-rethinking-lora-memory-through-the-lens-of-kv-cache-compression)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：研究文档LoRA参数化检索增强与KV缓存压缩的交互
-19. [Reducing Hallucinations in Complex Question Answering using Simple Graph-based Retrieval-Augmented Generation (long version)](/20260601-20260610/2606.05901v1-reducing-hallucinations-in-complex-question-answering-using-simple-graph-based-retrieval-augmented-generation-long-version)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：使用轻量图结构辅助RAG进行复杂问答，减少幻觉
-20. [Beyond Vector Similarity: A Structural Analysis of Graph-Augmented Retrieval for Industrial Knowledge Graphs](/20260601-20260610/2606.06003v1-beyond-vector-similarity-a-structural-analysis-of-graph-augmented-retrieval-for-industrial-knowledge-graphs)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出利用类型化遍历原语的图增强检索用于知识图谱上的RAG
-21. [IA-RAG: Interval-Algebra-Driven Temporal Reasoning for Dynamic Knowledge Retrieval](/20260601-20260610/2606.06044v1-ia-rag-interval-algebra-driven-temporal-reasoning-for-dynamic-knowledge-retrieval)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出IA-RAG，基于区间代数的时态RAG框架，建模时间感知知识检索
-22. [Self-Augmenting Retrieval for Diffusion Language Models](/20260601-20260610/2606.06474v1-self-augmenting-retrieval-for-diffusion-language-models)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出一种动态RAG框架，利用扩散LLM丢弃的令牌作为检索信号
-23. [Constrained Dominant Sets for Multimodal Document Question Answering](/20260601-20260610/2606.07252v1-constrained-dominant-sets-for-multimodal-document-question-answering)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出一种基于约束占优集的RAG检索新方法
-24. [Constrained Dominant Sets for Multimodal Document Question Answering](/20260601-20260610/2606.07252v2-constrained-dominant-sets-for-multimodal-document-question-answering)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：引入基于约束支配集的检索器，避免多模态RAG中的重复证据
-25. [Decoupling Semantics and Logic: A Training-Free Coarse-to-Fine Pipeline for Video Retrieval-Augmented Generation](/20260601-20260610/2606.07924v1-decoupling-semantics-and-logic-a-training-free-coarse-to-fine-pipeline-for-video-retrieval-augmented-generation)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出无训练的两阶段视频RAG流水线，分离语义检索与逻辑推理
-26. [TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse](/20260601-20260610/2606.08135v1-ticoder-a-repository-level-code-generation-framework-with-test-driven-planning-and-implementation-aware-reuse)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：基于RAG的代码生成框架，结合测试驱动规划和实现感知重用
-27. [TrustMargin: Training-Free Arbitration between Parametric Memory and Retrieved Evidence in Large Language Models](/20260601-20260610/2606.08397v1-trustmargin-training-free-arbitration-between-parametric-memory-and-retrieved-evidence-in-large-language-models)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：无需训练的RAG答案仲裁方法，决定何时信任参数记忆或检索证据。
-28. [AbstRAG: Learning to Abstract for Retrieval Problems](/20260601-20260610/2606.09459v1-abstrag-learning-to-abstract-for-retrieval-problems)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出AbstRAG，显式建模RAG中查询与证据之间的抽象差距
+   evidence：通过奖励引导束搜索的逐步令牌优化进行词汇查询扩展
+5. [Improving the Efficiency and Effectiveness of LLM Knowledge Distillation for Conversational Search](/202606/10/2606.04650v1-improving-the-efficiency-and-effectiveness-of-llm-knowledge-distillation-for-conversational-search)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：对话搜索中LLM查询改写的知识蒸馏，提高效率与效果
+6. [Evaluating RAG Reliability under Clean, Misleading, and Mixed Retrieval](/202606/10/2606.07783v1-evaluating-rag-reliability-under-clean-misleading-and-mixed-retrieval)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：提出评估协议，测试RAG在误导性检索下的可靠性
 
 ### 速读区论文标签
-1. [Whole-Pool Setwise Reranking with Long-Context Language Models](/20260601-20260610/2606.01782v1-whole-pool-setwise-reranking-with-long-context-language-models)  
+1. [DataEvolver: Automatic Data Preparation for Large Language Models through Multi-Level Self-Evolving](/202606/10/2606.07001v1-dataevolver-automatic-data-preparation-for-large-language-models-through-multi-level-self-evolving)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出利用长上下文LLM进行全池集合重排序以减少调用次数，改进RAG检索
-2. [Argus-Retriever: Vision-LLM Late-Interaction Retrieval with Region-Aware Query-Conditioned MoE for Visual Document Retrieval](/20260601-20260610/2606.04300v1-argus-retriever-vision-llm-late-interaction-retrieval-with-region-aware-query-conditioned-moe-for-visual-document-retrieval)  
+   evidence：提出自我进化系统自动构建大语言模型数据预处理流水线
+2. [MM-Matryoshka: Towards Budget-Elastic Visual Document Retrieval via a 2D Multimodal Matryoshka Training Framework](/202606/10/2606.07654v1-mm-matryoshka-towards-budget-elastic-visual-document-retrieval-via-a-2d-multimodal-matryoshka-training-framework)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：引入查询条件化的后期交互检索器，采用区域感知MoE用于视觉文档检索
-3. [Dynamic Infilling Anchors for Format-Constrained Generation in Diffusion Large Language Models](/20260601-20260610/2606.04535v1-dynamic-infilling-anchors-for-format-constrained-generation-in-diffusion-large-language-models)  
+   evidence：提出二维套娃训练用于密集视觉文档检索，实现预算弹性的多向量检索。
+3. [miniReranker: Efficient Multimodal Reranking through Visual Cache Reuse and Interaction Sparsity](/202606/10/2606.10759v1-minireranker-efficient-multimodal-reranking-through-visual-cache-reuse-and-interaction-sparsity)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出扩散LLM中格式约束生成的动态填充锚点方法
-4. [QO-Bench: Diagnosing Query-Operator-Preserving Retrieval over Typed Event Tuples](/20260601-20260610/2606.04646v1-qo-bench-diagnosing-query-operator-preserving-retrieval-over-typed-event-tuples)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：面向RAG系统的诊断基准，针对结构化事件元组检索中的查询操作符保持问题进行测试。
-5. [Section-Weighted Hybrid Approach for Legal Case Retrieval](/20260601-20260610/2606.03138v1-section-weighted-hybrid-approach-for-legal-case-retrieval)  
+   evidence：利用多模态大语言模型进行高效重排序，通过视觉缓存重用和稀疏注意力提升效率
+4. [When Should Queries Be Decomposed? A Stage-Aware Study of Query Decomposition for Multi-Condition Retrieval](/202606/10/2606.08577v1-when-should-queries-be-decomposed-a-stage-aware-study-of-query-decomposition-for-multi-condition-retrieval)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：结合稠密ANN与BM25检索，利用LLM分段进行法律案例的细粒度匹配，提升检索精度。
-6. [Training-Free Lexical-Dense Fusion for Conversational-Memory Retrieval](/20260601-20260610/2606.04194v1-training-free-lexical-dense-fusion-for-conversational-memory-retrieval)  
+   evidence：实证研究查询分解在不同检索阶段的效果并提出分阶段分解框架
+5. [EviProp: Seeded Relevance Diffusion on Chunk-Page Graphs for Long Multimodal Document Retrieval](/202606/10/2606.08979v1-eviprop-seeded-relevance-diffusion-on-chunk-page-graphs-for-long-multimodal-document-retrieval)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：提出无训练融合密集与BM25评分的方法用于对话记忆检索，适用于LM上下文检索
-7. [ANN Search: Recall What Matters](/20260601-20260610/2606.04522v1-ann-search-recall-what-matters)  
+   evidence：提出一种基于图的检索方法，利用密集视觉先验和稀疏块种子进行文档检索。
+6. [Closing the Indexing-Decoding Gap in Multimodal Generative Retrieval via Prefix Retention Optimization](/202606/10/2606.09241v1-closing-the-indexing-decoding-gap-in-multimodal-generative-retrieval-via-prefix-retention-optimization)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：提出1/Ratio@k评估近似最近邻搜索质量，替代Recall@k
-8. [Distributional Approximate Nearest Neighbour Search for Uncertainty-Aware Retrieval](/20260601-20260610/2606.04603v1-distributional-approximate-nearest-neighbour-search-for-uncertainty-aware-retrieval)  
+   evidence：解决生成式检索中标识符学习与解码之间的差距，提出前缀保留方法。
+7. [Closing the Indexing-Decoding Gap in Multimodal Generative Retrieval via Prefix Retention Optimization](/202606/10/2606.09241v2-closing-the-indexing-decoding-gap-in-multimodal-generative-retrieval-via-prefix-retention-optimization)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：提出分布近似最近邻搜索以处理检索中的嵌入不确定性
-9. [Fine-grained Fragment Retrieval in Multi-modal Long-form Dialogues](/20260601-20260610/2606.04591v1-fine-grained-fragment-retrieval-in-multi-modal-long-form-dialogues)  
+   evidence：理论表征生成式检索中前缀可判别性并优化以避免假阴性检索
+8. [Fast LLM-Based Semantic Filtering: From a Unified Framework to an Adaptive Two-Phase Method](/202606/10/2606.08090v1-fast-llm-based-semantic-filtering-from-a-unified-framework-to-an-adaptive-two-phase-method)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：提出多模态长对话中的细粒度片段检索，使用生成式检索模型
-10. [LLM-Guided ANN Index Optimization for Human-Object Interaction Retrieval](/20260601-20260610/2606.05489v1-llm-guided-ann-index-optimization-for-human-object-interaction-retrieval)  
+   evidence：利用密集检索代理与LLM级联实现高效语义过滤
+9. [Co-Evolving Skill Generation and Policy Optimization](/202606/10/2606.08755v1-co-evolving-skill-generation-and-policy-optimization)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：利用LLM智能体优化检索系统中ANN索引参数，将LLM与信息检索相集成
-11. [Beyond Matching: Category-Guided Latent Intent Reasoning for Generative Retrieval in E-Commerce](/20260601-20260610/2606.07075v1-beyond-matching-category-guided-latent-intent-reasoning-for-generative-retrieval-in-e-commerce)  
+   evidence：通过LLM生成技能并更新检索库为语言智能体提供技能检索
+10. [Robust Active Learning for Few-Shot Example Selection in Text-to-SQL](/202606/10/2606.10125v1-robust-active-learning-for-few-shot-example-selection-in-text-to-sql)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：提出类别引导的潜在意图推理用于电商生成式检索
+   evidence：LLM文生SQL的主动示例选择
 
 
 <div class="dpr-home-promo-card">
