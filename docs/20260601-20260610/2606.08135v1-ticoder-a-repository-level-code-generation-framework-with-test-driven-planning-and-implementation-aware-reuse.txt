@@ -1,0 +1,704 @@
+Title: TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse
+
+URL Source: https://arxiv.org/pdf/2606.08135v1
+
+Published Time: Tue, 09 Jun 2026 00:39:28 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+# TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse 
+
+## Siyu Nan ∗
+
+siyunan@whu.edu.cn Wuhan University Wuhan, Hubei, China 
+
+## Yaling Luo ∗
+
+luoyaling@whu.edu.cn Wuhan University Wuhan, Hubei, China 
+
+## Jian Wang †
+
+jianwang@whu.edu.cn Wuhan University Wuhan, Hubei, China 
+
+## Neng Zhang 
+
+nengzhang@ccnu.edu.cn Central China Normal University Wuhan, Hubei, China 
+
+## Bing Li †
+
+bingli@whu.edu.cn Wuhan University Wuhan, Hubei, China 
+
+Abstract 
+
+Repository-level code generation with Large Language Models (LLMs) remains challenging, primarily due to complex depen-dencies and limited context windows. Recent approaches adopt retrieval-augmented generation (RAG) and the planning mecha-nism to reuse potential callee functions in the repository. However, these approaches often suffer from two limitations: lack of test-driven behavioral guidance during planning and overlooking the implementation logic embedded in repository code during reuse. As a result, generated plans may not align with expected behaviors, and retrieved functions may not be effectively reused. In this pa-per, we propose TICoder, a novel repository-level code generation framework that improves both planning and reuse. TICoder intro-duces a test-driven iterative planning mechanism that leverages test cases as behavioral specifications to refine implementation steps. Furthermore, TICoder employs an implementation-aware code reuse strategy, which retrieves potential callee functions using a dual-view similarity that captures both functional and implemen-tation aspects. We then identify relevant usage patterns through a dual-stage selection strategy, combining structure-based clustering and perplexity-based filtering. We conduct extensive experiments on widely used repository-level code generation benchmarks with various LLMs. Experimental results demonstrate that TICoder out-performs state-of-the-art (SOTA) methods, achieving an average improvement of 11.52%. 
+
+CCS Concepts 
+
+• Software and its engineering → Automatic programming ; •
+
+Computing methodologies → Artificial intelligence . 
+
+> ∗Both authors contributed equally to this research.
+> †Corresponding authors. Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+> 26, XX, XX
+> ©2026 Copyright held by the owner/author(s). Publication rights licensed to ACM. ACM ISBN 978-1-4503-XXXX-X/2018/06 https://doi.org/XXXXXXX.XXXXXXX
+
+Keywords 
+
+Repository-Level Code Generation, Retrieval-Augmented Genera-tion, Planning, Test Cases 
+
+ACM Reference Format: 
+
+Siyu Nan, Yaling Luo, Jian Wang, Neng Zhang, and Bing Li. 2026. TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse. In Proceedings of Conference (26). ACM, New York, NY, USA, 12 pages. https://doi.org/XXXXXXX.XXXXXXX 
+
+1 Introduction 
+
+Code generation is a critical task in modern software development, aiming to bridge natural language (NL) requirements with exe-cutable code [ 2 , 11 , 14 , 37 ]. Recently, LLMs have demonstrated remarkable capabilities in generating standalone code snippets from NL requirements. However, they still struggle with repository-level code generation, a more realistic development scenario that requires understanding and leveraging the code repository. This task is particularly challenging due to complex dependencies and the limited context window of LLMs [23, 25, 29, 30]. To mitigate these challenges, existing approaches adopt the RAG framework [ 25 , 29 , 32 , 36 ], where similar code snippets are retrieved from the repository and provided as contextual information to guide LLMs during generation. However, retrieving similar code snippets does not always improve generation performance and may even negatively affect it, because there is no guarantee that a functionally similar implementation corresponding to the NL requirement exists within the repository [ 10 ]. In real-world development scenarios, developers often implement new functionality by composing multi-ple partially related functions rather than directly reusing a single similar code snippet. To address this limitation, several recent studies propose planning-based repository-level Retrieval-Augmented Code Gener-ation (RACG) approaches [ 4, 10 , 15 ]. These approaches first gener-ate a sequence of implementation steps for the task based on the NL requirement, and then retrieve potential callee functions from the repository. By decomposing the NL requirement into substeps, these approaches improve the discoverability of reusable repository functions and have shown promising performance in repository-level code generation. Despite these advances, we observe that existing approaches still suffer from two key limitations. 
+
+L1. Lack of test-driven behavioral guidance in planning.  
+
+> arXiv:2606.08135v1 [cs.SE] 6 Jun 2026 26, Jan 1–10, 2026, XX, XX Trovato et al.
+
+Existing approaches [ 4, 10 , 15 ] typically derive implementation steps directly from NL requirements. However, NL requirements in real-world development are often vague or incomplete, making it difficult to produce reliable implementation steps. In practice, devel-opers frequently rely on test cases to clarify expected behaviors and guide implementation. While recent test-driven code generation methods [ 7 , 13 , 21 ] leverage test cases to improve the performance of generated code, they mainly apply them in the generation stage, leaving their potential for guiding the planning process unexplored. 
+
+L2. Lack of code-level implementation awareness in reuse. 
+
+Existing planning-based RACG approaches [ 4 , 10 , 15 ] mainly capture the implementation steps at the requirement level while overlooking the implementation logic embedded in the code. During retrieval, potential callee functions are typically identified based on semantic similarity between implementation steps and func-tion descriptions, while the execution logic of the code is ignored. Additionally, during generation, retrieved code snippets are often incorporated directly into prompts without understanding how these functions are actually used in the repository. Consequently, precise retrieval and effective reuse of potential callee functions in the repository remain challenging. To address the aforementioned limitations, we propose TICoder, a novel repository-level code generation framework that improves both planning and reuse. First, we introduce a test-driven iterative planning mechanism that incorporates test cases to guide the gener-ation of implementation steps (addressing L1 ). Instead of deriving plans solely from NL requirements, TICoder leverages test cases as behavioral specifications to refine planning results. Specifically, the framework employs a judge-and-reflection planning process in which an LLM-as-a-planner generates implementation steps, and an LLM-as-a-judge evaluates them, enabling iterative refinement of planning results. Second, we introduce an implementation-aware grounding strategy consisting of dual-view callee function retrieval and dual-stage usage pattern selection (addressing L2 ). The re-trieval module identifies potential reusable functions by jointly considering functional similarity and implementation similarity, enabling more precise discovery of potential callee functions. The selection module further extracts relevant usage patterns through structure-based clustering and perplexity-based filtering. Finally, TICoder performs enhanced code generation by integrating NL requirements, test cases, retrieved callee functions, and selected usage patterns as contextual information for LLMs, enabling LLMs to generate more effective code in repository-level code genera-tion tasks. Table 1 presents the comparison between TICoder and several representative repository-level code generation approaches. We evaluate TICoder on two widely-used repository-level code generation datasets, CoderEval [ 35 ] and DevEval [ 16 ], utilizing three LLMs, GPT-4o-mini [ 1 ], DeepSeek-V3 [ 18 ], and Qwen2.5-Coder [ 12 ], as backbones. The results show that TICoder outper-forms the best-performing baseline across all backbones, achieving up to 11.52% improvement on average. In summary, the contributions are as follows: 
+
+• We propose TICoder, a novel repository-level code gener-ation framework with test-driven iterative planning and implementation-aware code reuse. 
+
+Table 1: Comparison between TICoder and existing repository-level code generation methods, including whether the method adopts a planning mechanism, utilizes test cases, improves retrieval, and exploits usage patterns.                                     
+
+> Approaches Planning Test Cases Retrieval Usage Patterns
+> A3Codgen [17] ✗✗✓✗
+> AllianceCoder [10] ✓✗✗✗
+> CodePlan [4] ✓✗✗✗
+> RepoScope [20] ✗✗✗✓
+> RepoCoder [36] ✗✗✓✗
+> RLCoder [32] ✗✗✓✗
+> CoCoGen [5] ✗✓✗✗
+> TICoder ✓✓✓✓
+
+• We introduce an implementation-aware repository code reuse strategy through callee function retrieval based on dual-view similarity and usage pattern selection based on a dual-stage strategy. 
+
+• We conduct extensive experiments to evaluate TICoder. The results demonstrate that TICoder outperforms SOTA base-lines and adapts to various LLMs. 
+
+2 Related Work 2.1 Repository-level Code Generation 
+
+Existing approaches adopt RAG techniques on repository-level code generation tasks, due to complex dependencies and limited context windows [10, 20, 26, 34, 36]. Several approaches focus on selective retrieval. RepoFormer [ 34 ]introduces a mechanism to decide when retrieval is necessary dur-ing generation. Probing-RAG [ 3] analyzes model hidden states to adaptively decide retrieval timing. Some works enhance retrieval by modeling repository structures as graphs. CoCoMIC [ 8 ] and RepoHyper [ 26 ] construct method-level graphs to capture depen-dencies between functions. GraphCoder [ 19 ] further incorporates statement-level structures to better model fine-grained semantics. RepoGraph [ 24 ] represents repositories as graph structures for im-proved code understanding. RepoScope [ 20 ] introduces call chain-aware multi-view context modeling for repository-level code gener-ation. Some works adopt iterative frameworks to refine generation. RepoCoder [ 36 ] iteratively retrieves relevant code fragments and updates the generated code. De-Hallucinator [ 9] iteratively verifies and corrects generated code to reduce hallucinations. More recently, planning-based methods have been proposed to address the limitation that directly retrieving similar code snippets may fail when no closely matching implementation exists. Code-Plan [ 4] formulates repository-level code generation as a planning problem by generating multi-step plan chains. AllianceCoder [ 10 ]decomposes developer requirements into implementation steps and retrieves relevant APIs for each step. Jiang et al . [15] guided LLMs to incrementally generate code via intermediate planning. Overall, existing approaches have improved repository-level code generation. However, generating precise planning and identi-fying potential callee functions for reuse remains a challenge. To address these limitations, we propose TICoder, which introduces a test-driven iterative planning mechanism to improve planning TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse 26, Jan 1–10, 2026, XX, XX Lack of test -driven behavioral guidance in planning                            
+
+> Requirement
+> Loads the application
+> configuration file and
+> makes it ready for
+> use.
+> Plan
+> (w/o Test Cases)
+> Implementation Steps
+> ①Load the configuration file
+> from the given path .
+> ②⋯⋯
+> Retrieved Function
+> def load_yaml_config (file_path :str ):
+> ⋯⋯
+> Retrieved Function
+> def load_config (file_path :str ):
+> ⋯⋯
+> Implementation Steps
+> ①Load the YAML configuration
+> file using the repository loader .
+> ②⋯⋯
+> Plan
+> (w/ Test Cases)
+> Retrieve
+> Retrieve
+
+Lack of code -level implementation awareness in reuse                                                                         
+
+> Implementation Steps
+> ①⋯⋯
+> ②Recursively redact all sensitive keys (including password, secret,
+> key, token, auth) in the configuration for security compliance .
+> Ground Truth
+> def prepare_application_config (file_path :str ,schema :dict ):
+> config =load_yaml_ config (file_path )
+> ⋯⋯
+> config =config = redact_sensitive_ keys (config ,redact_ mode ="strict" ,extra_ patterns =[ "bearer" ,"session" ,"AuthToken "])
+> ⋯⋯
+> Step Code
+> def redact_sketch (config ,mode ="strict" ):
+> pattern =r'password |secret |key |token |auth ‘
+> sensitive =re.compile (pattern, re.IGNORECASE )
+> if isinstance (config, dict ):
+> for k, v in config.items ():
+> if sensitive.search (k):
+> config[k] ='[REDACTED]‘
+> else :
+> redact_sketch (v, mode)
+> return config
+> Usage Pattern
+> def internal _prepar e(config ,mode ="strict" ):
+> config =redact_sensitive_keys (config, redact_mode ="strict" ,
+> extra_patterns =["bearer" ,"session" ,"AuthToken "])
+> Retrieved Function
+> def redact_sensitive_keys
+> (config ):
+> """Recursively redact
+> sensitive keys in the
+> configuration."""
+> sensitive =
+> re.compile (r'password |
+> secret' ,re.IGNORECASE )
+> ⋯⋯
+> return config
+> Retrieved Function
+> def redact_sensitive_keys
+> (config ,redact_mode =
+> "basic" ,extra_patterns ):
+> """Recursively strict
+> redact sensitive keys
+> in the configuration."""
+> pattern =r'password |
+> secret |key |token |auth ’
+> ⋯⋯
+> return config
+
+Lack of test -driven behavioral guidance in planning    
+
+> Test Case
+> def test_prepare_application_config ():
+> result= prepare_application_config ("config.yaml ",
+> schema =APP_SCHEMA)
+> ⋯⋯
+> Test Case
+> Implementation Steps
+> Retrieved Function Retrieved Function
+> Implementation Steps
+
+Lack of code -level implementation awareness in reuse        
+
+> Retrieved Function Retrieved Function
+> Implementation Steps Step Code
+> Usage Pattern
+> Ground Truth
+> Retrieve (w/o Code Logic) Retrieve (w/ Code Logic)
+> How
+> To
+> Use
+
+Figure 1: A motivating example shows the limitations of prior works: lack of test-driven behavioral guidance in planning and lack of code-level implementation awareness in reuse. 
+
+quality and an implementation-aware reuse strategy to enhance both retrieval and usage of repository functions. 
+
+2.2 Test-Driven Code Generation 
+
+Incorporating test cases into code generation has emerged as an effective paradigm for improving generation quality and reliability. Existing approaches primarily leverage test cases in three ways. Some studies incorporate test cases directly into prompts to pro-vide additional behavioral specifications. For example, Mathews and Nagappan [21] augmented problem descriptions with test cases to guide LLMs toward generating code that satisfies expected be-haviors. LLM4TDD [ 27 ] further adopts a test-driven development paradigm, where LLMs iteratively generate code conditioned on test cases. Another line of work utilizes test execution feedback to refine generated code. CoCoGen [ 5] leverages compiler feedback and static analysis to detect inconsistencies between generated code and project-specific constraints. Similarly, Wang et al . [31] in-corporated test execution signals during training, enabling models to distinguish between correct and incorrect code. Reflexion [ 28 ]enables agents to iteratively improve code generation by learning from past failures, highlighting the importance of feedback-driven refinement in software development tasks. Despite their effectiveness, existing approaches primarily apply test cases in the code generation or post-generation stages. The potential of leveraging test cases to guide the planning process, particularly for improving the quality of intermediate implementa-tion steps, remains largely unexplored. This limitation motivates our work, which incorporates test cases into the planning stage through a test-driven iterative planning mechanism. 
+
+3 Motivating Example 
+
+To illustrate the challenges faced by existing planning-based repository-level code generation approaches [ 4 , 10 , 15 ], we present a motivating example in Fig. 1. The task is to implement the function “prepare_application_config ”, which loads the application configura-tion file and prepares it for use. Given the requirement, existing approaches typically generate implementation steps directly from the natural language descrip-tion, such as “load the configuration file from the given path” . Al-though this step is partially correct, it fails to capture critical be-havioral details required by the task, which consequently leads to inaccurate retrieval of callee functions. In contrast, introducing test cases provides explicit behavioral specifications for generating implementation steps. For example, test cases clarify that the con-figuration file is in YAML format. Guided by test-driven signals, the refined implementation step becomes “load the YAML configuration file using the repository loader” , which is more precise and better aligned with repository-specific implementations. As a result, the refined plan enables accurate retrieval of relevant functions, such as “load_yaml_config” . This example demonstrates the importance of test cases in producing more accurate implementation steps. Even with correct implementation steps, existing approaches still face challenges in effectively retrieving and reusing relevant callee functions. As shown in Fig. 1, the task requires recursively redacting sensitive keys (e.g., “password” , “token” ) in the config-uration. When relying solely on semantic similarity between the implementation step and the function description, the retrieved function corresponds to a non-strict redaction setting, which is in-sufficient for handling strict sensitive key requirements. By further generating code representations of implementation steps and incor-porating code implementation-level similarity, it becomes possible to retrieve the correct function that supports strict redaction. However, correctly invoking this function depends on specific implementation details, such as parameter configurations (e.g., 
+
+“redact_mode” ). Providing only the retrieved function is insufficient for LLMs to learn how to properly use it. In contrast, examining usage patterns in the repository reveals how such functions are actually invoked in practice (e.g., via “internal_prepare” ), which provides essential guidance for correct reuse. Without such usage patterns, even correctly retrieved functions may not be properly utilized in generated code. Moreover, functions in repositories are often associated with multiple usage patterns. Selecting representative usage patterns is 26, Jan 1–10, 2026, XX, XX Trovato et al. (a) Test -Driven Iterative Planning 
+
+> Requirement
+> 𝑟
+> Test Cases
+> 𝑡
+
+Input Initial Plan Generation      
+
+> LLM -as -a-Planner
+> Implementation Steps
+> Plan
+> Principles
+> lClarity and Verifiability
+> lBoundary Condition Awareness
+> lExplicit Dependencies
+> lMaintainability
+> lWell -Scoped Decomposition
+
+Iterative Plan Refinement     
+
+> LLM -as -a-Judge
+> LLM -as -a-Planner
+> Evaluation
+> Results
+> Refined
+> Plan Steps
+> 𝒔
+> 𝑛 !
+> Judge
+> Reflect Refine
+> Iterate
+> Dimensions
+> lFunctional Coverage
+> and Consistency
+> lIndependence
+> lGranularity
+
+(b) Implementation -Aware Reuse 
+
+Dual -View Callee Function Retrieval 
+
+Dual -Stage Usage Pattern Selection      
+
+> 𝐶
+> Retrieved Corpus
+> Functions Description
+> <Pairs> Step
+> Aware
+> Code
+> LLMs
+> Generate
+> ⋯
+> 𝑠 !𝑠 "!𝑐 !𝑐 "!
+> ⋯
+
+Functional and Implementation Similarity Joint Ranking 
+
+> Sim I
+> 𝑐 #
+> 𝑑 $
+> Encode
+> Encode
+> Sim F
+> 𝑠 #
+> 𝑓 $
+> Encode
+> Encode
+
+Step -Aware 
+
+Code Representation       
+
+> Final
+> Plan
+> Steps
+> =Sim Sim FSim I
+> 𝛼 𝛽
+> +
+> Rank
+> Retrieved
+> Callee
+> Functions
+> ⋯
+> 𝑓𝑐 !𝑓𝑐 "!Functional Similarity Implementation Similarity
+
+Structure -based 
+
+Pattern Clustering 
+
+Perplexity -based 
+
+Relevance Filtration 
+
+Graph -based Caller 
+
+Function Identification  
+
+> Repository
+> ⋯
+> Caller
+> Functions Repository Call Graph
+> Construct
+> Identify
+> Extract
+> Invocation
+> Structure
+> Similarity
+> Cluster
+> Cluster
+> Cluster
+> Selected
+> Usage
+> Patterns
+> ⋯
+> 𝑓𝑝 #,!
+> 𝑓𝑝 #,""
+> Cluster -level
+> Filtration Cluster Center
+> Cluster
+> Center
+> Cluster
+> Center
+> Global
+> Filtration ⋯
+> ⋯
+> Filter
+
+(c) Enhanced Code 
+
+Generation    
+
+> 𝑟
+> Test Cases
+> 𝑡
+> Retrieved
+> Callee
+> Functions
+> ⋯
+> 𝒇𝒄
+> Selected
+> Usage
+> Patterns
+> ⋯
+> 𝒇𝒑
+> Prompt
+> LLMs
+> 𝐺𝑒𝑛𝑒𝑟𝑎𝑡𝑒 (𝒇𝒄 ,𝒇𝒑 ,𝑡 ,𝑟 )
+> Code
+> Input
+> Requirement
+
+Figure 2: Overview of TICoder. 
+
+crucial to provide informative examples while avoiding excessive noise and token redundancy. Therefore, we further propose a dual-stage usage pattern selection strategy to identify representative usage patterns. The details are described in Section 4.4.2. 
+
+4 Approach 4.1 Overview 
+
+We propose TICoder, a novel repository-level code generation framework with test-driven iterative planning and implementation-aware code reuse. As shown in Fig. 2, TICoder comprises three stages, including test-driven iterative planning, implementation-aware reuse, and enhanced code generation. 
+
+4.2 Problem Formulation 
+
+Based on the developer’s requirement 𝑟 and test cases 𝑡 , TICoder first generates implementation steps s = {𝑠 1, · · · , 𝑠 𝑛 𝑠 }, where 𝑛 𝑠 
+
+is the number of generated implementation steps, through a test-driven iterative planning mechanism ( § 4.3). For each step 𝑠 𝑖 , TICoder retrieves a set of potential callee func-tions 𝑓 𝑐 𝑖 from the corpus C = {( 𝑓 1, 𝑑 1), · · · , (𝑓 𝑛 𝑐 , 𝑑 𝑛 𝑐 )} . Here, 𝑓 𝑗 
+
+and 𝑑 𝑗 represent a function, and its corresponding description in the repository, respectively, and 𝑛 𝑐 denotes the number of func-tions in the corpus. This process yields a final set of retrieved callee functions fc . Subsequently, we identify the caller functions for each 𝑓 𝑐 𝑖 and retain the most relevant usage patterns, forming a set fp 𝑖 = {𝑓 𝑝 𝑖, 1, · · · , 𝑓 𝑝 𝑖,𝑛 𝑝 }, where 𝑛 𝑝 represents the number of selected usage patterns for each 𝑓 𝑐 𝑖 . The complete collection of selected patterns across all implementation steps constitutes the final usage patterns set fp . The retrieval and selection processes are guided by an implementation-aware repository grounding strategy (§ 4.4). Finally, the enhanced code generation can be formulated as 
+
+𝐶𝑜𝑑𝑒 = 𝐺𝑒𝑛𝑒𝑟𝑎𝑡𝑒 (fc , fp , 𝑡, 𝑟 ), where 𝐺𝑒𝑛𝑒𝑟𝑎𝑡𝑒 (·) denotes utilizing LLMs to generate the desired code ( § 4.5). Specifically, the relevance for retrieving potential callee functions is measured by computing the cosine similarity between vector representations. For selecting pertinent usage patterns, relevance is assessed based on perplexity (PPL). Specifically, for each candidate context 
+
+𝑐 , we define PPL (𝑟 | 𝑐 ) as the conditional perplexity of 𝑟 given 𝑐 ,where lower values indicate a higher likelihood of 𝑟 :
+
+PPL (𝑟 | 𝑐 ) = exp − 1
+
+𝑛 𝑟 𝑛 𝑟 ∑︁ 
+
+𝑖 =1
+
+log 𝑃 (𝑟 𝑖 | 𝑟 <𝑖 , 𝑐 )
+
+!
+
+, (1) where 𝑃 denotes the model’s next-token prediction probability, 𝑛 𝑟 is the sequence length of 𝑟 , and 𝑟 <𝑖 is the sequence of preceding tokens before 𝑟 𝑖 . A lower PPL score suggests that context 𝑐 enables the model to predict 𝑟 more accurately. Therefore, by retaining usage patterns associated with the lower PPL, we ensure that the core information necessary for enhancing the code generation process is preserved. 
+
+4.3 Test-Driven Iterative Planning 
+
+While requirement descriptions provided to developers typically specify the core functionality, they often omit detailed descriptions of edge cases, making it challenging for LLMs to comprehensively identify and handle boundary scenarios during planning. In con-trast, test cases provide rich information about edge conditions and expected behaviors, which can effectively complement requirement descriptions and reduce ambiguity. Therefore, we introduce test-driven iterative planning to gener-ate high-quality implementation steps for the given requirement. This process consists of two stages, initial plan generation and iter-ative plan refinement via judge-and-reflection, involving two roles, an LLM-as-a-planner for generating implementation steps and an 
+
+LLM-as-a-judge for evaluating and refining them. 
+
+4.3.1 Initial Plan Generation. We first employ the LLM-as-a-planner to generate an initial sequence of implementation steps based on both the requirement description and the associated test TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse 26, Jan 1–10, 2026, XX, XX 
+
+cases. To guide this process, we adopt five principles inspired by 
+
+IEEE Software Requirement Specifications (SRS) and prior work [ 22 ]: 
+
+• Clarity and Verifiability. Each implementation step should be clearly defined, unambiguous, and verifiable with respect to the requirement and test cases. 
+
+• Boundary Condition Awareness. Implementation steps should explicitly account for edge cases (e.g., invalid inputs, null values) and expected handling behaviors. 
+
+• Explicit Dependencies. Dependencies on external func-tions, modules, or libraries should be clearly identified to support accurate downstream retrieval. 
+
+• Maintainability. Implementation steps should be struc-tured to facilitate future modifications and extensions. 
+
+• Well-Scoped Decomposition. Each implementation step should focus on a well-defined functionality without intro-ducing unnecessary side effects. Guided by these principles, the LLM-as-a-planner generates an initial sequence of implementation steps, with the number of steps adaptively determined but bounded by a predefined limit 𝑛 𝑠 .
+
+4.3.2 Iterative Plan Refinement via Judge-and-Reflection. To fur-ther improve the quality of implementation steps, we employ an iterative refinement process based on a judge-and-reflection mech-anism. In each iteration, the LLM-as-a-judge evaluates the current implementation steps and provides structured feedback, which is then used by the LLM-as-a-planner to refine the plan. The evaluation is conducted along three key dimensions, inspired by SRS principles and prior works [6, 33]: 
+
+• Functional Coverage and Consistency. Evaluates whether the implementation steps collectively cover all required functionalities and remain consistent with the behaviors specified by the test cases. 
+
+• Independence. Assesses the degree to which individual implementation steps are modular and can be implemented or modified with minimal dependency on others. 
+
+• Granularity. Measures whether the level of decomposition is appropriate, avoiding both overly coarse steps that lack actionable detail and overly fine steps that introduce unnec-essary complexity. Each dimension is scored on a scale from 0 to 100, along with textual justifications. If all scores exceed a predefined threshold, the current implementation steps are considered satisfactory. Oth-erwise, the evaluation feedback, together with the requirement description, test cases, and current implementation steps, is fed back to the LLM-as-a-planner for further refinement. The process iterates until the refined steps meet the quality criteria or a maximum number of iterations 𝑛 𝑖 is reached. 
+
+4.4 Implementation-Aware Reuse 
+
+In this stage, TICoder retrieves potential callee functions from the repository and identifies representative usage patterns to support effective reuse. Specifically, we adopt a dual-view retrieval strategy to improve retrieval precision and a dual-stage selection strategy to identify high-quality usage patterns, enabling more accurate and practical reuse of repository functions. 
+
+4.4.1 Dual-View Callee Function Retrieval. We introduce dual-view similarity that considers both functional similarity and implemen-tation similarity to retrieve potential callee functions from the repository. Functional similarity captures the semantic relevance between implementation steps and function descriptions, while implementation similarity captures the alignment between gener-ated code representations and function implementations. By jointly considering both views, TICoder can retrieve functions that are not only semantically relevant but also exhibit similar implementa-tion logic. This design mitigates the limitation of purely semantic retrieval by incorporating implementation-level signals. 
+
+Step-Aware Code Representation. Given the generated im-plementation steps s, we construct code-level representations for each step. Specifically, for each step 𝑠 𝑖 , we employ LLMs to produce a corresponding self-contained code snippet 𝑐 𝑖 , which serves as the step-aware code representation of 𝑠 𝑖 .
+
+Functional and Implementation Similarity Joint Ranking. 
+
+For each implementation step 𝑠 𝑖 with its code representation 𝑐 𝑖 , and each candidate function 𝑓 𝑗 with description 𝑑 𝑗 in the repository corpus C, we construct embedding representations E𝑠 𝑖 , E𝑐 𝑖 , E𝑓 𝑗 ,and E𝑑 𝑗 . We define the functional similarity 𝑆𝑖𝑚 𝐹 (𝑖, 𝑗 ) as the co-sine similarity between E𝑠 𝑖 and E𝑑 𝑗 , as well as the implementation similarity 𝑆𝑖𝑚 𝐼 (𝑖, 𝑗 ) as the cosine similarity between E𝑐 𝑖 and E𝑓 𝑗 .We compute a joint similarity score 𝑆𝑖𝑚 (𝑖, 𝑗 ) between 𝑠 𝑖 and each pair (𝑓 𝑗 , 𝑑 𝑗 ) of function and description using a weighted sum: 
+
+𝑆𝑖𝑚 (𝑖, 𝑗 ) = 𝛼 × 𝑆𝑖𝑚 𝐹 (𝑖, 𝑗 ) + 𝛽 × 𝑆𝑖𝑚 𝐼 (𝑖, 𝑗 ), (2) where 𝛼 and 𝛽 represent the weight of 𝑆𝑖𝑚 𝐹 and 𝑆𝑖𝑚 𝐼 , respectively, as well as 𝛼 + 𝛽 = 1.We rank all candidate functions 𝑓 𝑗 ∈ C based on 𝑆𝑖𝑚 (𝑖, 𝑗 ) in descending order and select the top-ranked function as the most relevant callee function 𝑓 𝑐 𝑖 for step 𝑠 𝑖 . This results in a set of re-trieved callee functions fc = {𝑓 𝑐 1, . . . , 𝑓 𝑐 𝑛 𝑠 }.
+
+4.4.2 Dual-Stage Usage Pattern Selection. To further enable effec-tive reuse, we select representative usage patterns for each retrieved callee function. Since a callee function may be invoked in diverse contexts, we propose a dual-stage selection strategy to filter and retain high-quality usage patterns. This design allows TICoder to capture how functions are used in practice, reducing noise and conserving computational resources, rather than relying solely on retrieved code snippets. 
+
+Graph-based Caller Function Identification. We employ an open-source tool LSP to construct the Repository Call Graph (RCG), which captures function invocation relationships within the repos-itory. For each retrieved callee function 𝑓 𝑐 𝑖 , we identify all caller functions in the RCG as candidate usage patterns. 
+
+Structure-based Pattern Clustering. We cluster candidate caller functions based on structural similarity. Specifically, for each caller function, we extract its set of invoked functions from the RCG. Caller functions that invoke identical sets of functions are considered structurally equivalent and grouped into the same clus-ter. 
+
+Perplexity-based Relevance Filtration. We conduct aperplexity-based relevance filtration in two steps, cluster-level filter-ing and global filtering. Each cluster contains caller functions with the same structure, which generally enable LLMs to learn similar 26, Jan 1–10, 2026, XX, XX Trovato et al. 
+
+Algorithm 1 The algorithm for dual-stage representative usage patterns selection.                                                                                                 
+
+> Input: fc : The set of all identified callee functions. 𝑅𝐶𝐺 : The repository call graph. 𝑛 𝑝 : The maximum number of usage patterns to select per callee function.
+> Output: fp : The dictionary mapping each callee function to its selected usage patterns.
+> 1: fp ← ∅
+> 2: for each callee function 𝑐 ∈fc do
+> 3: 𝑐𝑎𝑙𝑙𝑒𝑟𝑠 ← { 𝑓 | ( 𝑓 →𝑐 ) ∈ 𝑅𝐶𝐺 }
+> 4: 𝑐𝑙𝑢𝑠𝑡𝑒𝑟𝑠 ← ∅
+> 5: for each caller function 𝑓 ∈𝑐𝑎𝑙𝑙𝑒𝑟𝑠 do
+> 6: 𝑐𝑎𝑙𝑙𝑒𝑒𝑠 𝑓 ← { 𝑔 | ( 𝑓 →𝑔 ) ∈ 𝑅𝐶𝐺 }
+> 7: 𝑘𝑒𝑦 ←Sort (𝑐𝑎𝑙𝑙𝑒𝑒𝑠 𝑓 )
+> 8: if 𝑘𝑒𝑦 ∉𝑐𝑙𝑢𝑠𝑡𝑒𝑟𝑠 then
+> 9: 𝑐𝑙𝑢𝑠𝑡𝑒𝑟𝑠 [𝑘𝑒𝑦 ] ← ∅
+> 10: end if
+> 11: 𝑐𝑙𝑢𝑠𝑡𝑒𝑟𝑠 [𝑘𝑒𝑦 ].add (𝑓 )
+> 12: end for
+> 13: 𝑐𝑙𝑢𝑠𝑡𝑒𝑟 _𝑐𝑒𝑛𝑡𝑒𝑟𝑠 ← ∅
+> 14: for each 𝑘𝑒𝑦 ∈𝑐𝑙𝑢𝑠𝑡𝑒𝑟𝑠 do
+> 15: 𝑐𝑙𝑢𝑠𝑡𝑒𝑟 ←𝑐𝑙𝑢𝑠𝑡𝑒𝑟𝑠 [𝑘𝑒𝑦 ]
+> 16: 𝑐𝑒𝑛𝑡𝑒𝑟 ←arg min 𝑓 ∈𝑐𝑙𝑢𝑠𝑡𝑒𝑟 PPL (𝑓 )
+> 17: 𝑐𝑒𝑛𝑡𝑒𝑟𝑠. add (𝑐𝑒𝑛𝑡𝑒𝑟 )
+> 18: end for
+> 19: sort (𝑐𝑒𝑛𝑡𝑒𝑟𝑠 )by PPL in ascending order
+> 20: 𝑠𝑒𝑙𝑒𝑐𝑡𝑒𝑑 ←first min (𝑛 𝑝 ,|𝑐𝑒𝑛𝑡𝑒𝑟𝑠 | ) of 𝑐𝑒𝑛𝑡𝑒𝑟𝑠
+> 21: fp [𝑐 ] ← 𝑠𝑒𝑙𝑒𝑐𝑡𝑒𝑑
+> 22: end for
+> 23: return fp
+
+usage patterns. Therefore, within each cluster, we retain the most relevant caller function as the cluster center based on PPL (Equation 1). For all cluster centers, we perform global filtering by ranking them in ascending order of relevance based on PPL to form a candi-date list of usage patterns. Finally, for each retrieved callee function 
+
+𝑓 𝑐 𝑖 , we select 𝑡𝑜𝑝 𝑛 𝑝 usage patterns, fp 𝑖 = {𝑓 𝑝 𝑖, 1, · · · , 𝑓 𝑝 𝑖,𝑛 𝑝 }, from the candidate list to serve as example instructions. Specifically, we introduce the algorithm for dual-stage usage pat-terns selection in Algorithm 1. In lines 4-6, for each callee function, we identify all functions that call it as candidate usage patterns. In lines 5-11, we cluster usage patterns based on structural similarity. In lines 14-18, we select the most relevant function as the cluster center based on PPL within each cluster. In lines 19-21, we utilize global filtering to sort all cluster centers in ascending order of PPL and select the top as representative usage patterns. 
+
+4.5 Enhanced Code Generation 
+
+We concatenate the retrieved callee functions fc along with selected usage patterns fp , test cases 𝑡 , and the original requirement 𝑟 as the input prompt to LLMs for enhanced code generation. 
+
+5 Experimental Setup 5.1 Research Questions (RQs) 
+
+In this work, we aim to answer the following research questions: 
+
+• RQ1: Overall Performance. How does TICoder perform on repository-level code generation compared to baselines? 
+
+• RQ2: Ablation Study. To what extent do the key compo-nents and strategies of TICoder contribute to its overall per-formance? 
+
+• RQ3: Impact of Planning Iterations. How does the num-ber of planning iterations affect the performance of TICoder? 
+
+• RQ4: Impact of Similarity Weights. How do different weights assigned to functional and implementation similarity affect the performance of TICoder? 
+
+• RQ5: Impact of Usage Patterns. How does the number of selected usage patterns influence the performance of TICoder? 
+
+5.2 Datasets 
+
+Our experiments were conducted on two widely-used repository-level code generation benchmarks, CoderEval [ 35 ] and DevEval [16 ], which are both used to evaluate code generation performance for the developer’s requirement. CoderEval consists of 230 Python tasks from 43 projects and 230 Java tasks from 10 projects. DevEval consists of 1825 Python tasks from 115 real-world open-source projects on GitHub. Each task in CoderEval and DevEval contains a human-written requirement and comprehensive test cases to verify functional correctness. 
+
+5.3 Baselines and LLMs Evaluated 
+
+We evaluated the retrieval-augmented code generation approaches as baselines. 
+
+• SimpleRAG retrieves relevant code snippets based on func-tional similarity and appends them to the prompt for LLMs. 
+
+• RepoCoder [ 36 ] is a retrieval-augmented framework in an iterative retrieval-generation pipeline. 
+
+• A3Codgen [ 17 ] utilizes local-aware, global-aware, and third-party-library information to augment code generation. 
+
+• AllianceCoder [10 ] aims to retrieve and append potential APIs from the repository to the user query before being fed into LLMs. 
+
+• RLCoder [32 ] is a reinforcement learning-based framework for optimizing the retriever. 
+
+• RepoScope [20 ] leverages call chain-aware multi-view con-text for repository-level code generation. We evaluated baselines and our approach on three mainstream LLMs, GPT-4o-mini [ 1], DeepSeek-V3 [ 18 ], and Qwen2.5-Coder-7B [12]. 
+
+5.4 Metrics 
+
+Following previous studies [ 10 , 16 , 35 , 36 ], we evaluated the func-tional correctness of generated code by executing test cases and computing the Pass@k. 
+
+𝑃𝑎𝑠𝑠 @𝑘 := E
+
+> 𝑟
+
+"
+
+1 −
+
+ 𝑛 𝑔 −𝑐 𝑘 
+
+ 𝑛 𝑔 
+
+> 𝑘
+
+#
+
+, (3) where 𝑛 𝑔 (with 𝑛 𝑔 ≥ 𝑘 ) represents the number of generated code for each requirement 𝑟 and 𝑐 (with 𝑐 ≤ 𝑛 𝑔 ) represents the number of correct code that passes test cases. TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse 26, Jan 1–10, 2026, XX, XX 
+
+Table 2: Overall performance comparison across studied benchmarks and backbone models. Results are shown in percentage (%). The best results are highlighted in bold, and the best-performing baseline is underlined.                                                                                                                                                                                                                                    
+
+> Approaches GPT-4o-mini DeepSeek-V3 Qwen2.5-Coder-7B Pass@1 Pass@3 Pass@5 Pass@1 Pass@3 Pass@5 Pass@1 Pass@3 Pass@5
+> CoderEval (Python)
+> SimpleRAG 33.91 40.55 42.66 41.30 47.06 48.69 26.96 34.84 38.57 RepoCoder 30.87 38.39 40.49 32.61 38.93 41.12 31.74 39.07 42.28 A3Codgen 23.48 31.58 34.43 39.57 44.49 46.93 23.48 28.76 30.95 AllianceCoder 48.70 51.20 52.36 52.17 54.10 54.63 40.43 45.64 47.41 RLCoder 31.30 39.22 43.04 33.48 40.20 43.29 29.57 36.27 39.14 RepoScope 37.61 49.13 52.57 43.36 51.19 54.30 22.17 34.41 38.80
+> TICoder 49.57 (↑1.79%) 56.27 (↑9.90%) 58.61 (↑11.49%) 56.09 (↑7.90%) 63.78 (↑17.89%) 66.04 (↑20.89%) 41.30 (↑2.15%) 46.62 (↑2.15%) 49.90 (↑5.25%)
+> CoderEval (Java)
+> SimpleRAG 40.87 43.59 45.16 45.46 46.33 46.64 38.70 41.60 43.56 RepoCoder 35.65 39.17 40.36 36.52 40.26 40.96 20.87 26.98 30.73 A3Codgen 38.70 44.18 45.87 51.74 54.55 55.50 23.04 24.18 27.78 AllianceCoder 43.91 44.31 44.53 53.04 54.33 55.10 35.65 40.70 42.37 RLCoder 35.22 46.48 49.88 41.74 52.56 55.41 32.17 38.95 44.06 RepoScope 37.39 43.54 45.74 53.91 55.93 57.43 27.39 37.29 41.27
+> TICoder 51.30 (↑16.83%) 55.42 (↑19.23%) 57.20 (↑14.68%) 55.65 (↑4.92%) 57.75 (↑3.25%) 58.37 (↑1.64%) 44.35 (↑14.60%) 50.92 (↑22.40%) 53.44 (↑22.68%)
+> DevEval
+> SimpleRAG 24.05 28.42 30.20 31.95 36.63 37.96 15.56 20.99 23.49 RepoCoder 15.01 17.48 18.52 20.60 25.34 27.20 12.00 16.12 17.93 A3Codgen 21.81 25.72 27.49 36.49 41.20 42.95 17.04 21.20 23.49 AllianceCoder 25.26 28.06 29.01 36.54 38.64 39.48 21.09 24.52 26.11 RLCoder 18.58 20.60 21.94 22.08 27.43 29.29 14.58 17.85 19.74 RepoScope 23.07 31.70 34.69 29.59 39.74 42.87 16.71 19.73 22.83
+> TICoder 31.01 (↑22.76%) 35.78 (↑12.87%) 37.64 (↑8.50%) 43.29 (↑18.47%) 47.08 (↑14.27%) 48.52 (↑12.97%) 21.92 (↑3.94%) 26.47 (↑7.95%) 28.67 (↑9.80%)
+
+5.5 Implementation Details 
+
+For TICoder, in the planning stage, we set the maximum number of implementation steps 𝑛 𝑠 to 5, considering computational cost and efficiency. The selection of planner and judge LLMs, as well as the number of iterations 𝑛 𝑖 , are discussed in Section 6.3. In the retrieval module, we use GPT-4o-mini to generate code represen-tations corresponding to the refined implementation steps. The predefined threshold is set to 90 for the LLM-as-a-judge. We adopt OpenAI’s text-embedding-3-small model to encode implementation steps, their corresponding generated code, as well as repository functions and their descriptions into vector representations for sim-ilarity computation. The weight settings for functional similarity 
+
+𝛼 and implementation similarity 𝛽 are detailed in Section 6.4. In the usage pattern selection module, the number of selected usage patterns 𝑛 𝑝 for each retrieved callee function is discussed in Sec-tion 6.5. For baseline methods, we follow the experimental settings described in their original papers. In the final code generation stage, as shown in Section 5.3, we adopt three representative LLMs as backbone models for evaluation. Specifically, for GPT-4o-mini, we use its latest model snapshot gpt-4o-mini-2024-07-18 . For DeepSeek-V3, we use its latest version DeepSeek-V3-0324 . For Qwen2.5-Coder, we use its base model with 7B parameters. Additionally, for GPT-4o-mini and DeepSeek-V3, we access them via their official APIs, while for Qwen2.5-Coder, we use the open-source base model available on Hugging Face. 
+
+6 Experimental Results and Analysis 6.1 RQ1: Overall Performance 
+
+The overall performance comparison on CoderEval (Python and Java) and DevEval across the evaluated LLMs, including GPT-4o-mini, DeepSeek-V3, and Qwen2.5-Coder-7B, as the generation back-bone models, is presented in Table 2. Specifically, in this RQ, we apply GPT-4o-mini for the LLM-as-a-planner and LLM-as-a-judge .Overall, TICoder consistently outperforms all baselines with an increase of 11.25% across different benchmarks, programming lan-guages, and backbone models, demonstrating its effectiveness in repository-level code generation. To further validate the reliability of these improvements, we conduct statistical significance testing by comparing TICoder with the strongest baseline, AllianceCoder, across all settings. A two-tailed t-test yields 𝑝 < 0.05 , confirming that the observed performance gains are statistically significant rather than due to random variation. Notably, the largest improve-ment is observed on DevEval with the GPT-4o-mini backbone, where TICoder surpasses AllianceCoder by 22.76%, indicating its strong capability in realistic repository-level scenarios. A closer examination of the baselines reveals that RepoCoder and RLCoder often underperform, in some cases even falling behind SimpleRAG. We attribute this to their reliance on sliding-window and split-aggregate strategies for code segmentation, which may disrupt the structural integrity of code and break meaningful functional boundaries. In contrast, SimpleRAG treats functions as the basic retrieval unit, preserving the coherence of code logic and thus achieving more stable performance. Among all baselines, AllianceCoder consistently achieves the best results. Its advantage 26, Jan 1–10, 2026, XX, XX Trovato et al. 
+
+Table 3: Ablation study for TICoder on DevEval.                                                   
+
+> Components DevEval Pass@1 Δ# Token Δ
+> TICoder 31.01 -2824 -
+> Component 1: Planning
+> w/o planning 28.88 (↓6.87%) 2730 (↓3.33%) w/o test cases 30.52 (↓1.58%) 2921 (↑3.43%) w/o iteration 30.74 (↓0.87%) 2927 (↑5.24%)
+> Component 2: Retrieval
+> w/ 𝑆𝑖𝑚 𝐹 30.25 (↓2.45%) 2863 (↑1.38%) w/ 𝑆𝑖𝑚 𝐼 30.19 (↓2.64%) 2851 (↑0.96%)
+> Component 3: Selection
+> w/o patterns 29.97 (↓3.35%) 1407 (↓50.18%) w/o selection 30.90 (↓0.35%) 3523 (↑24.82%) w/o clustering 30.58 (↓1.39%) 2848 (↑0.85%)
+> Component 4: Generation
+> w/o test cases 27.78 (↓10.42%) 2792 (↓1.13%) w/ implementation steps 14.63 (↓52.82%) 3214 (↑13.81%)
+
+lies in introducing a planning mechanism that decomposes devel-oper requirements into implementation steps, thereby improving the retrieval of relevant repository components. This observation highlights the importance of planning in repository-level code generation. Building upon this insight, TICoder further improves performance compared to AllianceCoder, highlighting the benefits of test-driven iterative planning and implementation-aware code reuse. 
+
+Answer to RQ1: TICoder consistently outperforms all base-lines across evaluated benchmarks and LLMs, achieving a relative improvement of up to 11.25%. The improvements are statistically significant ( 𝑝 < 0.05 ), highlighting the perfor-mance of TICoder on repository-level code generation. 
+
+6.2 RQ2: Ablation Study 
+
+To evaluate the effectiveness of each key component and strategy in TICoder, we conduct an ablation study on the DevEval dataset using GPT-4o-mini as the backbone model, as shown in Table 3. Specif-ically, we first assess the contribution of the test-driven iterative planning component by sequentially removing planning, test cases, and iterative judge-and-reflection (w/o iteration), and observing the resulting changes in code generation performance. Then, we validate the effectiveness of the dual-view callee function retrieval component by constructing two variants: one using only functional similarity (w/ 𝑆𝑖𝑚 𝐹 ) and the other using only implementation sim-ilarity (w/ 𝑆𝑖𝑚 𝐼 ). Next, we evaluate the dual-stage usage pattern selection component by removing usage patterns (w/o patterns), removing the dual-stage selection (w/o selection), and removing the structure-based clustering (w/o clustering). Finally, we evaluate the enhanced code generation component by removing test cases and replacing the original requirement with generated implementation steps (w/ implementation steps). As shown in Table 3, removing any component leads to performance degradation, demonstrating that 
+
+Table 4: Results for the number of iterations on CoderEval (Python and Java) in Pass@1.                        
+
+> LLMs # Iterations CoderEval Python Java
+> GPT-4o-mini 048.70 47.83 149.13 47.83 246.52 49.09 349.13 48.26 449.57 51.30
+> DeepSeek-V3 045.65 48.70 147.83 49.13 244.78 49.57
+> 345.22 45.96 448.26 48.26
+
+all modules contribute positively to the final performance, while affecting token consumption differently. Removing the planning module results in a decrease of 6.87% in Pass@1, indicating that planning is critical for decomposing re-quirements. When removing test cases from planning, performance decreases by 1.58%, suggesting that test cases help generate more concise and reliable implementation steps. Removing iterative refinement also leads to a decrease of 0.87%, indicating that the judge-and-reflection process improves planning effectiveness. Using only functional similarity or only implementation similarity results in performance drops of 2.45% and 2.64%, respectively. This demonstrates that both semantic relevance and implementation-level similarity are necessary for precise callee function retrieval. Removing usage patterns leads to a drop by 3.35% in Pass@1, indicating that incorporating usage patterns improves performance. Removing the dual-stage selection module degrades performance by 0.35% and increases token usage by 24.82%, suggesting that dual-stage selection effectively filters redundant patterns and controls context size. Removing clustering causes a drop of 1.39%, showing that structural grouping helps retain diverse and representative usage patterns. Removing test cases in the generation stage results in a substantial performance drop of 10.42%, highlighting the critical role of test cases in aligning generated code with expected behaviors. Notably, even when test cases are not incorporated during the generation stage, TICoder still consistently outperforms the strongest baseline. Additionally, replacing the original requirement with implementation steps causes a degradation by 52.82%, indicating that preserving the original requirement is essential, and implementation steps alone are insufficient to guide final code generation. 
+
+Answer to RQ2: Each proposed key component and strategy in TICoder positively contributes to the overall performance. These results demonstrate that TICoder effectively integrates planning, retrieval, selection, and generation to achieve supe-rior performance. 
+
+6.3 RQ3: Impact of Planning Iterations 
+
+In the planning stage, we employ an iterative refinement strategy based on judge-and-reflection. To evaluate its effectiveness, we vary the number of planning iterations from 0 to 4 and utilize two LLMs, TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse 26, Jan 1–10, 2026, XX, XX 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 0.42 0.44 0.46 0.48 0.50 0.52 Pass@1 CoderEval (Python) CoderEval (Java) 
+
+βα          
+
+> 1.0 0. 90. 80. 70. 60.5 0. 40. 30. 20. 10.0
+
+Figure 3: Performance changes with different weights for dual-view similarity calculation. 
+
+GPT-4o-mini and DeepSeek-V3, to plan and judge, while fixing GPT-4o-mini as the backbone for code generation. As shown in Table 4, iterative refinement generally improves performance compared to the non-iterative setting (0 iterations), demonstrating the effectiveness of the judge-and-reflection mecha-nism. However, the performance does not increase monotonically with the number of iterations. For instance, with GPT-4o-mini as the planner and judge, performance on Python drops at 2 iterations before recovering, and similar fluctuations are observed for DeepSeek-V3. This indicates that excessive iterations may introduce noise or over-refinement, leading to suboptimal planning results. We further observe that the optimal number of iterations varies across LLMs and datasets. With GPT-4o-mini, the best performance is achieved at 4 iterations for both Python and Java. In contrast, with DeepSeek-V3, the optimal setting differs: 4 iterations for Python and 2 iterations for Java. Despite these differences, both planners benefit from iterative refinement and achieve competitive performance in their best configurations, demonstrating the robustness of the proposed planning framework. 
+
+Answer to RQ3: Increasing the number of planning iter-ations generally improves performance, as iterative judge-and-reflection enhances the quality of implementation steps. However, the improvement is not monotonic, and excessive iterations may introduce noise and degrade performance. 
+
+6.4 RQ4: Impact of Similarity Weights 
+
+In this section, we analyze the impact of weights between functional similarity and implementation similarity in the dual-view retrieval module. Specifically, we vary the weight 𝛼 for 𝑆𝑖𝑚 𝐹 from 0 to 1 with a step size of 0.1, while adjusting 𝛽 for 𝑆𝑖𝑚 𝐼 accordingly such that 𝛼 + 𝛽 = 1. Experiments are conducted on CoderEval (Python and Java) using GPT-4o-mini as the backbone. As shown in Fig. 3, the optimal performance is achieved at 
+
+𝛼 = 0.8 and 𝛽 = 0.2 for CoderEval (Python), as well as 𝛼 = 0.6
+
+and 𝛽 = 0.4 for CoderEval (Java). These results indicate that while functional similarity is generally more important, incorporating implementation similarity further improves performance by 
+
+Table 5: Results for the number of selected usage patterns 𝑛 𝑝 
+
+on CoderEval (Python) with GPT-4o-mini as the backbone.         
+
+> 𝑛 𝑝 Pass@1 Avg. # Tokens
+> 146.96 2923 249.57 3207 345.22 3298
+
+capturing implementation-level execution logic. Additionally, we observe that the optimal weight of implementation similarity is higher for Java than for Python. We attribute this difference to the statically-typed nature of Java, where implementation details provide stronger signals for functional behavior. In contrast, Python’s dynamic typing makes semantic descriptions relatively more informative than implementation structure. 
+
+Answer to RQ4: The performance of TICoder is sensitive to the weighting between functional and implementation simi-larity. Functional similarity generally plays a dominant role, but incorporating implementation similarity further improves the performance of code generation. 
+
+6.5 RQ5: Impact of Usage Patterns 
+
+In this section, we analyze the impact of the number of selected usage patterns on the performance of TICoder. We conduct experi-ments on CoderEval (Python) using GPT-4o-mini as the backbone, with 𝑛 𝑝 ∈ { 1, 2, 3}. The results are presented in Table 5. As shown in Table 5, performance exhibits a non-monotonic trend with respect to 𝑛 𝑝 . Specifically, increasing 𝑛 𝑝 from 1 to 2 improves Pass@1 by 5.56%, indicating that incorporating multiple usage patterns provides richer contextual guidance for understanding how callee functions are used in practice. However, further increasing 𝑛 𝑝 to 3 leads to a performance drop of 3.71%, suggesting that excessive usage patterns may introduce redundant or noisy information for LLMs. Additionally, a consistent increase in token consumption as 𝑛 𝑝 grows, highlighting a trade-off between contextual richness and efficiency. This finding further justifies the necessity of our dual-stage selection strategy for filtering informative and non-redundant usage patterns. 
+
+Answer to RQ5: The number of usage patterns has an impact on performance. Using too few patterns limits the model’s understanding of usage, while too many introduce noise and increase token consumption, degrading performance. A mod-erate number of usage patterns (e.g., 𝑛 𝑝 = 2) yields the best performance by providing sufficient contextual guidance for reuse. 
+
+7 Discussion 7.1 Case Study 
+
+To intuitively demonstrate the effectiveness of TICoder, we present an example in Fig. 4, highlighting the differences among TICoder and the baseline methods, SimpleRAG and AllianceCoder. SimpleRAG directly retrieves code snippets similar to the devel-oper’s requirement. However, as shown in Fig. 4(c), it incorrectly 26, Jan 1–10, 2026, XX, XX Trovato et al. 
+
+uses the function “ _hadoop_streaming_jar ”, while the correct callee should be “ get_hadoop_streaming_jar ”. This indicates that retriev-ing code snippets based solely on similarity to the original require-ment may fail to identify accurate and useful callee functions. On the other hand, AllianceCoder generates implementation details from the requirement and retrieves relevant APIs from the code repository. Yet, due to the lack of illustrative usage examples, it fails to correctly determine conditions such as “ no Hadoop streaming jar ” as shown in Fig. 4(d). In contrast, TICoder decomposes the developer’s requirement, retrieves relevant callee functions, and provides corresponding usage patterns. This enables precise identification of the target callees and offers example-based guidance, allowing the LLM to effectively learn how to use them. As a result, TICoder achieves superior performance in repository-level code generation tasks. 
+
+7.2 Threats to Validity 
+
+Threats to Internal Validity. Threats to internal validity mainly stem from the use of test cases, prompt design, and parameter set-tings in TICoder. First, we incorporate test cases in both the plan-ning stage and the enhanced code generation stage, inspired by test-driven development [ 7, 13 , 21 ]. However, in real-world repository-level code generation scenarios, high-quality test cases may not always be available, which could introduce threats to internal valid-ity. Our approach highlights the benefit of incorporating test cases, in addition to NL requirements, for improving code generation. Meanwhile, recent advances in high-quality test case generation [21] may help mitigate this limitation. Second, we adopt an iterative judge-and-reflection mechanism to refine planning steps. Although this design improves planning qual-ity, its effectiveness may depend on the prompt templates. While our prompts are designed based on SRS principles and prior work [ 6, 22 ], they may not cover all aspects required for comprehen-sive planning and evaluation. To mitigate this risk, we sample 30 instances and involve two experienced programmers (each with over five years of professional experience) to iteratively refine the prompt templates for planning and judging, with the goal of im-proving their alignment with human programming practices. Addi-tionally, not all tasks correspond to complex functions. Li et al . [16] reported that 27% of functions in DevEval are standalone and may not require planning or callee function retrieval. To mitigate this threat, we adopt an adaptive strategy in the planning stage, allow-ing the LLM-as-a-planner to dynamically determine the number of implementation steps, where a single step implies no planning is needed. Third, for dual-view similarity calculation, we conduct a limited grid search over the weight parameters on CoderEval (Python and Java), and select the best-performing configuration based on em-pirical observations. A more extensive exploration of parameter settings may further improve the performance of TICoder. 
+
+Threats to External Validity. External validity concerns the generalizability of our findings. Our experiments are conducted on two widely-used benchmark datasets, CoderEval and DevEval, which may not fully represent all real-world repository-level code generation scenarios. In particular, these datasets may differ from in-dustrial repositories in terms of scale, code quality, and dependency def _args_for_streaming_step (self , step_num ):                                                                                                                 
+
+> hadoop_streaming_jar =self .get_hadoop_streaming_jar ()
+> if not hadoop_streaming_jar :
+> raise Exception ('no Hadoop streaming jar’ )
+> return (self .get_hadoop_bin () +['jar' ,hadoop_streaming_jar ]+\
+> self ._ hadoop_streaming_jar_args (step_num ))
+> (b) Ground Truth
+> This function returns the arguments needed to run aHadoop
+> streaming step .It first checks if the Hadoop streaming jar is available .
+> If not, it raises an exception with the error message 'no Hadoop
+> streaming jar' .Then it constructs the command line arguments for the
+> Hadoop streaming step :the Hadoop binary, 'jar', the Hadoop
+> streaming jar, and the arguments for the Hadoop streaming step .
+> (a) Requirement
+> def _args_for_streaming_step (self ,step_num ):
+> hadoop_streaming_jar =self .get_hadoop_streaming_jar ()
+> if not hadoop_streaming_jar :
+> raise Exception ('no Hadoop streaming jar’ )
+> args =['hadoop ','jar' ,hadoop_streaming_jar ]+\
+> self ._ hadoop_streaming_jar_args (step_num )
+> return args
+> (e) Generated Code by TICoder
+> def _args_for_streaming_step (self ,step_num ):
+> streaming_jar =self ._ hadoop_streaming_jar ()
+> if not streaming_jar :
+> raise Exception ('no Hadoop streaming jar’ )
+> args =[]
+> args.extend (self .get_hadoop_bin ())
+> args.extend ([ 'jar' ,streaming_jar ])
+> args.extend (self ._ hadoop_streaming_jar_args (step_num ))
+> return args
+> (c) Generated Code by SimpleRAG
+> def _args_for_streaming_step (self ,step_num ):
+> if not self ._ opts.get ('hadoop_streaming_jar ’):
+> raise ValueError ('no Hadoop streaming jar’ )
+> jar, step_arg_prefix =self ._ get_streaming_jar_and_step_arg_prefix ()
+> args =[self .get_hadoop_bin (), 'jar' , jar] +step_arg_prefix +\
+> self ._ hadoop_streaming_jar_args (step_num )
+> return args
+> (d) Generated Code by AllianceCoder
+
+Figure 4: An example for a case study. The segments of code marked with black boxes indicate erroneous parts. 
+
+complexity. Additionally, our evaluation covers two programming languages, Python and Java. Future work could extend the evalua-tion to more diverse programming languages. Furthermore, although TICoder is designed to be model-agnostic, we evaluate it on three mainstream LLMs due to budget constraints. Given the rapid progress in LLMs, some LLMs not included in our study may achieve better performance. We will continue to track advancements in this area and incorporate more LLMs in future evaluations. 
+
+Threats to Construct Validity. Construct validity concerns whether the evaluation metrics adequately reflect the desired prop-erties of code generation systems. We adopt Pass@k as the primary evaluation metric, which measures functional correctness and is widely used in prior work [ 10 , 16 , 20 , 35 ]. However, Pass@k does not capture other important quality aspects, such as code readabil-ity, maintainability, or adherence to repository conventions. As a result, our evaluation may not fully reflect the overall quality of the generated code. Future work could incorporate human evaluation to provide a more comprehensive evaluation. TICoder: A Repository-Level Code Generation Framework with Test-Driven Planning and Implementation-Aware Reuse 26, Jan 1–10, 2026, XX, XX 
+
+8 Conclusion and Future Work 
+
+In this paper, we present TICoder, a novel repository-level code generation framework that improves both planning and repository reuse through test-driven iterative planning and implementation-aware code reuse. Specifically, TICoder employs an iterative judge-and-reflection process guided by both requirements and test cases to refine implementation steps. Furthermore, TICoder introduces an implementation-aware reuse mechanism that integrates dual-view callee function retrieval and dual-stage usage pattern selection. In the retrieval stage, TICoder jointly considers functional and im-plementation similarity to identify relevant callee functions, while in the selection stage, it extracts representative usage patterns via structure-based clustering and perplexity-based filtering. Extensive experiments on two widely used benchmarks across multiple main-stream LLMs demonstrate that TICoder consistently outperforms SOTA baselines. In addition to the threats discussed in Section 7.2, we plan to explore the following directions in future work: (1) investigating high-quality test case generation further to improve both planning steps and final code generation performance, (2) designing more refined prompt templates for planning, judging, reflection, and code generation, and (3) exploring deeper integration with agent-based frameworks, for example, exposing our iterative planning, dual-view retrieval, and dual-stage selection as modular tools for agents. 
+
+9 Data Availability Statement 
+
+Our replication package is available at https://doi.org/10.5281/ zenodo.19342245 to facilitate future research. 
+
+References 
+
+[1] Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Floren-cia Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et al . 2023. Gpt-4 technical report. arXiv preprint arXiv:2303.08774 
+
+(2023). [2] Maha Alharbi and Mohammad Alshayeb. 2026. Automatic Code Generation Techniques: A Systematic Literature Review. Automated Software Engineering 33, 1 (2026), 4. [3] Ingeol Baek, Hwan Chang, ByeongJeong Kim, Jimin Lee, and Hwanhee Lee. 2025. Probing-RAG: Self-Probing to Guide Language Models in Selective Document Retrieval. In Findings of the Association for Computational Linguistics: NAACL 2025 , Luis Chiruzzo, Alan Ritter, and Lu Wang (Eds.). 3287–3304. [4] Ramakrishna Bairi, Atharv Sonwane, Aditya Kanade, Vageesh D C, Arun Iyer, Suresh Parthasarathy, Sriram Rajamani, Balasubramanyan Ashok, and Shashank Shet. 2024. Codeplan: Repository-level coding using llms and planning. Proceed-ings of the ACM on Software Engineering 1, FSE (2024), 675–698. [5] Zhangqian Bi, Yao Wan, Zheng Wang, Hongyu Zhang, Batu Guan, Fangxin Lu, Zili Zhang, Yulei Sui, Hai Jin, and Xuanhua Shi. 2024. Iterative Refinement of Project-Level Code Context for Precise Code Generation with Compiler Feedback. In Findings of the Association for Computational Linguistics: ACL 2024 , Lun-Wei Ku, Andre Martins, and Vivek Srikumar (Eds.). 2336–2353. [6] Yujia Chen, Yang Ye, Zhongqi Li, Yuchi Ma, and Cuiyun Gao. 2025. Smaller but Better: Self-Paced Knowledge Distillation for Lightweight yet Effective LCMs. 
+
+Proceedings of the ACM on Software Engineering 2, FSE (2025), 3057–3080. [7] Yi Cui. 2025. Tests as Prompt: A Test-Driven-Development Benchmark for LLM Code Generation. arXiv:2505.09027 [cs.SE] https://arxiv.org/abs/2505.09027 [8] Yangruibo Ding, Zijian Wang, Wasi Ahmad, Murali Krishna Ramanathan, Ramesh Nallapati, Parminder Bhatia, Dan Roth, and Bing Xiang. 2024. Cocomic: Code completion by jointly modeling in-file and cross-file context. In Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024) . 3433–3445. [9] Aryaz Eghbali and Michael Pradel. 2024. De-Hallucinator: Mitigating LLM Hallucinations in Code Generation Tasks via Iterative Grounding. arXiv:2401.01701 [cs.SE] https://arxiv.org/abs/2401.01701 [10] Wenchao Gu, Juntao Chen, Yanlin Wang, Tianyue Jiang, Xingzhe Li, Mingwei Liu, Xilin Liu, Yuchi Ma, and Zibin Zheng. 2025. What to Retrieve for Effective Retrieval-Augmented Code Generation? An Empirical Study and Beyond. arXiv preprint arXiv:2503.20589 (2025). [11] Xinyi Hou, Yanjie Zhao, Yue Liu, Zhou Yang, Kailong Wang, Li Li, Xiapu Luo, David Lo, John Grundy, and Haoyu Wang. 2024. Large language models for software engineering: A systematic literature review. ACM Transactions on Software Engineering and Methodology 33, 8 (2024), 1–79. [12] Binyuan Hui, Jian Yang, Zeyu Cui, Jiaxi Yang, Dayiheng Liu, Lei Zhang, Tianyu Liu, Jiajun Zhang, Bowen Yu, Keming Lu, et al . 2024. Qwen2. 5-coder technical report. arXiv preprint arXiv:2409.12186 (2024). [13] Sajed Jalil, Shuvo Saha, and Hossain Mohammad Seym. 2025. Enhancing LLM Code Generation Capabilities through Test-Driven Development and Code Inter-preter. arXiv:2511.12823 [cs.SE] https://arxiv.org/abs/2511.12823 [14] Juyong Jiang, Fan Wang, Jiasi Shen, Sungju Kim, and Sunghun Kim. 2024. A survey on large language models for code generation. arXiv preprint arXiv:2406.00515 
+
+(2024). [15] Xue Jiang, Yihong Dong, Lecheng Wang, Zheng Fang, Qiwei Shang, Ge Li, Zhi Jin, and Wenpin Jiao. 2024. Self-Planning Code Generation with Large Language Models. ACM Trans. Softw. Eng. Methodol. 33, 7, Article 182 (2024), 30 pages. [16] Jia Li, Ge Li, Yunfei Zhao, Yongmin Li, Huanyu Liu, Hao Zhu, Lecheng Wang, Kaibo Liu, Zheng Fang, Lanshen Wang, et al . 2024. Deveval: A manually-annotated code generation benchmark aligned with real-world code repositories. In Findings of the Association for Computational Linguistics: ACL 2024 . 3603–3614. [17] Dianshu Liao, Shidong Pan, Xiaoyu Sun, Xiaoxue Ren, Qing Huang, Zhenchang Xing, Huan Jin, and Qinying Li. 2024. A 3-CodGen: A Repository-Level Code Generation Framework for Code Reuse With Local-A ware, Global-A ware, and Third-Party-Library-A ware. IEEE Transactions on Software Engineering 50, 12 (2024), 3369–3384. [18] Aixin Liu, Bei Feng, Bing Xue, Bingxuan Wang, Bochao Wu, Chengda Lu, Cheng-gang Zhao, Chengqi Deng, Chenyu Zhang, Chong Ruan, et al . 2024. Deepseek-v3 technical report. arXiv preprint arXiv:2412.19437 (2024). [19] Wei Liu, Ailun Yu, Daoguang Zan, Bo Shen, Wei Zhang, Haiyan Zhao, Zhi Jin, and Qianxiang Wang. 2024. GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph. In Pro-ceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering . 570–581. [20] Yang Liu, Li Zhang, Fang Liu, Zhuohang Wang, Donglin Wei, Zhishuo Yang, Kechi Zhang, Jia Li, and Lin Shi. 2025. RepoScope: Leveraging Call Chain-Aware Multi-View Context for Repository-Level Code Generation. arXiv preprint arXiv:2507.14791 (2025). [21] Noble Saji Mathews and Meiyappan Nagappan. 2024. Test-Driven Develop-ment and LLM-based Code Generation. In Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering . 1583–1594. [22] Fangwen Mu, Lin Shi, Song Wang, Zhuohao Yu, Binquan Zhang, ChenXue Wang, Shichao Liu, and Qing Wang. 2024. Clarifygpt: A framework for enhancing llm-based code generation via requirements clarification. Proceedings of the ACM on Software Engineering 1, FSE (2024), 2332–2354. [23] Amirkia Rafiei Oskooei, Selcan Yukcu, Mehmet Cevheri Bozoglan, and Mehmet S Aktas. 2025. Repository-Level Code Understanding by LLMs via Hierarchical Summarization: Improving Code Search and Bug Localization. In International Conference on Computational Science and Its Applications . 88–105. [24] Siru Ouyang, Wenhao Yu, Kaixin Ma, Zilin Xiao, Zhihan Zhang, Mengzhao Jia, Jiawei Han, Hongming Zhang, and Dong Yu. 2025. RepoGraph: Enhancing AI Soft-ware Engineering with Repository-level Code Graph. arXiv:2410.14684 [cs.SE] https://arxiv.org/abs/2410.14684 [25] Zhiyuan Pan, Xing Hu, Xin Xia, and Xiaohu Yang. 2025. CATCODER: Repository-Level Code Generation with Relevant Code and Type Context. ACM Transactions on Software Engineering and Methodology (2025). [26] Huy N Phan, Hoang N Phan, Tien N Nguyen, and Nghi DQ Bui. 2025. Repohyper: Search-expand-refine on semantic graphs for repository-level code completion. In 2025 IEEE/ACM Second International Conference on AI Foundation Models and Software Engineering (Forge) . IEEE, 14–25. [27] Sanyogita Piya and Allison Sullivan. 2024. LLM4TDD: Best Practices for Test Driven Development Using Large Language Models. In Proceedings of the 1st International Workshop on Large Language Models for Code . 14–21. [28] Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao. 2023. Reflexion: language agents with verbal reinforcement learning. In Advances in Neural Information Processing Systems , Vol. 36. 8634–8652. [29] Yicheng Tao, Yao Qin, and Yepang Liu. 2025. Retrieval-Augmented Code Gen-eration: A Survey with Focus on Repository-Level Approaches. arXiv preprint arXiv:2510.04905 (2025). [30] Chong Wang, Jian Zhang, Yebo Feng, Tianlin Li, Weisong Sun, Yang Liu, and Xin Peng. 2025. Teaching code llms to use autocompletion tools in repository-level code generation. ACM Transactions on Software Engineering and Methodology 34, 7 (2025), 1–27. [31] Xin Wang, Xiao Liu, Pingyi Zhou, Qixia Liu, Jin Liu, Hao Wu, and Xiaohui Cui. 2023. Test-Driven Multi-Task Learning with Functionally Equivalent Code 26, Jan 1–10, 2026, XX, XX Trovato et al. 
+
+Transformation for Neural Code Generation. In Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE ’22) . Article 188, 6 pages. [32] Yanlin Wang, Yanli Wang, Daya Guo, Jiachi Chen, Ruikai Zhang, Yuchi Ma, and Zibin Zheng. 2025. RLCoder: Reinforcement Learning for Repository-Level Code Completion. In 2025 IEEE/ACM 47th International Conference on Software Engineering (ICSE) . IEEE, 1140–1152. [33] Zejun Wang, Jia Li, Ge Li, and Zhi Jin. 2023. ChatCoder: Chat-based refine requirement improves LLMs’ code generation. arXiv preprint arXiv:2311.00272 
+
+(2023). [34] Di Wu, Wasi Uddin Ahmad, Dejiao Zhang, Murali Krishna Ramanathan, and Xiaofei Ma. 2024. REPOFORMER: selective retrieval for repository-level code completion. In Proceedings of the 41st International Conference on Machine Learn-ing . Article 2183, 21 pages. [35] Hao Yu, Bo Shen, Dezhi Ran, Jiaxin Zhang, Qi Zhang, Yuchi Ma, Guangtai Liang, Ying Li, Qianxiang Wang, and Tao Xie. 2024. Codereval: A benchmark of prag-matic code generation with generative pre-trained models. In Proceedings of the 46th IEEE/ACM International Conference on Software Engineering . 1–12. [36] Fengji Zhang, Bei Chen, Yue Zhang, Jacky Keung, Jin Liu, Daoguang Zan, Yi Mao, Jian-Guang Lou, and Weizhu Chen. 2023. RepoCoder: Repository-Level Code Completion Through Iterative Retrieval and Generation. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing . 2471–2484. [37] Zibin Zheng, Kaiwen Ning, Qingyuan Zhong, Jiachi Chen, Wenqing Chen, Lianghong Guo, Weicheng Wang, and Yanlin Wang. 2025. Towards an under-standing of large language models in software engineering tasks. Empirical Software Engineering 30, 2 (2025), 50. 
+
+Received 20 February 2007; revised 12 March 2009; accepted 5 June 2009
