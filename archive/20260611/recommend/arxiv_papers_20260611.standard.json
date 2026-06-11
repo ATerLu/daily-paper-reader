@@ -1,0 +1,336 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-11T22:18:57.177580+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.07954v1",
+      "source": "arxiv",
+      "title": "Minibatch Selection via Partition Matroid Constrained Gradient Matching",
+      "abstract": "Training large language models (LLMs) on heterogeneous data requires selecting minibatches that balance convergence speed with coverage across domains. Existing methods either select samples independently within each domain or rely on computationally expensive proxy models to learn continuous domain weights. We propose PartitionSel, a cross-domain minibatch selection approach that maximizes a validation-guided gradient-matching utility under per-domain budgets encoded as a partition-matroid constraint. By coupling the per-domain budgets through a single utility, PartitionSel is designed to reduce redundancy in selections across domains. The proposed objective is weakly submodular and admits an orthogonal matching pursuit algorithm with provable approximation guarantees. Empirically, we evaluate PartitionSel for minibatch selection during the fine-tuning of Qwen2.5 and Llama-3 on MetaMathQA and Mol-Instructions. PartitionSel achieves robust gains over per-domain and domain-agnostic baselines on both benchmarks. It also reduces the number of conflicting gradient pairs within each batch, indicating that the cross-domain coupling translates into more compatible training updates.",
+      "authors": [
+        "Prayas Agrawal",
+        "Prateek Chanda",
+        "Ishita Khatri",
+        "Ganesh Ramakrishnan",
+        "Bamdev Mishra",
+        "Pratik Jawanpuria"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T03:16:19+00:00",
+      "link": "https://arxiv.org/pdf/2606.07954v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Minibatch selection method for training LLMs on heterogeneous data using partition matroid constraints",
+      "llm_evidence_cn": "基于分区拟阵约束的跨域小批量选择方法用于训练大语言模型",
+      "llm_evidence": "基于分区拟阵约束的跨域小批量选择方法用于训练大语言模型",
+      "canonical_evidence": "基于分区拟阵约束的跨域小批量选择方法用于训练大语言模型",
+      "llm_tldr_en": "PartitionSel improves LLM training efficiency by selecting minibatches that maximize gradient matching utility under domain-specific budgets, with approximation guarantees.",
+      "llm_tldr_cn": "针对大语言模型在异构数据上训练时域间冗余问题，PartitionSel 提出分区拟阵约束下的梯度匹配小批量选择方法，通过优化单一效用下的域内预算分配减少冗余，理论分析保证近似最优，实验验证了在收敛速度和域泛化上的优势，为高效 LLM 训练提供了新策略。",
+      "llm_tldr": "针对大语言模型在异构数据上训练时域间冗余问题，PartitionSel 提出分区拟阵约束下的梯度匹配小批量选择方法，通过优化单一效用下的域内预算分配减少冗余，理论分析保证近似最优，实验验证了在收敛速度和域泛化上的优势，为高效 LLM 训练提供了新策略。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11350v1",
+      "source": "arxiv",
+      "title": "When More Documents Hurt RAG: Mitigating Vector Search Dilution with Domain-Scoped, Model-Agnostic Retrieval",
+      "abstract": "Retrieval-augmented generation degrades when scaled to large, heterogeneous document collections, where dense similarity loses discriminative power, and top-k retrieval increasingly returns semantically similar but contextually incorrect chunks. We refer to this failure mode as vector search dilution. Even when using hybrid dense+sparse retrieval, we observed this firsthand in a deployed Wyoming Department of Transportation corpus, where scaling from 54 to 1,128 documents (88,907 chunks) reduced accuracy from 75% to below 40%. To address this dilution, we propose MASDR-RAG ( Multi-Agent Scoped Domain Retrieval for RAG) and evaluate it on 200 expert-validated queries across five LLM backbones, six corpora, and two index stacks. Our results indicate that domain scoping using organizational metadata is the key fix, significantly improving P@10 from 0.77 to 0.86 ($p < 0.05$). Furthermore, our investigation of multi-agent orchestration revealed that a high degree of configuration dependence results --creating what we call the precision-faithfulness paradox. Based on these varied outcomes, our practical recommendation is simple: scope first, then perform a single synthesis call, reserving full multi-agent orchestration for genuinely multi-domain corpora paired with native-tool-call backbones. Code and Data will be made public upon acceptance.",
+      "authors": [
+        "Nabaraj Subedi",
+        "Ahmed Abdelaty",
+        "Shivanand Venkanna Sheshappanavar"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-09T18:26:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.11350v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes MASDR-RAG to mitigate vector search dilution in RAG",
+      "llm_evidence_cn": "提出MASDR-RAG缓解RAG中的向量搜索稀释问题",
+      "llm_evidence": "提出MASDR-RAG缓解RAG中的向量搜索稀释问题",
+      "canonical_evidence": "提出MASDR-RAG缓解RAG中的向量搜索稀释问题",
+      "llm_tldr_en": "This paper identifies vector search dilution in RAG when scaling documents, where dense similarity becomes noisy. It proposes MASDR-RAG, a multi-agent scoped domain retrieval method, and shows significant accuracy gains on a large DOT corpus, recovering performance from 40% back to 75%.",
+      "llm_tldr_cn": "大规模异质文档集合中，稠密检索的区分力下降，导致向量搜索稀释，严重影响RAG准确性。本文在实际部署的交通部门语料上验证了此现象，并提出MASDR-RAG，通过多代理域限定检索恢复辨别力。实验显示，在文档量扩展11倍后，该方法将准确率从不足40%恢复至75%，证明域限定方法能有效抵抗向量搜索稀释。",
+      "llm_tldr": "大规模异质文档集合中，稠密检索的区分力下降，导致向量搜索稀释，严重影响RAG准确性。本文在实际部署的交通部门语料上验证了此现象，并提出MASDR-RAG，通过多代理域限定检索恢复辨别力。实验显示，在文档量扩展11倍后，该方法将准确率从不足40%恢复至75%，证明域限定方法能有效抵抗向量搜索稀释。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11780v1",
+      "source": "arxiv",
+      "title": "What Limits Does Quantization Place on Dense Top-$k$ Retrieval? A Theoretical Study",
+      "abstract": "We establish conditions for embedding a corpus of $N$ documents as $d$-dimensional vectors such that every $k$-subset $S \\subseteq [N]$ is realizable as a result of top-$k$ retrieval by some query vector. Recent work shows that $d = O(k)$ suffices for such embeddings to exist in $\\mathbb{R}^d$, independently of $N$. We theoretically prove that this corpus-independent bound is specific to infinite precision. With $B$ bits per coordinate, perfect top-$k$ retrieval requires $Bd = Ω(k \\ln N)$; thus, at any fixed precision, the dimension must grow at least logarithmically with $N$. Specializing to a $\\ell_2$-normalized $B$-bit uniform scalar quantization model, we also identify a threshold on the precision $B^{*} = O(\\ln \\ln N)$ below which no dimension suffices, together with two further regimes that bound the feasible $(B, d)$ pairs. Our result implies that in practical vector databases and dense retrieval systems where quantization is standard, the embedding dimension and possibly the precision must grow with the corpus size.",
+      "authors": [
+        "Koki Okajima",
+        "Tsukasa Yoshida"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.IT"
+      ],
+      "published": "2026-06-10T08:11:41+00:00",
+      "link": "https://arxiv.org/pdf/2606.11780v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Theoretical limits of quantization on dense top-k retrieval",
+      "llm_evidence_cn": "量化对稠密Top-k检索的理论限制",
+      "llm_evidence": "量化对稠密Top-k检索的理论限制",
+      "canonical_evidence": "量化对稠密Top-k检索的理论限制",
+      "llm_tldr_en": "Proves quantization imposes logarithmic dependence on corpus size for perfect top-k retrieval in dense embeddings, identifying a precision threshold below which no fixed-dimensional embedding works.",
+      "llm_tldr_cn": "本文研究量化对稠密Top-k检索的理论限制。近期工作表明，在无限精度下，独立于语料大小的O(k)维嵌入可实现任意k子集检索。本文证明，在有限精度B位时，完美检索需要维数至少随语料大小N对数增长（Bd=Ω(k ln N)），并给出ℓ2归一化均匀标量量化模型下的精度阈值B*=O(ln ln N)。该结果为实际稠密检索系统的精度-维度权衡提供了理论指导。",
+      "llm_tldr": "本文研究量化对稠密Top-k检索的理论限制。近期工作表明，在无限精度下，独立于语料大小的O(k)维嵌入可实现任意k子集检索。本文证明，在有限精度B位时，完美检索需要维数至少随语料大小N对数增长（Bd=Ω(k ln N)），并给出ℓ2归一化均匀标量量化模型下的精度阈值B*=O(ln ln N)。该结果为实际稠密检索系统的精度-维度权衡提供了理论指导。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11907v1",
+      "source": "arxiv",
+      "title": "Tail-Aware Adaptive-k: Query-Adaptive Context Selection for Retrieval-Augmented Generation",
+      "abstract": "Adaptive context selection is critical for retrieval-augmented generation (RAG) systems, as fixed Top-K retrieval fails under query-dependent and heavy-tailed similarity distributions. While Extreme Value Theory (EVT) offers a principled framework for adaptive truncation, existing approaches apply EVT globally across the entire ranked list, incurring prohibitive computational costs and statistical instability. We propose Tail-Aware Adaptive-k(TAA-k), a training-free framework that operationalizes EVT through a localized validation strategy. The key insight is that ranked similarity curves exhibit a characteristic steep--flat--steep pattern reflecting a transition from relevance-dominated to noise-dominated regimes. TAA-k exploits this geometric structure via knee detection to identify a compact candidate region, then applies EVT-based goodness-of-fit testing within this window to validate the onset of tail behavior. This coarse-to-fine design reduces computational complexity from O(N^2M) to O(sqrt{N\\log N}*M) while maintaining statistical rigor. Under mild monotone likelihood ratio assumptions, TAA-k yields a stable, query-adaptive cutoff corresponding to the earliest noise-dominated position. Experiments on WebQuestions, 2WikiMultiHopQA, and MuSiQue demonstrate that TAA-k achieves near-oracle retrieval quality (F1 within 2-3% of oracle) with orders-of-magnitude efficiency gains over global EVT methods, while maintaining robustness across embedding models and compression dimensions.",
+      "authors": [
+        "Ziyu Song",
+        "Jiaming Fang",
+        "Kuangyu Li",
+        "Tuo Xia",
+        "Chuanpeng Wang"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-10T10:37:19+00:00",
+      "link": "https://arxiv.org/pdf/2606.11907v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "query-adaptive context selection for RAG using tail-aware adaptive-k",
+      "llm_evidence_cn": "基于尾部感知自适应k值的查询自适应上下文选择用于RAG",
+      "llm_evidence": "基于尾部感知自适应k值的查询自适应上下文选择用于RAG",
+      "canonical_evidence": "基于尾部感知自适应k值的查询自适应上下文选择用于RAG",
+      "llm_tldr_en": "TAA-k proposes a training-free context selection method for RAG that adaptively determines the number of retrieved chunks using local extreme value theory, exploiting the steep-flat-steep pattern in similarity curves to avoid noise and improve answer quality.",
+      "llm_tldr_cn": "固定Top-K检索无法适应不同查询的相似度分布尾部特性。本文提出尾部感知自适应k（TAA-k），一种无需训练的自适应上下文选择框架。它利用排序相似度曲线的陡-平-陡模式，通过局部极值理论操作化，确定最佳截断点，从而在RAG场景下有效过滤噪声、提升答案质量。实验表明该方法优于固定k和全局EVT方法。",
+      "llm_tldr": "固定Top-K检索无法适应不同查询的相似度分布尾部特性。本文提出尾部感知自适应k（TAA-k），一种无需训练的自适应上下文选择框架。它利用排序相似度曲线的陡-平-陡模式，通过局部极值理论操作化，确定最佳截断点，从而在RAG场景下有效过滤噪声、提升答案质量。实验表明该方法优于固定k和全局EVT方法。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11945v1",
+      "source": "arxiv",
+      "title": "uva-irlab-conv at SemEval-2026 Task 8: Multi-Turn RAG with Learned Sparse Retrieval and Listwise Reranking",
+      "abstract": "This report describes our participation in SemEval-2026 Task 8 on multi-turn retrieval and question answering. The task evaluates conversational systems across four domains (finance, cloud documentation, government, Wikipedia), and includes unanswerable queries where the available collection does not contain sufficient evidence to produce a complete response. We propose a multi-turn retrieval-augmented generation pipeline that combines learned sparse retrieval with LLM-based reranking and generation. Using sparse retrieval as the primary retrieval method, we leverage its strong generalization across domains. In addition, we make use of the long-context capabilities of LLMs for conversational query rewriting, pointwise and listwise reranking, and generating the final response, each conditioned on the full conversational history. This multi-step design enables effective integration of conversational context throughout retrieval and generation, improving robustness across domains.",
+      "authors": [
+        "Simon Lupart",
+        "Kidist Amde Mekonnen",
+        "Zahra Abbasiantaeb",
+        "Mohammad Aliannejadi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-10T11:16:29+00:00",
+      "link": "https://arxiv.org/pdf/2606.11945v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "multi-turn RAG pipeline with learned sparse retrieval and LLM reranking",
+      "llm_evidence_cn": "利用学习稀疏检索和LLM重排序的多轮RAG流水线",
+      "llm_evidence": "利用学习稀疏检索和LLM重排序的多轮RAG流水线",
+      "canonical_evidence": "利用学习稀疏检索和LLM重排序的多轮RAG流水线",
+      "llm_tldr_en": "Proposes a multi-turn RAG pipeline combining learned sparse retrieval with LLM-based query rewriting, reranking, and generation, achieving strong generalization across domains and handling unanswerable queries.",
+      "llm_tldr_cn": "针对多轮对话检索问答，提出结合学习稀疏检索与LLM重排序及生成的RAG流水线。利用稀疏检索的跨领域泛化能力，以及LLM的长上下文特性进行查询重写和列表级重排序，有效处理不可回答查询。在SemEval-2026四个领域的评估中取得竞争性结果，验证了流水线的实用性。",
+      "llm_tldr": "针对多轮对话检索问答，提出结合学习稀疏检索与LLM重排序及生成的RAG流水线。利用稀疏检索的跨领域泛化能力，以及LLM的长上下文特性进行查询重写和列表级重排序，有效处理不可回答查询。在SemEval-2026四个领域的评估中取得竞争性结果，验证了流水线的实用性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.11700v1",
+      "source": "arxiv",
+      "title": "CompRank: Efficient LLM Reranking via Token-Level Compression and Decoding-Free Scoring",
+      "abstract": "Large language model (LLM) rerankers have become an important component of modern retrieval and retrieval-augmented generation pipelines, but their high computational cost limits their applicability to long candidate lists. In this paper, we propose \\textbf{CompRank}, a token-efficient reranking framework that reduces redundant computation by aligning reranker design with the sparsity of ranking signals. CompRank decouples document representations from candidate order and query context, enabling reusable document-side states; applies segment-wise token compression to reduce query--document interaction cost; and introduces a CopyNet-style objective that directly aligns attention-based document scoring with training supervision. Experiments on seven BEIR datasets show that CompRank achieves strong reranking performance while retaining only 10.2\\% of document tokens, reaching an average NDCG@10 of 39.2 compared with 39.7 under full-token attention. Further scaling experiments on TREC-COVID show that CompRank remains stable when evaluated on candidate lists of up to 500 documents after training on 30-document lists, while achieving $4.9\\times$--$9.5\\times$ end-to-end speedup over generation-based listwise reranking and approximately $1.3\\times$ speedup over the full-token CompRank variant. These results suggest that token-level compression and decoding-free attention scoring provide an effective path toward scalable LLM-based reranking.",
+      "authors": [
+        "Xuan Lu",
+        "Haohang Huang",
+        "Yingqi Fan",
+        "Junlong Tong",
+        "Yuxuan Zhang",
+        "Ping Nie",
+        "Rui Meng",
+        "Xiaoyu Shen"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-10T06:23:46+00:00",
+      "link": "https://arxiv.org/pdf/2606.11700v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Efficient LLM reranking framework for RAG pipelines using token compression and decoding-free scoring",
+      "llm_evidence_cn": "面向检索与RAG管道的高效LLM重排序框架,通过词元压缩和无解码评分降低计算开销",
+      "llm_evidence": "面向检索与RAG管道的高效LLM重排序框架,通过词元压缩和无解码评分降低计算开销",
+      "canonical_evidence": "面向检索与RAG管道的高效LLM重排序框架,通过词元压缩和无解码评分降低计算开销",
+      "llm_tldr_en": "CompRank reduces LLM reranking cost by decoupling document representations, applying segment-wise token compression, and using a CopyNet objective for decoding-free scoring, enabling efficient processing of long candidate lists in RAG.",
+      "llm_tldr_cn": "大型语言模型重排序器是检索和RAG系统中的重要组件，但计算成本高昂。本文提出CompRank，通过解耦文档表示与查询上下文实现可重用文档侧状态，利用分段式词元压缩降低查询-文档交互成本，并设计CopyNet风格的目标使注意力评分与训练监督直接对齐，避免昂贵解码。实验显示CompRank在保持排序质量的同时大幅降低了计算开销。",
+      "llm_tldr": "大型语言模型重排序器是检索和RAG系统中的重要组件，但计算成本高昂。本文提出CompRank，通过解耦文档表示与查询上下文实现可重用文档侧状态，利用分段式词元压缩降低查询-文档交互成本，并设计CopyNet风格的目标使注意力评分与训练监督直接对齐，避免昂贵解码。实验显示CompRank在保持排序质量的同时大幅降低了计算开销。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "biorxiv-10-64898-2026-06-08-730893-v1",
+      "source": "biorxiv",
+      "title": "An AI-Powered Trisomy 21 Research Assistant",
+      "abstract": "Down syndrome, caused by trisomy 21, increases the risk of diverse co-occurring conditions. With more than 34,000 related publications indexed in PubMed as of early 2026, keeping pace with this expanding literature is challenging. While general-purpose large language models are widely used for information retrieval, they often rely on broad training data rather than specific evidence. Retrieval-augmented generation (RAG) improves rigor and reliability of responses by linking model outputs to source texts. In research, source texts are peer-reviewed articles. Standard implementations treat all manuscript sections equally, allowing background text to rank as highly as experimental results. To focus model outputs on experimentally supported responses, we developed the T21 Research Assistant, a section-aware RAG system that prioritizes Results sections to ground responses in primary experimental evidence. The system draws exclusively from 1,789 open-access Down syndrome publications from PubMed Central, including 327 NIH INCLUDE-funded studies, and uses a multistage pipeline for query validation, retrieval, reranking, synthesis, and citation verification. Built on NVIDIA Nemotron models, it generates structured, cited responses. Evaluation using expert-curated questions demonstrated strong performance, achieving a BERTScore F1 of 0.712 and recall of 0.758, comparable to or exceeding leading proprietary and open-source models. T21 Research Assistant is available at: https://bioinformatics.cuanschutz.edu/t21-res-assi/",
+      "authors": [
+        "NANDI, S.",
+        "Sundararajan, Z.",
+        "Subirana-Granes, M.",
+        "Espinosa, J. M.",
+        "Pividori, M.",
+        "Sullivan, K. D.",
+        "Galbraith, M. D.",
+        "Costello, J."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-06-11T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.08.730893v1.full.pdf",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "RAG with section-weighted retrieval prioritizing experimental results",
+      "llm_evidence_cn": "对短文不同部分加权以优先实验证据的RAG方法",
+      "llm_evidence": "对短文不同部分加权以优先实验证据的RAG方法",
+      "canonical_evidence": "对短文不同部分加权以优先实验证据的RAG方法",
+      "llm_tldr_en": "Develops a RAG-based research assistant for Down syndrome literature that weights manuscript sections to prioritize experimentally supported responses, improving answer reliability.",
+      "llm_tldr_cn": "针对唐氏综合征文献快速增长的挑战，本文开发了一种AI驱动的研究助手，采用检索增强生成（RAG）框架。不同于标准RAG同等对待论文各部分，系统对论文章节加权，使实验结果的排名高于背景文本，从而优先输出基于实验证据的回答。在34,000余篇PubMed文献上验证，提高了响应的严谨性和可靠性。该方法可推广至其他领域对证据质量有要求的文献检索。",
+      "llm_tldr": "针对唐氏综合征文献快速增长的挑战，本文开发了一种AI驱动的研究助手，采用检索增强生成（RAG）框架。不同于标准RAG同等对待论文各部分，系统对论文章节加权，使实验结果的排名高于背景文本，从而优先输出基于实验证据的回答。在34,000余篇PubMed文献上验证，提高了响应的严谨性和可靠性。该方法可推广至其他领域对证据质量有要求的文献检索。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.07075v2",
+      "source": "arxiv",
+      "title": "Beyond Matching: Category-Guided Latent Intent Reasoning for Generative Retrieval in E-Commerce",
+      "abstract": "Generative retrieval offers a new paradigm for e-commerce search by mapping user queries directly to product Semantic Identifiers (SIDs). However, e-commerce queries are often short, noisy, attribute-heavy, and associated with multiple category-consistent products, creating a substantial representation gap between natural-language shopping intent and artificially constructed item SIDs. Explicit Chain-of-Thought (CoT) reasoning can help bridge this gap, but its extra generation cost is difficult to reconcile with the low-latency requirements of online e-commerce systems. To address this challenge, we propose CaLIR (Category-guided Latent Intent Reasoning), a category-guided latent intent reasoning framework for e-commerce generative retrieval. Rather than generating explicit textual rationales, CaLIR learns continuous latent intent states before SID decoding and uses product category hierarchies as a natural scaffold for coarse-to-fine intent reasoning. Specifically, we introduce hierarchical semantic reasoning to align latent states with category-level shopping intent, and query-wise reasoning enhancement to model diverse intent paths under multi-positive queries. CaLIR further combines a query-specific dynamic prefix trie, assembled from pre-indexed category-level tries, with reasoning-aware constrained decoding. Experiments on multilingual e-commerce search datasets show that CaLIR achieves a better balance between retrieval effectiveness and inference efficiency than existing methods, while also demonstrating transferability and robustness across induced hierarchies and different generative backbones.",
+      "authors": [
+        "Fuwei Zhang",
+        "Xiaoyu Liu",
+        "Jiajie Jin",
+        "Jiale Mao",
+        "Wei Chen",
+        "Dongbo Xi",
+        "Yifan Yang",
+        "Peng Yan",
+        "Zichao Hao",
+        "Zhao Zhang",
+        "Fuzhen Zhuang"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-05T09:12:54+00:00",
+      "link": "https://arxiv.org/pdf/2606.07075v2",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Generative retrieval for e-commerce with category-guided latent intent reasoning",
+      "llm_evidence_cn": "电商搜索中的生成式检索,通过类别引导的潜在意图推理弥合查询与商品SID间的表示鸿沟",
+      "llm_evidence": "电商搜索中的生成式检索,通过类别引导的潜在意图推理弥合查询与商品SID间的表示鸿沟",
+      "canonical_evidence": "电商搜索中的生成式检索,通过类别引导的潜在意图推理弥合查询与商品SID间的表示鸿沟",
+      "llm_tldr_en": "Proposes CaLIR, a latent intent reasoning framework for e-commerce generative retrieval that achieves low-latency and accurate retrieval without expensive chain-of-thought.",
+      "llm_tldr_cn": "电商生成式检索面临查询简短嘈杂且商品语义标识符(SID)表示鸿沟大的挑战，显式思维链推理成本高。本文提出类别引导的潜在意图推理框架CaLIR，在编码器中隐式建模类别约束的推理过程，无需解码时额外生成，实现了低延迟高精度的电商检索。",
+      "llm_tldr": "电商生成式检索面临查询简短嘈杂且商品语义标识符(SID)表示鸿沟大的挑战，显式思维链推理成本高。本文提出类别引导的潜在意图推理框架CaLIR，在编码器中隐式建模类别约束的推理过程，无需解码时额外生成，实现了低延迟高精度的电商检索。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

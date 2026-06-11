@@ -6,70 +6,46 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-10
-- 运行时间：2026-06-10 22:18:39 UTC
+- 最新运行日期：2026-06-11
+- 运行时间：2026-06-11 22:25:05 UTC
 - 运行状态：成功
-- 本次总论文数：16
+- 本次总论文数：8
 - 精读区：6
-- 速读区：10
+- 速读区：2
 
 ### 今日简报（AI）
-1) 今日精读+速读16篇论文，重点拆解了长文档问答的记忆代理框架与多模态检索的效率优化方案。  
-2) 最值得看的方向：MARDoc与Trace Only What You Need提出的结构感知按需记忆，为长文档QA开辟代理式动态记忆新路径；MM-Matryoshka的预算弹性视觉检索和miniReranker的稀疏重排序，则直击视觉文档理解中的成本效率痛点。  
-3) 建议读者优先实验两类记忆机制在图文混排长文档上的效果，再用DataEvolver自动化数据准备降低适配门槛。
-- 详情：[/202606/10/README](/202606/10/README)
+我们聚焦于从数据选样与检索增强两个维度，提升大模型训练和推理的实用性。  
+最值得关注的是：通过拟阵约束梯度匹配智能挑选小批次样本，以及用领域范围限定检索来缓解 RAG 的向量搜索稀释问题，两块效果都好得出奇。  
+如果你想动手试试，不妨从划分数据领域边界入手，在检索前加一层轻量分类，再观察生成质量的提升。
+- 详情：[/202606/11/README](/202606/11/README)
 
 ### 精读区论文标签
-1. [MARDoc: A Memory-Aware Refinement Agent Framework for Multimodal Long Document QA](/202606/10/2606.05749v1-mardoc-a-memory-aware-refinement-agent-framework-for-multimodal-long-document-qa)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：面向多模态长文档问答的迭代检索-推理智能体框架
-2. [Trace Only What You Need: Structure-Aware On-Demand Hypergraph Memory for Long-Document Question Answering](/202606/10/2606.10921v1-trace-only-what-you-need-structure-aware-on-demand-hypergraph-memory-for-long-document-question-answering)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：提出DocTrace多智能体RAG框架，利用按需超图记忆和文档结构。
-3. [QO-Bench: Diagnosing Query-Operator-Preserving Retrieval over Typed Event Tuples](/202606/10/2606.04646v1-qo-bench-diagnosing-query-operator-preserving-retrieval-over-typed-event-tuples)  
+1. [Minibatch Selection via Partition Matroid Constrained Gradient Matching](/202606/11/2606.07954v1-minibatch-selection-via-partition-matroid-constrained-gradient-matching)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出一个面向检索增强生成系统的基准，测试检索是否保持查询操作，直接评估RAG性能。
-4. [STORM: Stepwise Token Optimization with Reward-Guided Beam Search](/202606/10/2606.10621v1-storm-stepwise-token-optimization-with-reward-guided-beam-search)  
+   evidence：基于分区拟阵约束的跨域小批量选择方法用于训练大语言模型
+2. [When More Documents Hurt RAG: Mitigating Vector Search Dilution with Domain-Scoped, Model-Agnostic Retrieval](/202606/11/2606.11350v1-when-more-documents-hurt-rag-mitigating-vector-search-dilution-with-domain-scoped-model-agnostic-retrieval)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：通过奖励引导束搜索的逐步令牌优化进行词汇查询扩展
-5. [Improving the Efficiency and Effectiveness of LLM Knowledge Distillation for Conversational Search](/202606/10/2606.04650v1-improving-the-efficiency-and-effectiveness-of-llm-knowledge-distillation-for-conversational-search)  
+   evidence：提出MASDR-RAG缓解RAG中的向量搜索稀释问题
+3. [What Limits Does Quantization Place on Dense Top-$k$ Retrieval? A Theoretical Study](/202606/11/2606.11780v1-what-limits-does-quantization-place-on-dense-top-k-retrieval-a-theoretical-study)  
+   标签：评分：9.0/10、query:rag-llm
+   evidence：量化对稠密Top-k检索的理论限制
+4. [Tail-Aware Adaptive-k: Query-Adaptive Context Selection for Retrieval-Augmented Generation](/202606/11/2606.11907v1-tail-aware-adaptive-k-query-adaptive-context-selection-for-retrieval-augmented-generation)  
+   标签：评分：9.0/10、query:rag-llm
+   evidence：基于尾部感知自适应k值的查询自适应上下文选择用于RAG
+5. [uva-irlab-conv at SemEval-2026 Task 8: Multi-Turn RAG with Learned Sparse Retrieval and Listwise Reranking](/202606/11/2606.11945v1-uva-irlab-conv-at-semeval-2026-task-8-multi-turn-rag-with-learned-sparse-retrieval-and-listwise-reranking)  
+   标签：评分：9.0/10、query:rag-llm
+   evidence：利用学习稀疏检索和LLM重排序的多轮RAG流水线
+6. [CompRank: Efficient LLM Reranking via Token-Level Compression and Decoding-Free Scoring](/202606/11/2606.11700v1-comprank-efficient-llm-reranking-via-token-level-compression-and-decoding-free-scoring)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：对话搜索中LLM查询改写的知识蒸馏，提高效率与效果
-6. [Evaluating RAG Reliability under Clean, Misleading, and Mixed Retrieval](/202606/10/2606.07783v1-evaluating-rag-reliability-under-clean-misleading-and-mixed-retrieval)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：提出评估协议，测试RAG在误导性检索下的可靠性
+   evidence：面向检索与RAG管道的高效LLM重排序框架,通过词元压缩和无解码评分降低计算开销
 
 ### 速读区论文标签
-1. [DataEvolver: Automatic Data Preparation for Large Language Models through Multi-Level Self-Evolving](/202606/10/2606.07001v1-dataevolver-automatic-data-preparation-for-large-language-models-through-multi-level-self-evolving)  
+1. [An AI-Powered Trisomy 21 Research Assistant](/202606/11/biorxiv-10-64898-2026-06-08-730893-v1-an-ai-powered-trisomy-21-research-assistant)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出自我进化系统自动构建大语言模型数据预处理流水线
-2. [MM-Matryoshka: Towards Budget-Elastic Visual Document Retrieval via a 2D Multimodal Matryoshka Training Framework](/202606/10/2606.07654v1-mm-matryoshka-towards-budget-elastic-visual-document-retrieval-via-a-2d-multimodal-matryoshka-training-framework)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：提出二维套娃训练用于密集视觉文档检索，实现预算弹性的多向量检索。
-3. [miniReranker: Efficient Multimodal Reranking through Visual Cache Reuse and Interaction Sparsity](/202606/10/2606.10759v1-minireranker-efficient-multimodal-reranking-through-visual-cache-reuse-and-interaction-sparsity)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：利用多模态大语言模型进行高效重排序，通过视觉缓存重用和稀疏注意力提升效率
-4. [When Should Queries Be Decomposed? A Stage-Aware Study of Query Decomposition for Multi-Condition Retrieval](/202606/10/2606.08577v1-when-should-queries-be-decomposed-a-stage-aware-study-of-query-decomposition-for-multi-condition-retrieval)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：实证研究查询分解在不同检索阶段的效果并提出分阶段分解框架
-5. [EviProp: Seeded Relevance Diffusion on Chunk-Page Graphs for Long Multimodal Document Retrieval](/202606/10/2606.08979v1-eviprop-seeded-relevance-diffusion-on-chunk-page-graphs-for-long-multimodal-document-retrieval)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：提出一种基于图的检索方法，利用密集视觉先验和稀疏块种子进行文档检索。
-6. [Closing the Indexing-Decoding Gap in Multimodal Generative Retrieval via Prefix Retention Optimization](/202606/10/2606.09241v1-closing-the-indexing-decoding-gap-in-multimodal-generative-retrieval-via-prefix-retention-optimization)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：解决生成式检索中标识符学习与解码之间的差距，提出前缀保留方法。
-7. [Closing the Indexing-Decoding Gap in Multimodal Generative Retrieval via Prefix Retention Optimization](/202606/10/2606.09241v2-closing-the-indexing-decoding-gap-in-multimodal-generative-retrieval-via-prefix-retention-optimization)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：理论表征生成式检索中前缀可判别性并优化以避免假阴性检索
-8. [Fast LLM-Based Semantic Filtering: From a Unified Framework to an Adaptive Two-Phase Method](/202606/10/2606.08090v1-fast-llm-based-semantic-filtering-from-a-unified-framework-to-an-adaptive-two-phase-method)  
+   evidence：对短文不同部分加权以优先实验证据的RAG方法
+2. [Beyond Matching: Category-Guided Latent Intent Reasoning for Generative Retrieval in E-Commerce](/202606/11/2606.07075v2-beyond-matching-category-guided-latent-intent-reasoning-for-generative-retrieval-in-e-commerce)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：利用密集检索代理与LLM级联实现高效语义过滤
-9. [Co-Evolving Skill Generation and Policy Optimization](/202606/10/2606.08755v1-co-evolving-skill-generation-and-policy-optimization)  
-   标签：评分：6.0/10、query:rag-llm
-   evidence：通过LLM生成技能并更新检索库为语言智能体提供技能检索
-10. [Robust Active Learning for Few-Shot Example Selection in Text-to-SQL](/202606/10/2606.10125v1-robust-active-learning-for-few-shot-example-selection-in-text-to-sql)  
-   标签：评分：6.0/10、query:rag-llm
-   evidence：LLM文生SQL的主动示例选择
+   evidence：电商搜索中的生成式检索,通过类别引导的潜在意图推理弥合查询与商品SID间的表示鸿沟
 
 
 <div class="dpr-home-promo-card">
