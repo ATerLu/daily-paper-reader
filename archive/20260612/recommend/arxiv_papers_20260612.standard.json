@@ -1,0 +1,259 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-12T21:57:13.307211+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 2,
+    "deep_cap": 6,
+    "deep_selected": 2,
+    "quick_candidates": 4,
+    "quick_skim_target": 11,
+    "quick_selected": 4
+  },
+  "deep_dive": [
+    {
+      "id": "2606.06880v1",
+      "source": "arxiv",
+      "title": "Towards Retrieving Interaction Spaces for Agentic Search",
+      "abstract": "Retrieval for search agents is still inherited from non-agentic information retrieval: a retriever ranks the corpus and the agent reads a small set of returned documents. Recent direct corpus interaction (DCI) work shows that agents can instead interact with the raw corpus through shell tools such as grep and file reads. But unbounded interaction does not scale: every broad shell command is a scan over the whole corpus, and latency degrades sharply as the corpus grows. We argue that the role of retrieval for agentic search is not just to select documents that fit in the LLM context window, but to construct an interaction space: a bounded subset of the corpus the agent can explore with associated tools. Two design consequences follow. The space needs a boundary supplied by retrieval, and the objects within it should be processed for interaction. As a proof of concept, we propose RISE (Retrieving Interaction SpacE): we use BM25 to construct the interaction space; meanwhile, its documents are processed during indexing for shell-style navigation. On BrowseComp-Plus, RISE matches the pure-shell DCI baseline at 78% accuracy with gpt-5.4-mini at roughly one quarter of the per-query cost. At 1M documents, RISE-BM25 reaches 81% on gpt-5.4-mini, whereas DCI on gpt-5.4-nano degrades to 60% with 33 of 100 wall-clock failures.",
+      "authors": [
+        "Shengyao Zhuang",
+        "Yuansheng Ni",
+        "Hengxin Fun",
+        "Jimmy Lin",
+        "Xueguang Ma"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-05T03:47:40+00:00",
+      "link": "https://arxiv.org/pdf/2606.06880v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes constructing interaction spaces for agentic search, integrating retrieval with LLM-based agents.",
+      "llm_evidence_cn": "提出为智能体搜索构建交互空间，将检索与基于LLM的智能体集成。",
+      "llm_evidence": "提出为智能体搜索构建交互空间，将检索与基于LLM的智能体集成。",
+      "canonical_evidence": "提出为智能体搜索构建交互空间，将检索与基于LLM的智能体集成。",
+      "llm_tldr_en": "For agentic search, the paper argues that retrieval should construct a bounded interaction space with tools, enabling scalable and efficient LLM-agent exploration of corpora, rather than just returning a ranked document list.",
+      "llm_tldr_cn": "现有智能体搜索的检索方式直接沿用非智能体信息检索，仅返回排序文档列表，无法支撑大语言模型智能体的深入探索。本文提出检索应为智能体构建一个带边界和工具的交互空间，从而让智能体在限定子集中高效搜索。该方法通过创建可交互的文档子集和配套工具，解决了无限交互导致的高延迟问题，为智能体搜索中的检索集成提供了新思路。",
+      "llm_tldr": "现有智能体搜索的检索方式直接沿用非智能体信息检索，仅返回排序文档列表，无法支撑大语言模型智能体的深入探索。本文提出检索应为智能体构建一个带边界和工具的交互空间，从而让智能体在限定子集中高效搜索。该方法通过创建可交互的文档子集和配套工具，解决了无限交互导致的高延迟问题，为智能体搜索中的检索集成提供了新思路。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "information retrieval integration with language models",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.10650v1",
+      "source": "arxiv",
+      "title": "Dynamic Linear Attention",
+      "abstract": "The scalability of Large Language Models (LLMs) to long contexts is fundamentally constrained by the quadratic complexity of standard attention, motivating the adoption of linear attention mechanisms with sub-quadratic cost. To improve representation capacity under long contexts, recent approaches organize memory in a multi-state manner. However, existing multi-state linear attention methods rely on fixed state merging policies that cannot adapt to dynamically varying token importance, irreversibly obscuring critical tokens and causing severe error accumulation over long sequences. To address this limitation, we propose DLA, a dynamic memory modeling framework for multi-state linear attention. DLA introduces (i) Information-Aware Dynamic State Merging, which adaptively determines state boundaries based on token-level information variation, preserving high-resolution representations around semantic transitions while aggressively summarizing stable regions, and (ii) Capacity-Bounded Memory Modeling, which maintains a fixed-size, chronologically ordered state cache by selectively merging adjacent low-information states to control memory growth with minimal information loss. We pre-train DLA on two different linear attention models and evaluate on 16 datasets across three categories. Experimental results demonstrate the superiority of DLA over state-of-the-art.",
+      "authors": [
+        "Xin Wang",
+        "Hui Shen",
+        "Boyuan Zheng",
+        "Xueshen Liu",
+        "Minkyoung Cho",
+        "Zhongwei Wan",
+        "Zesen Zhao",
+        "Zhuoqing Mao",
+        "Shen Yan",
+        "Mi Zhang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-09T09:57:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.10650v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes Dynamic Linear Attention (DLA) with adaptive state merging for efficient long-context LLMs",
+      "llm_evidence_cn": "提出动态线性注意力(DLA)，通过自适应状态合并实现高效长上下文LLM",
+      "llm_evidence": "提出动态线性注意力(DLA)，通过自适应状态合并实现高效长上下文LLM",
+      "canonical_evidence": "提出动态线性注意力(DLA)，通过自适应状态合并实现高效长上下文LLM",
+      "llm_tldr_en": "To overcome fixed state merging in multi-state linear attention, DLA introduces information-aware dynamic state merging and other components, improving long-sequence modeling capacity and reducing error accumulation.",
+      "llm_tldr_cn": "为克服多状态线性注意力中固定合并策略的局限，DLA提出信息感知动态状态合并等方法，提升了长序列建模能力并减少了误差累积。",
+      "llm_tldr": "为克服多状态线性注意力中固定合并策略的局限，DLA提出信息感知动态状态合并等方法，提升了长序列建模能力并减少了误差累积。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.05671v1",
+      "source": "arxiv",
+      "title": "QueryAgent-R1: Bridging Query Generation and Product Retrieval for E-Commerce Query Recommendation",
+      "abstract": "Query recommendation in e-commerce search aims to proactively suggest queries that match users' potential interests. However, existing methods mainly optimize query-level relevance, while neglecting whether the retrieved products align with users' downstream preferences. This mismatch often leads to high query click through rates (CTR) but low product conversion rates (CVR). To bridge this gap, we propose QueryAgent-R1, a memory-augmented agentic framework that improves end-to-end alignment via chain-of-retrieval optimization. Our QueryAgent-R1 grounds query generation in real inventory retrieval, allowing the agent to validate and refine queries based on retrieved products. We also design a consistency reward in the agentic reinforcement learning (RL) process to jointly optimize query relevance and downstream engagement. In addition, we construct a memory abstraction module for efficient user profiling. To support offline evaluation, we construct two datasets based on both proprietary industrial data and public datasets, on which QueryAgent-R1 consistently outperforms strong baselines. Moreover, on a large scale production platform, QueryAgent-R1 improves Query CTR by 2.9% and guided CVR by 3.1% in online A/B tests.",
+      "authors": [
+        "Dike Sun",
+        "Zheng Zou",
+        "Jingtong Zang",
+        "Qi Sun",
+        "Huaipeng Zhaoand Tao Luo",
+        "Xiaoyi Zeng"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-04T03:51:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.05671v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "memory-augmented agentic framework with chain-of-retrieval optimization for query recommendation",
+      "llm_evidence_cn": "记忆增强的代理框架与链式检索优化用于查询推荐",
+      "llm_evidence": "记忆增强的代理框架与链式检索优化用于查询推荐",
+      "canonical_evidence": "记忆增强的代理框架与链式检索优化用于查询推荐",
+      "llm_tldr_en": "QueryAgent-R1 grounds query generation in real inventory retrieval via a memory-augmented agentic framework, optimizing end-to-end alignment with a consistency reward.",
+      "llm_tldr_cn": "针对现有查询推荐方法忽略检索产品与用户偏好的匹配，导致高点击低转化的问题，提出QueryAgent-R1框架，通过代理式链式检索优化，将查询生成扎根于真实库存检索，并设计一致性奖励来提升端到端对齐度，显著改善了产品转化率。",
+      "llm_tldr": "针对现有查询推荐方法忽略检索产品与用户偏好的匹配，导致高点击低转化的问题，提出QueryAgent-R1框架，通过代理式链式检索优化，将查询生成扎根于真实库存检索，并设计一致性奖励来提升端到端对齐度，显著改善了产品转化率。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "information retrieval integration with language models",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.06994v1",
+      "source": "arxiv",
+      "title": "Principles of Concept Representation in Sentence Encoders",
+      "abstract": "What makes a sentence encoder produce good concept representations? We approach this through the lens of representational compositionality: an encoder supports a concept family only when its latent space admits a low-distortion realization of the corresponding semantic operator. This framing predicts both where current encoders succeed and where they are structurally mismatched to their supervision. Through a controlled ablation over encoder conditions trained on 3.3 million synonym and definition pairs from WordNet and Wiktionary, evaluated on three decontaminated splits and a modifier-labeled noun-phrase benchmark, we identify four principles. Fine-tuning recalibrates the latent geometry rather than expanding it (P1). Semantic signal concentrates in the final transformer layer before concept-specific training begins, making cross-layer pooling redundant (P2). Hard negatives improve discrimination and stress-test robustness without improving retrieval ranking, showing that calibration and ranking are independently addressable (P3). Finally, the effectiveness of supervision depends on the composition type of the target concept. Extensional training helps intersective and subsective families while degrading relational and intensional ones, exposing a structural limitation of current training paradigms (P4). We release two new evaluation datasets: a DBpedia semantic-gap benchmark and a modifier-labeled NP paraphrase suite.",
+      "authors": [
+        "Isabelle Mohr",
+        "John Dujany",
+        "Jonathan Souquet",
+        "Andre Freitas"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.DB"
+      ],
+      "published": "2026-06-05T07:33:05+00:00",
+      "link": "https://arxiv.org/pdf/2606.06994v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "principles of sentence encoder representations",
+      "llm_evidence_cn": "句子编码器表示原理",
+      "llm_evidence": "句子编码器表示原理",
+      "canonical_evidence": "句子编码器表示原理",
+      "llm_tldr_en": "Identifies principles of concept representation in sentence encoders through controlled ablations, relevant to improving dense retrieval models.",
+      "llm_tldr_cn": "本文研究句子编码器产生良好概念表示的条件，从表示组合性的角度，通过大规模同义和定义对训练实验，识别出四条原理：微调重校准几何而非扩展它、语义信号集中在最终层等。这些发现为改进语义搜索和检索模型提供了指导。",
+      "llm_tldr": "本文研究句子编码器产生良好概念表示的条件，从表示组合性的角度，通过大规模同义和定义对训练实验，识别出四条原理：微调重校准几何而非扩展它、语义信号集中在最终层等。这些发现为改进语义搜索和检索模型提供了指导。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.07001v2",
+      "source": "arxiv",
+      "title": "DataEvolver: Automatic Data Preparation for Large Language Models through Multi-Level Self-Evolving",
+      "abstract": "High-quality training data is essential to large language models (LLMs) and typically requires extensive and costly manual curation. Existing automatic data preparation methods rely on predefined pipelines or customized human instructions, which limits their adaptability to diverse data distributions and lacks principled guidance from high-quality examples. In this paper, we introduce DataEvolver, the first self-evolving data preparation system that automatically constructs pipelines to transform raw data into high-quality data. DataEvolver employs a multi-level mechanism to ensure both pipeline executability and effectiveness. At the operator level, it incrementally expands the operator set to construct a logical plan while resolving dependency conflicts. At the pipeline level, it instantiates logical plans into executable code and iteratively refines pipeline orchestration through a feedback loop that reduces the distribution gap between prepared data and high-quality examples. Experiments on seven benchmarks show that DataEvolver substantially improves data quality and achieves an average 10\\% gain in downstream LLM performance compared with training on original data, highlighting new opportunities for the iterative co-evolution of LLMs and data.",
+      "authors": [
+        "Chao Deng",
+        "Shaolei Zhang",
+        "Ju Fan",
+        "Xiaoyong Du"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T07:44:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.07001v2",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Introduces DataEvolver, a self-evolving system for automatic LLM training data preparation",
+      "llm_evidence_cn": "提出DataEvolver，一种自进化的大语言模型训练数据自动准备系统",
+      "llm_evidence": "提出DataEvolver，一种自进化的大语言模型训练数据自动准备系统",
+      "canonical_evidence": "提出DataEvolver，一种自进化的大语言模型训练数据自动准备系统",
+      "llm_tldr_en": "DataEvolver automatically constructs data preparation pipelines for LLMs using multi-level self-evolution, improving data quality and adaptability without manual curation.",
+      "llm_tldr_cn": "DataEvolver通过多级自进化机制自动构建数据准备流水线，无需人工干预即可将原始数据转化为高质量训练数据，提升了数据准备的适应性和效果。",
+      "llm_tldr": "DataEvolver通过多级自进化机制自动构建数据准备流水线，无需人工干预即可将原始数据转化为高质量训练数据，提升了数据准备的适应性和效果。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.12400v1",
+      "source": "arxiv",
+      "title": "Doc-to-Atom: Learning to Compile and Compose Memory Atoms",
+      "abstract": "Long input sequences are central to document understanding and multi-step reasoning in Large Language Models, yet the quadratic cost of attention makes inference both memory-intensive and slow. Context distillation mitigates this by compressing contextual information into model parameters, and recent work such as Doc-to-LoRA amortizes context distillation into a single forward pass that generates one LoRA adapter per document. However, producing a single monolithic adapter for all queries leads to irrelevant-query interference, limited compositional recall, and poor scalability to long-document reasoning. To address these challenges, we propose Doc-to-Atom (Doc2Atom), a compositional parametric memory framework that decomposes each document into semantically typed knowledge atoms. Each atom is compiled into an independent micro-LoRA adapter and a provenance retrieval key. At inference time, a lightweight query router selects and assembles only the relevant atoms into a query-specific adapter, which is then injected into a frozen base model. The entire system is trained end-to-end through a multi-objective distillation framework. Experiments on six diverse QA benchmarks demonstrate that Doc2Atom outperforms Doc-to-LoRA baselines while reducing the memory cost of document internalization.",
+      "authors": [
+        "Xingjian Diao",
+        "Wenbo Li",
+        "Yashas Malur Saidutta",
+        "Avinash Amballa",
+        "Lazar Valkov",
+        "Srinivas Chappidi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-10T17:58:20+00:00",
+      "link": "https://arxiv.org/pdf/2606.12400v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Doc-to-Atom decomposes documents into semantic atoms for compositional parametric memory to improve long-context LLM inference",
+      "llm_evidence_cn": "Doc-to-Atom将文档分解为语义原子，用于组合参数化记忆以改进长上下文LLM推理",
+      "llm_evidence": "Doc-to-Atom将文档分解为语义原子，用于组合参数化记忆以改进长上下文LLM推理",
+      "canonical_evidence": "Doc-to-Atom将文档分解为语义原子，用于组合参数化记忆以改进长上下文LLM推理",
+      "llm_tldr_en": "To address interference and limited recall in monolithic context distillation, Doc-to-Atom creates per-document semantic atoms that can be composed at inference time for better long-document reasoning.",
+      "llm_tldr_cn": "针对整体上下文蒸馏中的干扰和召回局限，Doc-to-Atom将文档分解为语义类型原子，推理时组合使用，提升了长文档推理的可扩展性和效果。",
+      "llm_tldr": "针对整体上下文蒸馏中的干扰和召回局限，Doc-to-Atom将文档分解为语义类型原子，推理时组合使用，提升了长文档推理的可扩展性和效果。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
