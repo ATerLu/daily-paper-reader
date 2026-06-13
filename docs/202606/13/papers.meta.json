@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-13",
+  "date": "2026-06-13",
+  "generated_at": "2026-06-13T20:27:42",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/13/2606.06779v1-mind-the-gap-bridging-behavioral-silos-with-llms-in-multi-vertical-recommendations",
+      "section": "deep",
+      "title_en": "Mind the Gap: Bridging Behavioral Silos with LLMs in Multi-Vertical Recommendations",
+      "authors": "Nimesh Sinha, Raghav Saboo, Martin Wang, Sudeep Das",
+      "date": "2026-06-04",
+      "pdf": "https://arxiv.org/pdf/2606.06779v1",
+      "score": "8.0",
+      "evidence": "采用分层检索增强生成（RAG）管线从用户数据中提取特征用于推荐",
+      "tldr": "多垂直电商平台如DoorDash的新垂直领域（杂货、零售）面临用户冷启动问题，因行为数据稀疏导致推荐难。本文引入基于LLM的生成式推理框架，利用层次化检索增强生成管道从数据丰富的餐厅订单历史中提取多级分类特征，编码用户的长期跨垂直偏好和短期意图。这些特征被集成到多任务学习排序模型中，通过离线和在线实验验证，显著提升了新兴业务垂直领域的个性化推荐和用户参与度，有效弥合了行为数据鸿沟。",
+      "tags": "query:rag-llm",
+      "abstract_en": "In multi-vertical e-commerce platforms like DoorDash, relatively newer product verticals such as grocery and retail present a significant opportunity for personalization innovation. A key challenge lies in solving the \"cold start\" problem for users. This paper introduces a novel framework for enhancing recommendation quality by transferring knowledge from data-rich verticals (e.g., restaurants at DoorDash) to data-sparse ones. We leverage Large Language Models (LLMs) to perform generative inference, synthesizing sparse, high-dimensional features that encapsulate latent user affinities. Specifically, we employ a hierarchical Retrieval-Augmented Generation (RAG) pipeline to derive multi-level taxonomic features from user restaurant order histories and search queries. These generated features, encoding both long-term cross-vertical preferences and short-term intent, are integrated into a production Multi-Task Learning (MTL) ranking model. We demonstrate through extensive offline and online evaluation that this approach significantly improves personalization and engagement in emerging business verticals, effectively bridging the behavioral data gap.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/13/2606.11749v1-fast-mel-a-fast-accurate-and-storage-efficient-solution-for-multimodal-entity-linking",
+      "section": "deep",
+      "title_en": "FAST-MEL: A Fast, Accurate, and Storage Efficient Solution for Multimodal Entity Linking",
+      "authors": "Derrien Thomas, Laurent Amsaleg, Pascale Sébillot",
+      "date": "2026-06-10",
+      "pdf": "https://arxiv.org/pdf/2606.11749v1",
+      "score": "8.0",
+      "evidence": "采用紧凑固定大小的向量化表示实现多模态实体链接中的高效稠密检索",
+      "tldr": "多模态实体链接（MEL）是信息抽取和知识图谱构建的关键任务，旨在将非结构化数据中的图文提及链接到知识库实体。然而，现有方案在准确性、计算效率和存储消耗间难获平衡，往往顾此失彼。为突破这一困境，本文提出FAST-MEL，利用固定大小的稠密向量统一编码每个实体和提及的多模态信息，并以此构建轻量级编码器，避免了复杂索引结构。实验结果证明，FAST-MEL在维持与最佳模型同等准确率的同时，推理速度提升约三个数量级，存储空间占用仅为最快系统的十分之一，首次实现了三项指标的同步优化，为大规模MEL系统部署提供了可行路径。",
+      "tags": "query:rag-llm",
+      "abstract_en": "Multimodal entity linking (MEL) is the task that consists of matching textual and visual mentions of entities in unstructured data to their corresponding entities in a knowledge base (KB). To be effective in large-scale practical settings, MEL systems must meet three objectives: high linking accuracy, computational efficiency, and storage efficiency, i.e., a compact yet efficient index of the KB. In this paper, we highlight that state-of-the-art systems fail to simultaneously satisfy these 3 requirements. To meet this three-fold objective, we propose FAST-MEL, a lightweight encoder-based MEL solution that relies on a novel and compact fixed-size vectorized representation of both the textual and visual information of each entity or mention. It matches the accuracy of the best systems but performs three orders of magnitude faster. It also consumes one order of magnitude less storage than the fastest systems.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/13/2606.08644v1-a-retrieval-conditioned-rebinding-circuit-for-dynamic-entity-tracking-in-large-language-models",
+      "section": "quick",
+      "title_en": "A retrieval conditioned rebinding circuit for dynamic entity tracking in large language models",
+      "authors": "Soyoung Oh, Vera Demberg",
+      "date": "2026-06-07",
+      "pdf": "https://arxiv.org/pdf/2606.08644v1",
+      "score": "6.0",
+      "evidence": "LLM中用于实体跟踪的检索条件重绑定回路",
+      "tldr": "在动态状态跟踪任务中，大模型需将实体与属性绑定并随状态实时更新，这对上下文理解至关重要。通过因果干预，我们发现检索条件重绑定回路，紧凑的注意力头机制在读出时恢复交换绑定。Gemma和Llama中回路均支持重绑定，但Gemma绑定签名在查询/键子空间，Llama主要在键向量。该工作揭示了大模型上下文依赖状态跟踪的可解释计算机制。",
+      "tags": "query:rag-llm",
+      "abstract_en": "To interpret context correctly and retrieve relevant information, large language models must bind entities to their attributes and update these bindings as state changes. We analyze how LLMs implement this binding process in a dynamic state tracking. Using causal interventions, we identify a retrieval conditioned rebinding mechanism, a compact attention head circuit that encodes swap relevant binding information and reinstates it at readout. Across Gemma and Llama models, this circuit supports rebinding behavior, but the representational signature of the mechanism differs across model families. In Gemma models, the binding signature is clearly expressed in the query/key subspaces of the relevant attention heads, whereas in Llama models, the binding information is carried primarily in key vectors. Overall, our results reveal an interpretable mechanism for context dependent state tracking in LLMs.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

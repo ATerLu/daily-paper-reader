@@ -6,40 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-12
-- 运行时间：2026-06-12 22:01:38 UTC
+- 最新运行日期：2026-06-13
+- 运行时间：2026-06-13 20:27:37 UTC
 - 运行状态：成功
-- 本次总论文数：6
+- 本次总论文数：3
 - 精读区：2
-- 速读区：4
+- 速读区：1
 
 ### 今日简报（AI）
-今日聚焦 Agentic Search 交互空间检索与动态线性注意力，速览了电商查询优化、数据自动进化与记忆原子化方法。
-最值得关注：为智能体搜索定义并检索交互空间（9.0分），以及动态线性注意力对长序列建模的改进（8.0分）。
-建议读者本周优先阅读精读论文，并结合速读中 DataEvolver 的数据进化思路，探索 LLM 在搜索与记忆上的高效实践。
-- 详情：[/202606/12/README](/202606/12/README)
+1) 今日精读两篇推荐系统与多模态实体链接新高分论文，速览一篇LLM记忆追踪研究。
+2) 最值得关注：用大模型打破推荐行为孤岛，以及多模态实体链接的轻量高效新方案。
+3) 建议关注LLM如何串联用户跨场景行为，以及实体链接技术的落地性价比。
+- 详情：[/202606/13/README](/202606/13/README)
 
 ### 精读区论文标签
-1. [Towards Retrieving Interaction Spaces for Agentic Search](/202606/12/2606.06880v1-towards-retrieving-interaction-spaces-for-agentic-search)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出为智能体搜索构建交互空间，将检索与基于LLM的智能体集成。
-2. [Dynamic Linear Attention](/202606/12/2606.10650v1-dynamic-linear-attention)  
+1. [Mind the Gap: Bridging Behavioral Silos with LLMs in Multi-Vertical Recommendations](/202606/13/2606.06779v1-mind-the-gap-bridging-behavioral-silos-with-llms-in-multi-vertical-recommendations)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出动态线性注意力(DLA)，通过自适应状态合并实现高效长上下文LLM
+   evidence：采用分层检索增强生成（RAG）管线从用户数据中提取特征用于推荐
+2. [FAST-MEL: A Fast, Accurate, and Storage Efficient Solution for Multimodal Entity Linking](/202606/13/2606.11749v1-fast-mel-a-fast-accurate-and-storage-efficient-solution-for-multimodal-entity-linking)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：采用紧凑固定大小的向量化表示实现多模态实体链接中的高效稠密检索
 
 ### 速读区论文标签
-1. [QueryAgent-R1: Bridging Query Generation and Product Retrieval for E-Commerce Query Recommendation](/202606/12/2606.05671v1-queryagent-r1-bridging-query-generation-and-product-retrieval-for-e-commerce-query-recommendation)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：记忆增强的代理框架与链式检索优化用于查询推荐
-2. [DataEvolver: Automatic Data Preparation for Large Language Models through Multi-Level Self-Evolving](/202606/12/2606.07001v2-dataevolver-automatic-data-preparation-for-large-language-models-through-multi-level-self-evolving)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：提出DataEvolver，一种自进化的大语言模型训练数据自动准备系统
-3. [Doc-to-Atom: Learning to Compile and Compose Memory Atoms](/202606/12/2606.12400v1-doc-to-atom-learning-to-compile-and-compose-memory-atoms)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：Doc-to-Atom将文档分解为语义原子，用于组合参数化记忆以改进长上下文LLM推理
-4. [Principles of Concept Representation in Sentence Encoders](/202606/12/2606.06994v1-principles-of-concept-representation-in-sentence-encoders)  
+1. [A retrieval conditioned rebinding circuit for dynamic entity tracking in large language models](/202606/13/2606.08644v1-a-retrieval-conditioned-rebinding-circuit-for-dynamic-entity-tracking-in-large-language-models)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：句子编码器表示原理
+   evidence：LLM中用于实体跟踪的检索条件重绑定回路
 
 
 <div class="dpr-home-promo-card">
