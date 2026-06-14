@@ -1,0 +1,328 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-14T21:24:43.914248+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.13204v1",
+      "source": "arxiv",
+      "title": "CoDeR: Local Constraint-Compatible Retrieval Beyond Semantic Similarity",
+      "abstract": "Information retrieval systems have long treated semantic similarity as a proxy for relevance. For constraint-sensitive queries, this proxy can fail when a document is topically close to the query but supports the opposite constraint direction, such as satisfying an attribute that should be excluded or affirming a relation that should be negated. We study this failure as constraint-violating evidence exposure and propose CoDeR, a local constraint-compatible dense retrieval method that separates topical relevance from constraint compatibility. CoDeR keeps a standard topical encoder for candidate coverage and adds a compatibility scorer, implemented as a bi-encoder, trained with lexical-polarity supervision over contrastive satisfying and violating evidences. The compatibility signal can be used to rescore topical candidates or to retrieve an auxiliary compatibility-oriented candidate set, producing a ranked document list without external Large Language Model~(LLM) calls at inference time. We evaluate CoDeR on controlled diagnostics and public negative-constraint retrieval benchmarks. Across three controlled diagnostic sets targeting antonymy, negation, and exclusion, CoDeR reduces V@2 by 20.59, 23.53, and 5.77 points relative to the strongest non-CoDeR baselines, and improves FVR by pushing the first violating document deeper in the ranking.",
+      "authors": [
+        "Xingkun Yin",
+        "Xuebin Tang",
+        "Hongyang Du"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-11T11:15:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.13204v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes a dense retrieval method that separates topical relevance from constraint compatibility for constraint-sensitive queries",
+      "llm_evidence_cn": "提出一种分离主题相关性与约束兼容性的密集检索方法，用于处理约束敏感查询",
+      "llm_evidence": "提出一种分离主题相关性与约束兼容性的密集检索方法，用于处理约束敏感查询",
+      "canonical_evidence": "提出一种分离主题相关性与约束兼容性的密集检索方法，用于处理约束敏感查询",
+      "llm_tldr_en": "CoDeR addresses the failure of semantic similarity proxies for constraint-sensitive queries by adding a compatibility scorer to a standard topical encoder, trained with lexical-polarity supervision over contrastive evidence.",
+      "llm_tldr_cn": "针对语义相似代在约束敏感查询中失效的问题，CoDeR在标准主题编码器之上添加约束兼容性评分器，通过对比约束满足与违背证据的词汇极性监督进行训练，实现了局部约束兼容的密集检索。",
+      "llm_tldr": "针对语义相似代在约束敏感查询中失效的问题，CoDeR在标准主题编码器之上添加约束兼容性评分器，通过对比约束满足与违背证据的词汇极性监督进行训练，实现了局部约束兼容的密集检索。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.13438v1",
+      "source": "arxiv",
+      "title": "CQC-RAG: Robust Retrieval-Augmented Generation via Cross-Query Consistency",
+      "abstract": "Retrieval-Augmented Generation (RAG) has become a common approach for improving the factuality of Large Language Models (LLMs), yet its reliability remains highly sensitive to how external evidence is retrieved and used. Semantically equivalent queries with different syntactic forms may lead to different retrieval results, while irrelevant or misleading documents can further induce hallucinated answers. Existing multi-path reasoning methods improve robustness by sampling multiple candidate answers and applying voting- or confidence-based selection, but they still face two limitations: diversity is often injected through uncontrollable decoding randomness, and answer evaluation is usually confined to a single query-induced evidence view. To address these limitations, we propose a Cross-Query Consistency Hypothesis: correct answers tend to maintain high confidence across semantically equivalent but syntactically diverse queries, whereas noise-induced hallucinations exhibit unstable confidence under such query variations. Based on this hypothesis, we introduce CQC-RAG, a framework that co-designs query-level diversity injection with cross-query consistency evaluation. CQC-RAG rewrites the original question into diverse but meaning-preserving queries, reranks a shared document pool to construct query-conditioned reasoning contexts, applies an evidence-grounded protocol to extract answer-evidence pairs and selects answers according to their confidence stability across these contexts. This design enables self-evaluation without external supervision and does not rely on expanded retrieval coverage. Experiments on four open-domain question answering benchmarks show that CQC-RAG outperforms the strongest previous multi-query baseline by +4.76 pp EM on TriviaQA and +9.12 pp EM on MuSiQue, validating the effectiveness of cross-query consistency for filtering noise-induced hallucinations.",
+      "authors": [
+        "Yanjia Sun",
+        "Sifan Liu",
+        "Jie Shao"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-11T15:01:49+00:00",
+      "link": "https://arxiv.org/pdf/2606.13438v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes a novel RAG method improving robustness via cross-query consistency across multiple generated query variations.",
+      "llm_evidence_cn": "提出一种通过跨查询一致性提高检索增强生成鲁棒性的新方法。",
+      "llm_evidence": "提出一种通过跨查询一致性提高检索增强生成鲁棒性的新方法。",
+      "canonical_evidence": "提出一种通过跨查询一致性提高检索增强生成鲁棒性的新方法。",
+      "llm_tldr_en": "CQC-RAG improves RAG robustness by generating multiple query variations and evaluating answer consistency across them, outperforming existing methods on knowledge-intensive tasks.",
+      "llm_tldr_cn": "本文针对检索增强生成中因查询形式变化和无关文档导致的事实性不稳定问题，提出CQC-RAG框架。该方法通过生成语义等价但句法多样的查询变体，利用跨查询答案一致性进行多路径推理和选择，避免了现有方法仅依赖单一查询证据视图的局限。在多个知识密集型基准上的实验表明，CQC-RAG在问答准确性和鲁棒性上均优于基线方法，且无需额外训练。该研究为提升RAG系统的可靠性提供了简单有效的解决方案，对实际部署中遇到的查询脆弱性问题具有重要意义。",
+      "llm_tldr": "本文针对检索增强生成中因查询形式变化和无关文档导致的事实性不稳定问题，提出CQC-RAG框架。该方法通过生成语义等价但句法多样的查询变体，利用跨查询答案一致性进行多路径推理和选择，避免了现有方法仅依赖单一查询证据视图的局限。在多个知识密集型基准上的实验表明，CQC-RAG在问答准确性和鲁棒性上均优于基线方法，且无需额外训练。该研究为提升RAG系统的可靠性提供了简单有效的解决方案，对实际部署中遇到的查询脆弱性问题具有重要意义。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.13537v1",
+      "source": "arxiv",
+      "title": "When Does Mixing Help? Analyzing Query Embedding Interpolation in Multilingual Dense Retrieval",
+      "abstract": "While mixed-language querying is ubiquitous in multilingual communities, the sensitivity of dense retrievers to such queries remains poorly understood. We present a ratio-controlled study on mMARCO that systematically evaluates retrieval performance by varying the mixing proportion of parallel query translations via embedding-level mixing -- constructing mixed queries as an interpolation of monolingual embeddings. Experiments with BGE-M3 demonstrate that an optimal mixing ratio outperforms the best monolingual endpoint in 88/105 cases. We uncover a distinct asymmetry driven by English dominance: mixing is uniformly beneficial when retrieving from non-English document indices, whereas indices containing English are best served by pure English queries. Furthermore, English acts as the strongest mixing partner for every non-English document language. Finally, when controlling for English dominance, mixing gains correlate negatively with typological distance. We conclude that language-mix sensitivity is structured and predictable, and we validate the robustness of these patterns across model families and scales.",
+      "authors": [
+        "Tongyao Zhu",
+        "Chao-Ming Huang",
+        "Min-Yen Kan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-11T16:23:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.13537v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Analyzing query embedding interpolation in multilingual dense retrieval",
+      "llm_evidence_cn": "分析多语言稠密检索中的查询嵌入插值",
+      "llm_evidence": "分析多语言稠密检索中的查询嵌入插值",
+      "canonical_evidence": "分析多语言稠密检索中的查询嵌入插值",
+      "llm_tldr_en": "Systematic study on embedding-level mixing of multilingual queries for dense retrieval, finding optimal mixing ratios outperform monolingual queries especially in non-English indices.",
+      "llm_tldr_cn": "针对多语言社区中混合语言查询的普遍性，本研究系统地评估了在稠密检索中通过嵌入插值构建混合查询的效果。在mMARCO上的实验表明，最优混合比例在88/105个案例中优于最佳单语端点，并揭示了英语主导性带来的不对称性：当从非英语文档索引检索时，混合普遍有益。该工作为多语言检索中的查询混合提供了深入理解。",
+      "llm_tldr": "针对多语言社区中混合语言查询的普遍性，本研究系统地评估了在稠密检索中通过嵌入插值构建混合查询的效果。在mMARCO上的实验表明，最优混合比例在88/105个案例中优于最佳单语端点，并揭示了英语主导性带来的不对称性：当从非英语文档索引检索时，混合普遍有益。该工作为多语言检索中的查询混合提供了深入理解。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.13550v1",
+      "source": "arxiv",
+      "title": "Uncertainty-Aware Hybrid Retrieval for Long-Document RAG",
+      "abstract": "Retrieval augmented generation (RAG) depends critically on the quality and granularity of retrieved evidence. Large retrieval units preserve context but often introduce irrelevant content, which can dilute answer bearing evidence and worsen long context utilization. Fine-grained units are more compact, but they may be difficult to retrieve reliably because short chunks can lack semantic, lexical, or bridging cues needed to match the query. We propose Uncertainty-aware Multi-Granularity RAG (UMG-RAG), a training-free hybrid retrieval framework that treats chunk granularity as query-specific reliability estimation. Instead of training a new retriever or modifying the generator, UMG-RAG uses existing dense and sparse retrievers as complementary experts across multiple chunk granularities. For each query, it converts each expert-granularity score list into an evidence distribution, estimates reliability from distribution entropy, and fuses candidates according to query-specific semantic, lexical, and granularity confidence. We further introduce UMGP-RAG, a parent promotion variant that uses fine-grained hits to locate relevant evidence while returning broader non-redundant parent chunks for local coherence. Experiments on question answering benchmarks show that uncertainty-aware fusion and parent promotion improve generation quality while maintaining a lightweight, plug-and-play retrieval pipeline.",
+      "authors": [
+        "Hoin Jung",
+        "Xiaoqian Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-11T16:30:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.13550v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes UMG-RAG, a training-free hybrid retrieval framework for long-document RAG",
+      "llm_evidence_cn": "提出UMG-RAG，一种无需训练的混合检索框架用于长文档RAG",
+      "llm_evidence": "提出UMG-RAG，一种无需训练的混合检索框架用于长文档RAG",
+      "canonical_evidence": "提出UMG-RAG，一种无需训练的混合检索框架用于长文档RAG",
+      "llm_tldr_en": "Proposes UMG-RAG, a training-free hybrid retrieval framework that uses dense and sparse retrievers as multi-granularity experts and calibrates their contributions via query-specific reliability estimation, improving long-document RAG performance.",
+      "llm_tldr_cn": "针对长文档RAG中检索粒度选择难题，提出UMG-RAG框架，将稠密与稀疏检索器视为多粒度互补专家，通过估计查询特异性可靠性来动态校准各专家贡献权重，无需额外训练即有效缓解无关内容引入与检索不可靠问题，实验表明该方法优于单一粒度检索基线，为长上下文检索增强生成提供了实用方案。",
+      "llm_tldr": "针对长文档RAG中检索粒度选择难题，提出UMG-RAG框架，将稠密与稀疏检索器视为多粒度互补专家，通过估计查询特异性可靠性来动态校准各专家贡献权重，无需额外训练即有效缓解无关内容引入与检索不可靠问题，实验表明该方法优于单一粒度检索基线，为长上下文检索增强生成提供了实用方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.10460v1",
+      "source": "arxiv",
+      "title": "LakeQA: An Exploratory QA Benchmark over a Million-Scale Data Lake",
+      "abstract": "Recent large language models (LLMs) have shown rapid progress in reading-based question answering (QA), where evidence is explicitly provided or can be trivially retrieved. In contrast, real-world questions are often not paired with accurate evidence documents. The useful evidence resides in massive data lakes, making search a prerequisite for answering. However, there is a lack of comprehensive benchmarks that require both searching and reasoning over large data lakes. To this end, we introduce LakeQA, a comprehensive benchmark for search-centric question answering over data lakes that jointly emphasizes searching and reasoning capabilities. LakeQA is built on a heterogeneous collection of approximately 9.5 TB of text resources from Wikipedia and open-source government data, spanning structured and unstructured data. To ensure task quality, each sample is annotated by at least one Ph.D.-level expert. Each task requires long-horizon multi-hop reasoning with implicit intermediate steps: agents need to discover the correct documents and then compose evidence across sources to produce the answer. Experimental results on seven frontier LLMs demonstrate that LakeQA is challenging. For instance, GPT-5.2 achieves only an exact-match score of 18.37% on LakeQA. Overall, LakeQA provides a realistic testbed for developing LLM agents that can both find and analyze data in modern data lakes.",
+      "authors": [
+        "Haonan Wang",
+        "Jiaxiang Liu",
+        "Yurong Liu",
+        "Austin Senna Wijaya",
+        "Tianle Zhou",
+        "Eden Wu",
+        "Yijia Chen",
+        "Wanting You",
+        "Reya Vir",
+        "Daniela Pinto",
+        "Grace Fan",
+        "Yusen Zhang",
+        "Juliana Freire",
+        "Eugene Wu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-09T06:15:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.10460v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Benchmark for search-centric QA that requires retrieval and reasoning from large data lakes",
+      "llm_evidence_cn": "面向大规模数据湖的搜索中心问答基准，需检索与推理",
+      "llm_evidence": "面向大规模数据湖的搜索中心问答基准，需检索与推理",
+      "canonical_evidence": "面向大规模数据湖的搜索中心问答基准，需检索与推理",
+      "llm_tldr_en": "Introduces LakeQA, a benchmark for QA that emphasizes searching over large heterogeneous data lakes, challenging LLMs to combine retrieval and reasoning for real-world evidence-based answers.",
+      "llm_tldr_cn": "当前大语言模型在阅读型问答上进展迅速，但现实中的证据常存于海量数据湖中，需要先搜索后回答。LakeQA基准基于约9.5TB的维基百科和开源资源构建，要求系统在异构数据湖上联合进行搜索与推理。该基准推动了对搜索驱动问答系统的研究，尤其考验检索增强生成方法在大规模、开放域场景下的有效性。",
+      "llm_tldr": "当前大语言模型在阅读型问答上进展迅速，但现实中的证据常存于海量数据湖中，需要先搜索后回答。LakeQA基准基于约9.5TB的维基百科和开源资源构建，要求系统在异构数据湖上联合进行搜索与推理。该基准推动了对搜索驱动问答系统的研究，尤其考验检索增强生成方法在大规模、开放域场景下的有效性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "information retrieval integration with language models",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.08804v1",
+      "source": "arxiv",
+      "title": "Q-Delta: Beyond Key-Value Associative State Evolution",
+      "abstract": "Linear attention reformulates sequence modeling as recurrent state evolution, enabling efficient linear-time inference. Under the key-value associative paradigm, existing approaches restrict the role of the query to the readout operation, decoupling it from state evolution. We show that query-conditioned state readout induces a structured value prediction over accumulated memory that complements key-based retrieval. Based on this insight, we propose Q-Delta, a query-aware delta rule that integrates mixed key-query prediction errors into state evolution, enabling jointly corrective dynamics while preserving delta-rule efficiency. We establish stability guarantees for the resulting dynamics and derive a hardware-efficient chunkwise-parallel formulation with a custom Triton implementation. Empirical results demonstrate stable optimization, competitive throughput, and consistent improvements over strong baselines on language modeling and long-context retrieval tasks.",
+      "authors": [
+        "Sumin Park",
+        "Seojin Kim",
+        "Noseong Park"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-07T19:49:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.08804v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Query-aware delta rule for linear attention, advancing LLM architecture efficiency",
+      "llm_evidence_cn": "查询感知的增量规则用于线性注意力，提升大语言模型架构效率",
+      "llm_evidence": "查询感知的增量规则用于线性注意力，提升大语言模型架构效率",
+      "canonical_evidence": "查询感知的增量规则用于线性注意力，提升大语言模型架构效率",
+      "llm_tldr_en": "Introduces Q-Delta, a method that integrates query information into state evolution in linear attention, improving memory retrieval and efficiency with theoretical stability guarantees.",
+      "llm_tldr_cn": "针对线性注意力模型中查询仅用于读出而脱离状态演化的限制，Q-Delta提出一种查询感知的增量规则，将混合键-查询预测误差整合进状态演化，实现联合校正动态。通过建立稳定性保证并设计硬件高效的块并行实现，该方法在保留增量规则效率的同时增强了记忆检索能力，为高效语言建模提供了新架构。",
+      "llm_tldr": "针对线性注意力模型中查询仅用于读出而脱离状态演化的限制，Q-Delta提出一种查询感知的增量规则，将混合键-查询预测误差整合进状态演化，实现联合校正动态。通过建立稳定性保证并设计硬件高效的块并行实现，该方法在保留增量规则效率的同时增强了记忆检索能力，为高效语言建模提供了新架构。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.12744v1",
+      "source": "arxiv",
+      "title": "GRIP: Feedback-Guided Prompt Retrieval for Large Multimodal Models",
+      "abstract": "In-Context Learning (ICL) has become a powerful mechanism for adapting Large Language Models (LLMs) to new tasks without fine-tuning. Extending this concept to Large Multimodal Models (LMMs), Multimodal In-Context Learning (M-ICL) relies on retrieving relevant examples, such as images, captions, or question-answer pairs, to guide predictions across tasks like classification, captioning, and visual question answering (VQA). Most existing approaches select in-context examples based on feature-space similarity, assuming that semantically similar samples provide the most useful context. However, our systematic analysis reveals that this assumption does not always hold: visually similar examples are not necessarily those that most effectively enhance in-context learning performance.   To address this, we propose the Guided Retrieval of In-context Prompts (GRIP), a learnable vision-only retrieval framework that leverages feedback from LMMs to identify examples that truly improve model predictions. GRIP learns to distinguish beneficial from detrimental in-context examples through contrastive training, refining retrieval beyond pure similarity. Across three multimodal tasks, namely classification, captioning, and VQA, GRIP improves consistently over similarity-based retrieval on Qwen2.5-VL-7B, with its strongest gains in classification on Idefics2-8B. Moreover, we demonstrate that retrievers trained with feedback from one open LMM can be transferred to other models without retraining, including closed-source GPT-4o and Gemini, enabling scalable and cost-efficient deployment of M-ICL. Code will be published upon acceptance.",
+      "authors": [
+        "Garvita Allabadi",
+        "Matteo Sodano",
+        "Roberto Estevão",
+        "Yuxiong Wang",
+        "Vikram Adve",
+        "Emre Kiciman",
+        "Ranveer Chandra"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-10T23:14:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.12744v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Retrieves in-context examples for multimodal models using feedback guidance",
+      "llm_evidence_cn": "利用反馈引导为多模态模型检索上下文示例",
+      "llm_evidence": "利用反馈引导为多模态模型检索上下文示例",
+      "canonical_evidence": "利用反馈引导为多模态模型检索上下文示例",
+      "llm_tldr_en": "GRIP proposes feedback-guided prompt retrieval to improve multimodal in-context learning, showing that similarity-based retrieval is not always optimal and feedback can guide better example selection.",
+      "llm_tldr_cn": "针对多模态上下文学习中基于相似度检索示例的局限性，论文提出GRIP方法，通过反馈引导提示检索。系统分析表明视觉相似并不总是最佳选择，GRIP利用任务反馈优化示例选择，在多类任务上提升了多模态模型的适应性能。此工作为多模态模型的上下文学习提供了更有效的检索策略。",
+      "llm_tldr": "针对多模态上下文学习中基于相似度检索示例的局限性，论文提出GRIP方法，通过反馈引导提示检索。系统分析表明视觉相似并不总是最佳选择，GRIP利用任务反馈优化示例选择，在多类任务上提升了多模态模型的适应性能。此工作为多模态模型的上下文学习提供了更有效的检索策略。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.13115v1",
+      "source": "arxiv",
+      "title": "G-Long: Graph-Enhanced Memory Management for Efficient Long-Term Dialogue Agents",
+      "abstract": "While Large Language Models (LLMs) have advanced open-domain dialogue systems, maintaining long-term consistency remains a challenge due to inherent limitations in long-context reasoning and the inefficiency of processing extensive raw text. Existing approaches typically rely on either unstructured memory storage, which is prone to information loss, or computationally expensive LLMs that incur high latency. To address these limitations, we propose G-Long, a graph-enhanced framework that utilizes a fine-tuned small Language Model (sLM) for structured triplet extraction and associative retrieval, significantly reducing operational costs. Furthermore, we introduce the novel attention-aware importance scoring mechanism that leverages the intrinsic cross-attention signals of a T5 summarizer to identify salient memories. Extensive experiments across diverse benchmarks demonstrate that G-Long achieves state-of-the-art performance in both response generation and memory retrieval, yielding performance gains of up to 9.8% in response quality on MSC and 40.8% in retrieval recall on LME, while significantly minimizing computational overhead.",
+      "authors": [
+        "Minjun Choi",
+        "Yoonjin Jang",
+        "Sangwon Youn",
+        "Youngjoong Ko"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-11T09:42:13+00:00",
+      "link": "https://arxiv.org/pdf/2606.13115v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses a small LM to extract and retrieve structured knowledge triplets for long-term dialogue consistency in LLMs.",
+      "llm_evidence_cn": "使用小模型提取和检索结构化知识三元组，以保持大模型在长期对话中的一致性。",
+      "llm_evidence": "使用小模型提取和检索结构化知识三元组，以保持大模型在长期对话中的一致性。",
+      "canonical_evidence": "使用小模型提取和检索结构化知识三元组，以保持大模型在长期对话中的一致性。",
+      "llm_tldr_en": "G-Long uses a fine-tuned small LM to extract and retrieve structured knowledge triplets from dialogue history, enhancing long-term consistency in LLM-based dialogue agents with low cost.",
+      "llm_tldr_cn": "本文针对大语言模型在长期对话中长上下文推理效率低和记忆模糊的问题，提出G-Long框架。该方法利用微调的小语言模型从对话历史中提取结构化三元组，构建动态图记忆，并引入注意力感知的重要性评分进行检索，从而以极低的计算成本提供上下文支持。实验表明，G-Long在长期对话一致性上优于非结构化记忆和纯大模型方案。该研究为对话系统的持久记忆管理提供了一种可扩展的解决方案。",
+      "llm_tldr": "本文针对大语言模型在长期对话中长上下文推理效率低和记忆模糊的问题，提出G-Long框架。该方法利用微调的小语言模型从对话历史中提取结构化三元组，构建动态图记忆，并引入注意力感知的重要性评分进行检索，从而以极低的计算成本提供上下文支持。实验表明，G-Long在长期对话一致性上优于非结构化记忆和纯大模型方案。该研究为对话系统的持久记忆管理提供了一种可扩展的解决方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval approaches for natural language processing",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
