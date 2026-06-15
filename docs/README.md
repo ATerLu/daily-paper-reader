@@ -6,46 +6,49 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-14
-- 运行时间：2026-06-14 21:31:37 UTC
+- 最新运行日期：2026-06-15
+- 运行时间：2026-06-15 22:06:04 UTC
 - 运行状态：成功
-- 本次总论文数：8
-- 精读区：5
+- 本次总论文数：9
+- 精读区：6
 - 速读区：3
 
 ### 今日简报（AI）
-今天我们从 8 篇前沿研究中精读了两项突破性检索增强工作，发现让 AI 检索不再只靠语义相似度、还能兼容局部约束与跨查询一致性，正成为提升生成可靠性的关键。  
-最值得细看的方向是《CoDeR》如何用约束兼容检索避免“答非所问”，以及《CQC-RAG》如何通过交叉查询一致性让 RAG 面对模糊问题也稳稳落地。  
-建议先顺着这两篇精读论文去思考，你的搜索或问答产品是否也需要在语义相似之外，补上“约束满足”和“答案一致性”两道保险。
-- 详情：[/202606/14/README](/202606/14/README)
+今天我们重点解读了9篇论文，包括《ScoreGate》提出的双评分统计融合方法，精准筛选检索增强生成所需的文本块。
+最值得关注的是基于双评分融合的自适应块选择技术（ScoreGate, 满分）和检索任务中的混合神经检索与生成式查询精炼思路。
+建议读者优先了解信息检索中“如何动态平衡检索精度与召回”这一实用方向，尤其适用于构建高可靠性问答系统。
+- 详情：[/202606/15/README](/202606/15/README)
 
 ### 精读区论文标签
-1. [CoDeR: Local Constraint-Compatible Retrieval Beyond Semantic Similarity](/202606/14/2606.13204v1-coder-local-constraint-compatible-retrieval-beyond-semantic-similarity)  
+1. [ScoreGate: Adaptive Chunk Selection for Retrieval-Augmented Generation via Dual-Score Statistical Fusion](/202606/15/2606.14269v1-scoregate-adaptive-chunk-selection-for-retrieval-augmented-generation-via-dual-score-statistical-fusion)  
+   标签：评分：10.0/10、query:rag-llm
+   evidence：利用双编码器和交叉编码器分数自适应控制RAG检索块数量的机制
+2. [Hybrid Neural Retrieval with Generative Query Refinement for Quranic Passage Retrieval](/202606/15/2606.13837v1-hybrid-neural-retrieval-with-generative-query-refinement-for-quranic-passage-retrieval)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出一种分离主题相关性与约束兼容性的密集检索方法，用于处理约束敏感查询
-2. [CQC-RAG: Robust Retrieval-Augmented Generation via Cross-Query Consistency](/202606/14/2606.13438v1-cqc-rag-robust-retrieval-augmented-generation-via-cross-query-consistency)  
+   evidence：采用AraColBERT稠密向量检索并结合语言模型重排序
+3. [ADORE: Iterative Query Expansion with Retrieval-Grounded Relevance Feedback](/202606/15/2606.13905v1-adore-iterative-query-expansion-with-retrieval-grounded-relevance-feedback)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出一种通过跨查询一致性提高检索增强生成鲁棒性的新方法。
-3. [When Does Mixing Help? Analyzing Query Embedding Interpolation in Multilingual Dense Retrieval](/202606/14/2606.13537v1-when-does-mixing-help-analyzing-query-embedding-interpolation-in-multilingual-dense-retrieval)  
+   evidence：利用检索结果作为反馈的迭代查询扩展框架，改进RAG的检索效果
+4. [Knowledge Graph Enhanced Memory-Augmented Retrieval for Long Context Modeling](/202606/15/2606.14047v1-knowledge-graph-enhanced-memory-augmented-retrieval-for-long-context-modeling)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：分析多语言稠密检索中的查询嵌入插值
-4. [Uncertainty-Aware Hybrid Retrieval for Long-Document RAG](/202606/14/2606.13550v1-uncertainty-aware-hybrid-retrieval-for-long-document-rag)  
+   evidence：使用动态知识图谱的记忆增强检索用于长上下文语言建模
+5. [Decoupled Mixture-of-Experts for Parametric Knowledge Injection](/202606/15/2606.14243v1-decoupled-mixture-of-experts-for-parametric-knowledge-injection)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出UMG-RAG，一种无需训练的混合检索框架用于长文档RAG
-5. [LakeQA: An Exploratory QA Benchmark over a Million-Scale Data Lake](/202606/14/2606.10460v1-lakeqa-an-exploratory-qa-benchmark-over-a-million-scale-data-lake)  
+   evidence：用于向LLM注入参数化知识的模块化MoE
+6. [OneRetrieval: Unifying Multi-Branch E-commerce Retrieval with an Editable Generative Model](/202606/15/2606.13533v1-oneretrieval-unifying-multi-branch-e-commerce-retrieval-with-an-editable-generative-model)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：面向大规模数据湖的搜索中心问答基准，需检索与推理
+   evidence：面向电商多路检索的统一可编辑生成式检索模型
 
 ### 速读区论文标签
-1. [Q-Delta: Beyond Key-Value Associative State Evolution](/202606/14/2606.08804v1-q-delta-beyond-key-value-associative-state-evolution)  
+1. [SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation](/202606/15/2606.13647v1-skmteb-slovak-massive-text-embedding-benchmark-and-model-adaptation)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：低资源语言的全面文本嵌入基准与模型适配，推动密集向量检索模型发展
+2. [WikiKV: Schema-Evolving Path-Indexed Storage for Hierarchical Knowledge Navigation](/202606/15/2606.14275v1-wikikv-schema-evolving-path-indexed-storage-for-hierarchical-knowledge-navigation)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：查询感知的增量规则用于线性注意力，提升大语言模型架构效率
-2. [GRIP: Feedback-Guided Prompt Retrieval for Large Multimodal Models](/202606/14/2606.12744v1-grip-feedback-guided-prompt-retrieval-for-large-multimodal-models)  
+   evidence：专为检索增强应用中LLM策展的分层知识库设计的存储模型
+3. [Personalization and Evaluation of Conversational Information Access](/202606/15/2606.13717v1-personalization-and-evaluation-of-conversational-information-access)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：利用反馈引导为多模态模型检索上下文示例
-3. [G-Long: Graph-Enhanced Memory Management for Efficient Long-Term Dialogue Agents](/202606/14/2606.13115v1-g-long-graph-enhanced-memory-management-for-efficient-long-term-dialogue-agents)  
-   标签：评分：6.0/10、query:rag-llm
-   evidence：使用小模型提取和检索结构化知识三元组，以保持大模型在长期对话中的一致性。
+   evidence：博士论文研究对话信息访问，涉及实体链接和个性化响应生成，整合信息检索与语言模型
 
 
 <div class="dpr-home-promo-card">

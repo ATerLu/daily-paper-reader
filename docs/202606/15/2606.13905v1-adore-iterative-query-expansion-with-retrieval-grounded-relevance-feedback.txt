@@ -1,0 +1,483 @@
+Title: ADORE: Iterative Query Expansion with Retrieval-Grounded Relevance Feedback
+
+URL Source: https://arxiv.org/pdf/2606.13905v1
+
+Published Time: Mon, 15 Jun 2026 00:14:43 GMT
+
+Number of Pages: 13
+
+Markdown Content:
+# ADORE: Iterative Query Expansion with Retrieval-Grounded Relevance Feedback 
+
+Amin Bigdeli 1, Negar Arabzadeh 4, Radin Hamidi Rad 2, Sajad Ebrahimi 3,Charles L. A. Clarke 1, Ebrahim Bagheri 3
+
+> 1
+
+University of Waterloo, 2Mila – Quebec AI Institute, 
+
+> 3
+
+University of Toronto, 4University of California, Berkeley 
+
+Abstract 
+
+LLM-based query expansion improves retrieval by enriching the original query with additional context. Yet most methods remain generation-driven, producing plausible pseudo-documents or expansions without checking how the tar-get corpus responds. This can introduce re-trieval drift, amplify misleading vocabulary, or miss terms that distinguish relevant from non-relevant documents. We argue that effective ex-pansion requires retrieval-grounded feedback, not just single-pass generation or unverified it-eration. We introduce ADORE (AD apt, Observe, 
+
+Relevance Evaluate), an iterative framework that turns retrieval outcomes into feedback for the next expansion. At each round, an LLM generates pseudo-passages, a retriever exposes the corpus response, and a relevance assessor evaluates retrieved documents against the origi-nal query. These judgments identify what to re-inforce, what remains undercovered, and what to suppress. Across TREC Deep Learning, BEIR, and BRIGHT, ADORE consistently out-performs strong query expansion baselines with notable improvements across nearly all evalua-tion settings, improving average nDCG@10 by 24.5% over BM25 and 3.6% over the strongest prior query expansion method on BEIR, and by 122.9% over BM25 and 9.2% over the best query expansion baseline on BRIGHT. Our code and data are publicly available. 1
+
+1 Introduction 
+
+Query reformulation has long been an effective way to improve retrieval, not only by reducing vocabulary mismatch, but also by clarifying un-derspecified queries, surfacing missing facets, and adapting user queries to the language of the tar-get corpus (Rocchio Jr, 1971; Lavrenko and Croft, 2001; Abdul-Jaleel et al., 2004; Bhogal et al., 2007; Qiu and Frei, 1993). Large language models have 
+
+> 1https://github.com/aminbigdeli/ADORE
+
+made this strategy more flexible by generating syn-thetic expansion text that broadens query coverage and introduces potentially useful terminology. Recent work has explored a range of LLM-based reformulation strategies, including pseudo-document generation (Wang et al., 2023a), instruction-based reformulation (Wang et al., 2023b; Dhole and Agichtein, 2024; Bigdeli et al., 2026a), hypothetical answer generation (Gao et al., 2022), sub-question decomposition (Seo and Lee, 2025), corpus-grounded rewriting (Shen et al., 2024; Lei et al., 2024), and aggregation across mul-tiple generations (Zhang et al., 2024). Together, these methods have shown that LLM-generated expansion text can substantially improve retrieval effectiveness across standard benchmarks. Despite these advances, existing LLM-based re-formulation methods remain limited in three ways. 
+
+Lack of retrieval-outcome awareness. Most methods generate an expansion and pass it to the retriever, but never inspect the ranking it induces. They therefore cannot tell which terms improved retrieval, which were ineffective, and which caused retrieval drift. This creates a gap between semantic plausibility and retrieval utility e.g., an expansion can sound useful while still retrieving off-topic doc-uments or missing domain-specific terminology. 
+
+Shallow use of corpus signals. Existing corpus-aware methods retrieve documents, but do not turn them into explicit feedback. LameR uses retrieved passages as in-context examples (Shen et al., 2024), CSQE extracts salient sentences from initial re-sults (Lei et al., 2024), and ThinkQE feeds re-trieved documents back into the generator across rounds (Lei et al., 2025). In all cases, retrieved doc-uments mainly serve as generation context, not as evidence for diagnosing retrieval success, missing query facets, or false-positive signals. 
+
+Unverified iteration. Iterative methods like ThinkQE (Lei et al., 2025) assume that feeding re-trieved documents back into the generator will pro-
+
+> arXiv:2606.13905v1 [cs.IR] 11 Jun 2026
+
+gressively improve the reformulation, but they do not verify that each round improves retrieval. With-out explicit retrieval-grounded assessment, later rounds may reinforce misleading terms, drift to-ward false-positive corpus regions, or repeat earlier retrieval errors rather than correct them. Together, these limitations suggest a different view of query reformulation. The goal is not to generate expansion text that merely sounds rele-vant, but to generate text that improves retrieval on the target corpus. This requires retrieval-grounded feedback i.e., observing how the corpus responds, assessing the retrieved evidence, and using that as-sessment to guide the next reformulation. Under this view, query reformulation becomes an iterative retrieval refinement process rather than a text gener-ation problem. Each round should identify signals that retrieve relevant evidence, partially match the information need, or cause retrieval drift, allow-ing the system to reinforce useful corpus-specific vocabulary while suppressing misleading terms. To address this gap, we introduce ADORE (AD apt, 
+
+Observe, Relevance Evaluate), an iterative query reformulation framework that turns retrieval out-comes into feedback for the next reformulation. 
+
+ADORE operates in three steps. First, it generates pseudo-passages conditioned on the original query and feedback from previous rounds. Second, it retrieves documents from the target corpus to ex-pose how the corpus responds to the current refor-mulation. Third, it assesses the newly retrieved documents against the original query and converts them into graded feedback that identifies what to reinforce, what remains undercovered, and what to suppress. This feedback loop makes reformu-lation retrieval-grounded rather than generation-only. ADORE refines expansions based on observed corpus behavior, while anchoring all relevance as-sessments to the original query to prevent retrieval drift across rounds. ADORE differs from prior work by separating generation from evaluation. Rather than feeding raw retrieved passages back to the generator and hoping it infers what matters, ADORE 
+
+explicitly evaluates retrieval outcomes and turns them into structured feedback. This makes later rounds corrective rather than merely iterative. We evaluate ADORE on TREC Deep Learning, BEIR, and BRIGHT, spanning passage retrieval, cross-domain retrieval, and reasoning-intensive re-trieval. ADORE consistently outperforms strong query reformulation baselines, with statistically sig-nificant gains on seven of eight evaluation settings. These results show that iterative reformulation is most effective when each round is guided by ex-plicit retrieval-grounded feedback, rather than by single-pass generation or unstructured reuse of re-trieved documents. Our contributions can be sum-marized as follows. • We introduce ADORE , a retrieval-grounded query reformulation framework that separates gener-ation from evaluation by iteratively generating expansions, observing corpus responses, and us-ing relevance feedback to guide the next round. • We instantiate ADORE with an adaptive refinement loop that keeps relevance assessment anchored to the original query and stops when retrieval quality or coverage saturates. • Through extensive experiments on TREC Deep Learning, BEIR, and BRIGHT, we demon-strate that ADORE consistently outperforms strong reformulation baselines, improving average nDCG@10 by 24.5% over BM25 and 3.6% over the strongest prior reformulation method on BEIR, and 122.9% over BM25 on BRIGHT with a 9.2% gain over the best reformulation base-line, with notable improvements across nearly all evaluation settings. 
+
+2 Related Work 
+
+LLM-driven query reformulation. Recent methods leverage LLMs to generate expansion text appended to the original query, including pseudo-document generation (Wang et al., 2023a), instruction-based and chain-of-thought expan-sion (Jagerman et al., 2023; Wang et al., 2023b; Dhole and Agichtein, 2024), sub-question decom-position (Seo and Lee, 2025), and multi-reference integration (Zhang et al., 2024). A separate line of work incorporates corpus signals: LameR (Shen et al., 2024) provides retrieval candidates as in-context examples, CSQE (Lei et al., 2024) extracts pivotal sentences from retrieved documents, and ThinkQE (Lei et al., 2025) iteratively conditions expansion on top-retrieved documents across multiple rounds. These approaches can be grouped along two axes, whether they use corpus signals and whether they iterate. Zero-shot methods such as Query2Doc and MUGI generate expansions from parametric knowledge alone, without ob-serving how the corpus responds. Single-iteration methods like LameR and CSQE use retrieved documents as input context for generation but do not evaluate whether the resulting reformulation improves retrieval, nor do they revisit the corpus afterward. ThinkQE introduces multi-round retrieval, yet it feeds raw retrieved passages back to the generator without explicitly evaluating which documents are relevant or misleading. ADORE 
+
+addresses all three gaps by iterating over the corpus, introducing a dedicated relevance assessor that partitions retrieved documents into graded feedback tiers, and applying adaptive termination to stop when further rounds yield diminishing returns. 
+
+LLM-as-judge for retrieval. The use of LLMs as relevance assessors has received growing atten-tion (Arabzadeh and Clarke, 2025). Faggioli et al. (2023) and Thomas et al. (2024) demonstrated strong agreement between LLM judgments and human annotations on TREC benchmarks. MacA-vaney and Soldaini (2023) showed that even with minimal supervision LLMs can produce useful rel-evance labels. The UMBRELA framework (Upad-hyay et al., 2024) demonstrated that open-weight models can produce competitive graded assess-ments, with Clarke and Dietz (2024) further revis-iting the reliability of its judgments, and the LLM-Judge challenge (Rahmani et al., 2024b) systemati-cally benchmarked multiple LLM assessors against TREC Deep Learning judgments, with Rahmani et al. (2024a) further examining synthetic judgment reliability at scale. While most prior work uses LLM judgments for offline evaluation, our work re-purposes graded relevance assessment as an online feedback signal within an iterative retrieval loop, using the assessor’s structured judgments to steer subsequent expansion generation. 
+
+3 Methodology 
+
+3.1 Problem Formulation 
+
+We formulate query reformulation as a retrieval-grounded optimization problem. Given an input query q, a corpus C of documents d ∈ C , a retrieval function R, and a ranking evaluation metric M, the objective is to find the reformulated query ˆq⋆ that, among all candidate reformulations ˆq, maximizes retrieval quality over the induced ranking: 
+
+ˆq⋆ = arg max  
+
+> ˆq
+
+M(R(ˆ q; C), y⋆(q)) (1) where y⋆(q) = {y⋆(q, d )} denotes the true graded relevance labels associated with query q. In prac-tice, these relevance labels are unavailable at in-ference time, making it impossible to directly op-timize the reformulation against the true retrieval objective. Existing methods approximate this objective mainly through generation. Given q, an LLM gen-erates an expansion or pseudo-passage, ˆq = gθ(q),and the reformulated query is then issued to the re-triever. The retrieval outcome is typically accepted as-is. Even corpus-aware methods that include re-trieved passages in the prompt often treat them as context for generation, rather than as evidence whose retrieval utility should be evaluated. As a re-sult, existing methods lack an explicit mechanism for diagnosing which generated signals improve retrieval, which cause drift, and which aspects of the information need remain uncovered. 
+
+3.2 ADORE Query Reformulation 
+
+Motivated by this gap, ADORE treats query reformu-lation as iterative retrieval refinement. The frame-work is built around three design principles. First, reformulation should be retrieval-grounded i.e., ex-pansion should be judged by the ranking it induces, not only by how plausible it sounds. Second, cor-pus signals should serve as feedback, not just gen-eration context i.e., retrieved documents should re-veal what works, what is missing, and what causes false positives. Third, iteration should be goal-oriented i.e., each round should use retrieval behav-ior to correct the previous round while remaining anchored to the original query. 
+
+ADORE implements these principles through three stages. First, a reformulator generates a set of pseudo-passages conditioned on the original query and prior feedback if available. Second, a retriever issues the reformulated query to the target cor-pus and exposes the induced ranking. Third, a relevance assessor evaluates newly retrieved docu-ments against the original query and converts them into structured feedback for the next round. Thus, retrieved documents are treated not as raw context, but as evidence about what to reinforce, what re-mains missing, and what to suppress. Formally, ADORE runs for up to T rounds while maintaining a feedback pool Ft of graded rele-vance assessments. At each round, the reformu-lator generates a set of n pseudo-passages Et =
+
+{e(1)  
+
+> t
+
+, . . . , e (n) 
+
+> t
+
+} conditioned on the original query 
+
+q and the previous feedback pool Ft−1:
+
+Et = gθ(q, Ft−1) (2) Newly retrieved documents are assessed against Reformulator             
+
+> Pseudo -passages ( E
+> ₜ)
+> Structured Feedback Pool F
+> ₜ
+> +Reinforce effective terms
+> !Incorporate missing aspects
+> −Suppress misleading terms
+> Iterate rounds
+> t = 1, 2, ...,  T
+> User Query ( 𝑞 )
+> ො𝑞 𝑡 =𝑞 +
+> Eₜ
+> 12k
+> Searcher Relevance Assessor
+> 1
+
+Adapt  2 Observe  3 Evaluate 
+
+−              
+
+> Partially Relevant
+> ...
+> Irrelevant
+> ...
+> Relevant
+> ...
+> Top -K Retrieved documents
+> (Ranked list 𝑳 𝒕 )
+> Retriever
+> (𝑞 ,𝐿 𝑡 )
+> Corpus
+> Evaluate retrieved documents
+> against original query q
+> Feedback Pool ( F
+> ₜ
+> )
+> ො𝑞 𝑡
+> ∀𝑑 ∈𝐿 𝑡
+> ොy𝑞 ,𝑑 =𝐽𝑢𝑑𝑔𝑒 𝑞 ,𝑑 ∈{0,1,2,3}
+> 𝑞
+> . . .
+> Adaptive Termination
+> Quality Saturation
+> Coverage Saturation
+> Max Rounds
+> Is
+> Terminated?
+
+ො𝑞  Final Reformulated 
+
+> Query
+
+Figure 1: Overview of ADORE . Each round consists of three stages: Adapt generates corpus-calibrated pseudo-passages conditioned on structured feedback from prior rounds, Observe retrieves documents from the target corpus, and Evaluate assesses the results to produce structured feedback for the next iteration. 
+
+the original query and added to Ft, allowing later rounds to use richer evidence about useful signals, missing facets, and sources of retrieval drift. The following subsections describe these stages in de-tail. Figure 1 provides an overview of the frame-work. 
+
+3.2.1 Adapt Stage: Feedback-Conditioned Reformulation 
+
+At each round t, the Adapt stage generates a set of 
+
+n pseudo-passages Et through an LLM reformu-lator gθ. In the first round, no corpus feedback is available, so the reformulator operates in a zero-shot setting E1 = {e(i)1 = gθ(q)}ni=1 . These pas-sages provide the initial expansion from the query alone based on the LLM’s parametric knowledge, a starting point for subsequent corpus-grounded refinement. The prompt is given in Appendix B.1. In subsequent rounds ( t ≥ 2), the reformula-tor conditions on the feedback pool Ft−1 accu-mulated from prior evaluation stages (Equation 2; full prompt in Appendix B.2). This pool parti-tions previously retrieved evidence into graded rel-evance tiers, each providing a distinct adaptation signal. Higher-tier documents indicate patterns to reinforce, while lower-tier documents reveal under-represented aspects of the information need or false-positive attractors to suppress. 
+
+3.2.2 Observe Stage: Query Expansion and Retrieval 
+
+The Observe stage exposes how the corpus actually responds to the current expansion. At each round 
+
+t, the pseudo-passages Et generated in the Adapt stage are combined with the original query through a query construction function: ˆqt = f (q, E t) where 
+
+f balances the contribution of the original query and the current expansion text. By grounding each retrieval on only the latest round’s pseudo-passages, the framework ensures that each round’s observa-tion reflects the reformulator’s most recent adapta-tion to the feedback signal, preventing stale or su-perseded expansions from diluting the query. The constructed query is then issued to the retriever, yielding a ranked list: 
+
+Lt = R(ˆ qt; C) = ⟨dt, 1, d t, 2, . . . , d t,N ⟩ (3) This ranked list constitutes the system’s observa-tion of how the corpus responds to the current round’s expansion. By examining Lt at each round, the framework can detect whether the latest pseudo-passage is surfacing relevant documents, drifting toward off-topic regions, or failing to capture im-portant facets of the query. The specific instantia-tion of f is described in Section 4. 
+
+3.2.3 Evaluate Stage: Graded Relevance Assessment 
+
+The Evaluate stage analyzes the current retrieval outcome and converts it into structured feedback for subsequent reformulation. For each newly re-trieved document d that has not been assessed be-fore, a relevance assessor assigns a graded label: 
+
+ˆy(q, d ) = Jϕ(q, d ) ∈ { 0, 1, 2, 3}, (4) where Jϕ denotes the assessor, including the under-lying LLM, prompt, and decoding configuration. Relevance is always assessed with respect to the original query q, rather than the reformulated query 
+
+ˆqt. This keeps feedback anchored to the user’s in-formation need and prevents reformulation drift from propagating across rounds. Let St−1 = St−1 
+
+> i=1
+
+Dnew  
+
+> i
+
+denote the documents assessed before round t. At each iteration, the Table 1: Results on TREC Deep Learning and BEIR benchmarks (nDCG@10). All query reformulation baselines use GPT-4.1 as the backbone language model. Best scores in bold , second-best underlined.                                                                                                                                                                                
+
+> Category Method TREC Deep Learning BEIR Benchmark DL19 DL20 DLH SciFact COVID FiQA DBPed NEWS Avg.
+> Sparse BM25 0.506 0.480 0.285 0.679 0.595 0.236 0.318 0.395 0.445
+> BM25 + RM3 0.515 0.492 0.264 0.646 0.593 0.192 0.308 0.426 0.433
+> Dense
+> DPR 0.622 0.653 –0.318 0.332 0.295 0.263 0.161 0.274
+> ANCE 0.645 0.646 0.334 0.570 0.654 0.300 0.281 0.382 0.437
+> Contriever-FT 0.621 0.632 0.396 0.677 0.596 0.329 0.413 0.428 0.489
+> BGE-base-en-v1.5 0.702 0.677 0.379 0.741 0.780 0.407 0.407 0.442 0.555
+> Query Expansions w/ BM25 GenQR 0.548 0.537 0.292 0.726 0.687 0.230 0.344 0.465 0.490
+> GenQREnsemble 0.559 0.553 0.270 0.725 0.753 0.239 0.360 0.486 0.513
+> Query2E 0.594 0.576 0.345 0.709 0.715 0.269 0.378 0.463 0.507
+> QA-Expand 0.683 0.642 0.302 0.706 0.707 0.264 0.370 0.450 0.499
+> Query2Doc (CoT) 0.653 0.624 0.329 0.714 0.728 0.258 0.393 0.466 0.512
+> Query2Doc (FS) 0.690 0.675 0.356 0.712 0.708 0.268 0.401 0.480 0.514
+> Query2Doc (ZS) 0.687 0.663 0.350 0.720 0.743 0.260 0.406 0.498 0.525
+> LameR 0.637 0.653 0.356 0.725 0.702 0.262 0.399 0.480 0.514
+> MUGI 0.695 0.658 0.365 0.735 0.714 0.264 0.410 0.516 0.528
+> CSQE 0.690 0.655 0.366 0.721 0.699 0.247 0.390 0.479 0.507
+> ThinkQE 0.697 0.683 0.372 0.735 0.733 0.273 0.420 0.512 0.535
+> ADORE 0.713 0.712 0.383 0.755 0.774 0.315 0.407 0.520 0.554
+
+assessor considers the top K documents in Lt that have not yet received a relevance label: 
+
+Dnew  
+
+> t
+
+= {d ∈ L t \ S t−1 | rank Lt (d) ≤ K} (5) The resulting assessments are incorporated into the feedback pool according to 
+
+Ft = Ft−1 ∪ { (d, ˆy(q, d )) : d ∈ Dnew  
+
+> t
+
+}.
+
+As the iterative process progresses, Ft accumu-lates an increasingly rich set of graded relevance assessments that characterize which retrieval pat-terns consistently align with the information need and which contribute to retrieval drift. Because relevance is always evaluated against the original query q, a document’s relevance label remains sta-ble across rounds, eliminating the need for reassess-ment and allowing the computational budget to focus entirely on newly surfaced evidence. 
+
+3.2.4 Iterative Refinement and Adaptive Termination 
+
+The adapt–observe–evaluate cycle repeats across rounds, with each iteration refining the expansion using an updated feedback pool. Instead of running for a fixed number of rounds, ADORE uses adap-tive termination to allocate more computation to harder queries. The loop stops when one of three conditions is met: (i) quality saturation , where all assessed documents in the current round receive the maximum relevance score; (ii) coverage saturation ,where the number of newly retrieved documents 
+
+|Dnew  
+
+> t
+
+| falls below a threshold τ for two consecu-tive rounds; or (iii) budget exhaustion , where the round counter reaches the maximum T .After termination at round T ′, final retrieval is performed using ˆqT ′ . Since later pseudo-passages are generated from richer feedback, the final query uses the most refined expansion produced by the framework. 
+
+4 Experimental Setup 
+
+Datasets and evaluation. We evaluate ADORE on three benchmark families spanning complementary retrieval challenges. Passage retrieval includes the TREC Deep Learning tracks DL19 (Craswell et al., 2020), DL20 (Craswell et al., 2021), and DL-Hard (Mackie et al., 2021), all built on MS MARCO passages (Bajaj et al., 2016) with graded relevance judgments. Cross-domain retrieval uses five BEIR datasets (Thakur et al., 2021): SciFact, TREC-COVID, FiQA, DBPedia-Entity, and TREC-NEWS, covering scientific fact-checking, biomedi-cal literature, financial opinion, entity retrieval, and news. Reasoning-intensive retrieval uses seven BRIGHT sub-domains (Su et al., 2024): Biology, Earth Science, Economics, Psychology, Robotics, Stack Overflow, and Sustainable Living, where queries require reasoning beyond lexical or simple Table 2: Results on BRIGHT benchmark (nDCG@10). All query reformulation baselines use GPT-4.1 as the backbone language model. Best scores in bold , second-best underlined.                                                                                                                                                                                     
+
+> Category Method Training BRIGHT Benchmark Bio. Earth. Econ. Psy. Rob. Stack. Sus. Avg.
+> Sparse BM25 Zero-shot 0.182 0.279 0.164 0.134 0.109 0.163 0.161 0.170
+> BM25 + RM3 Zero-shot 0.160 0.276 0.146 0.125 0.078 0.141 0.128 0.150
+> Dense
+> GritLM-7B SFT 0.248 0.323 0.189 0.198 0.171 0.136 0.178 0.206
+> GTE-QWEN-7B SFT 0.306 0.364 0.178 0.246 0.132 0.222 0.148 0.228
+> ReasonIR-8B SFT 0.262 0.314 0.233 0.300 0.180 0.239 0.205 0.248
+> Rerankers
+> RankGPT4 Zero-shot 0.338 0.342 0.167 0.270 0.223 0.277 0.111 0.247
+> RankZephyr-7B GPT4-distill 0.219 0.237 0.144 0.103 0.076 0.137 0.166 0.155
+> Rank-R1-14B GRPO (RL) 0.312 0.385 0.212 0.264 0.226 0.189 0.275 0.266
+> Query Expansions w/ BM25 GenQR
+> Zero-shot 0.398 0.439 0.222 0.320 0.160 0.268 0.142 0.278
+> GenQREnsemble 0.424 0.471 0.231 0.320 0.156 0.266 0.172 0.291
+> QA-Expand 0.267 0.385 0.185 0.202 0.112 0.171 0.183 0.215
+> Query2E 0.239 0.376 0.181 0.187 0.121 0.190 0.162 0.208
+> Query2Doc (ZS) 0.255 0.380 0.172 0.200 0.126 0.192 0.184 0.216
+> Query2Doc (FS) 0.258 0.368 0.179 0.187 0.114 0.181 0.171 0.208
+> Query2Doc (CoT) 0.252 0.376 0.184 0.172 0.121 0.192 0.177 0.211
+> LameR 0.315 0.408 0.197 0.258 0.130 0.220 0.206 0.248
+> MUGI 0.475 0.502 0.296 0.408 0.189 0.274 0.269 0.345
+> CSQE 0.320 0.455 0.209 0.265 0.137 0.215 0.201 0.257
+> ThinkQE 0.456 0.516 0.291 0.420 0.186 0.268 0.294 0.347
+> ADORE Zero-shot 0.501 0.490 0.332 0.468 0.232 0.279 0.347 0.379
+
+semantic matching. Following prior work (Zhang et al., 2024; Wang et al., 2023a; Lei et al., 2024, 2025), we report nDCG@10 as the primary metric. Dataset statistics are provided in Appendix A. 
+
+Language models. ADORE uses LLMs in two roles: reformulators to generate expansions and rel-evance assessors to evaluate retrieved documents. Our main results use GPT-4.1 (OpenAI, 2025) for both roles. In ablation studies, we additionally evaluate DeepSeek-V3 (DeepSeek-AI and et al, 2025) and Llama-3.3-70B (Grattafiori et al., 2024) as alternative reformulators and assessors. Rele-vance assessment follows the UMBRELA prompt-ing framework (Upadhyay et al., 2024), which elic-its graded relevance judgments on a 0–3 scale. 
+
+Baselines. We compare ADORE against sparse retrieval and LLM-based query reformulation baselines. Sparse baselines include BM25 and BM25+RM3. Reformulation baselines include GenQR and GenQREnsemble (Wang et al., 2023b; Dhole and Agichtein, 2024), Query2E (Jagerman et al., 2023), QA-Expand (Seo and Lee, 2025), Query2Doc (CoT, FS, ZS) (Wang et al., 2023a), LameR (Shen et al., 2024), MUGI (Zhang et al., 2024), CSQE (Lei et al., 2024), and ThinkQE (Lei et al., 2025). Following prior reformulation stud-ies (Bigdeli et al., 2025, 2026b), all methods use BM25 as the first-stage retriever, with retrieval per-formed using the Pyserini toolkit (Lin et al., 2021). For fair comparison, all reformulation baselines are generated with GPT-4.1 using temperature 1.0 and a maximum length of 128 tokens, and are imple-mented with QueryGym (Bigdeli et al., 2025). We also report results from dense retrievers, LLM-based retrievers, and rerankers as refer-ence points rather than direct baselines, to con-textualize how query expansion positions BM25 relative to learned retrieval paradigms. For TREC Deep Learning and BEIR, we include DPR (Karpukhin et al., 2020), ANCE (Xiong et al., 2021), Contriever-FT (Izacard et al., 2022), and BGE (Xiao et al., 2024). For BRIGHT, we in-clude stronger LLM-based retrievers and rerankers: GritLM-7B (Muennighoff et al., 2025), GTE-Qwen-7B (Li et al., 2023), ReasonIR-8B (Shao et al., 2025), RankGPT4 (Sun et al., 2023), RankZephyr-7B (Pradeep et al., 2023), and Rank-R1-14B (Zhuang et al., 2025). 
+
+Implementation details. ADORE runs for up to 
+
+T = 5 rounds, generating n = 5 pseudo-passages per round and retrieving and assessing the top 
+
+K = 10 documents. The query construction func-tion f follows the repetition scheme of Zhang et al. (2024), where the original query is repeated and concatenated with the pseudo-passages, with the repetition weight determined by the ratio of the ap-Query: what type of tissue are bronchioles   
+
+> nDCG@10 = 0.441
+> Zero-Shot Reformulation: nDCG@10 = 0.610
+> Bronchioles are small airways in the lungs that are pri-marily composed of several types of tissue. Their walls consist of a lining of simple cuboidal or columnar epithe-lium, surrounded by smooth muscle tissue. Unlike larger airways, bronchioles lack cartilage and mucous glands. The smooth muscle tissue in their walls allows bronchi-oles to regulate airflow by contracting or relaxing, which is crucial for proper respiratory function.
+> ADORE: nDCG@10 = 0.916
+> Bronchioles are distinguished by the composition of their walls, which lack hyaline cartilage and are instead sup-ported by smooth muscle and elastic fibers. The epithe-lium lining the bronchioles transitions along their length; it begins as ciliated columnar epithelium in the larger bronchioles and shifts to simple ciliated cuboidal epithe-lium in the smaller bronchioles. The presence of smooth muscle tissue in the bronchiolar walls plays a critical role in regulating airflow by constricting or relaxing as needed. As the bronchioles decrease in size, the epithelial cells also reduce in height and the abundance of ciliated cells decreases.
+
+Table 3: Case study illustrating how iterative corpus-grounded feedback refines query reformulation. Red marks vague phrases in the zero-shot query reformula-tion. Green marks domain-specific vocabulary acquired through iterative corpus-grounded feedback with ADORE .
+
+pended expansion text length to the original query length. All reformulation calls use temperature 1.0 with a maximum of 128 generated tokens. Adap-tive termination triggers early stopping when either (1) all top-10 documents receive the maximum rel-evance score from the assessor (quality saturation), or (2) the top-10 remains unchanged for two con-secutive rounds (coverage saturation). 
+
+5 Main Results 
+
+Table 1 and Table 2 report retrieval effectiveness on the TREC Deep Learning, BEIR, and BRIGHT benchmarks. All query expansion methods, includ-ing ADORE , use GPT-4.1 as the backbone LLM. 
+
+TREC Deep Learning and BEIR. Across these benchmarks, ADORE achieves the highest nDCG@10 among all query expansion methods on seven of eight evaluation settings. On the TREC passage retrieval tasks, ADORE consistently outper-forms ThinkQE, the strongest iterative baseline. On DL20, for instance, ADORE improves over ThinkQE by 4.2% relative. On the cross-domain BEIR tasks, notable gains emerge on TREC-COVID and FiQA, the latter reaching a 15.4% relative improvement over ThinkQE, while the BEIR average rises to 0.554, a 3.6% gain. Importantly, ADORE elevates 
+
+Table 4: Impact of swapping the relevance assessor (top) and reformulator (bottom) LLM on ADORE performance (nDCG@10). In each panel the other component is held fixed at GPT-4.1.                         
+
+> Relevance Assessor DL19 DL20 DL-Hard
+> GPT-4.1 0.713 0.712 0.383 DeepSeek-V3 0.720 0.698 0.389 Llama-3.3-70B 0.732 0.691 0.391
+> Reformulator DL19 DL20 DL-Hard
+> GPT-4.1 0.713 0.712 0.383 DeepSeek-V3 0.724 0.679 0.351 Llama-3.3-70B 0.684 0.695 0.367
+
+BM25 to surpass BGE-base-en-v1.5, the strongest dense retriever, on all three TREC tracks and reach near parity on the BEIR average, closing the gap be-tween sparse and dense retrieval without any model training. Table 3 illustrates a case study on the results and demonstrates how ADORE ’s feedback loop pro-gressively refines the reformulated query on a TREC DL 2020 example. The zero-shot pseudo-passage contains generic phrasing that fails to cap-ture the corpus-specific terminology needed to re-trieve highly relevant documents. After succes-sive rounds of graded relevance feedback, ADORE ’s pseudo-passage incorporates precise domain vocab-ulary drawn directly from relevant documents sur-faced in earlier rounds, resulting in an nDCG@10 improvement from 0.610 to 0.916. 
+
+BRIGHT. On the reasoning-intensive BRIGHT benchmark, the benefits of iterative corpus-grounded reformulation are amplified. ADORE 
+
+achieves an average nDCG@10 of 0.379, improv-ing over ThinkQE by 9.2% and over MUGI by 9.9%, with the largest per-domain gains on Sus-tainable Living, where the margin over ThinkQE reaches 18.0%, and Robotics at 22.8%. These are domains where complex, multi-faceted queries demand precise lexical alignment that benefits from multiple rounds of feedback-driven refine-ment. ADORE ranks first on six of seven sub-domains; Earth Science is the sole exception, where ThinkQE leads by a small margin. The contrast with learned retrieval paradigms is es-pecially striking: ADORE over BM25 surpasses all LLM-based dense retrievers, including the reasoning-specialized ReasonIR-8B, and all LLM-based rerankers, including Rank-R1-14B, by wide margins. These results indicate that on tasks re-quiring deep reasoning, iterative corpus calibration over a lexical retriever can substantially outperform Figure 2: Per-round retrieval effectiveness on TREC DL 2020. (a) nDCG@10 at each round. (b) Average gain in relevant documents within the top-10 relative to the original query, stratified by TREC relevance grade. Table 5: Dense retrieval effectiveness (nDCG@10) before and after ADORE reformulation. Original Query uses the unmodified query, while +ADORE uses the reformulated query produced by our framework.                                                  
+
+> Retriever Query TREC Deep Learning BEIR Benchmark DL19 DL20 DL-Hard SciFact COVID FiQA DBPed NEWS Avg.
+> BGE-base-en-v1.5 Original Query 0.702 0.677 0.379 0.741 0.780 0.407 0.407 0.442 0.555 +ADORE 0.771 0.717 0.421 0.776 0.851 0.421 0.410 0.494 0.590
+> Contriever-FT Original Query 0.621 0.632 0.396 0.677 0.596 0.329 0.413 0.428 0.489 +ADORE 0.728 0.676 0.409 0.738 0.738 0.313 0.391 0.481 0.532
+
+both supervised dense encoders and LLM-based rerankers that operate without the feedback loop. 
+
+6 Ablation Studies 
+
+Here, we examine the core components and design decisions that drive ADORE ’s effectiveness. 
+
+6.1 Effect of Iteration Depth 
+
+To understand how retrieval effectiveness evolves as ADORE progresses through successive feedback rounds, we track nDCG@10 and the number of relevant documents in the top-10 at each round on TREC DL 2020 (Figure 2). nDCG@10 rises sharply from 0.480 with the original query to 0.648 after R1 and 0.706 after R2, the first round to re-ceive structured relevance feedback, before plateau-ing beyond R3. The gain in relevant documents follows the same trajectory (Figure 2(b)). These results show that ADORE converges rapidly, with the vast majority of improvement captured within three rounds, validating T = 5 as a safe upper bound com-bined with adaptive early stopping. Full per-round results across all datasets are in Appendix C (Ta-ble 7). 
+
+6.2 Impact of LLM Components 
+
+To examine how sensitive ADORE is to the choice of its two LLM components, we conduct two controlled ablations on the TREC Deep Learning benchmarks (Table 4). In the first, we fix GPT-4.1 as the reformulator and swap the relevance asses-sor across GPT-4.1, DeepSeek-V3, and Llama-3.3-70B. All three assessors yield competitive results with minimal variance, indicating that ADORE is agnostic to the assessor and applicable with open-weight alternatives. In the second, we fix GPT-4.1 as the assessor and vary the reformulator across the same three models. Performance again remains within a narrow range across benchmarks. To-gether, these results confirm that ADORE ’s iterative feedback loop is robust to both component choices and does not depend on a single proprietary model. 
+
+6.3 Retriever Generalizability 
+
+Although ADORE ’s reformulated queries are gen-erated with BM25 as the retriever, we explore whether they can also improve dense retrieval by applying them to two widely adopted dense re-trievers, BGE-base-en-v1.5 and Contriever-FT (Ta-ble 5). BGE improves on all eight settings with the BEIR average rising from 0.555 to 0.590, and Contriever-FT improves on six of eight, lifting its BEIR average from 0.489 to 0.532. These results confirm that ADORE ’s corpus-calibrated expansions transfer effectively to dense retrieval without addi-tional training. A full comparison of ADORE against all baselines over the BGE retriever is provided in Appendix D (Table 8). 
+
+7 Concluding Remarks 
+
+We presented ADORE , an iterative query reformu-lation framework that couples expansion genera-tion with explicit relevance assessment through a structured feedback loop. A dedicated assessor partitions retrieved documents into graded rele-vance tiers, enabling the reformulator to reinforce productive lexical signals and suppress retrieval drift across rounds. Experiments on TREC Deep Learning, BEIR, and BRIGHT show consistent improvements over strong baselines, with notable improvement across nearly all evaluation settings and BM25 elevated beyond dense retrievers and LLM-based rerankers on reasoning-intensive tasks. 
+
+Limitations 
+
+The iterative design introduces additional latency over single-pass methods, as each round requires a retrieval pass and LLM-based assessment, which may limit applicability in latency-sensitive settings despite adaptive termination. The framework re-lies on LLM-generated relevance judgments that may carry systematic biases on underrepresented domains. Our evaluation is limited to English-language benchmarks and lexical or single-vector dense retrievers, leaving multilingual and learned sparse settings unexplored. 
+
+Acknowledgments 
+
+AI assistants were used for editing and proofread-ing the manuscript. All scientific claims, exper-imental design, analyses, and final content were verified by the authors. 
+
+References 
+
+Nasreen Abdul-Jaleel, James Allan, W Bruce Croft, Fernando Diaz, Leah Larkey, Xiaoyan Li, Mark D Smucker, and Courtney Wade. 2004. Umass at trec 2004: Novelty and hard. Negar Arabzadeh and Charles L. A. Clarke. 2025. Benchmarking llm-based relevance judgment meth-ods. In Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval , SIGIR ’25, page 3194–3204. ACM. Payal Bajaj, Daniel Campos, Nick Craswell, Li Deng, Jianfeng Gao, Xiaodong Liu, Rangan Majumder, An-drew McNamara, Bhaskar Mitra, Tri Nguyen, and 1 others. 2016. Ms marco: A human generated ma-chine reading comprehension dataset. arXiv preprint arXiv:1611.09268 .Jagdev Bhogal, Andrew MacFarlane, and Peter Smith. 2007. A review of ontology based query expansion. 
+
+Information processing & management , 43(4):866– 886. Amin Bigdeli, Mert Incesu, Negar Arabzadeh, Charles L. A. Clarke, and Ebrahim Bagheri. 2026a. Re-FormeR: Learning and Applying Explicit Query Re-formulation Patterns , page 400–408. Springer Na-ture Switzerland. Amin Bigdeli, Radin Hamidi Rad, Mert Incesu, Ne-gar Arabzadeh, Charles L. A. Clarke, and Ebrahim Bagheri. 2025. Querygym: A toolkit for repro-ducible llm-based query reformulation. Preprint ,arXiv:2511.15996. Amin Bigdeli, Radin Hamidi Rad, Hai Son Le, Mert Incesu, Negar Arabzadeh, Charles LA Clarke, and Ebrahim Bagheri. 2026b. A reproducibility study of llm-based query reformulation. arXiv preprint arXiv:2604.27421 .Charles LA Clarke and Laura Dietz. 2024. Llm-based relevance assessment still can’t replace human rele-vance assessment. arXiv preprint arXiv:2412.17156 .Nick Craswell, Bhaskar Mitra, Emine Yilmaz, and Daniel Campos. 2021. Overview of the TREC 2020 deep learning track. CoRR , abs/2102.07662. Nick Craswell, Bhaskar Mitra, Emine Yilmaz, Daniel Campos, and Ellen M Voorhees. 2020. Overview of the trec 2019 deep learning track. arXiv preprint arXiv:2003.07820 .DeepSeek-AI and Aixin Liu et al. 2025. Deepseek-v3 technical report. Preprint , arXiv:2412.19437. Kaustubh D Dhole and Eugene Agichtein. 2024. Gen-qrensemble: Zero-shot llm ensemble prompting for generative query reformulation. In European Con-ference on Information Retrieval , pages 326–335. Springer. Guglielmo Faggioli, Laura Dietz, Charles LA Clarke, Gianluca Demartini, Matthias Hagen, Claudia Hauff, Noriko Kando, Evangelos Kanoulas, Martin Potthast, Benno Stein, and 1 others. 2023. Perspectives on large language models for relevance judgment. In 
+
+Proceedings of the 2023 ACM SIGIR international conference on theory of information retrieval , pages 39–50. Luyu Gao, Xueguang Ma, Jimmy Lin, and Jamie Callan. 2022. Precise zero-shot dense retrieval without rele-vance labels. Preprint , arXiv:2212.10496. Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Alex Vaughan, and 1 others. 2024. The llama 3 herd of models. arXiv preprint arXiv:2407.21783 .Gautier Izacard, Mathilde Caron, Lucas Hosseini, Sebas-tian Riedel, Piotr Bojanowski, Armand Joulin, and Edouard Grave. 2022. Unsupervised dense informa-tion retrieval with contrastive learning. Transactions on Machine Learning Research .Rolf Jagerman, Honglei Zhuang, Zhen Qin, Xuanhui Wang, and Michael Bendersky. 2023. Query expan-sion by prompting large language models. arXiv preprint arXiv:2305.03653 .Vladimir Karpukhin, Barlas O˘ guz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, and Wen-tau Yih. 2020. Dense passage retrieval for open-domain question answering. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) , pages 6769–6781. Victor Lavrenko and W Bruce Croft. 2001. Relevance based language models. Proceedings of the 24th Annual International ACM SIGIR Conference on Re-search and Development in Information Retrieval ,pages 120–127. Yibin Lei, Yu Cao, Tianyi Zhou, Tao Shen, and An-drew Yates. 2024. Corpus-steered query expansion with large language models. In Proceedings of the 18th Conference of the European Chapter of the As-sociation for Computational Linguistics (Volume 2: Short Papers) , pages 393–401, St. Julian’s, Malta. Association for Computational Linguistics. Yibin Lei, Tao Shen, and Andrew Yates. 2025. Thinkqe: Query expansion via an evolving thinking process. 
+
+arXiv preprint arXiv:2506.09260 .Junqin Li, Yixuan Tang, Baosong Yang, Haizhen Huang, Furu Wei, Weiwei Deng, Qi Zhang, and Rui Wang. 2023. Towards general text embeddings with multi-stage contrastive learning. CoRR , abs/2308.03281. Jimmy Lin, Xueguang Ma, Sheng-Chieh Lin, Jheng-Hong Yang, Ronak Pradeep, and Rodrigo Nogueira. 2021. Pyserini: A python toolkit for reproducible information retrieval research with sparse and dense representations. In Proceedings of the 44th Inter-national ACM SIGIR Conference on Research and Development in Information Retrieval , SIGIR ’21, page 2356–2362, New York, NY, USA. Association for Computing Machinery. Sean MacAvaney and Luca Soldaini. 2023. One-shot labeling for automatic relevance estimation. In Pro-ceedings of the 46th International ACM SIGIR Con-ference on Research and Development in Information Retrieval .Iain Mackie, Jeffrey Dalton, and Andrew Yates. 2021. How deep is your learning: The dl-hard annotated deep learning dataset. In Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval , pages 2335–2341. Niklas Muennighoff, Hongjin Su, Liang Wang, Nan Yang, Furu Wei, Tao Yu, Amanpreet Singh, and Douwe Kiela. 2025. Generative representational in-struction tuning. CoRR , abs/2402.09906. OpenAI. 2025. Gpt-4.1. Ronak Pradeep, Sahel Sharifymoghaddam, and Jimmy Lin. 2023. RankZephyr: Effective and robust zero-shot listwise reranking is a breeze! CoRR ,abs/2312.02724. Yonggang Qiu and Hans-Peter Frei. 1993. Concept based query expansion. In Proceedings of the 16th annual international ACM SIGIR conference on Re-search and development in information retrieval ,pages 160–169. Hossein A Rahmani, Nick Craswell, Emine Yilmaz, Bhaskar Mitra, and Daniel Campos. 2024a. Syn-thetic test collections for retrieval evaluation. In Pro-ceedings of the 47th International ACM SIGIR Con-ference on Research and Development in Information Retrieval , pages 2647–2651. Hossein A Rahmani, Emine Yilmaz, Nick Craswell, Bhaskar Mitra, Paul Thomas, Charles LA Clarke, Mohammad Aliannejadi, Clemencia Siro, and Guglielmo Faggioli. 2024b. Llmjudge: Llms for rel-evance judgments. arXiv preprint arXiv:2408.08896 .Joseph John Rocchio Jr. 1971. Relevance feedback in information retrieval. The SMART retrieval system: experiments in automatic document processing .Wonduk Seo and Seunghyun Lee. 2025. Qa-expand: Multi-question answer generation for enhanced query expansion in information retrieval. arXiv preprint arXiv:2502.08557 .Ruosen Shao, Fei Wang, Hannaneh Hajishirzi, and Muhao Chen. 2025. ReasonIR: Training retrievers for reasoning tasks. CoRR , abs/2504.20595. Tao Shen, Guodong Long, Xiubo Geng, Chongyang Tao, Yibin Lei, Tianyi Zhou, Michael Blumenstein, and Daxin Jiang. 2024. Retrieval-augmented retrieval: Large language models are strong zero-shot retriever. In Findings of the Association for Computational Lin-guistics: ACL 2024 , pages 15933–15946, Bangkok, Thailand. Association for Computational Linguistics. Hongjin Su, Howard Yen, Mengzhou Xia, Weijia Shi, Niklas Muennighoff, Han-yu Wang, Haisu Liu, Quan Shi, Zachary S Siegel, Michael Tang, Ruoxi Sun, Jinsung Yoon, Sercan O Arik, Danqi Chen, and Tao Yu. 2024. Bright: A realistic and challenging bench-mark for reasoning-intensive retrieval. arXiv preprint arXiv:2407.12883 .Weiwei Sun, Lingyong Yan, Xinyu Ma, Shuaiqiang Wang, Pengjie Ren, Zhumin Chen, Dawei Yin, and Zhaochun Ren. 2023. Is ChatGPT good at search? investigating large language models as re-ranking agents. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing .Association for Computational Linguistics. Nandan Thakur, Nils Reimers, Andreas Rücklé, Ab-hishek Srivastava, and Irena Gurevych. 2021. BEIR: A heterogeneous benchmark for zero-shot evaluation of information retrieval models. In Thirty-fifth Con-ference on Neural Information Processing Systems Datasets and Benchmarks Track .Paul Thomas, Seth Spielman, Nick Craswell, and Bhaskar Mitra. 2024. Large language models can ac-curately predict searcher preferences. In Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval ,pages 1930–1940. Shivani Upadhyay, Ronak Pradeep, Nandan Thakur, Nick Craswell, and Jimmy Lin. 2024. Umbrela: Um-brela is the (open-source reproduction of the) bing relevance assessor. arXiv:2406.06519 .Liang Wang, Nan Yang, and Furu Wei. 2023a. Query2doc: Query expansion with large language models. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing ,pages 9414–9423, Singapore. Association for Com-putational Linguistics. Xiao Wang, Sean MacAvaney, Craig Macdonald, and Iadh Ounis. 2023b. Generative query reformula-tion for effective adhoc search. arXiv preprint arXiv:2308.00415 .Shitao Xiao, Zheng Liu, Peitian Zhang, Niklas Muen-nighoff, Defu Lian, and Jian-Yun Nie. 2024. C-pack: Packed resources for general chinese embeddings. In 
+
+Proceedings of the 47th international ACM SIGIR conference on research and development in informa-tion retrieval , pages 641–649. Lee Xiong, Chenyan Xiong, Ye Li, Kwok-Fung Tang, Jialin Liu, Paul Bennett, Junaid Ahmed, and Arnold Overwijk. 2021. Approximate nearest neighbor neg-ative contrastive learning for dense text retrieval. In 
+
+International Conference on Learning Representa-tions .Le Zhang, Yihong Wu, Qian Yang, and Jian-Yun Nie. 2024. Exploring the best practices of query expan-sion with large language models. In Findings of the Association for Computational Linguistics: EMNLP 2024 , pages 1872–1883, Miami, Florida, USA. Asso-ciation for Computational Linguistics. Shengyao Zhuang, Xueguang Ma, Bevan Koopman, Jimmy Lin, and Guido Zuccon. 2025. Rank-r1: Enhancing reasoning in llm-based document rerankers via reinforcement learning. arXiv preprint arXiv:2503.06034 .
+
+Appendix A Dataset Statistics 
+
+Details about the retrieval datasets are shown in Table 6. The TREC Deep Learning tracks (DL19, DL20, DL-Hard) are built on the MS MARCO v1 passage collection, which contains approximately 8.8M passages. The BEIR datasets span diverse domains and vary considerably in corpus size, from 5,183 documents (SciFact) to over 4.6M (DBPedia-Entity). All BEIR evaluations are conducted in a 
+
+Table 6: Dataset Statistics. 
+
+Dataset #Queries #Documents 
+
+TREC Deep Learning 
+
+DL19 43 8,841,823 DL20 54 DL-Hard 50 
+
+BEIR Benchmark 
+
+SciFact 300 5,183 TREC-COVID 50 171,332 FiQA 648 57,638 DBPedia 400 4,635,922 TREC-NEWS 57 594,977 
+
+BRIGHT Benchmark 
+
+Biology 103 57,359 Earth Science 116 121,249 Economics 103 50,220 Psychology 101 52,835 Robotics 101 61,961 Stack Overflow 117 107,081 Sustainable Living 108 60,792 zero-shot setting. The BRIGHT benchmark (Su et al., 2024) consists of reasoning-intensive queries drawn from StackExchange communities, where relevant documents require complex understanding beyond lexical or simple semantic matching. 
+
+B Reformulation Prompts 
+
+This appendix provides the exact prompts used by the ADORE reformulator at each stage. Placeholder variables are shown in monospace .
+
+B.1 Zero-Shot Prompt (Round 1) 
+
+In the first round, no corpus feedback is available. The reformulator generates pseudo-passages from the query alone using the following prompt (Fig-ure 3). 
+
+B.2 Feedback-Conditioned Prompt (Rounds 
+
+≥ 2)
+
+In subsequent rounds, the reformulator receives the accumulated feedback pool partitioned into rel-evance tiers. The prompt instructs the model to reuse lexical anchors from relevant evidence, avoid vocabulary associated with irrelevant documents, and target under-represented aspects of the query (Figure 4). SYSTEM 
+
+You are PassageGenGPT, an AI capable of generating concise, informative, and clear pseudo passages on specific topics. USER 
+
+Generate one passage that is relevant to the following query: ‘ {query} ’. The passage should be concise, informative, and clear ASSISTANT 
+
+Sure, here’s a passage relevant to the query: 
+
+Figure 3: Zero-shot reformulation prompt. 
+
+SYSTEM 
+
+You write corpus-grounded passages that expand a retrieval query toward more relevant documents. The retriever matches on exact lexical content, so reuse the distinctive lexical anchors of the relevant evidence verbatim — synonyms or paraphrases will not match. USER 
+
+Original Query {q0} 
+
+Relevant Evidence (judged against the original query; the lexical signature of the relevant region of the corpus — reuse its named entities, numbers, units, acronyms, and short technical phrasings verbatim) 
+
+Score 3 {score3_block} 
+
+Score 2 {score2_block} 
+
+Avoid Evidence (retrieval false positives; their distinctive phrases are noise — do NOT reuse them) 
+
+Score 1 — intent-drifted {score1_block} 
+
+Score 0 — irrelevant {score0_block} 
+
+Instructions 
+
+Write one new passage that 1. Reuses distinctive lexical anchors from the relevant evidence verbatim (no synonym swaps for rare technical terms, named entities, units, numbers). 2. Targets a sub-aspect of the original query that the relevant evidence does not already saturate. 3. Reads like a real document drawn from the same corpus and register as the relevant evidence (no lists, no markdown, no meta-commentary). 4. Avoids the distinctive vocabulary of the avoid evidence. 5. Stays factually grounded in the relevant evidence; do not fabricate entities or statistics beyond what it supports. Return ONLY the passage text, nothing else. 
+
+Figure 4: Feedback-conditioned reformulation prompt. 
+
+C Per-Round Retrieval Effectiveness 
+
+Table 7 extends the depth impact analysis in Sec-tion 6.1 to all evaluation settings. Across bench-marks, R2 consistently delivers the largest single-round gain, and performance plateaus beyond R3. The reasoning-intensive BRIGHT datasets show larger gains from later rounds, suggesting complex queries benefit from additional corpus-grounded refinement. 
+
+D Query Expansion Baselines over Dense Retrieval 
+
+Table 1 reports all query expansion baselines with BM25 as the retriever. To examine whether these methods generalize beyond sparse retrieval, we replicate the same comparison using BGE-base-en-v1.5 as the underlying dense retriever (Table 8). The reformulated queries produced by each method are applied to BGE without any modification or retriever-specific tuning. ADORE achieves the high-est average nDCG@10 across BEIR, outperform-ing all baselines including MUGI, while also ob-taining the best scores on DL19, DL-Hard, SciFact, COVID, and NEWS. These results confirm that 
+
+ADORE ’s corpus-calibrated expansions remain effec-tive when transferred to dense retrieval. Table 7: Performance of ADORE across iterative rounds (nDCG@10). Each column represents the cumulative query expansion after k rounds. Best score per dataset in bold . Standard deviation across queries shown in parentheses. 
+
+Collection Dataset R1 R2 R3 R4 R5 
+
+TREC DL DL19 0.687 (0.213) 0.711 (0.214) 0.719 (0.223) 0.716 (0.225) 0.713 (0.223) 
+
+DL20 0.648 (0.231) 0.706 (0.223) 0.718 (0.218) 0.722 (0.222) 0.712 (0.227) 
+
+DL-Hard 0.376 (0.321) 0.385 (0.310) 0.392 (0.314) 0.386 (0.316) 0.383 (0.315) 
+
+BEIR SciFact 0.733 (0.347) 0.752 (0.354) 0.748 (0.352) 0.755 (0.346) 0.755 (0.345) 
+
+COVID 0.707 (0.238) 0.775 (0.240) 0.778 (0.241) 0.772 (0.241) 0.774 (0.243) 
+
+FiQA 0.259 (0.320) 0.302 (0.350) 0.309 (0.355) 0.313 (0.353) 0.315 (0.357) 
+
+DBPedia 0.414 (0.266) 0.406 (0.271) 0.407 (0.270) 0.407 (0.276) 0.406 (0.274) 
+
+NEWS 0.508 (0.213) 0.528 (0.234) 0.531 (0.234) 0.527 (0.231) 0.520 (0.228) 
+
+BRIGHT Biology 0.471 (0.355) 0.495 (0.384) 0.496 (0.388) 0.493 (0.386) 0.501 (0.384) 
+
+Earth Science 0.521 (0.322) 0.492 (0.339) 0.502 (0.347) 0.497 (0.342) 0.490 (0.342) 
+
+Economics 0.277 (0.325) 0.310 (0.360) 0.325 (0.375) 0.317 (0.381) 0.332 (0.394) 
+
+Psychology 0.391 (0.362) 0.447 (0.383) 0.465 (0.381) 0.465 (0.384) 0.468 (0.376) 
+
+Robotics 0.187 (0.260) 0.214 (0.301) 0.224 (0.315) 0.223 (0.311) 0.232 (0.330) 
+
+Stack Overflow 0.271 (0.329) 0.281 (0.335) 0.267 (0.334) 0.281 (0.335) 0.279 (0.330) 
+
+Sustainable Living 0.262 (0.302) 0.320 (0.352) 0.335 (0.369) 0.338 (0.369) 0.347 (0.369) 
+
+Average 0.447 0.475 0.481 0.481 0.482 
+
+Table 8: Results on TREC Deep Learning and BEIR benchmarks using BGE-base-en-v1.5 as the dense retriever (nDCG@10). All query reformulation baselines use GPT-4.1 as the backbone language model. Best scores in bold ,second-best underlined. 
+
+Method TREC Deep Learning BEIR Benchmark DL19 DL20 DLH SciFact COVID FiQA DBPed NEWS Avg. 
+
+BGE-base-en-v1.5 0.702 0.677 0.379 0.741 0.780 0.407 0.407 0.442 0.555 
+
++ GenQR 0.702 0.690 0.387 0.748 0.778 0.392 0.356 0.464 0.548 
+
++ GenQREnsemble 0.703 0.683 0.357 0.759 0.800 0.403 0.376 0.475 0.562 
+
++ QA-Expand 0.737 0.707 0.374 0.737 0.795 0.416 0.401 0.470 0.564 
+
++ Query2E 0.697 0.642 0.378 0.742 0.774 0.392 0.325 0.445 0.536 
+
++ Q2D (ZS) 0.728 0.739 0.379 0.761 0.806 0.415 0.431 0.476 0.578 
+
++ Q2D (FS) 0.727 0.714 0.407 0.752 0.804 0.421 0.430 0.472 0.576 
+
++ Q2D (CoT) 0.713 0.672 0.376 0.758 0.798 0.401 0.368 0.433 0.552 
+
++ LameR 0.703 0.715 0.412 0.757 0.780 0.408 0.402 0.437 0.557 
+
++ MUGI 0.735 0.720 0.404 0.757 0.802 0.429 0.440 0.490 0.584 
+
++ CSQE 0.755 0.714 0.414 0.755 0.788 0.407 0.424 0.463 0.567 
+
++ ThinkQE 0.715 0.709 0.397 0.748 0.800 0.415 0.429 0.494 0.577 
+
++ ADORE 0.771 0.717 0.421 0.776 0.851 0.421 0.410 0.494 0.590

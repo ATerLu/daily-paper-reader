@@ -1,0 +1,381 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-15T21:58:09.501569+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 3,
+    "quick_skim_target": 11,
+    "quick_selected": 3
+  },
+  "deep_dive": [
+    {
+      "id": "2606.14269v1",
+      "source": "arxiv",
+      "title": "ScoreGate: Adaptive Chunk Selection for Retrieval-Augmented Generation via Dual-Score Statistical Fusion",
+      "abstract": "Fixed-cardinality retrieval injects a constant top-K chunks into the generator regardless of query complexity, causing over-retrieval for narrow queries and under-retrieval for compositional ones. We describe ScoreGate, a lightweight score-space decision mechanism that controls retrieval cardinality at inference time using two scores already produced by the standard pipeline: bi-encoder similarity s_i and cross-encoder reranker score r_i, with no additional model inference calls required. Its core insight is that cross-encoder affirmation can rescue semantically relevant chunks that bi-encoder retrieval ranks poorly due to vocabulary mismatch -- a failure mode unaddressed by fixed-K or single-score thresholding. On MS MARCO (200 dev queries), ScoreGate achieves MRR@10 = 0.401 with 35% fewer retained chunks than Standard Top-K. On an internal benchmark (n=300, Fleiss' kappa=0.87), ScoreGate observed zero false positives (95% CI [96.4%, 100%]) at 97.77-99.34% recall, with 34.8% fewer tokens per query and only 31ms added latency. Results on both MS MARCO and real-world production traffic suggest that adaptive retrieval cardinality can improve retrieval efficiency without degrading retrieval quality.",
+      "authors": [
+        "Karamvir Singh",
+        "Arvind Jain"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.CL"
+      ],
+      "published": "2026-06-12T08:51:24+00:00",
+      "link": "https://arxiv.org/pdf/2606.14269v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Adaptive chunk selection mechanism for RAG using bi-encoder and cross-encoder scores to control retrieval cardinality",
+      "llm_evidence_cn": "利用双编码器和交叉编码器分数自适应控制RAG检索块数量的机制",
+      "llm_evidence": "利用双编码器和交叉编码器分数自适应控制RAG检索块数量的机制",
+      "canonical_evidence": "利用双编码器和交叉编码器分数自适应控制RAG检索块数量的机制",
+      "llm_tldr_en": "ScoreGate introduces a lightweight method to dynamically determine the number of chunks to retrieve for RAG, using dual scores to avoid over-/under-retrieval without extra model inference.",
+      "llm_tldr_cn": "ScoreGate针对RAG中固定K值检索导致的过度或不足问题，提出利用双编码器相似度和交叉编码器重排序分数进行自适应块选择。该方法无需额外模型调用，通过统计融合决策有效应对词汇不匹配，在MS MARCO等数据集上提高了生成质量，为RAG流水线提供了高效的检索基数控制。",
+      "llm_tldr": "ScoreGate针对RAG中固定K值检索导致的过度或不足问题，提出利用双编码器相似度和交叉编码器重排序分数进行自适应块选择。该方法无需额外模型调用，通过统计融合决策有效应对词汇不匹配，在MS MARCO等数据集上提高了生成质量，为RAG流水线提供了高效的检索基数控制。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.13837v1",
+      "source": "arxiv",
+      "title": "Hybrid Neural Retrieval with Generative Query Refinement for Quranic Passage Retrieval",
+      "abstract": "Quranic Passage Retrieval (PR) could be a challenging task due to the linguistic complexity and the semantic gap between the Modern Standard Arabic (MSA) used in daily queries and the Classical Arabic (CA) of the Holy Quran. These factors hinder conventional retrieval methods. To handle these limitations and improve multi-verse retrieval and filter the zero-answer queries, this paper proposes a four-phase neural architecture designed to enhance retrieval accuracy and contextual understanding. The methodology combines hybrid candidate retrieval using AraColBERT dense indexing and BM25 sparse retrieval, followed by semantic reranking with a CAMeLBERTmix cross-encoder. A confidence gating mechanism is then applied to filter zero-answer queries, and an AraT5-based refinement module for multi-verse aggregation. The system is evaluated on an expanded version of the Quran QA 2022 dataset. Results show improved performance compared to the baseline models, achieving a Recall@10 of 0.7024 and a Mean Average Precision (MAP@10) of 0.4947. While the system exhibits a marginal tradeoff in absolute top-rank precision (MRR = 0.5807) compared to heavily optimised single models, the proposed architecture provides a substantially more comprehensive, reliable, and context aware solution for multi-verse Quranic passage retrieval.",
+      "authors": [
+        "Mohamed G. Salman",
+        "Mohammad E. Moftah",
+        "Ali Hamdi"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-11T19:06:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.13837v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "dense vector retrieval with AraColBERT indexing and language model reranking",
+      "llm_evidence_cn": "采用AraColBERT稠密向量检索并结合语言模型重排序",
+      "llm_evidence": "采用AraColBERT稠密向量检索并结合语言模型重排序",
+      "canonical_evidence": "采用AraColBERT稠密向量检索并结合语言模型重排序",
+      "llm_tldr_en": "Proposes a hybrid retrieval pipeline with dense indexing, sparse retrieval, and semantic reranking for Quranic passage retrieval, improving accuracy and filtering zero-answer queries.",
+      "llm_tldr_cn": "针对古兰经查询中现代与古典阿拉伯语语义鸿沟带来的检索挑战，本文设计了一种四阶段神经检索架构，融合AraColBERT稠密索引和BM25稀疏检索，并通过CAMeLBERTmix交叉编码器进行语义重排序，最后用置信度门控过滤零答案查询。实验表明该方法能有效提升多节检索准确率，为宗教文本领域的信息检索提供了先进方案。",
+      "llm_tldr": "针对古兰经查询中现代与古典阿拉伯语语义鸿沟带来的检索挑战，本文设计了一种四阶段神经检索架构，融合AraColBERT稠密索引和BM25稀疏检索，并通过CAMeLBERTmix交叉编码器进行语义重排序，最后用置信度门控过滤零答案查询。实验表明该方法能有效提升多节检索准确率，为宗教文本领域的信息检索提供了先进方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.13905v1",
+      "source": "arxiv",
+      "title": "ADORE: Iterative Query Expansion with Retrieval-Grounded Relevance Feedback",
+      "abstract": "LLM-based query expansion improves retrieval by enriching the original query with additional context. Yet most methods remain generation-driven, producing plausible pseudo-documents or expansions without checking how the target corpus responds. This can introduce retrieval drift, amplify misleading vocabulary, or miss terms that distinguish relevant from non-relevant documents. We argue that effective expansion requires retrieval-grounded feedback, not just single-pass generation or unverified iteration. We introduce ADORE (ADapt, Observe, Relevance Evaluate), an iterative framework that turns retrieval outcomes into feedback for the next expansion. At each round, an LLM generates pseudo-passages, a retriever exposes the corpus response, and a relevance assessor evaluates retrieved documents against the original query. These judgments identify what to reinforce, what remains undercovered, and what to suppress. Across TREC Deep Learning, BEIR, and BRIGHT, ADORE consistently outperforms strong query expansion baselines with notable improvements across nearly all evaluation settings, improving average nDCG@10 by 24.5% over BM25 and 3.6% over the strongest prior query expansion method on BEIR, and by 122.9% over BM25 and 9.2% over the best query expansion baseline on BRIGHT. Our code and data are publicly available.",
+      "authors": [
+        "Amin Bigdeli",
+        "Negar Arabzadeh",
+        "Radin Hamidi Rad",
+        "Sajad Ebrahimi",
+        "Charles L. A. Clarke",
+        "Ebrahim Bagheri"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.CL"
+      ],
+      "published": "2026-06-11T20:52:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.13905v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Iterative query expansion framework using retrieval outcomes as feedback, improving retrieval for RAG",
+      "llm_evidence_cn": "利用检索结果作为反馈的迭代查询扩展框架，改进RAG的检索效果",
+      "llm_evidence": "利用检索结果作为反馈的迭代查询扩展框架，改进RAG的检索效果",
+      "canonical_evidence": "利用检索结果作为反馈的迭代查询扩展框架，改进RAG的检索效果",
+      "llm_tldr_en": "ADORE proposes an iterative query expansion method that grounds LLM-generated expansions in actual retrieval outcomes, reducing drift and improving retrieval effectiveness for RAG.",
+      "llm_tldr_cn": "ADORE针对LLM查询扩展中检索漂移和词汇误用问题，提出将检索结果作为反馈信号的迭代框架。每轮LLM生成伪文档，检索器获取语料库响应，相关性评估模块指导下一轮扩展。实验表明该方法能显著提升检索质量，为RAG系统提供更精准的上下文。",
+      "llm_tldr": "ADORE针对LLM查询扩展中检索漂移和词汇误用问题，提出将检索结果作为反馈信号的迭代框架。每轮LLM生成伪文档，检索器获取语料库响应，相关性评估模块指导下一轮扩展。实验表明该方法能显著提升检索质量，为RAG系统提供更精准的上下文。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.14047v1",
+      "source": "arxiv",
+      "title": "Knowledge Graph Enhanced Memory-Augmented Retrieval for Long Context Modeling",
+      "abstract": "Long-context language modeling requires not only extending context windows but maintaining coherent understanding of entity states and relationships across thousands of tokens -- a challenge that semantic similarity alone cannot address. KGERMAR addresses this by constructing dynamic, context-specific knowledge graphs from input text during inference, enabling domain-adaptive retrieval that leverages both semantic similarity and explicit entity relationships. The framework performs real-time entity and relation extraction to build contextual knowledge graphs, then integrates graph-structural embeddings with textual semantics through a multi-component memory architecture. Three memory banks -- contextual, semantic, and structural -- are maintained with retrieval signals fused via learned weights to capture both surface-level semantics and deeper relational patterns. Evaluated on SlimPajama (84.7K training examples), WikiText-103 (4,358 examples), PG-19 (100 examples), and Proof-pile (46.3K examples), KGERMAR achieves up to 8.5\\% lower perplexity and 2--2.5x better memory efficiency than memory-augmented baselines across context lengths from 1K to 32K tokens, with superior in-context learning performance across five NLU tasks. The dynamic knowledge graph construction approach advances memory-augmented language modeling by enabling domain-specific knowledge representation that adapts to input contexts rather than relying on fixed knowledge bases.",
+      "authors": [
+        "Ghadir Alselwi",
+        "Basem Suleiman",
+        "Hao Xue",
+        "Shoaib Jameel",
+        "Hakim Hacid",
+        "Flora D. Salim",
+        "Imran Razzak"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-06-12T02:48:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.14047v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "memory-augmented retrieval using dynamic knowledge graphs for long-context language modeling",
+      "llm_evidence_cn": "使用动态知识图谱的记忆增强检索用于长上下文语言建模",
+      "llm_evidence": "使用动态知识图谱的记忆增强检索用于长上下文语言建模",
+      "canonical_evidence": "使用动态知识图谱的记忆增强检索用于长上下文语言建模",
+      "llm_tldr_en": "KGERMAR dynamically builds context-specific knowledge graphs during inference to enable memory-augmented retrieval, combining semantic and structural embeddings for coherent long-context language modeling.",
+      "llm_tldr_cn": "针对长上下文语言模型中实体关系理解不一致的问题，KGERMAR在推理时实时提取实体和关系构建动态知识图谱，并通过三组记忆体融合语义与结构信息进行检索增强。该方法旨在在不扩展窗口的情况下维持对数千令牌内实体状态的连贯理解，为长文本处理提供了更可靠的检索机制。",
+      "llm_tldr": "针对长上下文语言模型中实体关系理解不一致的问题，KGERMAR在推理时实时提取实体和关系构建动态知识图谱，并通过三组记忆体融合语义与结构信息进行检索增强。该方法旨在在不扩展窗口的情况下维持对数千令牌内实体状态的连贯理解，为长文本处理提供了更可靠的检索机制。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.14243v1",
+      "source": "arxiv",
+      "title": "Decoupled Mixture-of-Experts for Parametric Knowledge Injection",
+      "abstract": "Knowledge injection aims to equip large language models (LLMs) with external, domain-specific, or time-sensitive knowledge. Existing approaches typically face a trade-off between flexibility and integration: retrieval-augmented generation keeps knowledge outside the model but only provides prompt-level augmentation, whereas post-training based methods encode new knowledge into shared parameters but may introduce catastrophic forgetting, knowledge conflict, and costly updates. In this paper, we propose Decoupled Mixture-of-Experts (DMoE), a modular architecture for parametric knowledge injection that decouples both experts and the router from the base model. DMoE converts external knowledge corpora into independently updatable expert modules and uses a lightweight uncertainty-aware router to activate relevant experts only when the base model lacks sufficient knowledge during generation. To support efficient auto-regressive inference, DMoE attaches experts only to the final-layer feed-forward network, preserving KV-cache reuse while enabling parameter-level knowledge augmentation. Experiments on knowledge-intensive benchmarks show that DMoE consistently improves answer quality over retrieval and adapter-based baselines.",
+      "authors": [
+        "Baoqing Yue",
+        "Weihang Su",
+        "Qingyao Ai",
+        "Yichen Tang",
+        "Changyue Wang",
+        "Jiacheng Kang",
+        "Jingtao Zhan",
+        "Yiqun Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-12T08:21:28+00:00",
+      "link": "https://arxiv.org/pdf/2606.14243v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Modular MoE for parametric knowledge injection into LLMs",
+      "llm_evidence_cn": "用于向LLM注入参数化知识的模块化MoE",
+      "llm_evidence": "用于向LLM注入参数化知识的模块化MoE",
+      "canonical_evidence": "用于向LLM注入参数化知识的模块化MoE",
+      "llm_tldr_en": "DMoE decouples experts and router from the base LLM to enable flexible and updatable parametric knowledge injection.",
+      "llm_tldr_cn": "为解决LLM知识注入中RAG与后训练方法的灵活性-集成性权衡，提出DMoE架构，将专家和路由器与基座模型分离，实现参数化知识的独立更新，避免灾难性遗忘和知识冲突。",
+      "llm_tldr": "为解决LLM知识注入中RAG与后训练方法的灵活性-集成性权衡，提出DMoE架构，将专家和路由器与基座模型分离，实现参数化知识的独立更新，避免灾难性遗忘和知识冲突。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.13533v1",
+      "source": "arxiv",
+      "title": "OneRetrieval: Unifying Multi-Branch E-commerce Retrieval with an Editable Generative Model",
+      "abstract": "Industrial e-commerce search serves hundreds of millions of items through a multi-branch retrieval stage fused by hand-tuned merging without joint optimization. Generative retrieval (GR) raises the prospect of collapsing this stage into a single model, yet unification is gated by more than retrieval quality: the inverted-index branch converts below the platform average yet persists because it is almost the only branch where operations can inject a new term within hours without any model update; a one-model substitute must preserve this real-time editability. Existing GR methods structurally lack it: closed-codebook methods fix each slot to a quantized embedding at training, while open-vocabulary methods leave new-term routing to model generalization. We present OneRetrieval, a one-model GR framework built on Keyword-Aligned Encoding (KAE), which ties each identifier position to an interpretable attribute word, pairing competitive recall quality with the editability of the inverted index -- to our knowledge the first editable generative retrieval method. An information-theoretic merging organizes 18 attribute categories into six codebook groups with non-uniform capacity; reserved slots in each codebook can be bound to new words after deployment without retraining; and a four-stage fine-tuning pipeline secures quality and editability jointly. On five million real-traffic requests, OneRetrieval matches the deep recall of the strongest generative baseline, with an intervention hit rate over an order of magnitude above closed-codebook encodings. Online, replacing the inverted-index branch significantly lifts order volume; extending to nearly the entire stage holds conversion while improving CTR. The system is deployed at Kuaishou, serving hundreds of millions of PVs daily.",
+      "authors": [
+        "Xuxin Zhang",
+        "Ben Chen",
+        "Yue Lv",
+        "Siyuan Wang",
+        "Yupeng Li",
+        "Yufei Ma",
+        "Zihan Liang",
+        "Tong Zhao",
+        "Ying Yang",
+        "Huangyu Dai",
+        "Lingtao Mao",
+        "Zhipeng Qian",
+        "Xinyu Sun",
+        "Chenyi Lei",
+        "Wenwu Ou",
+        "Kun Gai"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-11T16:21:13+00:00",
+      "link": "https://arxiv.org/pdf/2606.13533v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "unified and editable generative retrieval model for e-commerce multi-branch retrieval",
+      "llm_evidence_cn": "面向电商多路检索的统一可编辑生成式检索模型",
+      "llm_evidence": "面向电商多路检索的统一可编辑生成式检索模型",
+      "canonical_evidence": "面向电商多路检索的统一可编辑生成式检索模型",
+      "llm_tldr_en": "OneRetrieval unifies multi-branch e-commerce retrieval into a single editable generative model, preserving real-time item injection capabilities while aiming to outperform traditional inverted-index methods.",
+      "llm_tldr_cn": "电商搜索通常依赖手工融合的多路检索，但缺乏联合优化且难以注入新词。OneRetrieval提出一种可编辑的生成式检索模型，通过特殊设计允许在数小时内添加新词而无需模型更新，统一了多分支检索。该模型旨在超越传统倒排索引的转化率，为工业级检索系统提供了更灵活高效的解决方案。",
+      "llm_tldr": "电商搜索通常依赖手工融合的多路检索，但缺乏联合优化且难以注入新词。OneRetrieval提出一种可编辑的生成式检索模型，通过特殊设计允许在数小时内添加新词而无需模型更新，统一了多分支检索。该模型旨在超越传统倒排索引的转化率，为工业级检索系统提供了更灵活高效的解决方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.13647v1",
+      "source": "arxiv",
+      "title": "SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation",
+      "abstract": "We introduce SkMTEB, the first comprehensive MTEB-style text embedding benchmark for Slovak, a low-resource West Slavic language, comprising 31 datasets across 7 task types -- nearly 4$\\times$ the depth of existing multilingual benchmark coverage for Slovak. Our evaluation of 31 embedding models reveals that large instruction-tuned multilingual models achieve the strongest performance, while existing Slovak-specific models trained for NLU tasks transfer poorly to embedding tasks. To address the need for efficient, locally-deployable Slovak embeddings, we develop \\texttt{e5-sk-small} (45M parameters) and \\texttt{e5-sk-large} (365M) by applying vocabulary trimming and fine-tuning to Multilingual E5 models. Despite size reductions of up to 62\\%, our open-source models achieve competitive performance with proprietary APIs while remaining locally deployable for semantic search and retrieval-augmented generation (RAG). We release the benchmark, models, datasets, and code openly, hoping our approach offers a replicable path for other under-resourced languages.",
+      "authors": [
+        "Marek Šuppa",
+        "Andrej Ridzik",
+        "Daniel Hládek",
+        "Natália Kňažeková",
+        "Viktória Ondrejová"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-11T17:50:06+00:00",
+      "link": "https://arxiv.org/pdf/2606.13647v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "comprehensive text embedding benchmark and model adaptation for a low-resource language, advancing dense retrieval models",
+      "llm_evidence_cn": "低资源语言的全面文本嵌入基准与模型适配，推动密集向量检索模型发展",
+      "llm_evidence": "低资源语言的全面文本嵌入基准与模型适配，推动密集向量检索模型发展",
+      "canonical_evidence": "低资源语言的全面文本嵌入基准与模型适配，推动密集向量检索模型发展",
+      "llm_tldr_en": "SkMTEB introduces a large-scale embedding benchmark for Slovak and develops efficient models by adapting multilingual E5, outperforming existing Slovak-specific models and enabling low-resource dense retrieval.",
+      "llm_tldr_cn": "针对斯洛伐克语缺乏全面嵌入评估基准的问题，SkMTEB构建了涵盖31个数据集、7种任务的大规模基准。通过评估发现，指令微调的多语言大模型表现最优，而现有斯洛伐克专用模型效果不佳。为此，通过词汇精简和微调多语言E5开发了两个高效模型，参数减少最高62%仍具竞争力。该基准和模型为斯洛伐克语的语义搜索和密集检索提供了重要基础。",
+      "llm_tldr": "针对斯洛伐克语缺乏全面嵌入评估基准的问题，SkMTEB构建了涵盖31个数据集、7种任务的大规模基准。通过评估发现，指令微调的多语言大模型表现最优，而现有斯洛伐克专用模型效果不佳。为此，通过词汇精简和微调多语言E5开发了两个高效模型，参数减少最高62%仍具竞争力。该基准和模型为斯洛伐克语的语义搜索和密集检索提供了重要基础。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.14275v1",
+      "source": "arxiv",
+      "title": "WikiKV: Schema-Evolving Path-Indexed Storage for Hierarchical Knowledge Navigation",
+      "abstract": "LLM-curated hierarchical knowledge bases, namely a tree-structured wiki whose nodes summarize an underlying corpus, have become a dominant substrate for retrieval-augmented applications, yet their storage layer is still treated as an implementation detail. This workload is hierarchical, query-intensive, and continuously evolving, and no existing storage model natively captures all three properties at once. We present WikiKV, a path-indexed key-value storage model purpose-built for this workload, comprising three components: (i) a data-driven schema that bootstraps the hierarchy via Intent-Anchored Schema Induction and refines it through Continuous Evolution Operators; (ii) a consistency protocol for the path-indexed storage model that precludes partial-read observations under concurrent offline rewrites without read-path locking; and (iii) a budgeted navigation operator whose search-accelerated routing reduces the expected number of LLM-assisted descent steps from d to O(1) while preserving anytime semantics with progressively refined answers. We evaluate WikiKV through real-world deployment for the WeChat Official Account AI Assistant and benchmark it against diverse baselines on the AuthTrace dataset, where it achieves balanced low per-operator latency across four query operators against relational, graph, and FS backends, and reaches 63.2% end-to-end answer correctness, exceeding multiple RAG baselines, with the gap widening on low- and high-fan-in multi-document questions. Ablation study further confirms the effectiveness of WikiKV's components.",
+      "authors": [
+        "Feifei Li",
+        "Haoliang Ming",
+        "Zihan Li",
+        "Hang Liao",
+        "Xingyu Fan",
+        "Xiaoqing Wu",
+        "Chenggong Wang",
+        "Wenhui Que"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB"
+      ],
+      "published": "2026-06-12T08:58:31+00:00",
+      "link": "https://arxiv.org/pdf/2606.14275v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "purpose-built storage model for LLM-curated hierarchical knowledge bases used in retrieval-augmented applications",
+      "llm_evidence_cn": "专为检索增强应用中LLM策展的分层知识库设计的存储模型",
+      "llm_evidence": "专为检索增强应用中LLM策展的分层知识库设计的存储模型",
+      "canonical_evidence": "专为检索增强应用中LLM策展的分层知识库设计的存储模型",
+      "llm_tldr_en": "WikiKV is a path-indexed key-value storage model for LLM-curated hierarchical knowledge bases, addressing the need for a storage layer that natively supports hierarchical, query-intensive, and evolving data in retrieval-augmented applications.",
+      "llm_tldr_cn": "现有检索增强应用广泛使用LLM策展的分层知识库，但缺乏一个原生支持分层结构、高频查询和持续演化的存储模型。WikiKV提出了一种路径索引的键值存储方案，通过意图锚定的模式归纳和连续演化算子构建数据驱动模式，并设计了一致性协议来管理路径索引。该工作为分层知识导航提供了专门的存储基板，有望提升检索增强系统的知识获取效率。",
+      "llm_tldr": "现有检索增强应用广泛使用LLM策展的分层知识库，但缺乏一个原生支持分层结构、高频查询和持续演化的存储模型。WikiKV提出了一种路径索引的键值存储方案，通过意图锚定的模式归纳和连续演化算子构建数据驱动模式，并设计了一致性协议来管理路径索引。该工作为分层知识导航提供了专门的存储基板，有望提升检索增强系统的知识获取效率。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.13717v1",
+      "source": "arxiv",
+      "title": "Personalization and Evaluation of Conversational Information Access",
+      "abstract": "Conversational interactions have reshaped information retrieval systems, as users increasingly favour direct answers over traditional hyperlinks. To build reliable Conversational Information Access (CIA) systems that account for personal context, this thesis addresses challenges: (1) personal context extraction, (2) personalized response generation, and (3) effective and interpretable system evaluation. First, we tackle personal context extraction by studying what Entity Linking (EL) in conversations entails, introducing a dataset for conversational entity linking (ConEL), and proposing CREL, a novel EL method tailored for conversational settings. Second, we focus on personalized response generation by proposing LAPS, a method for efficiently constructing large-scale, human-written, personalized conversational datasets, and using them to study how users' preferences can be utilized to generate personalized responses. Finally, we address the need for effective and interpretable system evaluation by introducing FACE, an automatic, reference-free method that assesses entire conversations and aligns closely with human judgments.",
+      "authors": [
+        "Hideaki Joko"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-11T04:11:40+00:00",
+      "link": "https://arxiv.org/pdf/2606.13717v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Thesis on conversational information access, covering entity linking and personalized response generation, integrating IR and LLMs",
+      "llm_evidence_cn": "博士论文研究对话信息访问，涉及实体链接和个性化响应生成，整合信息检索与语言模型",
+      "llm_evidence": "博士论文研究对话信息访问，涉及实体链接和个性化响应生成，整合信息检索与语言模型",
+      "canonical_evidence": "博士论文研究对话信息访问，涉及实体链接和个性化响应生成，整合信息检索与语言模型",
+      "llm_tldr_en": "This thesis addresses personalized conversational information access, proposing methods for entity linking, personalized response generation, and evaluation, advancing the integration of retrieval and language models in dialogue systems.",
+      "llm_tldr_cn": "该博士论文针对对话式信息检索中个人上下文利用不足的问题，从上下文提取、个性化响应生成和可解释评估三方面展开研究。提出对话实体链接方法CREL和高效个性化构建方法LAPS，在多个数据集上验证了显著提升，推动了检索与语言模型在对话系统中的深度融合，为个性化会话助手奠定了技术基础。",
+      "llm_tldr": "该博士论文针对对话式信息检索中个人上下文利用不足的问题，从上下文提取、个性化响应生成和可解释评估三方面展开研究。提出对话实体链接方法CREL和高效个性化构建方法LAPS，在多个数据集上验证了显著提升，推动了检索与语言模型在对话系统中的深度融合，为个性化会话助手奠定了技术基础。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "information retrieval integration with language models",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
