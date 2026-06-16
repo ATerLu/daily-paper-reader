@@ -1,0 +1,529 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-16T23:01:36.906160+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 7,
+    "quick_candidates": 6,
+    "quick_skim_target": 11,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "2606.15482v1",
+      "source": "arxiv",
+      "title": "Ricci-Filtration: Boosting Retrieval-Augmented Generation Reranker to Query-Answer Tasks by Discrete Ricci Flow",
+      "abstract": "Ricci flow is a curvature-guided diffusion process that deforms space by shrinking regions of high positive curvature and expanding those with negative curvature. Similarly, discrete Ricci flow on weighted graphs modifies edge weights by shrinking edges with positive Ricci curvature and stretching those with negative Ricci curvature, effectively increasing the separation between clusters. Inspired by these two cornerstone works, we propose a geometry-based RAG reranker enhancement procedure called Ricci-Filtration. By modeling the input query and initial retrieved chunks as a network, where the input query and chunks serve as nodes and embedding-based pairwise relations define an initial graph, Ricci-Filtration leverages discrete curvature and Ricci flow to evaluate the structural importance of each chunk with respect to the user query. The system first filters the initial chunks based on their geometric curvature relative to the query; then, a reranker processes the remaining chunks to enhance generative performance. We theoretically prove that normalized discrete Ricci flow can detect community structures by identifying distinct asymptotic behaviors in edge weights. This supports the removal of ``noisy'' document chunks characterized by large weights and negative Ricci curvature relative to the query node. Extensive experiments confirm that Ricci-Filtration outperforms several baseline reranking methods in accuracy, precision, recall, and F1 scores. Furthermore, ablation studies demonstrate that the Ricci-Filtration generally outperforms the baseline under various settings, highlighting the framework's robustness across different architectures.",
+      "authors": [
+        "Tian Qin",
+        "Wei-Min Huang"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-06-13T21:34:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.15482v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "proposes Ricci-Filtration, a geometry-based reranker enhancement for RAG using discrete Ricci flow",
+      "llm_evidence_cn": "提出Ricci-Filtration，使用离散Ricci流增强RAG重排序",
+      "llm_evidence": "提出Ricci-Filtration，使用离散Ricci流增强RAG重排序",
+      "canonical_evidence": "提出Ricci-Filtration，使用离散Ricci流增强RAG重排序",
+      "llm_tldr_en": "Ricci-Filtration models the query and retrieved chunks as a graph and applies discrete Ricci flow to reweight edges, enhancing cluster separation for better RAG reranking.",
+      "llm_tldr_cn": "针对RAG重排序中嵌入相似度可能模糊相关与不相关块区分的问题，提出Ricci-Filtration，将查询与检索块建模为网络，通过离散Ricci流调整边权重以增强聚类分离，从而提升重排序效果，在问答任务中验证了其有效性。",
+      "llm_tldr": "针对RAG重排序中嵌入相似度可能模糊相关与不相关块区分的问题，提出Ricci-Filtration，将查询与检索块建模为网络，通过离散Ricci流调整边权重以增强聚类分离，从而提升重排序效果，在问答任务中验证了其有效性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.15971v1",
+      "source": "arxiv",
+      "title": "SAG: SQL-Retrieval Augmented Generation with Query-Time Dynamic Hyperedges",
+      "abstract": "Retrieval-Augmented Generation (RAG) offers an effective approach for large language models to access external knowledge. However, existing methods rely on dense similarity retrieval and face inherent limitations in handling structured constraints and multi-hop reasoning. Incorporating knowledge graphs partially alleviates these issues, but at the cost of semantic fragmentation, high maintenance overhead, and difficult incremental updates. This paper introduces SAG (SQLRetrieval Augmented Generation), a structured architecture for retrieval and agent systems. Instead of pre-building a global static graph, SAG converts each chunk into one semantically complete event and a set of indexing entities, then uses SQL join queries to dynamically link events that share entities into local hyperedges,constructing, at query time, a dynamically instantiated local index structure. This design avoids the need for global graph rebuilding and ongoing maintenance; the system naturally supports incremental writes, concurrent processing, and continuous scaling through its reliance on standard database infrastructure. Across HotpotQA, 2WikiMultiHop, and MuSiQue, three standard multi-hop benchmarks,SAG achieves the best results on 8 out of 9 Recall@K metrics, reaching 80.0% Recall@5 on MuSiQue, the benchmark with the highest multi-hop reasoning demands.SAG has also been deployed at a production scale of hundreds of millions of data items, with online retrieval latency kept within seconds. Project site and code are available at https://github.com/Zleap-AI/SAG-Benchmark.",
+      "authors": [
+        "Yuchao Wu",
+        "Junqin Li",
+        "XingCheng Liang",
+        "Yongjie Chen",
+        "Yinghao Liang",
+        "Linyuan Mo",
+        "Guanxian Li"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-14T18:52:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.15971v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "SQL-based structured retrieval for RAG with dynamic hyperedges",
+      "llm_evidence_cn": "基于SQL的结构化检索增强生成，使用动态超边",
+      "llm_evidence": "基于SQL的结构化检索增强生成，使用动态超边",
+      "canonical_evidence": "基于SQL的结构化检索增强生成，使用动态超边",
+      "llm_tldr_en": "Proposes SAG, a structured retrieval framework for RAG that uses SQL join queries on dynamically linked events, overcoming limitations of dense retrieval in handling multi-hop and constrained queries.",
+      "llm_tldr_cn": "现有RAG依赖稠密相似性检索，难以处理结构化约束和多跳推理。本文提出SAG架构，将文本块转化为语义完整事件和索引实体，通过SQL连接查询动态构建超边关系，实现结构化检索增强生成。实验表明，SAG在多跳问题回答和约束处理上优于传统RAG方法，且支持增量更新，降低了知识图谱的维护成本。",
+      "llm_tldr": "现有RAG依赖稠密相似性检索，难以处理结构化约束和多跳推理。本文提出SAG架构，将文本块转化为语义完整事件和索引实体，通过SQL连接查询动态构建超边关系，实现结构化检索增强生成。实验表明，SAG在多跳问题回答和约束处理上优于传统RAG方法，且支持增量更新，降低了知识图谱的维护成本。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.16661v1",
+      "source": "arxiv",
+      "title": "SCAR: Semantic Continuity-Aware Retrieval for Efficient Context Expansion in RAG",
+      "abstract": "Fixed-length chunking in Retrieval-Augmented Generation (RAG) often leads to boundary fragmentation, where critical evidence is split across segments, degrading retrieval recall. While static windowing and parent retrieval improve recall, they introduce significant token overhead. We propose SCAR (Semantic Continuity-Aware Retrieval), an adaptive retrieval policy that selectively expands neighboring chunks by weighing query-neighbor relevance against a structural continuity penalty. SCAR uses a relative expansion threshold tied to each retrieved chunk's own query-relevance, yielding an approximately scale-invariant decision rule that transfers across embedding models without recalibration. Across four diverse corpora (RFC, GDPR, a 10-K report, and a Merger agreement; N=320 queries; 160 boundary-fragmented), SCAR achieves 92.8% recall on boundary-fragmented queries with only 7.84 chunks, a 22.9% reduction compared to static windowing (10.16 chunks). Paired bootstrap tests (B=10,000) confirm the chunk reduction is highly significant (p<0.0001, Cohen's d=-1.49, large effect), with a small recall difference (Cohen's d=-0.33). The policy transfers across three embedding models (text-embedding-3-large, BGE-large-en-v1.5, zembed-1) using the same single hyperparameter setting, and downstream RAGAS evaluation on the 10-K corpus confirms SCAR preserves generation faithfulness while reducing context tokens by 27.1%.",
+      "authors": [
+        "Nathanaël Langlois"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.CL"
+      ],
+      "published": "2026-06-15T12:55:49+00:00",
+      "link": "https://arxiv.org/pdf/2606.16661v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "proposes SCAR, an adaptive retrieval policy that expands chunks based on semantic continuity to improve RAG recall",
+      "llm_evidence_cn": "提出SCAR，一种基于语义连续性自适应扩展块以提高RAG召回的策略",
+      "llm_evidence": "提出SCAR，一种基于语义连续性自适应扩展块以提高RAG召回的策略",
+      "canonical_evidence": "提出SCAR，一种基于语义连续性自适应扩展块以提高RAG召回的策略",
+      "llm_tldr_en": "SCAR adaptively expands neighboring chunks by weighing query-neighbor relevance against continuity penalty, using a scale-invariant rule to improve recall without recalibration across models.",
+      "llm_tldr_cn": "针对RAG中固定长度分块导致边界证据割裂、传统窗口扩展引入大量冗余token的问题，提出语义连续性感知检索策略SCAR，通过平衡邻居相关性与结构连续性惩罚自适应扩展邻近块，获得可跨嵌入模型迁移的尺度不变决策规则，在多个数据集上兼顾检索召回与token效率。",
+      "llm_tldr": "针对RAG中固定长度分块导致边界证据割裂、传统窗口扩展引入大量冗余token的问题，提出语义连续性感知检索策略SCAR，通过平衡邻居相关性与结构连续性惩罚自适应扩展邻近块，获得可跨嵌入模型迁移的尺度不变决策规则，在多个数据集上兼顾检索召回与token效率。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.14817v1",
+      "source": "arxiv",
+      "title": "Combining Retrieval-Augmented Text Generation with LLMs for Reading Content Recommendations",
+      "abstract": "This work presents the design, implementation, and evaluation of a system for generating personalized reading content using Large Language Models (LLMs) combined with Retrieval-Augmented Generation (RAG). The proposed architecture consists of four modules: Input, RAG, Generation, and Judging and enables users to specify both a question and a target reading content complexity. RAG is employed to retrieve relevant information from the Internet, enriching and grounding the content produced by three modern LLMs: Meta LLaMA 4 Scout, LLaMA 3.1 8B Instant, and Google Gemma2 9B. Reading materials are generated using three prompting strategies (Chain-of-Thought, zero-shot, and few-shot), and the LLM-as-a-Judge module automatically evaluates answer quality and alignment with the desired readability level. Experimental results show that RAG consistently improves system performance across all models and prompting techniques, increasing relevance and particularly groundedness by up to 26-35 percentage points. Overall, the findings demonstrate that the RAG-augmented architecture effectively produces reading content tailored to user queries and desired textual complexity.",
+      "authors": [
+        "Sooyeon Kim",
+        "Piotr S. Maciąg"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-06-12T11:07:54+00:00",
+      "link": "https://arxiv.org/pdf/2606.14817v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Combines RAG and LLMs for personalized reading content generation",
+      "llm_evidence_cn": "结合RAG与LLM的个性化阅读内容生成系统",
+      "llm_evidence": "结合RAG与LLM的个性化阅读内容生成系统",
+      "canonical_evidence": "结合RAG与LLM的个性化阅读内容生成系统",
+      "llm_tldr_en": "Presents a system that integrates retrieval-augmented generation with LLMs (LLaMA, Gemma) to produce personalized reading materials, using various prompting strategies and automated evaluation.",
+      "llm_tldr_cn": "该文设计并实现了一个结合检索增强生成（RAG）与大语言模型（LLM）的个性化阅读内容推荐系统。通过互联网检索相关信息，利用三种提示策略生成内容，并采用LLM裁判自动评估质量。实验表明，RAG能有效提升内容的基础性和准确性，为教育等领域提供实用方案。",
+      "llm_tldr": "该文设计并实现了一个结合检索增强生成（RAG）与大语言模型（LLM）的个性化阅读内容推荐系统。通过互联网检索相关信息，利用三种提示策略生成内容，并采用LLM裁判自动评估质量。实验表明，RAG能有效提升内容的基础性和准确性，为教育等领域提供实用方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.14875v1",
+      "source": "arxiv",
+      "title": "Context Compression Is Not One Thing: Readable Symbolic Re-expression vs. Coherent Summary at Matched Budget",
+      "abstract": "We study context compression for multi-hop question answering with small language models. We propose Telegraph English, a readable symbolic format that rewrites retrieved passages into structured entity-relation statements, preserving reasoning evidence at lower token cost. In controlled experiments on MuSiQue, TwoWiki, and HotpotQA, Telegraph English outperforms three matched-budget compression baselines (character-level deletion, truncation, and random sub-sampling) on every dataset, with gains of 13 to 20 F1 percentage point. It also outperforms a coherent prose summary produced by the same encoder on the hardest dataset. A pre-registered depth-interaction hypothesis is null: the advantage does not grow with reasoning depth within datasets. We interpret these results as evidence that readable symbolic re-expression preserves entity content more densely than either natural language or coherent summarization at matched token budget.",
+      "authors": [
+        "Sisong Bei",
+        "Mikhail L. Arbuzov",
+        "Ziwei Dong",
+        "Dmitri Kalaev",
+        "Alexey Shvets"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-12T18:27:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.14875v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes Telegraph English, a symbolic format for compressing retrieved passages to improve multi-hop QA with small language models",
+      "llm_evidence_cn": "提出Telegraph English，一种将检索到的段落压缩为结构化实体-关系语句的可读符号格式",
+      "llm_evidence": "提出Telegraph English，一种将检索到的段落压缩为结构化实体-关系语句的可读符号格式",
+      "canonical_evidence": "提出Telegraph English，一种将检索到的段落压缩为结构化实体-关系语句的可读符号格式",
+      "llm_tldr_en": "Telegraph English rewrites retrieved passages into structured entity-relation statements, preserving reasoning evidence at lower token cost, and outperforms prose summaries on multi-hop QA.",
+      "llm_tldr_cn": "针对小模型多跳问答中上下文压缩问题，提出Telegraph English，将检索段落重写为可读的结构化实体-关系格式，在保持推理证据的同时降低token成本，在MuSiQue、TwoWiki等数据集上显著优于字符删除等基线，表明符号化重表达是高效利用检索上下文的可行途径。",
+      "llm_tldr": "针对小模型多跳问答中上下文压缩问题，提出Telegraph English，将检索段落重写为可读的结构化实体-关系格式，在保持推理证据的同时降低token成本，在MuSiQue、TwoWiki等数据集上显著优于字符删除等基线，表明符号化重表达是高效利用检索上下文的可行途径。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.16093v1",
+      "source": "arxiv",
+      "title": "Long-Context Modeling via GSS-Transformer Hybrid Architecture with Learnable Mixing",
+      "abstract": "Modeling long-range dependencies remains a central challenge in natural language processing. Transformer architectures achieve strong performance via self-attention but scale quadratically ($O(N^2)$) with sequence length, while State Space Models (SSMs) scale linearly ($O(N)$) but suffer from a selective recall bottleneck, struggling to retrieve precise information from compressed states. This creates a fundamental tradeoff between efficiency and perplexity. To tackle these challenges, we propose the \\textit{Parallel Hybrid Architecture (PHA)}, which runs Gated State Spaces (GSS), Grouped Query Attention (GQA), and Feed-Forward Networks (FFNs) as independent parallel branches fused by a learnable mixing mechanism. Instead of forcing SSMs to approximate attention or serializing the two paradigms, PHA allows each branch to specialize: GSS captures global context, while attention performs selective retrieval, with FFN providing complementary processing. On WikiText-103, PHA achieves 16.51 PPL at 125M parameters, outperforming Hedgehog (16.70) and H3-125M (23.70). Scaling to 180M parameters yields 16.42 PPL, which gives comparable results with the pure attention baseline while delivering 24\\% higher throughput and up to 40\\% lower memory usage at long contexts. On OpenWebText, our 125M model achieves 19.72 PPL, outperforming standard Transformers (20.60) and GSS hybrid baselines (19.80). These results demonstrate that separating sequence modeling paradigms into parallel specialists enables Transformer-level perplexity with substantially improved efficiency for long-context language modeling.",
+      "authors": [
+        "Kuzey Torlak",
+        "Hüseyin Arda Arslan",
+        "Anıl Dervişoğlu",
+        "Beyza Nur Deniz",
+        "Onur Boyar"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-15T01:17:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.16093v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes Parallel Hybrid Architecture (PHA) combining Gated State Spaces and Transformer with learnable mixing for long-context modeling",
+      "llm_evidence_cn": "提出并行混合架构PHA，结合门控状态空间与Transformer并通过可学习混合融合",
+      "llm_evidence": "提出并行混合架构PHA，结合门控状态空间与Transformer并通过可学习混合融合",
+      "canonical_evidence": "提出并行混合架构PHA，结合门控状态空间与Transformer并通过可学习混合融合",
+      "llm_tldr_en": "PHA runs GSS, GQA, and FFN in parallel with learnable mixing, combining linear and quadratic attention strengths for efficient long-context modeling.",
+      "llm_tldr_cn": "针对Transformer自注意力二次复杂度与状态空间模型选择性召回瓶颈之间的权衡，提出并行混合架构PHA，将门控状态空间、分组查询注意力与前馈网络并行运行并通过可学习混合融合，在保持高效长上下文建模的同时提升困惑度，为混合架构设计提供了新方案。",
+      "llm_tldr": "针对Transformer自注意力二次复杂度与状态空间模型选择性召回瓶颈之间的权衡，提出并行混合架构PHA，将门控状态空间、分组查询注意力与前馈网络并行运行并通过可学习混合融合，在保持高效长上下文建模的同时提升困惑度，为混合架构设计提供了新方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.16817v1",
+      "source": "arxiv",
+      "title": "Understanding the Behaviors of Environment-aware Information Retrieval",
+      "abstract": "Recent retrieval-augmented generation (RAG) approaches have demonstrated strong capability in handling complex queries, yet current research overlooks a critical challenge: different retrievers require fundamentally different query formulation strategies for optimal performance. In this work, we present the first systematic analysis of how LLMs can learn to adapt their query formulation strategies for different retrievers via reinforcement learning (RL). Our empirical study reveals that RL effectively teaches an LLM to tailor its queries to specific retriever characteristics. We discover that different retrievers exhibit surprisingly distinct optimal query styles (e.g., descriptive vs. question-like), suggesting strategies learned for one retriever ineffective for another. We further show that performance can be enhanced by incorporating retriever-specific human guidance and by scaling model size. To facilitate learning over multi-retrieval-step trajectories, we introduce a branching-based rollout technique that improves training stability. Our work provides the first empirical evidence and actionable insights for building truly retriever-aware RAG systems. Code and resources are available at https://github.com/LCO-Embedding/Envs-aware-Information-Retrieval.",
+      "authors": [
+        "Ruifeng Yuan",
+        "Chaohao Yuan",
+        "David Dai",
+        "Yu Rong",
+        "Hong Cheng",
+        "Hou Pong Chan",
+        "Chenghao Xiao"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-15T15:02:52+00:00",
+      "link": "https://arxiv.org/pdf/2606.16817v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "RL-based adaptation of LLM query formulation strategies for different retrievers in RAG",
+      "llm_evidence_cn": "基于强化学习的LLM查询策略适应不同检索器以实现RAG",
+      "llm_evidence": "基于强化学习的LLM查询策略适应不同检索器以实现RAG",
+      "canonical_evidence": "基于强化学习的LLM查询策略适应不同检索器以实现RAG",
+      "llm_tldr_en": "First systematic analysis showing LLMs can learn to adapt query formulation for different retrievers via RL, discovering distinct optimal query styles for each retriever.",
+      "llm_tldr_cn": "现有RAG研究忽视了一个关键挑战：不同检索器需要不同的查询构建策略才能实现最佳性能。本文首次系统分析了如何通过强化学习教会LLM针对不同检索器调整查询表述。实证研究表明，强化学习有效使LLM适应特定检索器特性，不同检索器展现出截然不同的最优查询风格（如描述式vs.疑问式），为RAG系统的查询优化提供了重要指导。",
+      "llm_tldr": "现有RAG研究忽视了一个关键挑战：不同检索器需要不同的查询构建策略才能实现最佳性能。本文首次系统分析了如何通过强化学习教会LLM针对不同检索器调整查询表述。实证研究表明，强化学习有效使LLM适应特定检索器特性，不同检索器展现出截然不同的最优查询风格（如描述式vs.疑问式），为RAG系统的查询优化提供了重要指导。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.15179v1",
+      "source": "arxiv",
+      "title": "CONCORD: Asynchronous Sparse Aggregation for Device-Cloud RAG under Document Isolation",
+      "abstract": "Retrieval-augmented generation (RAG) has emerged as a pivotal technique for improving language models by incorporating external knowledge at inference time. As device-cloud collaborative inference makes it feasible to deploy small language models on edge devices, a new setting arises in which private documents remain on the device and public knowledge resides in the cloud. Privacy and policy constraints often forbid raw document exchange, creating a document-isolated dual-end RAG setting. However, existing methods rely on frequent remote synchronization and dense evidence transfer, limiting throughput under realistic latency and bandwidth conditions. To address this issue, we propose CONCORD, an asynchronous sparse aggregation framework for dual-end RAG under document isolation. CONCORD treats the cloud as an asynchronously arriving evidence source rather than a continuously synchronized co-generator. Specifically, we introduce waiting debt control to decide whether each decoding step should continue waiting for remote participation based on the observed return of waiting. We also design a certificate-guided minimal supplementation mechanism that requests only the remote evidence needed to determine the current greedy decision. Steps that consult the cloud preserve the same greedy token as dense dual-end aggregation, while the remaining steps commit locally without remote evidence. Experiments on Natural Questions and WikiText-2 show that CONCORD improves end-to-end throughput over baselines by $1.66\\times$ and $2.15\\times$, respectively, while reducing per-token communication by over two orders of magnitude and maintaining comparable answer quality and perplexity.",
+      "authors": [
+        "Xuedong Hu",
+        "Zhiqing Tang",
+        "Zhi Yao",
+        "Tian Wang",
+        "Weijia Jia"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-13T08:00:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.15179v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes CONCORD, an asynchronous sparse aggregation framework for RAG under document isolation",
+      "llm_evidence_cn": "提出CONCORD，一种文档隔离环境下用于RAG的异步稀疏聚合框架",
+      "llm_evidence": "提出CONCORD，一种文档隔离环境下用于RAG的异步稀疏聚合框架",
+      "canonical_evidence": "提出CONCORD，一种文档隔离环境下用于RAG的异步稀疏聚合框架",
+      "llm_tldr_en": "Introduces CONCORD, an asynchronous sparse aggregation framework for device-cloud RAG with document isolation, improving throughput under latency/bandwidth constraints while preserving privacy.",
+      "llm_tldr_cn": "针对设备-云环境中文档隔离导致的双端RAG挑战，本文提出异步稀疏聚合框架CONCORD，通过稀疏证据传输和异步更新，显著提升吞吐量，同时满足隐私要求，为边缘RAG部署提供了实用方案。",
+      "llm_tldr": "针对设备-云环境中文档隔离导致的双端RAG挑战，本文提出异步稀疏聚合框架CONCORD，通过稀疏证据传输和异步更新，显著提升吞吐量，同时满足隐私要求，为边缘RAG部署提供了实用方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.15998v1",
+      "source": "arxiv",
+      "title": "Entity Labels Are Not Entity Signals: A Framework for Observable Relevance in Document Re-Ranking",
+      "abstract": "Entity-aware document retrieval uses query-associated entities as ranking signals, assuming that semantically relevant entities are also useful retrieval signals. We show this assumption is insufficient- and explain why. Unlike terms, which are ground-truth observations, entity links are hypotheses produced by an imperfect linker: an entity can be topically central yet provide no discriminative signal if the linker fires indiscriminately across relevant and non-relevant documents. We formalize this as a distinction between Conceptual Entity Relevance (CER)- whether an entity is topically related to a query- and Observable Entity Relevance (OER)- whether its observed presence in a collection discriminates relevant from non-relevant documents. Across four collections and annotation sources including human entity judgments, CER and OER exhibit near-chance agreement ($κ\\approx 0$), while OER operationalizations agree substantially ($κ\\approx 0.5$), confirming CER as the systematic outlier. CER-based supervision selects topically plausible but weakly discriminative entities, pruning fewer than 4% of non-relevant documents on some collections. Aligning supervision with OER improves non-relevant pruning by up to 10x and open-world MAP by 0.051 over BM25. Our findings motivate a shift from conceptual to observable notions of entity relevance in entity-aware retrieval.",
+      "authors": [
+        "Utshab Kumar Ghosh",
+        "Shubham Chatterjee"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-06-14T19:52:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.15998v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes a framework for observable entity relevance in document re-ranking",
+      "llm_evidence_cn": "提出文档重排序中可观察实体相关性框架",
+      "llm_evidence": "提出文档重排序中可观察实体相关性框架",
+      "canonical_evidence": "提出文档重排序中可观察实体相关性框架",
+      "llm_tldr_en": "Distinguishing conceptual vs. observable entity relevance to improve entity-aware re-ranking, showing linked entities often fail as discriminative signals.",
+      "llm_tldr_cn": "针对实体感知检索中假设语义相关实体即为有用信号的问题，提出概念实体相关性与可观察实体相关性的区分，指出实体链接器的失效会导致实体信号丧失区分力。在重排序实验中验证了新框架能更有效利用实体信息，为知识检索中的实体利用提供了理论洞察。",
+      "llm_tldr": "针对实体感知检索中假设语义相关实体即为有用信号的问题，提出概念实体相关性与可观察实体相关性的区分，指出实体链接器的失效会导致实体信号丧失区分力。在重排序实验中验证了新框架能更有效利用实体信息，为知识检索中的实体利用提供了理论洞察。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.15345v1",
+      "source": "arxiv",
+      "title": "Beyond Monolingual Deep Research: Evaluating Agents and Retrievers with Cross-Lingual BrowseComp-Plus",
+      "abstract": "Deep research agents are increasingly evaluated on their ability to search for evidence, reason over retrieved sources, and produce grounded answers. Existing browsing benchmarks, however, largely assume that the user's query and the supporting evidence are written in the same language, leaving open whether agentic search systems can operate when relevant evidence appears in another language. We introduce XBCP (Cross-lingual BrowseComp-Plus), a controlled benchmark that preserves the English question-and-answer space of BrowseComp-Plus but varies the languages of the supporting documents. XBCP instantiates two complementary settings: in the cross-lingual setting, each query is paired with evidence in a single assigned language. In the multilingual setting, the full evidence corpus is distributed equally and randomly across 12 languages spanning high-resource and low-resource regimes. We evaluate four deep research agents using sparse and dense multilingual retrievers, measuring answer accuracy, evidence recall, search behavior, calibration, citation fidelity, and oracle retrieval. Results reveal substantial degradation when evidence is translated. Even strong, dense retrievers lose evidence recall, and agents become less calibrated and cite evidence less reliably. Notably, accuracy remains lower even when all gold evidence is supplied directly. These findings suggest that cross-lingual deep research exposes both retrieval failures and an independent, agent-side difficulty in integrating language-mismatched evidence.",
+      "authors": [
+        "Yuheng Lu",
+        "Qingcheng Zeng",
+        "Heli Qi",
+        "Puxuan Yu",
+        "Fuheng Zhao",
+        "Rui Yang",
+        "Hitomi Yanaka",
+        "Naoto Yokoya",
+        "Weihao Xuan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-13T15:11:52+00:00",
+      "link": "https://arxiv.org/pdf/2606.15345v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Introduces XBCP, a cross-lingual benchmark for evaluating retrieval agents and retrievers in deep research",
+      "llm_evidence_cn": "介绍XBCP，一个用于评估深度研究中检索代理和检索器的跨语言基准",
+      "llm_evidence": "介绍XBCP，一个用于评估深度研究中检索代理和检索器的跨语言基准",
+      "canonical_evidence": "介绍XBCP，一个用于评估深度研究中检索代理和检索器的跨语言基准",
+      "llm_tldr_en": "Proposes a cross-lingual benchmark XBCP to evaluate retrieval agents and retrievers when evidence is in different languages, revealing performance drops and highlighting the need for multilingual retrieval improvements.",
+      "llm_tldr_cn": "本文提出跨语言浏览基准XBCP，通过改写BrowseComp-Plus的证据语言，评估深度研究代理和检索器在多语言环境下的表现。结果表明现有模型在跨语言检索中性能显著下降，强调了知识检索系统在多语言场景下的不足和提升方向。",
+      "llm_tldr": "本文提出跨语言浏览基准XBCP，通过改写BrowseComp-Plus的证据语言，评估深度研究代理和检索器在多语言环境下的表现。结果表明现有模型在跨语言检索中性能显著下降，强调了知识检索系统在多语言场景下的不足和提升方向。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.15778v1",
+      "source": "arxiv",
+      "title": "DYNA : Dynamic Episodic Memory Networks for Augmenting Large Language Models with Temporal Knowledge Graphs in Continuous Learning",
+      "abstract": "Large Language Models (LLMs) struggle to incorporate new knowledge without forgetting or costly retraining. We propose DYNA, a lightweight framework that augments a frozen LLM with a temporal knowledge graph where events are nodes and temporal relations are directed, timestamped edges. The graph serves as an external, updatable memory. At query time, DYNA retrieves relevant nodes via random walks and centrality measures, then augments the LLM's response. Evaluated on three temporal recall tasks, DYNA reduces catastrophic forgetting by ~7% compared to fine-tuning and improves temporal ordering by ~5% over standard RAG. Higher graph clustering coefficients correlate with better retrieval, showing that graph structure matters. Contributions: (1) episodic memory as temporal KG, (2) retraining-free LLM augmentation, (3) graph properties as predictors of retrieval performance.",
+      "authors": [
+        "Ali Sarabadani",
+        "Mahtab Tajvidiyan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG",
+        "cs.SI"
+      ],
+      "published": "2026-06-14T12:27:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.15778v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Augments LLM with temporal knowledge graph as external memory, retrieves relevant nodes to enhance response",
+      "llm_evidence_cn": "用时序知识图谱增强LLM，检索相关节点以改进回答",
+      "llm_evidence": "用时序知识图谱增强LLM，检索相关节点以改进回答",
+      "canonical_evidence": "用时序知识图谱增强LLM，检索相关节点以改进回答",
+      "llm_tldr_en": "DYNA augments a frozen LLM with a temporal knowledge graph as updatable memory, retrieves relevant nodes via random walks, and reduces catastrophic forgetting by 7% and improves temporal ordering by 5% over standard RAG.",
+      "llm_tldr_cn": "LLM在吸收新知识时容易遗忘或需要昂贵重训练。DYNA提出将冻结的LLM与时序知识图谱结合，图中事件为节点、时序关系为带时间戳的有向边，作为可更新的外部记忆；查询时通过随机游走和中心性度量检索相关节点，增强LLM的响应。在三个时序召回任务上，比微调减少约7%灾难性遗忘，比标准RAG提升约5%时序排序能力，且图聚类系数与检索质量正相关。",
+      "llm_tldr": "LLM在吸收新知识时容易遗忘或需要昂贵重训练。DYNA提出将冻结的LLM与时序知识图谱结合，图中事件为节点、时序关系为带时间戳的有向边，作为可更新的外部记忆；查询时通过随机游走和中心性度量检索相关节点，增强LLM的响应。在三个时序召回任务上，比微调减少约7%灾难性遗忘，比标准RAG提升约5%时序排序能力，且图聚类系数与检索质量正相关。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.16316v1",
+      "source": "arxiv",
+      "title": "RL-Index: Reinforcement Learning for Retrieval Index Reasoning",
+      "abstract": "Retrieving external knowledge is essential for solving real-world tasks, yet it remains challenging when the relationship between a query and its relevant knowledge involves implicit and complex reasoning beyond surface-level semantic or lexical matching (e.g., mathematical problems relying on the same theorem or coding requiring deep reasoning). Existing approaches primarily rely on query-side reasoning (e.g., query rewriting), which introduces significant online latency and underutilizes the opportunity to perform reasoning over the knowledge corpus itself (i.e., index-side reasoning). In this paper, we propose RL-Index, an agentic indexing framework that formulates retrieval index reasoning as a reinforcement learning problem. Instead of performing reasoning at query time, RL-Index shifts reasoning to the indexing stage by augmenting documents with LLM-generated rationales that explicitly encode the latent query-knowledge relationship. To optimize the quality of these rationales, we employ Group Relative Policy Optimization (GRPO) and use retrieval similarity as a verifiable reward signal, enabling direct optimization of indexing decisions for retrieval effectiveness. Extensive experiments on the BRIGHT benchmark demonstrate that RL-Index consistently improves both retrieval and downstream question-answering performance, while significantly reducing online inference latency. Moreover, the learned rationale augmentation generalizes across diverse retrievers and generators, highlighting its robustness as a plug-and-play indexing strategy across different retrieval systems.",
+      "authors": [
+        "Yongjia Lei",
+        "Nedim Lipka",
+        "Zhisheng Qi",
+        "Utkarsh Sahu",
+        "Koustava Goswami",
+        "Franck Dernoncourt",
+        "Ryan A. Rossi",
+        "Yu Wang"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-15T07:22:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.16316v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes RL-Index, using reinforcement learning for retrieval index reasoning to improve complex knowledge retrieval",
+      "llm_evidence_cn": "提出RL-Index，使用强化学习进行检索索引推理以提升复杂知识检索",
+      "llm_evidence": "提出RL-Index，使用强化学习进行检索索引推理以提升复杂知识检索",
+      "canonical_evidence": "提出RL-Index，使用强化学习进行检索索引推理以提升复杂知识检索",
+      "llm_tldr_en": "Proposes RL-Index, a framework that uses reinforcement learning for reasoning over retrieval indices offline, enabling improved retrieval for complex queries requiring implicit reasoning beyond surface matching.",
+      "llm_tldr_cn": "为解决需要深层推理的知识检索（如数学或编程问题），本文提出RL-Index，将索引推理形式化为强化学习问题，通过离线训练索引代理执行索引侧推理，避免在线查询改写的高延迟。实验表明该方法能提升复杂查询的检索性能，为RAG系统中的检索步骤提供了新思路。",
+      "llm_tldr": "为解决需要深层推理的知识检索（如数学或编程问题），本文提出RL-Index，将索引推理形式化为强化学习问题，通过离线训练索引代理执行索引侧推理，避免在线查询改写的高延迟。实验表明该方法能提升复杂查询的检索性能，为RAG系统中的检索步骤提供了新思路。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.15838v1",
+      "source": "arxiv",
+      "title": "Intelligent Multimodal Retrieval and Reasoning for Geospatial Knowledge Discovery on the I-GUIDE Platform",
+      "abstract": "Geospatial knowledge discovery increasingly requires search across heterogeneous artifacts: datasets, maps, notebooks, software, publications, and the provenance links among them. Conventional geoportals support metadata and spatial filtering, but they rarely provide semantic retrieval, graph-aware provenance traversal, and conversational synthesis in one integrated system. This paper presents I-GUIDE Smart Search, a production multimodal geospatial retrieval-augmented generation (RAG) system embedded in the I-GUIDE Platform, and reports on its design, deployment, and evaluation. The system combines production-maintained OpenSearch keyword, vector, and spatial indexes with a Neo4j knowledge graph and an iterative RAG pipeline for memory-aware query augmentation, reasoning, retrieval-method routing, relevance grading, grounded generation, hallucination and relevance checking. In a single-A100 RAG deployment, I-GUIDE Smart Search supports interactive use up to about 100 concurrent simulated users, reaching 4.4 requests per second with p50 latency near 25 seconds despite 20-50 LLM calls per query. For answer quality, we evaluate a four-category benchmark of 170 unique human-filtered user-facing queries, together with ten intent-specific probe sets generated from the deployed indexes and graph. Smart Search improves retrieved evidence coverage and judged answer quality over non-retrieval and naive-RAG baselines, with the clearest gains on exact-identifier, spatially constrained, simple-recommendation, and domain-specific factual queries requiring current indexed evidence. We distill transferable deployment lessons for spatial RAG systems, covering spatial metadata quality, graph provenance, retrieval routing, interface contracts, refusal-aware evaluation, latency-cost tradeoffs, and the role of the user interface in deployed geospatial cyberinfrastructure.",
+      "authors": [
+        "Yunfan Kang",
+        "Erick Li",
+        "Furqan Baig",
+        "Wei Hu",
+        "Alexander Michels",
+        "Anand Padmanabhan",
+        "Shaowen Wang"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-14T14:39:29+00:00",
+      "link": "https://arxiv.org/pdf/2606.15838v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Presents a production multimodal retrieval-augmented generation system for geospatial knowledge",
+      "llm_evidence_cn": "提出一个用于地理空间知识的生产级多模态检索增强生成系统",
+      "llm_evidence": "提出一个用于地理空间知识的生产级多模态检索增强生成系统",
+      "canonical_evidence": "提出一个用于地理空间知识的生产级多模态检索增强生成系统",
+      "llm_tldr_en": "Designs and deploys a production multimodal RAG system for geospatial knowledge discovery, combining vector/keyword/spatial indexing with a knowledge graph and iterative RAG to enable semantic search and conversational synthesis.",
+      "llm_tldr_cn": "本文设计并部署了I-GUIDE智能搜索，一个生产级多模态检索增强生成系统，集成OpenSearch索引、Neo4j知识图谱和迭代RAG，以支持地理空间知识发现。系统验证了RAG在跨模态、图感知检索中的有效性。",
+      "llm_tldr": "本文设计并部署了I-GUIDE智能搜索，一个生产级多模态检索增强生成系统，集成OpenSearch索引、Neo4j知识图谱和迭代RAG，以支持地理空间知识发现。系统验证了RAG在跨模态、图感知检索中的有效性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}
