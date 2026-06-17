@@ -6,61 +6,61 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-16
-- 运行时间：2026-06-16 23:09:28 UTC
+- 最新运行日期：2026-06-17
+- 运行时间：2026-06-17 22:05:20 UTC
 - 运行状态：成功
 - 本次总论文数：13
-- 精读区：7
-- 速读区：6
+- 精读区：6
+- 速读区：7
 
 ### 今日简报（AI）
-今日精读7篇、速读6篇RAG前沿论文，其中两篇满分精读展示检索增强生成向离散几何流与结构化查询的深度演化。
-最值得关注的方向：利用离散Ricci流优化问答重排序，以及基于查询时动态超边的SQL检索增强生成。
-建议优先阅读这两篇满分论文，再结合异步稀疏聚合、动态记忆网络等速读工作，跟进RAG在精度、隔离性与持续学习上的最新突破。
-- 详情：[/202606/16/README](/202606/16/README)
+今日精读聚焦多模态检索与幻觉缓解，速读覆盖持续训练、事件图像描述与无监督检索优化。  
+最值得关注的是 miniReranker 用视觉缓存复用与交互稀疏化实现高效多模态重排序，以及检索增强的可信推理如何抑制视觉幻觉。  
+推荐读者跟进多模态系统中的效率与可信度平衡，尝试将缓存复用思维融入自己的检索管线。
+- 详情：[/202606/17/README](/202606/17/README)
 
 ### 精读区论文标签
-1. [Ricci-Filtration: Boosting Retrieval-Augmented Generation Reranker to Query-Answer Tasks by Discrete Ricci Flow](/202606/16/2606.15482v1-ricci-filtration-boosting-retrieval-augmented-generation-reranker-to-query-answer-tasks-by-discrete-ricci-flow)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：提出Ricci-Filtration，使用离散Ricci流增强RAG重排序
-2. [SAG: SQL-Retrieval Augmented Generation with Query-Time Dynamic Hyperedges](/202606/16/2606.15971v1-sag-sql-retrieval-augmented-generation-with-query-time-dynamic-hyperedges)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：基于SQL的结构化检索增强生成，使用动态超边
-3. [SCAR: Semantic Continuity-Aware Retrieval for Efficient Context Expansion in RAG](/202606/16/2606.16661v1-scar-semantic-continuity-aware-retrieval-for-efficient-context-expansion-in-rag)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：提出SCAR，一种基于语义连续性自适应扩展块以提高RAG召回的策略
-4. [Combining Retrieval-Augmented Text Generation with LLMs for Reading Content Recommendations](/202606/16/2606.14817v1-combining-retrieval-augmented-text-generation-with-llms-for-reading-content-recommendations)  
+1. [miniReranker: Efficient Multimodal Reranking through Visual Cache Reuse and Interaction Sparsity](/202606/17/2606.10759v2-minireranker-efficient-multimodal-reranking-through-visual-cache-reuse-and-interaction-sparsity)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：结合RAG与LLM的个性化阅读内容生成系统
-5. [Context Compression Is Not One Thing: Readable Symbolic Re-expression vs. Coherent Summary at Matched Budget](/202606/16/2606.14875v1-context-compression-is-not-one-thing-readable-symbolic-re-expression-vs-coherent-summary-at-matched-budget)  
+   evidence：提出通过视觉缓存复用与交互稀疏化实现高效多模态重排序，用于检索增强生成。
+2. [Mitigating Visual Hallucinations in Multimodal Systems through Retrieval-Augmented Reliability-Aware Inference](/202606/17/2606.15782v1-mitigating-visual-hallucinations-in-multimodal-systems-through-retrieval-augmented-reliability-aware-inference)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出Telegraph English，一种将检索到的段落压缩为结构化实体-关系语句的可读符号格式
-6. [Long-Context Modeling via GSS-Transformer Hybrid Architecture with Learnable Mixing](/202606/16/2606.16093v1-long-context-modeling-via-gss-transformer-hybrid-architecture-with-learnable-mixing)  
+   evidence：提出多模态大语言模型的检索增强可靠性感知推理，直接推进视觉语言领域的RAG方法。
+3. [RSRank: Learning Relevance from Representational Shifts](/202606/17/2606.17468v1-rsrank-learning-relevance-from-representational-shifts)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出并行混合架构PHA，结合门控状态空间与Transformer并通过可学习混合融合
-7. [Understanding the Behaviors of Environment-aware Information Retrieval](/202606/16/2606.16817v1-understanding-the-behaviors-of-environment-aware-information-retrieval)  
+   evidence：利用查询在文档条件下的表征偏移进行RAG重排序
+4. [Understanding and Debugging Failures in N-Gram-Based Generative Retrieval](/202606/17/2606.17721v1-understanding-and-debugging-failures-in-n-gram-based-generative-retrieval)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：基于强化学习的LLM查询策略适应不同检索器以实现RAG
+   evidence：基于n-gram文档标识符的生成式检索失败分析
+5. [FlowRAG: Synergizing Explicit Reasoning via Frequency-Aware Multi-Granularity Graph Flow](/202606/17/2606.17856v1-flowrag-synergizing-explicit-reasoning-via-frequency-aware-multi-granularity-graph-flow)  
+   标签：评分：9.0/10、query:rag-llm
+   evidence：提出FlowRAG，一种新颖的基于图的RAG框架，用于语义召回和显式推理
+6. [A Unified Framework for Context-Aware and Relation-Aware Graph Retrieval-Augmented Generation](/202606/17/2606.18075v1-a-unified-framework-for-context-aware-and-relation-aware-graph-retrieval-augmented-generation)  
+   标签：评分：9.0/10、query:rag-llm
+   evidence：统一上下文与关系感知的层次化图检索增强生成框架
 
 ### 速读区论文标签
-1. [CONCORD: Asynchronous Sparse Aggregation for Device-Cloud RAG under Document Isolation](/202606/16/2606.15179v1-concord-asynchronous-sparse-aggregation-for-device-cloud-rag-under-document-isolation)  
+1. [Retrievable Gradients: Continual Post-Training Without Cumulative Weight Drift](/202606/17/2606.15734v1-retrievable-gradients-continual-post-training-without-cumulative-weight-drift)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出CONCORD，一种文档隔离环境下用于RAG的异步稀疏聚合框架
-2. [DYNA : Dynamic Episodic Memory Networks for Augmenting Large Language Models with Temporal Knowledge Graphs in Continuous Learning](/202606/16/2606.15778v1-dyna--dynamic-episodic-memory-networks-for-augmenting-large-language-models-with-temporal-knowledge-graphs-in-continuous-learning)  
+   evidence：提出可检索梯度用于持续后训练，结合检索与参数自适应
+2. [CIAN: Multi-Stage Framework for Event-Enriched Image Captioning via Retrieval-Augmented Generation](/202606/17/2606.17430v1-cian-multi-stage-framework-for-event-enriched-image-captioning-via-retrieval-augmented-generation)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：用时序知识图谱增强LLM，检索相关节点以改进回答
-3. [Intelligent Multimodal Retrieval and Reasoning for Geospatial Knowledge Discovery on the I-GUIDE Platform](/202606/16/2606.15838v1-intelligent-multimodal-retrieval-and-reasoning-for-geospatial-knowledge-discovery-on-the-i-guide-platform)  
+   evidence：应用检索增强生成实现事件丰富图像描述，检索文章引导叙事生成。
+3. [Temporal Preference Optimization for Unsupervised Retrieval](/202606/17/2606.17664v1-temporal-preference-optimization-for-unsupervised-retrieval)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出一个用于地理空间知识的生产级多模态检索增强生成系统
-4. [Entity Labels Are Not Entity Signals: A Framework for Observable Relevance in Document Re-Ranking](/202606/16/2606.15998v1-entity-labels-are-not-entity-signals-a-framework-for-observable-relevance-in-document-re-ranking)  
+   evidence：面向稠密检索的时间偏好优化提升时间相关性
+4. [Non-negative Elastic Net Decoding for Information Retrieval](/202606/17/2606.17910v1-non-negative-elastic-net-decoding-for-information-retrieval)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：提出用于密集检索的联合解码方法以提高多样性
+5. [Equity with Efficiency: An Empirical Study of Tokenizers for Multilingual Large Language Models](/202606/17/2606.15044v1-equity-with-efficiency-an-empirical-study-of-tokenizers-for-multilingual-large-language-models)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：提出文档重排序中可观察实体相关性框架
-5. [RL-Index: Reinforcement Learning for Retrieval Index Reasoning](/202606/16/2606.16316v1-rl-index-reinforcement-learning-for-retrieval-index-reasoning)  
+   evidence：多语言LLM分词器效率与公平性的实证评估
+6. [DecoSearch: Complexity-Aware Routing and Plan-Level Repair for Text-to-SQL](/202606/17/2606.17821v1-decosearch-complexity-aware-routing-and-plan-level-repair-for-text-to-sql)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：提出RL-Index，使用强化学习进行检索索引推理以提升复杂知识检索
-6. [Beyond Monolingual Deep Research: Evaluating Agents and Retrievers with Cross-Lingual BrowseComp-Plus](/202606/16/2606.15345v1-beyond-monolingual-deep-research-evaluating-agents-and-retrievers-with-cross-lingual-browsecomp-plus)  
+   evidence：在Text-to-SQL框架中使用RAG组件，将LLM与检索相结合进行复杂查询分解
+7. [Rethinking the Role of Efficient Attention in Hybrid Architectures](/202606/17/2606.15378v1-rethinking-the-role-of-efficient-attention-in-hybrid-architectures)  
    标签：评分：6.0/10、query:rag-llm
-   evidence：介绍XBCP，一个用于评估深度研究中检索代理和检索器的跨语言基准
+   evidence：分析高效注意力模块对混合架构大语言模型中长程检索能力的影响
 
 
 <div class="dpr-home-promo-card">

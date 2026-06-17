@@ -1,0 +1,530 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-17T21:56:34.060259+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2606.10759v2",
+      "source": "arxiv",
+      "title": "miniReranker: Efficient Multimodal Reranking through Visual Cache Reuse and Interaction Sparsity",
+      "abstract": "Multimodal large language models (MLLMs) have recently shown strong potential as point-wise rerankers by directly modeling query--document relevance through next-token prediction. However, point-wise reranking suffers from substantial repeated computation across query--document pairs, while the causal structure of transformers allows only prefix segments to be reused via pre-caching. To address the misalignment of existing query-first and document-first formats with both VQA-style prompting and computation-aware reuse, we propose a $\\textit{vision-first}$ formulation that improves both cache reuse efficiency and reranking performance. However, the remaining cost is still considerable and stems from three main sources: (1) $\\textit{model depth}$, for which we reduce active parameters via early exit; (2) $\\textit{cross-segment attention}$, which we restrict to a narrow interaction band across a few layers; and (3) $\\textit{visual tokens}$, where we reduce the number of tokens via embedder-guided pruning. Together, these designs form miniReranker, which reduces reranking runtime to <1% of the dense implementation under high-reuse settings for a single query, while preserving >96% of the dense model performance.",
+      "authors": [
+        "Yingqi Fan",
+        "Xuan Lu",
+        "Anhao Zhao",
+        "Junlong Tong",
+        "Ping Nie",
+        "Kai Zou",
+        "Yunpu Ma",
+        "Wei Zhang",
+        "Xiaoyu Shen"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-09T12:11:02+00:00",
+      "link": "https://arxiv.org/pdf/2606.10759v2",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes efficient multimodal reranking for retrieval-augmented generation by reusing visual caches and sparsifying interactions.",
+      "llm_evidence_cn": "提出通过视觉缓存复用与交互稀疏化实现高效多模态重排序，用于检索增强生成。",
+      "llm_evidence": "提出通过视觉缓存复用与交互稀疏化实现高效多模态重排序，用于检索增强生成。",
+      "canonical_evidence": "提出通过视觉缓存复用与交互稀疏化实现高效多模态重排序，用于检索增强生成。",
+      "llm_tldr_en": "miniReranker improves multimodal reranking efficiency in RAG by reusing visual prefixes and reducing query-document interaction cost, achieving strong performance with lower computation.",
+      "llm_tldr_cn": "现有的多模态大型语言模型在检索增强生成中用作逐点重排序器时，面临查询-文档对间大量重复计算和缓存复用效率低的问题。miniReranker提出视觉优先策略与交互稀疏化技术，有效复用视觉前缀并减少冗余计算。实验表明，该方法在保持高重排序性能的同时显著降低计算成本，为多模态RAG提供了高效的排序组件。",
+      "llm_tldr": "现有的多模态大型语言模型在检索增强生成中用作逐点重排序器时，面临查询-文档对间大量重复计算和缓存复用效率低的问题。miniReranker提出视觉优先策略与交互稀疏化技术，有效复用视觉前缀并减少冗余计算。实验表明，该方法在保持高重排序性能的同时显著降低计算成本，为多模态RAG提供了高效的排序组件。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.15782v1",
+      "source": "arxiv",
+      "title": "Mitigating Visual Hallucinations in Multimodal Systems through Retrieval-Augmented Reliability-Aware Inference",
+      "abstract": "Multimodal large language models (MLLMs) have demonstrated strong capabilities in vision-language understanding and natural-language response generation. However, these systems can still produce overconfident predictions and hallucination-like outputs, particularly when the visual evidence is weak, ambiguous, or semantically inconsistent. Most existing approaches focus on improving multimodal representation alignment or retrieval-augmented generation, while providing limited mechanisms to quantify instance-level prediction reliability or identify incorrect visual outputs. This work proposes a retrieval-augmented reliability-aware inference framework for trustworthy multimodal visual understanding. The proposed framework constructs an external visual evidence database using pretrained visual embeddings and nearest-neighbor retrieval over normalized feature representations. Retrieved evidence is used to estimate prediction trustworthiness through multiple reliability indicators, including similarity strength, class-support agreement, evidence margin, entropy-based uncertainty, and an aggregate reliability score. Based on these signals, a decision gate determines whether the system should accept the prediction, answer with caution, or abstain/fallback when evidence is insufficient. A multimodal response-generation layer then produces a final user-facing response conditioned on the reliability decision. Experiments on ImageNet-100 demonstrate that the proposed reliability-aware framework improves accepted prediction accuracy from 85.84\\% to 88.88\\% at 89.04\\% coverage. The hallucination-like accepted wrong-answer rate is reduced from 14.16\\% to 11.12\\%. These results show that integrating retrieval evidence, reliability estimation, and selective decision gating can improve calibration and reduce overconfident visual errors without retraining large multimodal models.",
+      "authors": [
+        "Pratheswaran Hariharan",
+        "Haiping Xu",
+        "Donghui Yan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-06-14T12:32:38+00:00",
+      "link": "https://arxiv.org/pdf/2606.15782v1",
+      "tags": [
+        "keyword:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes retrieval-augmented reliability-aware inference for multimodal LLMs, directly advancing RAG methods for vision-language.",
+      "llm_evidence_cn": "提出多模态大语言模型的检索增强可靠性感知推理，直接推进视觉语言领域的RAG方法。",
+      "llm_evidence": "提出多模态大语言模型的检索增强可靠性感知推理，直接推进视觉语言领域的RAG方法。",
+      "canonical_evidence": "提出多模态大语言模型的检索增强可靠性感知推理，直接推进视觉语言领域的RAG方法。",
+      "llm_tldr_en": "Proposes a retrieval-augmented inference framework that quantifies prediction reliability to mitigate visual hallucinations in multimodal LLMs.",
+      "llm_tldr_cn": "针对多模态大语言模型在视觉证据薄弱时易产生幻觉的问题，本文提出一种检索增强的可靠性感知推理框架。该框架通过联合检索与可靠性估计，量化实例级预测可靠性，从而识别并抑制不正确视觉输出。实验表明该方法能提升可信度，为多模态RAG系统提供了新的可靠性保障手段。",
+      "llm_tldr": "针对多模态大语言模型在视觉证据薄弱时易产生幻觉的问题，本文提出一种检索增强的可靠性感知推理框架。该框架通过联合检索与可靠性估计，量化实例级预测可靠性，从而识别并抑制不正确视觉输出。实验表明该方法能提升可信度，为多模态RAG系统提供了新的可靠性保障手段。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17468v1",
+      "source": "arxiv",
+      "title": "RSRank: Learning Relevance from Representational Shifts",
+      "abstract": "As enterprises deploy RAG-based systems to provide grounded responses to user queries, reranking has become a critical component for the final filtering step that separates relevant from distracting or irrelevant documents. Existing rerankers often rely on heuristic thresholds to achieve optimal filtering. Moreover, for relevance scoring, state-of-the-art methods use a language model's logit signals, which are designed for next-token prediction, not for assessing relevance. To address these limitations, we identify a principled signal for relevance: the representational shift (RS) induced in a query's internal state when conditioned on a document. We observe that the alignment between (a) RS induced by a candidate document and (b) RS induced by an oracle document-set provides a robust indicator of relevance. Building on this insight, we introduce a lightweight training framework that learns projections mapping RS to calibrated relevance scores. Our training objectives naturally filter irrelevant content at a zero threshold, reducing dependence on heuristic tuning. Across diverse retrieval datasets, our method delivers gains over SOTA rerankers.",
+      "authors": [
+        "Archit Gupta",
+        "Sai Sundaresan",
+        "Debabrata Mahapatra"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-16T03:29:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.17468v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Uses representational shift in query conditioned on document for RAG reranking",
+      "llm_evidence_cn": "利用查询在文档条件下的表征偏移进行RAG重排序",
+      "llm_evidence": "利用查询在文档条件下的表征偏移进行RAG重排序",
+      "canonical_evidence": "利用查询在文档条件下的表征偏移进行RAG重排序",
+      "llm_tldr_en": "Proposes RSRank, a reranker for RAG that scores document relevance by aligning representational shifts from candidate and oracle document sets, moving beyond logit-based scoring and heuristic thresholds.",
+      "llm_tldr_cn": "本文提出RSRank，一种基于表征偏移的RAG重排序方法。针对现有重排序器依赖启发式阈值和语言模型logit信号的问题，利用查询在候选文档和理想文档集条件下的内部状态对齐度来评估相关性，无需额外调节。实验表明该方法在多个RAG基准上优于当前最优方法，为重排序提供了原则性信号。",
+      "llm_tldr": "本文提出RSRank，一种基于表征偏移的RAG重排序方法。针对现有重排序器依赖启发式阈值和语言模型logit信号的问题，利用查询在候选文档和理想文档集条件下的内部状态对齐度来评估相关性，无需额外调节。实验表明该方法在多个RAG基准上优于当前最优方法，为重排序提供了原则性信号。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17721v1",
+      "source": "arxiv",
+      "title": "Understanding and Debugging Failures in N-Gram-Based Generative Retrieval",
+      "abstract": "Generative Retrieval (GR) is an emerging Information Retrieval (IR) paradigm that is motivated by increasingly capable language models. In GR, a model directly generates identifiers for relevant documents. While these systems offer unique advantages, they also introduce distinct failure mechanisms. We explore these failure modes in three contributions: (1) We present a taxonomy of GR failure modes based on GR literature. (2) We empirically investigate failure in a subset of GR: ngram-based methods, more specifically, SEAL and MINDER. Our analysis reveals common issues, such as ambiguous docids, low identifier diversity, and the disproportionate impact of specific identifiers. (3) We introduce a new web-based tool that helps the IR community analyze generated ngrams and their respective contribution to the final ranking, providing an intuitive interface to identify where such GR methods go wrong.",
+      "authors": [
+        "Richard Takacs",
+        "Adrian Bracher",
+        "Svitlana Vakulenko"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-16T09:35:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.17721v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "failure analysis of generative retrieval using n-gram document identifiers",
+      "llm_evidence_cn": "基于n-gram文档标识符的生成式检索失败分析",
+      "llm_evidence": "基于n-gram文档标识符的生成式检索失败分析",
+      "canonical_evidence": "基于n-gram文档标识符的生成式检索失败分析",
+      "llm_tldr_en": "This paper taxonomizes and empirically analyzes failure modes in n-gram-based generative retrieval, revealing issues like ambiguous docids and identifier diversity, and provides a web debug tool.",
+      "llm_tldr_cn": "本文分类并实证分析了基于n-gram的生成式检索的失败模式，揭示了文档ID歧义、标识符多样性低等问题，并提供了网络调试工具，为生成式检索的改进提供了重要洞察。",
+      "llm_tldr": "本文分类并实证分析了基于n-gram的生成式检索的失败模式，揭示了文档ID歧义、标识符多样性低等问题，并提供了网络调试工具，为生成式检索的改进提供了重要洞察。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.17856v1",
+      "source": "arxiv",
+      "title": "FlowRAG: Synergizing Explicit Reasoning via Frequency-Aware Multi-Granularity Graph Flow",
+      "abstract": "Graph-based retrieval-augmented generation (GraphRAG) is effective for knowledge-intensive and multi-hop query tasks; however, many existing methods primarily seed entity-based graphs and rely on implicit semantic relevance propagation. This often (i) under-retrieves when user queries are abstract and semantically sparse at the entity level, and (ii) suffers from brittle multi-hop reasoning, where noisy activations can derail entity-to-entity transitions and corrupt the inferred relation chain, yielding unreliable conclusions. To this end, we propose \\texttt{FlowRAG}, a semantic-aware retrieval framework that improves both semantic recall and explicit reasoning. Specifically, \\texttt{FlowRAG} constructs a quad-level heterogeneous graph over passages, summaries, sentences, and entities, where summary nodes serve as a coarse semantic hub. At retrieval time, a dual-granularity activation module combines summary--query alignment with sentence-level matching to activate relevant entities under paraphrase and abstraction robustly. We then introduce a frequency-aware weighted flow module that routes relevance through entity--passage links weighted by within-passage term frequency, pruning noisy connections and extracting high-confidence reasoning paths as an explicit logic skeleton for generation. Extensive experiments show that \\texttt{FlowRAG} obtains state-of-the-art performance on complex reasoning benchmarks.",
+      "authors": [
+        "Bihao Zhan",
+        "Zongsheng Cao",
+        "Jie Zhou",
+        "Bo Zhang",
+        "Liang He"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-16T12:28:14+00:00",
+      "link": "https://arxiv.org/pdf/2606.17856v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes FlowRAG, a novel graph-based RAG framework for semantic recall and explicit reasoning",
+      "llm_evidence_cn": "提出FlowRAG，一种新颖的基于图的RAG框架，用于语义召回和显式推理",
+      "llm_evidence": "提出FlowRAG，一种新颖的基于图的RAG框架，用于语义召回和显式推理",
+      "canonical_evidence": "提出FlowRAG，一种新颖的基于图的RAG框架，用于语义召回和显式推理",
+      "llm_tldr_en": "FlowRAG addresses under-retrieval and noisy multi-hop reasoning in GraphRAG by constructing a quad-level heterogeneous graph with frequency-aware flow, improving retrieval accuracy.",
+      "llm_tldr_cn": "FlowRAG针对GraphRAG在抽象查询下的召回不足和多跳推理的脆弱性，提出了一种频率感知多粒度图流框架。它构建四层异构图，通过语义感知检索和显式推理增强知识检索的准确性与鲁棒性，为知识密集型任务提供了新的RAG范式。",
+      "llm_tldr": "FlowRAG针对GraphRAG在抽象查询下的召回不足和多跳推理的脆弱性，提出了一种频率感知多粒度图流框架。它构建四层异构图，通过语义感知检索和显式推理增强知识检索的准确性与鲁棒性，为知识密集型任务提供了新的RAG范式。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18075v1",
+      "source": "arxiv",
+      "title": "A Unified Framework for Context-Aware and Relation-Aware Graph Retrieval-Augmented Generation",
+      "abstract": "Retrieval-Augmented Generation (RAG) has emerged as a paradigm for enhancing large language models (LLMs) with external knowledge, yet existing graph-based methods face a fundamental limitation: entity-centric and chunk-centric approaches operate on representations anchored to original text without true knowledge fusion. While entity-centric methods connect logically related content and chunk-centric methods preserve context, both retrieve information separately through similarity search, missing emergent understanding from their synthesis. In this paper, we propose HyGRAG, a hierarchical graph RAG framework that transcends source documents by addressing three core challenges: constructing summaries that genuinely integrate contextual and relational information, leveraging these synthesized representations to access emergent knowledge during retrieval, and efficiently updating hierarchical structures for dynamic corpora. Specifically, we design hierarchical index structures over hybrid graphs with both chunk and entity nodes, then iteratively cluster them and generate LLM-based summaries. Then, we design context and relation-aware retrieval that searches across all abstraction levels while expanding through community membership. Moreover, we enable dynamic knowledge update through attachment-based algorithms with only local re-summarization. Experimental results show that HyGRAG improves the average accuracy of multi-hop reasoning tasks by 9.7%, while maintaining reasonable efficiency.",
+      "authors": [
+        "Haoyang Zhong",
+        "Yifei Sun",
+        "Antong Zhang",
+        "Chunping Wang",
+        "Lei Chen",
+        "Yang Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-16T15:44:10+00:00",
+      "link": "https://arxiv.org/pdf/2606.18075v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Hierarchical graph RAG framework unifying context and relation awareness",
+      "llm_evidence_cn": "统一上下文与关系感知的层次化图检索增强生成框架",
+      "llm_evidence": "统一上下文与关系感知的层次化图检索增强生成框架",
+      "canonical_evidence": "统一上下文与关系感知的层次化图检索增强生成框架",
+      "llm_tldr_en": "Proposes HyGRAG, a hierarchical graph RAG framework that constructs summaries integrating context and relations, overcoming limitations of entity-centric and chunk-centric approaches.",
+      "llm_tldr_cn": "针对现有图RAG方法中实体中心和块中心策略缺乏真正知识融合的问题，提出HyGRAG框架，通过构造融合上下文的摘要、显式编码与利用关系、以及基于摘要的层次化检索，超越源文档的简单拼接，实现更深层的知识合成与推理。实验表明该方法在多个知识密集型任务上优于已有基线。",
+      "llm_tldr": "针对现有图RAG方法中实体中心和块中心策略缺乏真正知识融合的问题，提出HyGRAG框架，通过构造融合上下文的摘要、显式编码与利用关系、以及基于摘要的层次化检索，超越源文档的简单拼接，实现更深层的知识合成与推理。实验表明该方法在多个知识密集型任务上优于已有基线。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.15734v1",
+      "source": "arxiv",
+      "title": "Retrievable Gradients: Continual Post-Training Without Cumulative Weight Drift",
+      "abstract": "Continual post-training enables models to absorb emerging knowledge after deployment, but repeatedly updating shared parameters can accumulate weight drift, potentially causing catastrophic forgetting and degrading general capabilities. Retrieval-augmented generation avoids such parameter drift, yet often lacks the depth of parametric knowledge integration. In this paper, we propose ReGrad (Retrievable Gradients), a new paradigm that treats gradients as retrievable units of knowledge. ReGrad pre-computes document-specific gradients offline, stores them in an indexed Gradient Bank, and retrieves only query-relevant gradients at inference time for temporary weight adaptation. However, raw language-modeling gradients are optimized for token-level document reconstruction rather than for query-driven knowledge use. We therefore introduce a bi-level meta-learning objective that reshapes document-derived gradients into generalizable adaptation signals for downstream tasks. Experiments across general and domain-specific settings show that \\textsc{ReGrad} outperforms CPT and RAG baselines, enabling scalable and reversible parametric knowledge injection without accumulating weight drift.",
+      "authors": [
+        "Weihang Su",
+        "Jiacheng Kang",
+        "Jingyan Xu",
+        "Qingyao Ai",
+        "Jianming Long",
+        "Hanwen Zhang",
+        "Bangde Du",
+        "Xinyuan Cao",
+        "Min Zhang",
+        "Yiqun Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "published": "2026-06-14T10:31:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.15734v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes retrievable gradients for continual post-training, combining retrieval with parameter adaptation",
+      "llm_evidence_cn": "提出可检索梯度用于持续后训练，结合检索与参数自适应",
+      "llm_evidence": "提出可检索梯度用于持续后训练，结合检索与参数自适应",
+      "canonical_evidence": "提出可检索梯度用于持续后训练，结合检索与参数自适应",
+      "llm_tldr_en": "Proposes ReGrad, treating gradients as retrievable knowledge for continual post-training, enabling temporary weight adaptation without catastrophic forgetting, bridging parametric knowledge depth and retrieval flexibility.",
+      "llm_tldr_cn": "针对持续后训练中参数漂移导致灾难性遗忘与检索增强生成缺乏深参数知识整合的问题，提出ReGrad范式，将预计算的文档特定梯度存入梯度银行并检索查询相关梯度用于临时权重调整，在不累积权重漂移的情况下实现知识吸收。",
+      "llm_tldr": "针对持续后训练中参数漂移导致灾难性遗忘与检索增强生成缺乏深参数知识整合的问题，提出ReGrad范式，将预计算的文档特定梯度存入梯度银行并检索查询相关梯度用于临时权重调整，在不累积权重漂移的情况下实现知识吸收。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language models combined with retrieval mechanisms",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.15044v1",
+      "source": "arxiv",
+      "title": "Equity with Efficiency: An Empirical Study of Tokenizers for Multilingual Large Language Models",
+      "abstract": "Multilingual large language models (LLMs) depend on subword tokenization to bridge discrete text and continuous neural representation. State-of-the-art multilingual LLMs often use Byte-level Byte-Pair Encoding (BPE) tokenizers that structurally favor high-resource languages and Latin scripts. For speakers of underrepresented languages, particularly those across Southeast Asia, this bias inflates inference costs and widens cross-lingual capability gaps. We present the first systematic comparison of equitable tokenizers on a unified benchmark spanning 11 Southeast Asian languages. Beyond tokenizer-level analysis of compression efficiency and cross-lingual equity, we assess downstream task performance through controlled 1.5B-parameter language model training using the same training data. Our results show that Parity-aware BPE lies on the Pareto frontier of the efficiency-equity trade-off, achieving strong compression parity at competitive cost. Morphology-Driven Byte Encoding delivers the best semantic reasoning performance through morphologically richer representations, albeit at a higher computational expense. Byte Latent Transformer underperforms on downstream tasks, possibly because its architectural assumptions misalign with the constraints of limited low-resource training data. Together, our findings demonstrate that cross-lingual fairness and tokenization efficiency are not fundamentally at odds, and offer practical guidance for designing equitable multilingual models.",
+      "authors": [
+        "Kieron Seven Jun Wei Lee",
+        "Muhammad Reza Qorib",
+        "Andrew Ivan Soegeng",
+        "Hwee Tou Ng"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-13T01:10:42+00:00",
+      "link": "https://arxiv.org/pdf/2606.15044v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "empirical evaluation of tokenizers for multilingual LLM efficiency and equity",
+      "llm_evidence_cn": "多语言LLM分词器效率与公平性的实证评估",
+      "llm_evidence": "多语言LLM分词器效率与公平性的实证评估",
+      "canonical_evidence": "多语言LLM分词器效率与公平性的实证评估",
+      "llm_tldr_en": "This paper systematically compares tokenizers for 11 Southeast Asian languages, analyzing compression efficiency and cross-lingual equity, and evaluates downstream task performance with 1.5B models.",
+      "llm_tldr_cn": "对11种东南亚语言的分词器进行比较，分析压缩效率和跨语言公平性，并通过1.5B参数模型评估下游任务性能，发现字节级BPE分词器存在高资源语言偏向。",
+      "llm_tldr": "对11种东南亚语言的分词器进行比较，分析压缩效率和跨语言公平性，并通过1.5B参数模型评估下游任务性能，发现字节级BPE分词器存在高资源语言偏向。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.15378v1",
+      "source": "arxiv",
+      "title": "Rethinking the Role of Efficient Attention in Hybrid Architectures",
+      "abstract": "Modern language models increasingly adopt hybrid architectures that combine full attention with efficient attention modules, such as sliding-window attention (SWA) and recurrent sequence mixers. However, how these efficient modules shape model capabilities remains poorly understood. To address this gap, we conduct a systematic analysis across hybrid architectures from three perspectives: scaling behavior, mechanism analysis, and architecture design. First, from a scaling perspective, we find that efficient-attention design primarily affects how fast long-context capability emerges, while different hybrids eventually converge to comparable long-context performance under sufficient training. Second, mechanistically, we show that long-range retrieval is mainly carried by full attention, whereas efficient attention shapes its optimization trajectory. This explains a counter-intuitive phenomenon we call Large-Window Laziness: larger SWA windows can delay the formation of retrieval heads in full-attention layers. Third, guided by this mechanism, we show that applying NoPE to only the full-attention layers of a small-window SWA hybrid substantially improves long-context performance with negligible impact on short-context performance.",
+      "authors": [
+        "Ziqing Qiao",
+        "Yinuo Xu",
+        "Chaojun Xiao",
+        "Zhou Su",
+        "Zihan Zhou",
+        "Yingfa Chen",
+        "Xiaoyue Xu",
+        "Xu Han",
+        "Zhiyuan Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-06-13T16:21:37+00:00",
+      "link": "https://arxiv.org/pdf/2606.15378v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Analyzes impact of efficient attention modules on long-range retrieval in hybrid LLM architectures",
+      "llm_evidence_cn": "分析高效注意力模块对混合架构大语言模型中长程检索能力的影响",
+      "llm_evidence": "分析高效注意力模块对混合架构大语言模型中长程检索能力的影响",
+      "canonical_evidence": "分析高效注意力模块对混合架构大语言模型中长程检索能力的影响",
+      "llm_tldr_en": "Systematic analysis of hybrid architectures shows that efficient attention design affects the speed of long-context capability emergence, and long-range retrieval is primarily enabled by certain mechanisms.",
+      "llm_tldr_cn": "本文从缩放行为、机制分析和架构设计三个角度系统研究了混合架构中高效注意力模块的作用，发现高效注意力设计主要影响长上下文能力出现的速度，而不同混合架构在充分训练下最终达到可比的性能；机制上，长程检索主要依赖于特定组件。",
+      "llm_tldr": "本文从缩放行为、机制分析和架构设计三个角度系统研究了混合架构中高效注意力模块的作用，发现高效注意力设计主要影响长上下文能力出现的速度，而不同混合架构在充分训练下最终达到可比的性能；机制上，长程检索主要依赖于特定组件。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.17430v1",
+      "source": "arxiv",
+      "title": "CIAN: Multi-Stage Framework for Event-Enriched Image Captioning via Retrieval-Augmented Generation",
+      "abstract": "Event-enriched image captioning describes not only visible content but also the broader context of events, including timing, location, and participants, capabilities missing in most pixel-bound models. We propose the Contextual Image-Article Narrator (CIAN), a multi-stage framework that enriches captions with external narratives. CIAN retrieves relevant articles using SigLIP, summarizes them to guide a Narrative Generation stage with a LoRA-fine-tuned Qwen model, and applies N-Gram-based Refinement for fluency and coherence. On the OpenEvents-V1 benchmark, CIAN achieves high retrieval performance (mAP 0.979) and improves caption quality, increasing CIDEr from 0.030 to 0.094. These results highlight the effectiveness of retrieval-augmented reasoning combined with linguistic refinement for generating context-aware, human-like captions.",
+      "authors": [
+        "Trinh Thi Thu Hien",
+        "Trung-Nghia Le"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-16T02:24:08+00:00",
+      "link": "https://arxiv.org/pdf/2606.17430v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses retrieval-augmented generation for event-enriched image captioning, retrieving articles to guide narrative generation.",
+      "llm_evidence_cn": "应用检索增强生成实现事件丰富图像描述，检索文章引导叙事生成。",
+      "llm_evidence": "应用检索增强生成实现事件丰富图像描述，检索文章引导叙事生成。",
+      "canonical_evidence": "应用检索增强生成实现事件丰富图像描述，检索文章引导叙事生成。",
+      "llm_tldr_en": "CIAN retrieves relevant articles using SigLIP, summarizes them to generate narrative captions with event context, improving image captioning beyond pixel-level descriptions.",
+      "llm_tldr_cn": "事件丰富的图像描述不仅描述可见内容，还提供时间、地点、参与者等事件背景。CIAN框架通过SigLIP检索相关文章，经摘要后引导Lora微调的Qwen模型生成叙事描述，并采用N-Gram精炼提升流畅性。在OpenEvents-V1上，检索mAP达0.979，描述质量CIDEr从0.030提升至0.094，表明检索增强生成可有效丰富视觉叙事。该方法展示了RAG在多模态叙事生成中的潜力。",
+      "llm_tldr": "事件丰富的图像描述不仅描述可见内容，还提供时间、地点、参与者等事件背景。CIAN框架通过SigLIP检索相关文章，经摘要后引导Lora微调的Qwen模型生成叙事描述，并采用N-Gram精炼提升流畅性。在OpenEvents-V1上，检索mAP达0.979，描述质量CIDEr从0.030提升至0.094，表明检索增强生成可有效丰富视觉叙事。该方法展示了RAG在多模态叙事生成中的潜力。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.17821v1",
+      "source": "arxiv",
+      "title": "DecoSearch: Complexity-Aware Routing and Plan-Level Repair for Text-to-SQL",
+      "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities in translating natural language to SQL, yet existing methods still falter on complex queries requiring multi-step, data-aware reasoning. We introduce DecoSearch, a training-free framework that addresses this by routing each query to the appropriate level of reasoning effort. A lightweight Schema Selector first prunes the full database schema to the relevant tables and columns. An LLM Judger then decides whether the question requires decomposition: straightforward questions follow a direct generation path and complex ones are escalated to a Directed Acyclic Graph (DAG) of atomic sub-questions, each solved by a targeted SQL generation step. A RAG component grounds the decomposer with semantically similar training examples, and a Topology Refiner restructures the reasoning plan when execution failures signal a flawed decomposition rather than a fixable SQL error. DecoSearch achieves 70.53% execution accuracy on BIRD and 88.31% on Spider with a DeepSeek backbone, surpassing all training-free baselines while consuming an order of magnitude fewer tokens than competing methods. It also functions as a model-agnostic wrapper, consistently improving fine-tuned SQL generation backbones without any modification to the pipeline.",
+      "authors": [
+        "Esteban Schafir",
+        "Xu Zheng",
+        "Hojat Allah Salehi",
+        "Zhuomin Chen",
+        "Mo Sha",
+        "Wei Cheng",
+        "Dongsheng Luo"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-16T11:48:50+00:00",
+      "link": "https://arxiv.org/pdf/2606.17821v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Uses RAG component in a Text-to-SQL framework, combining LLM with retrieval for complex query decomposition",
+      "llm_evidence_cn": "在Text-to-SQL框架中使用RAG组件，将LLM与检索相结合进行复杂查询分解",
+      "llm_evidence": "在Text-to-SQL框架中使用RAG组件，将LLM与检索相结合进行复杂查询分解",
+      "canonical_evidence": "在Text-to-SQL框架中使用RAG组件，将LLM与检索相结合进行复杂查询分解",
+      "llm_tldr_en": "DecoSearch routes query complexity, using RAG to ground decomposition for text-to-SQL, demonstrating LLM-retrieval synergy for structured tasks.",
+      "llm_tldr_cn": "DecoSearch针对复杂Text-to-SQL查询，引入复杂度感知路由和RAG增强的分解器，将大模型与检索机制结合，提升了多步骤数据感知推理的准确性，拓展了RAG在结构化查询中的应用。",
+      "llm_tldr": "DecoSearch针对复杂Text-to-SQL查询，引入复杂度感知路由和RAG增强的分解器，将大模型与检索机制结合，提升了多步骤数据感知推理的准确性，拓展了RAG在结构化查询中的应用。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language models combined with retrieval mechanisms",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.17664v1",
+      "source": "arxiv",
+      "title": "Temporal Preference Optimization for Unsupervised Retrieval",
+      "abstract": "Unsupervised dense retrievers offer scalability by learning semantic similarity from unlabeled documents via contrastive learning, but they struggle to capture the temporal relevance, retrieving semantically related but temporally misaligned documents-an important aspect when a document collection spans multiple time periods (e.g., retrieving documents from 2018-2025 for \"Who is the president in 2019?\" introduces temporal ambiguity). Existing methods rely on supervised training with explicit timestamps, which are not always feasible. We propose TPOUR (Temporal Preference Optimization for Unsupervised Retriever), which uses our novel training method Temporal Retrieval Preference Optimization (TRPO). TRPO reinterprets preference learning in the temporal dimension, guiding the retriever to favor temporally aligned documents. TPOUR further generalizes to unseen time periods via interpolation in a learned time embedding, enabling continuous temporal alignment. Experiments on temporal information retrieval (T-IR), TPOUR outperforms both unsupervised and supervised baselines. Compared to Qwen-Embedding-8B, despite being about 72.7x smaller, TPOUR Contriever improves average nDCG@5 by +4.04 (+12.15%) on explicit and +4.98 (+15.21%) on implicit queries. We provide our code at https://github.com/agwaBom/TPOUR.",
+      "authors": [
+        "HyunJin Kim",
+        "Jaejun Shim",
+        "Young Jin Kim",
+        "JinYeong Bak"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-06-16T08:27:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.17664v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "temporal preference optimization for improved temporal relevance in dense retrieval",
+      "llm_evidence_cn": "面向稠密检索的时间偏好优化提升时间相关性",
+      "llm_evidence": "面向稠密检索的时间偏好优化提升时间相关性",
+      "canonical_evidence": "面向稠密检索的时间偏好优化提升时间相关性",
+      "llm_tldr_en": "TPOUR introduces Temporal Retrieval Preference Optimization to unsupervised dense retrievers, enabling temporally relevant document retrieval without explicit timestamps.",
+      "llm_tldr_cn": "TPOUR提出时间检索偏好优化方法，在不依赖显式时间戳的情况下，使无监督稠密检索器能够捕捉时间相关性，解决检索中的时间模糊问题。",
+      "llm_tldr": "TPOUR提出时间检索偏好优化方法，在不依赖显式时间戳的情况下，使无监督稠密检索器能够捕捉时间相关性，解决检索中的时间模糊问题。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2606.17910v1",
+      "source": "arxiv",
+      "title": "Non-negative Elastic Net Decoding for Information Retrieval",
+      "abstract": "Dense retrieval has become the dominant paradigm in information retrieval, in which each document is scored against a query by the inner product of their vector embeddings, and the top-$k$ documents by score are retrieved for this query. However, since each document's score depends solely on the embedding of the query and itself, the retrieval process is oblivious to the content of the entire corpus. Therefore, dense retrieval cannot avoid selecting semantically similar documents from the corpus, which may result in a non-diverse, redundant set of retrieved documents. To this end, we approach retrieval as a joint decoding problem, in which documents are selected as a set with regard to the context of the rest of the corpus. To achieve this, we propose Non-Negative elastic Net (NNN) decoding, which selects documents whose embeddings jointly reconstruct the query embedding as a sparse non-negative linear combination.   Our main theoretical result establishes a strict separation between dense retrieval and NNN decoding. For any corpus, every query correctly handled by dense retrieval is also handled by NNN decoding, while on corpora containing correlated documents, NNN decoding additionally handles queries that dense retrieval cannot. Experimental results indicate that applying NNN decoding to frozen embeddings trained for inner-product scoring yields consistent improvements across several benchmarks. Moreover, we introduce an end-to-end training procedure which optimizes the embeddings for NNN decoding, producing significant performance gains surpassing in all metrics and benchmarks compared to dense retrieval. Our work establishes a new paradigm for leveraging dense embeddings in information retrieval, beyond the standard practice of inner-product scoring.",
+      "authors": [
+        "Koki Okajima",
+        "Yasutoshi Ida",
+        "Tsukasa Yoshida",
+        "Yasuaki Nakamura"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-16T13:32:54+00:00",
+      "link": "https://arxiv.org/pdf/2606.17910v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes joint decoding for dense retrieval to improve diversity",
+      "llm_evidence_cn": "提出用于密集检索的联合解码方法以提高多样性",
+      "llm_evidence": "提出用于密集检索的联合解码方法以提高多样性",
+      "canonical_evidence": "提出用于密集检索的联合解码方法以提高多样性",
+      "llm_tldr_en": "Addresses redundancy in dense retrieval by formulating retrieval as a joint decoding problem and proposing Non-negative Elastic Net Decoding to select diverse documents.",
+      "llm_tldr_cn": "针对密集检索中因独立评分导致结果冗余的问题，提出将检索视为联合解码问题，并设计了非负弹性网解码方法，通过考虑语料全局上下文来选取多样化文档。实验表明该方法能有效提升检索结果的多样性。",
+      "llm_tldr": "针对密集检索中因独立评分导致结果冗余的问题，提出将检索视为联合解码问题，并设计了非负弹性网解码方法，通过考虑语料全局上下文来选取多样化文档。实验表明该方法能有效提升检索结果的多样性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    }
+  ]
+}
