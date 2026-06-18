@@ -1,0 +1,249 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-18T22:06:06.176420+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 5,
+    "deep_cap": 6,
+    "deep_selected": 5,
+    "quick_candidates": 1,
+    "quick_skim_target": 11,
+    "quick_selected": 1
+  },
+  "deep_dive": [
+    {
+      "id": "2606.18381v1",
+      "source": "arxiv",
+      "title": "SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG",
+      "abstract": "Retrieval-augmented generation (RAG) systems must balance retrieval granularity with contextual coherence, a challenge that existing methods address through LLM-guided chunking, single-level context expansion, or hierarchical summarization. These approaches variously depend on costly LLM calls during indexing or retrieval, limit context aggregation to a single granularity level, or introduce information loss through summarization. We present SproutRAG, an attention-guided hierarchical RAG framework that addresses this trade-off by organizing sentence-level chunks into progressively larger but semantically coherent units, using learned inter-sentence attention to construct a binary chunking tree. Unlike prior approaches that rely on external LLMs, fixed context expansion, or lossy summarization, SproutRAG learns which attention heads and layers best capture semantic document structure, enabling multi-granularity retrieval without additional LLM calls or compressed summaries. At retrieval time, SproutRAG uses hierarchical beam search to retrieve candidates at multiple granularities, capturing multi-sentence relevance beyond flat retrieval. The framework is trained end-to-end with a joint objective that improves both embeddings and tree structure. Experiments across four benchmarks spanning scientific, legal, and open-domain settings demonstrate that SproutRAG improves information efficiency (IE) by 6.1% on average over the strongest baseline. Code is available on https://github.com/AmirAbaskohi/SproutRAG.",
+      "authors": [
+        "Amirhossein Abaskohi",
+        "Issam H. Laradji",
+        "Peter West",
+        "Giuseppe Carenini"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-16T18:28:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.18381v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Proposes a novel hierarchical RAG framework with attention-guided chunking and progressive embeddings for long documents.",
+      "llm_evidence_cn": "提出一种新的层次RAG框架，采用注意力引导分块和渐进嵌入处理长文档。",
+      "llm_evidence": "提出一种新的层次RAG框架，采用注意力引导分块和渐进嵌入处理长文档。",
+      "canonical_evidence": "提出一种新的层次RAG框架，采用注意力引导分块和渐进嵌入处理长文档。",
+      "llm_tldr_en": "SproutRAG addresses the trade-off between retrieval granularity and coherence in long-document RAG by building an attention-guided binary chunking tree and progressive embeddings, eliminating costly LLM calls during indexing.",
+      "llm_tldr_cn": "现有长文档RAG方法常面临检索粒度与上下文连贯性之间的权衡，且依赖昂贵的LLM分块或摘要。本文提出SproutRAG，利用学习到的句间注意力构建二元分块树，将句子级块逐级合并为语义连贯的更大单元，实现层次化检索。该方法在索引阶段无需LLM参与，检索时动态聚合上下文。实验表明SproutRAG在多个基准上平衡了粒度和连贯性，为长文档RAG提供了高效方案。",
+      "llm_tldr": "现有长文档RAG方法常面临检索粒度与上下文连贯性之间的权衡，且依赖昂贵的LLM分块或摘要。本文提出SproutRAG，利用学习到的句间注意力构建二元分块树，将句子级块逐级合并为语义连贯的更大单元，实现层次化检索。该方法在索引阶段无需LLM参与，检索时动态聚合上下文。实验表明SproutRAG在多个基准上平衡了粒度和连贯性，为长文档RAG提供了高效方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18508v1",
+      "source": "arxiv",
+      "title": "MCompassRAG: Topic Metadata as a Semantic Compass for Paragraph-Level Retrieval",
+      "abstract": "Retrieval-augmented generation (RAG) systems depend critically on how documents are chunked and searched. Fine-grained chunks can improve retrieval precision but expand the search space, increasing latency and cost; larger chunks reduce the number of candidates but make dense similarity less reliable, as the representation for each chunk mixes multiple topics and introduces more semantic noise. This trade-off becomes especially limiting in deep research tasks, where retrieval must be both fast and precise across large, heterogeneous corpora. We introduce MCompassRAG, a metadata-guided retrieval framework that uses topic-level signals as a semantic compass for selecting relevant evidence. Instead of relying only on cosine similarity between queries and noisy chunk embeddings, MCompassRAG enriches chunk representations with topic metadata in the same embedding space and trains a lightweight retriever through LLM-teacher distillation. At inference time, MCompassRAG performs topic-aware retrieval without additional LLM calls, improving both efficiency and evidence quality. Across six complex retrieval benchmarks, MCompassRAG improves information efficiency (IE) by 8.24% on average with over 5 times lower latency than the strongest efficient RAG baselines. Code is available on https://github.com/AmirAbaskohi/MCompassRAG.",
+      "authors": [
+        "Amirhossein Abaskohi",
+        "Raymond Li",
+        "Gaetano Cimino",
+        "Peter West",
+        "Giuseppe Carenini",
+        "Issam H. Laradji"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-16T21:50:01+00:00",
+      "link": "https://arxiv.org/pdf/2606.18508v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Introduces topic-level metadata guidance for selective retrieval, addressing chunk-level trade-off in RAG between precision and latency.",
+      "llm_evidence_cn": "引入主题级元数据引导选择性检索，解决RAG中块粒度精度与延迟的权衡",
+      "llm_evidence": "引入主题级元数据引导选择性检索，解决RAG中块粒度精度与延迟的权衡",
+      "canonical_evidence": "引入主题级元数据引导选择性检索，解决RAG中块粒度精度与延迟的权衡",
+      "llm_tldr_en": "MCompassRAG uses topic metadata to guide paragraph-level retrieval, reducing noise from multi-topic large chunks while maintaining efficiency, improving retrieval precision for deep research tasks.",
+      "llm_tldr_cn": "RAG系统中块粒度过细则搜索空间大成本高，块过大则多主题语义噪声降低相似度可靠性。MCompassRAG提出主题元数据作为语义指南，将文档组织成主题层次，查询时根据主题信号选择相关块，既提升检索精度又控制开销。实验表明在深度研究任务中，该方法在精确率和效率上均优于传统余弦相似度检索，为大规模异构语料的RAG检索提供了实用方案。",
+      "llm_tldr": "RAG系统中块粒度过细则搜索空间大成本高，块过大则多主题语义噪声降低相似度可靠性。MCompassRAG提出主题元数据作为语义指南，将文档组织成主题层次，查询时根据主题信号选择相关块，既提升检索精度又控制开销。实验表明在深度研究任务中，该方法在精确率和效率上均优于传统余弦相似度检索，为大规模异构语料的RAG检索提供了实用方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18781v1",
+      "source": "arxiv",
+      "title": "Lost in a Single Vector: Improving Long-Document Retrieval with Chunk Evidence Aggregation",
+      "abstract": "Dense retrieval ranks one query vector against one document vector. On long documents, this interface can fail when a short but decisive span is weakened during document encoding before ranking. We study this failure mode as document-side early compression and introduce the Evidence Dilution Index (EDI) to measure how far a document-level representation falls below the strongest chunk-level evidence within the same gold document. Guided by this view, we propose DICE (Document Inference via Chunk Evidence), a training-free document-side strategy that splits documents into chunks, encodes them independently with a frozen model, and aggregates them back into a single vector while preserving the standard one-query-one-document interface. On LongEmbed, DICE improves retrieval across four backbones, with the largest gains on slices beyond 4k tokens: for Dream, Passkey >4k rises from 30.0 to 90.0 and Needle >4k from 23.3 to 74.0. Across 12,779 filtered samples, DICE yields lower EDI than the single-vector baseline in 92.8% of cases. These results establish document-level encoding as a practical and underexplored lever for long-document retrieval.",
+      "authors": [
+        "Shanshan Lyu",
+        "Yiwei Wang",
+        "Yujun Cai",
+        "Jiafeng Guo",
+        "Shenghua Liu"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-17T07:44:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.18781v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes DICE, a training-free method to aggregate chunk evidence into a single vector for dense retrieval of long documents.",
+      "llm_evidence_cn": "提出DICE，一种免训练的方法，将分块证据聚合为单向量以改善长文档的稠密检索。",
+      "llm_evidence": "提出DICE，一种免训练的方法，将分块证据聚合为单向量以改善长文档的稠密检索。",
+      "canonical_evidence": "提出DICE，一种免训练的方法，将分块证据聚合为单向量以改善长文档的稠密检索。",
+      "llm_tldr_en": "DICE addresses the failure of dense retrieval on long documents where decisive spans get diluted, by splitting documents into chunks, encoding them independently, and aggregating into a single vector for ranking.",
+      "llm_tldr_cn": "稠密检索在处理长文档时，关键信息段可能因早期压缩被弱化，导致检索失败。本文定义证据稀释指数（EDI）量化此问题，并据此提出DICE策略：将文档切分为块，分别用冻结模型编码，再聚合为单一文档向量，保持标准检索接口。在多个数据集上，DICE无需训练即显著提升长文档检索性能，为稠密检索补全了文档侧优化。",
+      "llm_tldr": "稠密检索在处理长文档时，关键信息段可能因早期压缩被弱化，导致检索失败。本文定义证据稀释指数（EDI）量化此问题，并据此提出DICE策略：将文档切分为块，分别用冻结模型编码，再聚合为单一文档向量，保持标准检索接口。在多个数据集上，DICE无需训练即显著提升长文档检索性能，为稠密检索补全了文档侧优化。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18553v1",
+      "source": "arxiv",
+      "title": "Hierarchical Multi-Modal Retrieval for Knowledge-Grounded News Image Captioning",
+      "abstract": "Traditional image captioning methods often struggle to generate comprehensive, context-rich descriptions, especially for details not directly observable from visual cues. To overcome this, we propose a novel retrieval-augmented image captioning framework that generates captions with deeper insights, such as object attributes, event context, and underlying significance, by leveraging external knowledge. Our approach features a hierarchical multi-modal article retrieval mechanism that moves beyond monolithic text entities. This retrieval considers article structure-aware features, including weighted textual components (e.g., headlines, body sections) and visual placement patterns, alongside multi-faceted similarity computations (content--visual, visual--visual, and discourse positioning). A subsequent contextual relevance refinement stage further enhances the retrieved information. The retrieved articles then serve as the knowledge base for caption generation: first, a VLM generates a concise image description; second, we segment relevant information from the retrieved articles based on this description; and finally, an LLM utilizes both the description and extracted knowledge to generate a comprehensive, contextually detailed caption. We participated in the ACM Multimedia EVENTA 2025 Challenge and achieved 5th place with an overall score of 0.2824 on the private test set of the OpenEvent-V1 dataset. Source code is publicly released at https://github.com/mf0212/EVENTA-Challange.",
+      "authors": [
+        "Minh-Loi Nguyen",
+        "Xuan-Vu Le",
+        "Long-Bao Nguyen",
+        "Hoang-Bach Ngo",
+        "Trung-Nghia Le"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-17T00:08:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.18553v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Proposes a retrieval-augmented image captioning framework with hierarchical multi-modal article retrieval for news images.",
+      "llm_evidence_cn": "提出检索增强图像描述框架，针对新闻图像采用层次化多模态文章检索。",
+      "llm_evidence": "提出检索增强图像描述框架，针对新闻图像采用层次化多模态文章检索。",
+      "canonical_evidence": "提出检索增强图像描述框架，针对新闻图像采用层次化多模态文章检索。",
+      "llm_tldr_en": "This work introduces a retrieval-augmented captioning method that uses structure-aware, multi-faceted article retrieval to generate context-rich news image captions with event and object details.",
+      "llm_tldr_cn": "传统图像描述难以生成包含深层背景（如对象属性、事件因果）的内容。本文提出一种检索增强框架，设计层次化多模态文章检索机制，综合考虑文章结构特征（标题、正文权重）与视觉布局，进行多面相似度计算。在新闻图像描述任务上，该方法能产生信息更丰富的叙述，显著优于仅基于视觉的模型，拓展了检索增强在多模态理解中的应用。",
+      "llm_tldr": "传统图像描述难以生成包含深层背景（如对象属性、事件因果）的内容。本文提出一种检索增强框架，设计层次化多模态文章检索机制，综合考虑文章结构特征（标题、正文权重）与视觉布局，进行多面相似度计算。在新闻图像描述任务上，该方法能产生信息更丰富的叙述，显著优于仅基于视觉的模型，拓展了检索增强在多模态理解中的应用。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18801v1",
+      "source": "arxiv",
+      "title": "SHIFT: Semantic Harmonization via Index-side Feature Transformation for Multilingual Information Retrieval",
+      "abstract": "With the rapid expansion of massive multilingual corpora, Multilingual Information Retrieval (MLIR) has emerged as a critical technology for global information access. MLIR enables users to retrieve semantically relevant documents from multilingual text collections using a single-language query. However, recent multilingual dense retrieval models often exhibit a strong preference for documents in the same language as the query. This leads to severe language bias, where top-ranked results are dominated by documents of specific languages, even when documents in other languages contain more semantically relevant information. To address this issue, we propose SHIFT, a training-free method applicable in the indexing stage. Specifically, SHIFT utilizes parallel translation pairs to estimate a relative language vector for each target language with respect to a source language. Subsequently, SHIFT corrects the language-specific offset by subtracting this relative language vector from document embeddings during indexing. Our comprehensive evaluation across four MLIR benchmarks and diverse dense retrieval models confirms that SHIFT can effectively mitigate language bias and enhance MLIR performance.",
+      "authors": [
+        "Youngjoon Jang",
+        "Seongtae Hong",
+        "Hyeonseok Moon",
+        "Heuiseok Lim"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-06-17T08:14:51+00:00",
+      "link": "https://arxiv.org/pdf/2606.18801v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Training-free dense retrieval improvement for multilingual semantic search",
+      "llm_evidence_cn": "无训练的多语言密集检索改进，用于语义搜索",
+      "llm_evidence": "无训练的多语言密集检索改进，用于语义搜索",
+      "canonical_evidence": "无训练的多语言密集检索改进，用于语义搜索",
+      "llm_tldr_en": "SHIFT addresses language bias in multilingual dense retrieval by applying a training-free feature transformation at the indexing stage to harmonize semantic representations across languages.",
+      "llm_tldr_cn": "针对多语言密集检索中模型偏向同语言文档的问题，本文提出索引端特征变换方法SHIFT，无需训练即可将不同语言的文档特征映射到语义协调空间，实验证明能有效纠正语言偏向，提升跨语言检索的公平性与准确性。",
+      "llm_tldr": "针对多语言密集检索中模型偏向同语言文档的问题，本文提出索引端特征变换方法SHIFT，无需训练即可将不同语言的文档特征映射到语义协调空间，实验证明能有效纠正语言偏向，提升跨语言检索的公平性与准确性。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.18811v1",
+      "source": "arxiv",
+      "title": "Rescaling MLM-Head for Neural Sparse Retrieval",
+      "abstract": "Learned sparse retrieval (LSR) models such as SPLADE have traditionally used BERT-style masked language models as backbone encoders. A natural expectation is that replacing BERT with stronger pretrained encoders should improve retrieval effectiveness. However, we find that under standard SPLADE training recipes, backbones with large MLM-head L2 norms can suffer performance degradation and even training collapse under standard SPLADE training recipes. We identify this failure as a scale mismatch in the MLM head: SPLADE directly uses MLM-head outputs to construct sparse lexical representations, and query-document relevance is computed by an unnormalized dot product over these representations. As a result, an inflated MLM-head scale can amplify sparse activations, distort matching scores, and destabilize contrastive training under common training settings. To address this issue, we introduce a simple initialization-time correction that rescales the MLM-head projection by a constant factor before SPLADE training. This zero-cost adjustment improves training stability without modifying the model architecture or training objective. Across both in-domain and out-of-domain retrieval benchmarks, this simple correction substantially improves large-norm backbones such as ModernBERT and Ettin, turning unstable training runs into competitive sparse retrievers. In several settings, the corrected models further match or surpass the classic BERT-SPLADE baseline. These findings suggest that the bottleneck in adapting pretrained encoders to LSR is not encoder capacity alone, but the calibration of the MLM-head scale used to construct sparse lexical representations.",
+      "authors": [
+        "Youngjoon Jang",
+        "Seongtae Hong",
+        "Jonah Turner",
+        "Heuiseok Lim"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-06-17T08:27:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.18811v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Improving learned sparse retrieval with MLM-head rescaling, a knowledge retrieval technique for LMs",
+      "llm_evidence_cn": "通过MLM-head重缩放改进神经稀疏检索，一种LM知识检索技术",
+      "llm_evidence": "通过MLM-head重缩放改进神经稀疏检索，一种LM知识检索技术",
+      "canonical_evidence": "通过MLM-head重缩放改进神经稀疏检索，一种LM知识检索技术",
+      "llm_tldr_en": "The paper identifies and fixes a scale mismatch in the MLM head when using stronger pretrained encoders for learned sparse retrieval, proposing a rescaling method to stabilize training and improve retrieval effectiveness.",
+      "llm_tldr_cn": "本文发现当使用更强预训练编码器作为稀疏检索骨干时，MLM-head输出范数过大会导致训练崩溃，提出对MLM-head进行重缩放的解决方法。实验表明该方法能稳定训练并提升检索效果，为利用先进语言模型增强稀疏检索提供了可能。",
+      "llm_tldr": "本文发现当使用更强预训练编码器作为稀疏检索骨干时，MLM-head输出范数过大会导致训练崩溃，提出对MLM-head进行重缩放的解决方法。实验表明该方法能稳定训练并提升检索效果，为利用先进语言模型增强稀疏检索提供了可能。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

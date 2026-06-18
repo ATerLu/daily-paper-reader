@@ -6,61 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-17
-- 运行时间：2026-06-17 22:05:20 UTC
+- 最新运行日期：2026-06-18
+- 运行时间：2026-06-18 22:11:19 UTC
 - 运行状态：成功
-- 本次总论文数：13
-- 精读区：6
-- 速读区：7
+- 本次总论文数：6
+- 精读区：5
+- 速读区：1
 
 ### 今日简报（AI）
-今日精读聚焦多模态检索与幻觉缓解，速读覆盖持续训练、事件图像描述与无监督检索优化。  
-最值得关注的是 miniReranker 用视觉缓存复用与交互稀疏化实现高效多模态重排序，以及检索增强的可信推理如何抑制视觉幻觉。  
-推荐读者跟进多模态系统中的效率与可信度平衡，尝试将缓存复用思维融入自己的检索管线。
-- 详情：[/202606/17/README](/202606/17/README)
+今日精读长文档RAG两大利器：SproutRAG用注意力引导树搜索与渐进嵌入突破长文信息定位，MCompassRAG以话题元数据作语义罗盘实现段落级精准检索。可重点关注将动态检索与层级语义导航结合的新范式。建议读者优先尝试SproutRAG的渐进嵌入思路，或为现有RAG系统引入话题级元数据以提升长文档问答效果。
+- 详情：[/202606/18/README](/202606/18/README)
 
 ### 精读区论文标签
-1. [miniReranker: Efficient Multimodal Reranking through Visual Cache Reuse and Interaction Sparsity](/202606/17/2606.10759v2-minireranker-efficient-multimodal-reranking-through-visual-cache-reuse-and-interaction-sparsity)  
+1. [SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG](/202606/18/2606.18381v1-sproutrag-attention-guided-tree-search-with-progressive-embeddings-for-long-document-rag)  
+   标签：评分：10.0/10、query:rag-llm
+   evidence：提出一种新的层次RAG框架，采用注意力引导分块和渐进嵌入处理长文档。
+2. [MCompassRAG: Topic Metadata as a Semantic Compass for Paragraph-Level Retrieval](/202606/18/2606.18508v1-mcompassrag-topic-metadata-as-a-semantic-compass-for-paragraph-level-retrieval)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出通过视觉缓存复用与交互稀疏化实现高效多模态重排序，用于检索增强生成。
-2. [Mitigating Visual Hallucinations in Multimodal Systems through Retrieval-Augmented Reliability-Aware Inference](/202606/17/2606.15782v1-mitigating-visual-hallucinations-in-multimodal-systems-through-retrieval-augmented-reliability-aware-inference)  
+   evidence：引入主题级元数据引导选择性检索，解决RAG中块粒度精度与延迟的权衡
+3. [Lost in a Single Vector: Improving Long-Document Retrieval with Chunk Evidence Aggregation](/202606/18/2606.18781v1-lost-in-a-single-vector-improving-long-document-retrieval-with-chunk-evidence-aggregation)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出多模态大语言模型的检索增强可靠性感知推理，直接推进视觉语言领域的RAG方法。
-3. [RSRank: Learning Relevance from Representational Shifts](/202606/17/2606.17468v1-rsrank-learning-relevance-from-representational-shifts)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：利用查询在文档条件下的表征偏移进行RAG重排序
-4. [Understanding and Debugging Failures in N-Gram-Based Generative Retrieval](/202606/17/2606.17721v1-understanding-and-debugging-failures-in-n-gram-based-generative-retrieval)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：基于n-gram文档标识符的生成式检索失败分析
-5. [FlowRAG: Synergizing Explicit Reasoning via Frequency-Aware Multi-Granularity Graph Flow](/202606/17/2606.17856v1-flowrag-synergizing-explicit-reasoning-via-frequency-aware-multi-granularity-graph-flow)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：提出FlowRAG，一种新颖的基于图的RAG框架，用于语义召回和显式推理
-6. [A Unified Framework for Context-Aware and Relation-Aware Graph Retrieval-Augmented Generation](/202606/17/2606.18075v1-a-unified-framework-for-context-aware-and-relation-aware-graph-retrieval-augmented-generation)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：统一上下文与关系感知的层次化图检索增强生成框架
+   evidence：提出DICE，一种免训练的方法，将分块证据聚合为单向量以改善长文档的稠密检索。
+4. [Hierarchical Multi-Modal Retrieval for Knowledge-Grounded News Image Captioning](/202606/18/2606.18553v1-hierarchical-multi-modal-retrieval-for-knowledge-grounded-news-image-captioning)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：提出检索增强图像描述框架，针对新闻图像采用层次化多模态文章检索。
+5. [SHIFT: Semantic Harmonization via Index-side Feature Transformation for Multilingual Information Retrieval](/202606/18/2606.18801v1-shift-semantic-harmonization-via-index-side-feature-transformation-for-multilingual-information-retrieval)  
+   标签：评分：8.0/10、query:rag-llm
+   evidence：无训练的多语言密集检索改进，用于语义搜索
 
 ### 速读区论文标签
-1. [Retrievable Gradients: Continual Post-Training Without Cumulative Weight Drift](/202606/17/2606.15734v1-retrievable-gradients-continual-post-training-without-cumulative-weight-drift)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：提出可检索梯度用于持续后训练，结合检索与参数自适应
-2. [CIAN: Multi-Stage Framework for Event-Enriched Image Captioning via Retrieval-Augmented Generation](/202606/17/2606.17430v1-cian-multi-stage-framework-for-event-enriched-image-captioning-via-retrieval-augmented-generation)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：应用检索增强生成实现事件丰富图像描述，检索文章引导叙事生成。
-3. [Temporal Preference Optimization for Unsupervised Retrieval](/202606/17/2606.17664v1-temporal-preference-optimization-for-unsupervised-retrieval)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：面向稠密检索的时间偏好优化提升时间相关性
-4. [Non-negative Elastic Net Decoding for Information Retrieval](/202606/17/2606.17910v1-non-negative-elastic-net-decoding-for-information-retrieval)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：提出用于密集检索的联合解码方法以提高多样性
-5. [Equity with Efficiency: An Empirical Study of Tokenizers for Multilingual Large Language Models](/202606/17/2606.15044v1-equity-with-efficiency-an-empirical-study-of-tokenizers-for-multilingual-large-language-models)  
+1. [Rescaling MLM-Head for Neural Sparse Retrieval](/202606/18/2606.18811v1-rescaling-mlm-head-for-neural-sparse-retrieval)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：多语言LLM分词器效率与公平性的实证评估
-6. [DecoSearch: Complexity-Aware Routing and Plan-Level Repair for Text-to-SQL](/202606/17/2606.17821v1-decosearch-complexity-aware-routing-and-plan-level-repair-for-text-to-sql)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：在Text-to-SQL框架中使用RAG组件，将LLM与检索相结合进行复杂查询分解
-7. [Rethinking the Role of Efficient Attention in Hybrid Architectures](/202606/17/2606.15378v1-rethinking-the-role-of-efficient-attention-in-hybrid-architectures)  
-   标签：评分：6.0/10、query:rag-llm
-   evidence：分析高效注意力模块对混合架构大语言模型中长程检索能力的影响
+   evidence：通过MLM-head重缩放改进神经稀疏检索，一种LM知识检索技术
 
 
 <div class="dpr-home-promo-card">
