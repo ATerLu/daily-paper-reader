@@ -1,0 +1,260 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-19T21:48:42.361737+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.15598v1",
+      "source": "arxiv",
+      "title": "Integrating Reasoning and Generalization in Text-to-SQL via Self-Enhanced Fine-Tuning",
+      "abstract": "Text-to-SQL aims to translate natural language questions into executable SQL queries over structured databases, enabling non-expert users to access data intuitively. While recent advances in large language models (LLMs) have shown promise in this task, existing LLM-based approaches often struggle to strike a balance between strong reasoning capabilities and robust generalization. To address these limitations, we propose CoTE-SQL to enhance the LLM-based text-to-SQL generation with three key innovations: (i) self-enhanced reasoning traces distilled from LLMs without human annotation, (ii) structured chain-of-thought (CoT) prompting with modular decomposition and examples retrieval, and (iii) error-aware revision based on SQL execution feedback. Extensive experiments on the Spider and Bird benchmarks demonstrate that CoTE-SQL achieves new state-of-the-art performance among methods built on open-source LLMs with comparable model sizes on Bird (53.39% EX / 59.02 VES) and strong results on Spider (79.60% EX / 77.19 VES), with especially significant gains on complex queries. Results highlight the effectiveness of combining self-enhancement, structured reasoning, and execution-time feedback within an LLM-based framework for text-to-SQL design.",
+      "authors": [
+        "Feng Lyu",
+        "Jinfeng Cen",
+        "Sijing Duan",
+        "Hao Wu",
+        "Shucheng Li",
+        "Weixu Zhang",
+        "Haolun Wu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-14T04:52:58+00:00",
+      "link": "https://arxiv.org/pdf/2606.15598v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Uses retrieval of examples and chain-of-thought prompting for text-to-SQL, a form of retrieval-augmented generation",
+      "llm_evidence_cn": "使用示例检索和思维链提示进行Text-to-SQL，是一种检索增强生成方法",
+      "llm_evidence": "使用示例检索和思维链提示进行Text-to-SQL，是一种检索增强生成方法",
+      "canonical_evidence": "使用示例检索和思维链提示进行Text-to-SQL，是一种检索增强生成方法",
+      "llm_tldr_en": "The paper proposes CoTE-SQL, a self-enhanced fine-tuning method for text-to-SQL that uses retrieved examples, structured CoT prompting, and error-aware revision. It improves both reasoning and generalization, demonstrating a novel RAG approach for structured query generation.",
+      "llm_tldr_cn": "本文提出CoTE-SQL方法，通过自增强微调、检索示例的结构化思维链提示和错误感知修正，提升了Text-to-SQL的推理与泛化能力，展示了检索增强生成在结构化查询中的应用。",
+      "llm_tldr": "本文提出CoTE-SQL方法，通过自增强微调、检索示例的结构化思维链提示和错误感知修正，提升了Text-to-SQL的推理与泛化能力，展示了检索增强生成在结构化查询中的应用。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19960v1",
+      "source": "arxiv",
+      "title": "Stellar: Scalable Multimodal Document Retrieval for Natural Language Queries",
+      "abstract": "Multimodal document retrieval--selecting the most relevant multimodal document from a large corpus to answer a natural language query--plays an essential role in Retrieval-Augmented Generation (RAG) systems. State-of-the-art methods represent each document and query with multiple token-level embeddings and use late interaction to achieve high effectiveness. However, such multi-vector representations incur substantial memory overhead during retrieval, leading to poor scalability and hindering real-world deployment. In this paper, we present Stellar, a scalable multimodal document retrieval framework that stores token-level document embeddings on disk and loads only a small set of candidate embeddings into memory for late interaction. Stellar comprises two key components: (i) Lexical Representation-based Filtering (LRF), which fine-tunes a Multimodal Large Language Model (MLLM) as a sparse encoder to produce high-quality lexical representations, enabling efficient and effective document filtering to significantly reduce the candidate set; (ii) Efficient Disk-backed Late Interaction (DLI), which designs an on-disk token embedding storage layout guided by a balanced clustering algorithm, and dynamically loads only the necessary token embeddings into memory using a simple yet effective cost model. Extensive experiments on four real-world benchmarks and a newly presented large-scale dataset demonstrate that Stellar reduces memory overhead and query latency by 1-2 orders of magnitude compared to existing methods without compromising retrieval effectiveness.",
+      "authors": [
+        "Yuxiang Guo",
+        "Zhonghao Hu",
+        "Yuren Mao",
+        "Yuhang Liu",
+        "Congcong Ge",
+        "Xiaolu Zhang",
+        "Jun Zhou",
+        "Yunjun Gao"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-06-18T08:57:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.19960v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "scalable multimodal document retrieval via token-level embeddings with disk storage",
+      "llm_evidence_cn": "通过磁盘存储令牌级嵌入实现可扩展多模态文档检索",
+      "llm_evidence": "通过磁盘存储令牌级嵌入实现可扩展多模态文档检索",
+      "canonical_evidence": "通过磁盘存储令牌级嵌入实现可扩展多模态文档检索",
+      "llm_tldr_en": "Overcomes memory overhead of multi-vector late interaction in RAG by storing token embeddings on disk and loading only candidates, enabling scalable retrieval.",
+      "llm_tldr_cn": "针对RAG系统中多向量late interaction检索内存开销大、难以扩展的问题，提出Stellar框架，将文档令牌级嵌入存储于磁盘，仅加载候选集嵌入进行交互计算。实验证明在保持检索有效性的同时，大幅降低内存占用，使多模态文档检索在现实部署中更可行。",
+      "llm_tldr": "针对RAG系统中多向量late interaction检索内存开销大、难以扩展的问题，提出Stellar框架，将文档令牌级嵌入存储于磁盘，仅加载候选集嵌入进行交互计算。实验证明在保持检索有效性的同时，大幅降低内存占用，使多模态文档检索在现实部署中更可行。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.20113v1",
+      "source": "arxiv",
+      "title": "When Does Streaming Tool Use Help? Characterizing Tool-Intent Stabilization in Streaming Retrieval-Augmented Generation",
+      "abstract": "Streaming Retrieval-Augmented Generation (Streaming RAG) reduces user-perceived latency by issuing tool queries in parallel with ongoing user input, before the utterance is complete. Reported gains are aggregate, yet the mechanism's benefit is fundamentally query-intrinsic: speculation can only help when the correct tool query becomes determinable before the user stops speaking or typing. We isolate and measure this property -- tool-intent stabilization, the point in the input stream at which a speculative query's retrieval converges to the answer-bearing result. On the CRAG benchmark (1371 validation questions) we (i) measure the distribution of stabilization, (ii) derive a model-agnostic bound H on the portion of tool latency that can be hidden behind the user's remaining input, as a function of tool latency L and input cadence δ, (iii) validate against a working streaming pipeline that realized savings meet or exceed this bound, and (iv) identify which query properties predict early versus late stabilization. The study requires no model training and runs on commodity CPU hardware. We find that at a realistic operating point (L=600ms, δ=3w/s, θ=0.8), 73.9% of queries across the full benchmark admit substantial latency hiding -- a blended figure that mixes sufficiency stabilization on the 21.3% of questions where gold evidence is verbatim-present and BM25-retrievable (95.2% streamable on this favorable slice) with a grounding-free top-1-settling fallback on the remainder. On the favorable slice, φ_suf is bracketed to [0.26, 0.281] by exact and relaxed grounding -- both early. Question type produces a significant but coarse early/late split (Kruskal-Wallis p=0.017, epsilon^2=0.04), directly informing when a learned speculative trigger is worth its cost.",
+      "authors": [
+        "Elroy Galbraith"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-18T11:38:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.20113v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "analysis of tool-intent stabilization for streaming RAG",
+      "llm_evidence_cn": "面向流式RAG的工具意图稳定化分析",
+      "llm_evidence": "面向流式RAG的工具意图稳定化分析",
+      "canonical_evidence": "面向流式RAG的工具意图稳定化分析",
+      "llm_tldr_en": "Isolates tool-intent stabilization in streaming RAG, measuring when speculative retrieval converges to correct results, and derives a bound on potential latency reduction.",
+      "llm_tldr_cn": "流式检索增强生成通过并行发出工具查询减少感知延迟，但其获益依赖于工具意图稳定化的时机。该文在CRAG基准上首次量化了工具意图稳定化分布，推导出延迟减少的理论上限，并分析了模型与查询特征的影响，为流式RAG系统的优化部署提供了关键指标和实用指导。",
+      "llm_tldr": "流式检索增强生成通过并行发出工具查询减少感知延迟，但其获益依赖于工具意图稳定化的时机。该文在CRAG基准上首次量化了工具意图稳定化分布，推导出延迟减少的理论上限，并分析了模型与查询特征的影响，为流式RAG系统的优化部署提供了关键指标和实用指导。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.20280v1",
+      "source": "arxiv",
+      "title": "ELVA: Exploring Ranking-Driven Universal Multimodal Retrieval",
+      "abstract": "Leveraging Multimodal Large Language Models (MLLMs) via contrastive learning has become a mainstream paradigm for improving the performance of Universal Multimodal Retrieval (UMR). However, previous works have ignored the grain blindness when adapting the contrastive paradigm into retrieval tasks. Grain blindness refers to the tendency of the model to overlook grain-level information contained in the query, which is crucial for effectively handling complex queries. This stems from contrastive learning treating samples as a binary classification (positive/negative), while ignoring the different information carried by each negative sample. To address this, we argue that negatives should be treated differently according to their similarity to the positive sample, enabling the model to learn distinct grain information from each negative. In this paper, we introduce a simple but effective framework, called ELVA, a novel rule-based RL framework that mitigates grain blindness through ranking-driven MLLMs. 1) Instead of relying on reward models, we extend Reinforcement Learning with Verifiable Rewards   (RLVR) to retrieval tasks, allowing the model to explore new ranking behaviors without explicit ranking labels. 2) By utilizing rule-based rewards, our approach jointly optimizes the ranking of negative samples while enlarging the similarity gap between positive and negative. To more precisely measure grain blindness, we further introduce MRBench, a new benchmark specifically designed for multi-grain query scenarios. ELVA achieves state-of-the-art results across standard retrieval benchmarks, and its notable 13.1% improvement on MRBench further demonstrates its effectiveness in alleviating grain blindness.",
+      "authors": [
+        "Yuhan Liu",
+        "Pei Fu",
+        "Hang Li",
+        "Yukun Qi",
+        "Chao Jiang",
+        "Jingwen Fu",
+        "Zhen Liu",
+        "Bin Qin",
+        "Zhenbo Luo",
+        "Jian Luan",
+        "Jingmin Xin"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-06-18T14:23:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.20280v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "ranking-driven multimodal retrieval using MLLMs, addressing grain blindness",
+      "llm_evidence_cn": "排名驱动的多模态检索，利用多模态大语言模型解决粒度盲区",
+      "llm_evidence": "排名驱动的多模态检索，利用多模态大语言模型解决粒度盲区",
+      "canonical_evidence": "排名驱动的多模态检索，利用多模态大语言模型解决粒度盲区",
+      "llm_tldr_en": "Addresses grain blindness in contrastive retrieval by proposing a ranking-driven objective that treats negatives differently according to similarity, improving universal multimodal retrieval.",
+      "llm_tldr_cn": "针对对比检索中的粒度盲区问题，提出一种排名驱动的训练目标，根据负样本与正样本的相似度区别对待，提升通用多模态检索性能。实验表明该方法能有效处理复杂查询，在多个基准上取得更好效果，为多模态检索提供了新思路。",
+      "llm_tldr": "针对对比检索中的粒度盲区问题，提出一种排名驱动的训练目标，根据负样本与正样本的相似度区别对待，提升通用多模态检索性能。实验表明该方法能有效处理复杂查询，在多个基准上取得更好效果，为多模态检索提供了新思路。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.15345v2",
+      "source": "arxiv",
+      "title": "Beyond Monolingual Deep Research: Evaluating Agents and Retrievers with Cross-Lingual BrowseComp-Plus",
+      "abstract": "Deep research agents are increasingly evaluated on their ability to search for evidence, reason over retrieved sources, and produce grounded answers. Existing browsing benchmarks, however, largely assume that the user's query and the supporting evidence are written in the same language, leaving open whether agentic search systems can operate when relevant evidence appears in another language. We introduce XBCP (Cross-lingual BrowseComp-Plus), a controlled benchmark that preserves the English question-and-answer space of BrowseComp-Plus but varies the languages of the supporting documents. XBCP instantiates two complementary settings: in the cross-lingual setting, each query is paired with evidence in a single assigned language. In the multilingual setting, the full evidence corpus is distributed equally and randomly across 12 languages spanning high-resource and low-resource regimes. We evaluate four deep research agents using sparse and dense multilingual retrievers, measuring answer accuracy, evidence recall, search behavior, calibration, citation fidelity, and oracle retrieval. Results reveal substantial degradation when evidence is translated. Even strong, dense retrievers lose evidence recall, and agents become less calibrated and cite evidence less reliably. Notably, accuracy remains lower even when all gold evidence is supplied directly. These findings suggest that cross-lingual deep research exposes both retrieval failures and an independent, agent-side difficulty in integrating language-mismatched evidence.",
+      "authors": [
+        "Yuheng Lu",
+        "Qingcheng Zeng",
+        "Heli Qi",
+        "Puxuan Yu",
+        "Fuheng Zhao",
+        "Rui Yang",
+        "Hitomi Yanaka",
+        "Naoto Yokoya",
+        "Weihao Xuan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.IR"
+      ],
+      "published": "2026-06-13T15:11:52+00:00",
+      "link": "https://arxiv.org/pdf/2606.15345v2",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "benchmark for cross-lingual retrieval-augmented agents",
+      "llm_evidence_cn": "面向跨语言检索增强智能体的基准测试",
+      "llm_evidence": "面向跨语言检索增强智能体的基准测试",
+      "canonical_evidence": "面向跨语言检索增强智能体的基准测试",
+      "llm_tldr_en": "Introduces XBCP, a cross-lingual benchmark for deep research agents, evaluating retrieval and reasoning when evidence appears in different languages, revealing current system limitations.",
+      "llm_tldr_cn": "现有深度研究代理基准假设查询与证据同语言，忽视了跨语言场景，为此提出跨语言BrowseComp-Plus（XBCP）基准，通过控制文档语言变化，系统评估检索器和推理代理在跨语言环境下的表现。实验揭示了现有系统在多语言证据检索中面临的挑战，为多语言代理搜索系统的研发提供了受控测试平台，推动检索增强生成向多语言泛化。",
+      "llm_tldr": "现有深度研究代理基准假设查询与证据同语言，忽视了跨语言场景，为此提出跨语言BrowseComp-Plus（XBCP）基准，通过控制文档语言变化，系统评估检索器和推理代理在跨语言环境下的表现。实验揭示了现有系统在多语言证据检索中面临的挑战，为多语言代理搜索系统的研发提供了受控测试平台，推动检索增强生成向多语言泛化。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "information retrieval integration with language models",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.19898v1",
+      "source": "arxiv",
+      "title": "Query-aware Routing for Filtered Approximate Nearest Neighbors Search",
+      "abstract": "Filtered ANN search, which combines vector similarity with attribute predicates, is a core primitive in modern vector databases and retrieval-augmented generation. We benchmark all major categorical filtered ANN methods across multiple datasets under three predicates and find that no single method dominates. Moreover, even within a single dataset and predicate type, the best method for a query can vary. Therefore, we propose a query-aware routing framework. A lightweight ML model predicts each candidate method's recall on the query, and the router consults an offline benchmark table that maps every method and parameter setting to its measured recall and QPS, then selects the method with the best recall--QPS trade-off. Our ablation study narrows 22 candidate features to a minimal set of three and we adopt regression rather than classification as the prediction target to sharpen accuracy. Our model is trained on six real-world datasets and applied to five unseen validation datasets. The final result shows that our router achieves state-of-the-art recall and QPS balance across all five validation datasets compared to existing filtered ANN baselines, while incurring negligible latency overhead.",
+      "authors": [
+        "Qianqian Xiong",
+        "Mengxuan Zhang"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.IR"
+      ],
+      "published": "2026-06-18T07:54:12+00:00",
+      "link": "https://arxiv.org/pdf/2606.19898v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a query-aware routing framework for filtered approximate nearest neighbor search, improving efficiency and recall in vector retrieval.",
+      "llm_evidence_cn": "提出一种查询感知路由框架，用于过滤近似最近邻搜索，提高向量检索的效率和召回率。",
+      "llm_evidence": "提出一种查询感知路由框架，用于过滤近似最近邻搜索，提高向量检索的效率和召回率。",
+      "canonical_evidence": "提出一种查询感知路由框架，用于过滤近似最近邻搜索，提高向量检索的效率和召回率。",
+      "llm_tldr_en": "A query-aware routing framework selects the best filtered ANN method per query based on predicted recall, achieving superior recall-QPS trade-offs for retrieval in vector databases.",
+      "llm_tldr_cn": "该文针对现代向量数据库中过滤ANN搜索的方法选择问题，提出查询感知路由框架。通过轻量ML模型预测各方法的召回率，并基于离线基准表选择最优方案，在多个数据集上实现了最佳的召回率与吞吐量权衡，为检索增强生成提供更高效的基础算子。",
+      "llm_tldr": "该文针对现代向量数据库中过滤ANN搜索的方法选择问题，提出查询感知路由框架。通过轻量ML模型预测各方法的召回率，并基于离线基准表选择最优方案，在多个数据集上实现了最佳的召回率与吞吐量权衡，为检索增强生成提供更高效的基础算子。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

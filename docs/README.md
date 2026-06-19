@@ -6,38 +6,40 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-18
-- 运行时间：2026-06-18 22:11:19 UTC
+- 最新运行日期：2026-06-19
+- 运行时间：2026-06-19 21:53:24 UTC
 - 运行状态：成功
 - 本次总论文数：6
-- 精读区：5
-- 速读区：1
+- 精读区：4
+- 速读区：2
 
 ### 今日简报（AI）
-今日精读长文档RAG两大利器：SproutRAG用注意力引导树搜索与渐进嵌入突破长文信息定位，MCompassRAG以话题元数据作语义罗盘实现段落级精准检索。可重点关注将动态检索与层级语义导航结合的新范式。建议读者优先尝试SproutRAG的渐进嵌入思路，或为现有RAG系统引入话题级元数据以提升长文档问答效果。
-- 详情：[/202606/18/README](/202606/18/README)
+今日深入阅读了 4 篇论文，聚焦 Text-to-SQL 的自增强微调与可扩展多模态文档检索。  
+最值得关注的是：通过自我提升式微调统一 SQL 生成的推理与泛化，以及 Stellar 在千万级文档上实现高效跨模态检索。  
+建议普通读者尝试将结构化查询理解与多模态检索技术融合，构建更智能的信息获取助手。
+- 详情：[/202606/19/README](/202606/19/README)
 
 ### 精读区论文标签
-1. [SproutRAG: Attention-Guided Tree Search with Progressive Embeddings for Long-Document RAG](/202606/18/2606.18381v1-sproutrag-attention-guided-tree-search-with-progressive-embeddings-for-long-document-rag)  
-   标签：评分：10.0/10、query:rag-llm
-   evidence：提出一种新的层次RAG框架，采用注意力引导分块和渐进嵌入处理长文档。
-2. [MCompassRAG: Topic Metadata as a Semantic Compass for Paragraph-Level Retrieval](/202606/18/2606.18508v1-mcompassrag-topic-metadata-as-a-semantic-compass-for-paragraph-level-retrieval)  
+1. [Integrating Reasoning and Generalization in Text-to-SQL via Self-Enhanced Fine-Tuning](/202606/19/2606.15598v1-integrating-reasoning-and-generalization-in-text-to-sql-via-self-enhanced-fine-tuning)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：引入主题级元数据引导选择性检索，解决RAG中块粒度精度与延迟的权衡
-3. [Lost in a Single Vector: Improving Long-Document Retrieval with Chunk Evidence Aggregation](/202606/18/2606.18781v1-lost-in-a-single-vector-improving-long-document-retrieval-with-chunk-evidence-aggregation)  
+   evidence：使用示例检索和思维链提示进行Text-to-SQL，是一种检索增强生成方法
+2. [Stellar: Scalable Multimodal Document Retrieval for Natural Language Queries](/202606/19/2606.19960v1-stellar-scalable-multimodal-document-retrieval-for-natural-language-queries)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：提出DICE，一种免训练的方法，将分块证据聚合为单向量以改善长文档的稠密检索。
-4. [Hierarchical Multi-Modal Retrieval for Knowledge-Grounded News Image Captioning](/202606/18/2606.18553v1-hierarchical-multi-modal-retrieval-for-knowledge-grounded-news-image-captioning)  
+   evidence：通过磁盘存储令牌级嵌入实现可扩展多模态文档检索
+3. [When Does Streaming Tool Use Help? Characterizing Tool-Intent Stabilization in Streaming Retrieval-Augmented Generation](/202606/19/2606.20113v1-when-does-streaming-tool-use-help-characterizing-tool-intent-stabilization-in-streaming-retrieval-augmented-generation)  
+   标签：评分：9.0/10、query:rag-llm
+   evidence：面向流式RAG的工具意图稳定化分析
+4. [ELVA: Exploring Ranking-Driven Universal Multimodal Retrieval](/202606/19/2606.20280v1-elva-exploring-ranking-driven-universal-multimodal-retrieval)  
    标签：评分：8.0/10、query:rag-llm
-   evidence：提出检索增强图像描述框架，针对新闻图像采用层次化多模态文章检索。
-5. [SHIFT: Semantic Harmonization via Index-side Feature Transformation for Multilingual Information Retrieval](/202606/18/2606.18801v1-shift-semantic-harmonization-via-index-side-feature-transformation-for-multilingual-information-retrieval)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：无训练的多语言密集检索改进，用于语义搜索
+   evidence：排名驱动的多模态检索，利用多模态大语言模型解决粒度盲区
 
 ### 速读区论文标签
-1. [Rescaling MLM-Head for Neural Sparse Retrieval](/202606/18/2606.18811v1-rescaling-mlm-head-for-neural-sparse-retrieval)  
+1. [Beyond Monolingual Deep Research: Evaluating Agents and Retrievers with Cross-Lingual BrowseComp-Plus](/202606/19/2606.15345v2-beyond-monolingual-deep-research-evaluating-agents-and-retrievers-with-cross-lingual-browsecomp-plus)  
    标签：评分：7.0/10、query:rag-llm
-   evidence：通过MLM-head重缩放改进神经稀疏检索，一种LM知识检索技术
+   evidence：面向跨语言检索增强智能体的基准测试
+2. [Query-aware Routing for Filtered Approximate Nearest Neighbors Search](/202606/19/2606.19898v1-query-aware-routing-for-filtered-approximate-nearest-neighbors-search)  
+   标签：评分：7.0/10、query:rag-llm
+   evidence：提出一种查询感知路由框架，用于过滤近似最近邻搜索，提高向量检索的效率和召回率。
 
 
 <div class="dpr-home-promo-card">
