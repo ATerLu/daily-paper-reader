@@ -1,0 +1,131 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-20T20:49:59.556259+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 1,
+    "deep_cap": 6,
+    "deep_selected": 1,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.16825v1",
+      "source": "arxiv",
+      "title": "Tying the Loop -- Tied Expert Layers in Mixture-of-Experts Language Models",
+      "abstract": "Mixture-of-Experts (MoE) architectures efficiently scale Large Language Models (LLMs) by activating only a small fraction of their experts per token, yet the full parameter count - dominated by the expert parameters - must be held in training and inference memory. To address this, we introduce Expert Tying, an architectural modification that shares expert parameters across consecutive transformer layers while preserving independent, layer-wise routing and attention.   We evaluate this approach across common, state-of-the-art architectures, including OLMoE, Qwen3, and DeepSeek-style MoEs. Our pretraining experiments demonstrate that tying experts can reduce memory footprint by almost 2x at virtually no degradation in perplexity or downstream quality. By exploiting the parameter redundancy inherent in MoE pathways, our method provides a highly favorable compute-to-memory trade-off, advancing efficient training and scaling of next-generation LLMs.",
+      "authors": [
+        "Martin Jaggi"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-15T15:08:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.16825v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Introduces Expert Tying in MoE LLMs to share expert parameters across layers, reducing memory footprint",
+      "llm_evidence_cn": "在MoE LLM中引入专家层间参数共享，大幅降低内存占用",
+      "llm_evidence": "在MoE LLM中引入专家层间参数共享，大幅降低内存占用",
+      "canonical_evidence": "在MoE LLM中引入专家层间参数共享，大幅降低内存占用",
+      "llm_tldr_en": "Expert Tying shares expert parameters across consecutive transformer layers in MoE models, achieving nearly 2x memory reduction with no degradation in perplexity or downstream quality.",
+      "llm_tldr_cn": "MoE架构虽能高效扩展LLM，但专家参数占主导且必须全部保存在内存中。本文提出专家绑定（Expert Tying），一种在连续Transformer层间共享专家参数但保留独立路由的架构修改。在OLMoE、Qwen3和DeepSeek式MoE上的预训练实验表明，该方法可将内存占用减少近一半，且困惑度和下游任务质量几乎无下降。这项工作为更紧凑的MoE语言模型设计开辟了新路径。",
+      "llm_tldr": "MoE架构虽能高效扩展LLM，但专家参数占主导且必须全部保存在内存中。本文提出专家绑定（Expert Tying），一种在连续Transformer层间共享专家参数但保留独立路由的架构修改。在OLMoE、Qwen3和DeepSeek式MoE上的预训练实验表明，该方法可将内存占用减少近一半，且困惑度和下游任务质量几乎无下降。这项工作为更紧凑的MoE语言模型设计开辟了新路径。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language model architectures and training",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.17183v1",
+      "source": "arxiv",
+      "title": "VL-MemKnG: Hybrid Memory with a Spatio-Temporal Knowledge Graph for Question Answering over Long Egocentric Navigation Trajectories",
+      "abstract": "Answering navigation-relevant questions over long egocentric videos requires retrieving and organizing evidence distributed across distant temporal moments while maintaining spatial and contextual consistency. Although long-context vision--language models can achieve strong answer quality, they are computationally expensive for long trajectories and inefficient for repeated querying. Recent graph-based approaches such as VL-KnG address this challenge through persistent spatio-temporal knowledge graphs, but graph-centric retrieval alone may underrepresent broader temporal continuity and contextual cues. We present VL-MemKnG, a hybrid memory framework that extends VL-KnG by combining a spatio-temporal knowledge graph with persistent segment-level contextual memory. The knowledge graph captures structured relational information and long-range object associations, while segment-level memory preserves broader temporal context for long-horizon evidence retrieval. A hybrid retrieval-and-reasoning module jointly operates over both memory representations to produce evidence-grounded answers and temporally organized supporting evidence. We also introduce WalkieKnowledgeT+, an extension of WalkieKnowledge for long-horizon navigation-oriented video question answering. The benchmark includes temporally distributed reasoning tasks requiring evidence aggregation across multiple non-cooccurring moments. On WalkieKnowledgeT+, VL-MemKnG improves Top-1 retrieval accuracy from 58% to 67% and Recall@1 from 34.50% to 40.55%, outperforming all compared methods, including Gemini 2.5 Pro and Qwen 3.5+. The gains are particularly pronounced on temporal-global and temporally scattered aggregation questions, demonstrating the benefits of combining structured relational memory with segment-level contextual memory while maintaining efficient query-time inference.",
+      "authors": [
+        "Svetlana Lukina",
+        "Mohamad Al Mdfaa",
+        "Gloria Haro",
+        "Sergey Zagoruyko",
+        "Gonzalo Ferrer"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-15T18:21:14+00:00",
+      "link": "https://arxiv.org/pdf/2606.17183v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes a hybrid memory framework with spatio-temporal knowledge graph for retrieving evidence in VQA",
+      "llm_evidence_cn": "提出了用于视频问答的时空知识图谱混合记忆框架，以检索和组织证据",
+      "llm_evidence": "提出了用于视频问答的时空知识图谱混合记忆框架，以检索和组织证据",
+      "canonical_evidence": "提出了用于视频问答的时空知识图谱混合记忆框架，以检索和组织证据",
+      "llm_tldr_en": "VL-MemKnG combines a spatio-temporal knowledge graph with a memory module to efficiently retrieve evidence from long egocentric videos for navigation QA, improving over purely graph-based methods.",
+      "llm_tldr_cn": "针对长时程自我中心视频中导航问答的证据分散和检索效率问题，本文提出VL-MemKnG，一种混合记忆框架，扩展VL-KnG以结合时空知识图谱和记忆模块，增强时间连续性与上下文线索。实验表明该方法在多个长轨迹问答任务上优于纯图检索方法，同时降低了重复查询的计算开销，为多模态知识检索提供了新思路。",
+      "llm_tldr": "针对长时程自我中心视频中导航问答的证据分散和检索效率问题，本文提出VL-MemKnG，一种混合记忆框架，扩展VL-KnG以结合时空知识图谱和记忆模块，增强时间连续性与上下文线索。实验表明该方法在多个长轨迹问答任务上优于纯图检索方法，同时降低了重复查询的计算开销，为多模态知识检索提供了新思路。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.19803v1",
+      "source": "arxiv",
+      "title": "Policy-aware Vector Search: A Vision for Fine Grained Access Control in Vector Databases",
+      "abstract": "Vector databases are increasingly used in security sensitive contexts with Retrieval Augmented Generation and organizational AI pipelines; however, their security capabilities remain limited. Specifically, Fine-grained Access Control (FGAC) which is required to ensure that data access adheres to user-specific policies is not fully supported in modern vector databases. Unlike relational databases, vector databases combine structured and unstructured attributes to provide semantic, approximate query results, which complicates FGAC implementation. This creates an inherent tension between enforcing FGAC policies correctly, achieving high ANN search recall and maintaining low query latency. In this paper, we present a vision for Policy-aware Vector Search by formalizing the FGAC policy model in vector databases as well as the enforcement problem. We compare various enforcement strategies, present preliminary findings, and identify key open challenges for future research in policy-aware vector search.",
+      "authors": [
+        "Lakshmi Sahithi Yalamarthi",
+        "Primal Pappachan"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-18T05:16:05+00:00",
+      "link": "https://arxiv.org/pdf/2606.19803v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Vision for fine-grained access control in vector databases for RAG contexts",
+      "llm_evidence_cn": "为RAG环境中的向量数据库提出细粒度访问控制的愿景",
+      "llm_evidence": "为RAG环境中的向量数据库提出细粒度访问控制的愿景",
+      "canonical_evidence": "为RAG环境中的向量数据库提出细粒度访问控制的愿景",
+      "llm_tldr_en": "The paper presents a vision for policy-aware vector search to enable fine-grained access control in vector databases used for RAG, addressing security and performance tensions.",
+      "llm_tldr_cn": "本文提出策略感知向量搜索的愿景，旨在为检索增强生成中使用的向量数据库提供细粒度访问控制。目前向量数据库缺乏全面的FGAC支持，本文分析了在语义近似查询中实施策略的正确性、召回率和延迟之间的权衡，并勾画了未来系统架构。",
+      "llm_tldr": "本文提出策略感知向量搜索的愿景，旨在为检索增强生成中使用的向量数据库提供细粒度访问控制。目前向量数据库缺乏全面的FGAC支持，本文分析了在语义近似查询中实施策略的正确性、召回率和延迟之间的权衡，并勾画了未来系统架构。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "dense vector retrieval models",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

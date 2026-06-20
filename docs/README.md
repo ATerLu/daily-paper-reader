@@ -6,40 +6,31 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-19
-- 运行时间：2026-06-19 21:53:24 UTC
+- 最新运行日期：2026-06-20
+- 运行时间：2026-06-20 20:52:29 UTC
 - 运行状态：成功
-- 本次总论文数：6
-- 精读区：4
+- 本次总论文数：3
+- 精读区：1
 - 速读区：2
 
 ### 今日简报（AI）
-今日深入阅读了 4 篇论文，聚焦 Text-to-SQL 的自增强微调与可扩展多模态文档检索。  
-最值得关注的是：通过自我提升式微调统一 SQL 生成的推理与泛化，以及 Stellar 在千万级文档上实现高效跨模态检索。  
-建议普通读者尝试将结构化查询理解与多模态检索技术融合，构建更智能的信息获取助手。
-- 详情：[/202606/19/README](/202606/19/README)
+今日精读《Tying the Loop》一文，速览两篇关于长期导航记忆与细粒度权限搜索的工作。
+最值得关注的是将参数共享引入MoE专家层的新方法，能在不减模型质量下大幅压缩模型规模。
+建议关注大模型效率优化的读者细读该文，其循环权重设计对降低MoE部署成本有直接启示。
+- 详情：[/202606/20/README](/202606/20/README)
 
 ### 精读区论文标签
-1. [Integrating Reasoning and Generalization in Text-to-SQL via Self-Enhanced Fine-Tuning](/202606/19/2606.15598v1-integrating-reasoning-and-generalization-in-text-to-sql-via-self-enhanced-fine-tuning)  
+1. [Tying the Loop -- Tied Expert Layers in Mixture-of-Experts Language Models](/202606/20/2606.16825v1-tying-the-loop----tied-expert-layers-in-mixture-of-experts-language-models)  
    标签：评分：9.0/10、query:rag-llm
-   evidence：使用示例检索和思维链提示进行Text-to-SQL，是一种检索增强生成方法
-2. [Stellar: Scalable Multimodal Document Retrieval for Natural Language Queries](/202606/19/2606.19960v1-stellar-scalable-multimodal-document-retrieval-for-natural-language-queries)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：通过磁盘存储令牌级嵌入实现可扩展多模态文档检索
-3. [When Does Streaming Tool Use Help? Characterizing Tool-Intent Stabilization in Streaming Retrieval-Augmented Generation](/202606/19/2606.20113v1-when-does-streaming-tool-use-help-characterizing-tool-intent-stabilization-in-streaming-retrieval-augmented-generation)  
-   标签：评分：9.0/10、query:rag-llm
-   evidence：面向流式RAG的工具意图稳定化分析
-4. [ELVA: Exploring Ranking-Driven Universal Multimodal Retrieval](/202606/19/2606.20280v1-elva-exploring-ranking-driven-universal-multimodal-retrieval)  
-   标签：评分：8.0/10、query:rag-llm
-   evidence：排名驱动的多模态检索，利用多模态大语言模型解决粒度盲区
+   evidence：在MoE LLM中引入专家层间参数共享，大幅降低内存占用
 
 ### 速读区论文标签
-1. [Beyond Monolingual Deep Research: Evaluating Agents and Retrievers with Cross-Lingual BrowseComp-Plus](/202606/19/2606.15345v2-beyond-monolingual-deep-research-evaluating-agents-and-retrievers-with-cross-lingual-browsecomp-plus)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：面向跨语言检索增强智能体的基准测试
-2. [Query-aware Routing for Filtered Approximate Nearest Neighbors Search](/202606/19/2606.19898v1-query-aware-routing-for-filtered-approximate-nearest-neighbors-search)  
-   标签：评分：7.0/10、query:rag-llm
-   evidence：提出一种查询感知路由框架，用于过滤近似最近邻搜索，提高向量检索的效率和召回率。
+1. [VL-MemKnG: Hybrid Memory with a Spatio-Temporal Knowledge Graph for Question Answering over Long Egocentric Navigation Trajectories](/202606/20/2606.17183v1-vl-memkng-hybrid-memory-with-a-spatio-temporal-knowledge-graph-for-question-answering-over-long-egocentric-navigation-trajectories)  
+   标签：评分：6.0/10、query:rag-llm
+   evidence：提出了用于视频问答的时空知识图谱混合记忆框架，以检索和组织证据
+2. [Policy-aware Vector Search: A Vision for Fine Grained Access Control in Vector Databases](/202606/20/2606.19803v1-policy-aware-vector-search-a-vision-for-fine-grained-access-control-in-vector-databases)  
+   标签：评分：6.0/10、query:rag-llm
+   evidence：为RAG环境中的向量数据库提出细粒度访问控制的愿景
 
 
 <div class="dpr-home-promo-card">

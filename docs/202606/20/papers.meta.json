@@ -1,0 +1,54 @@
+{
+  "label": "2026-06-20",
+  "date": "2026-06-20",
+  "generated_at": "2026-06-20T20:52:38",
+  "count": 3,
+  "papers": [
+    {
+      "paper_id": "202606/20/2606.16825v1-tying-the-loop----tied-expert-layers-in-mixture-of-experts-language-models",
+      "section": "deep",
+      "title_en": "Tying the Loop -- Tied Expert Layers in Mixture-of-Experts Language Models",
+      "authors": "Martin Jaggi",
+      "date": "2026-06-15",
+      "pdf": "https://arxiv.org/pdf/2606.16825v1",
+      "score": "9.0",
+      "evidence": "在MoE LLM中引入专家层间参数共享，大幅降低内存占用",
+      "tldr": "混合专家（MoE）架构按需激活专家高效扩展大模型，但全部专家参数依然占用大量内存。本文提出专家绑定技术，在连续Transformer层间共享专家参数，同时保留各层独立路由与注意力。在OLMoE、Qwen3等MoE模型预训练中，内存占用减少近50%，且困惑度和下游性能几乎无损。该方案利用专家参数冗余，在计算与内存间取得有利权衡，推动下一代大语言模型的高效训练与扩展。",
+      "tags": "query:rag-llm",
+      "abstract_en": "Mixture-of-Experts (MoE) architectures efficiently scale Large Language Models (LLMs) by activating only a small fraction of their experts per token, yet the full parameter count - dominated by the expert parameters - must be held in training and inference memory. To address this, we introduce Expert Tying, an architectural modification that shares expert parameters across consecutive transformer layers while preserving independent, layer-wise routing and attention.   We evaluate this approach across common, state-of-the-art architectures, including OLMoE, Qwen3, and DeepSeek-style MoEs. Our pretraining experiments demonstrate that tying experts can reduce memory footprint by almost 2x at virtually no degradation in perplexity or downstream quality. By exploiting the parameter redundancy inherent in MoE pathways, our method provides a highly favorable compute-to-memory trade-off, advancing efficient training and scaling of next-generation LLMs.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/20/2606.17183v1-vl-memkng-hybrid-memory-with-a-spatio-temporal-knowledge-graph-for-question-answering-over-long-egocentric-navigation-trajectories",
+      "section": "quick",
+      "title_en": "VL-MemKnG: Hybrid Memory with a Spatio-Temporal Knowledge Graph for Question Answering over Long Egocentric Navigation Trajectories",
+      "authors": "Svetlana Lukina, Mohamad Al Mdfaa, Gloria Haro, Sergey Zagoruyko, Gonzalo Ferrer",
+      "date": "2026-06-15",
+      "pdf": "https://arxiv.org/pdf/2606.17183v1",
+      "score": "6.0",
+      "evidence": "提出了用于视频问答的时空知识图谱混合记忆框架，以检索和组织证据",
+      "tldr": "针对长第一人称导航视频问答需聚合时空分散证据的挑战，现有长上下文模型计算代价高，纯图方法缺乏时间连续性。提出VL-MemKnG混合记忆框架，融合时空知识图谱与段级上下文记忆，进行混合检索推理。在WalkieKnowledgeT+基准上，Top-1检索准确率提升至67%，Recall@1达40.55%，优于包括Gemini 2.5 Pro在内的所有方法。有效平衡结构化关系记忆和全局上下文，保持高效查询推理，提升长程问答性能。",
+      "tags": "query:rag-llm",
+      "abstract_en": "Answering navigation-relevant questions over long egocentric videos requires retrieving and organizing evidence distributed across distant temporal moments while maintaining spatial and contextual consistency. Although long-context vision--language models can achieve strong answer quality, they are computationally expensive for long trajectories and inefficient for repeated querying. Recent graph-based approaches such as VL-KnG address this challenge through persistent spatio-temporal knowledge graphs, but graph-centric retrieval alone may underrepresent broader temporal continuity and contextual cues. We present VL-MemKnG, a hybrid memory framework that extends VL-KnG by combining a spatio-temporal knowledge graph with persistent segment-level contextual memory. The knowledge graph captures structured relational information and long-range object associations, while segment-level memory preserves broader temporal context for long-horizon evidence retrieval. A hybrid retrieval-and-reasoning module jointly operates over both memory representations to produce evidence-grounded answers and temporally organized supporting evidence. We also introduce WalkieKnowledgeT+, an extension of WalkieKnowledge for long-horizon navigation-oriented video question answering. The benchmark includes temporally distributed reasoning tasks requiring evidence aggregation across multiple non-cooccurring moments. On WalkieKnowledgeT+, VL-MemKnG improves Top-1 retrieval accuracy from 58% to 67% and Recall@1 from 34.50% to 40.55%, outperforming all compared methods, including Gemini 2.5 Pro and Qwen 3.5+. The gains are particularly pronounced on temporal-global and temporally scattered aggregation questions, demonstrating the benefits of combining structured relational memory with segment-level contextual memory while maintaining efficient query-time inference.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202606/20/2606.19803v1-policy-aware-vector-search-a-vision-for-fine-grained-access-control-in-vector-databases",
+      "section": "quick",
+      "title_en": "Policy-aware Vector Search: A Vision for Fine Grained Access Control in Vector Databases",
+      "authors": "Lakshmi Sahithi Yalamarthi, Primal Pappachan",
+      "date": "2026-06-18",
+      "pdf": "https://arxiv.org/pdf/2606.19803v1",
+      "score": "6.0",
+      "evidence": "为RAG环境中的向量数据库提出细粒度访问控制的愿景",
+      "tldr": "向量数据库越来越多用于安全敏感的检索增强生成等场景，但细粒度访问控制（FGAC）支持不足。本文提出策略感知向量搜索，形式化定义FGAC策略模型及执法问题，并系统比较前过滤、后过滤等多种策略。初步实验发现，后过滤策略虽保证正确性但召回率低，前过滤延迟高，揭示了正确性、召回率与延迟间的根本性权衡，为未来策略感知搜索研究奠定基础并明确关键挑战。",
+      "tags": "query:rag-llm",
+      "abstract_en": "Vector databases are increasingly used in security sensitive contexts with Retrieval Augmented Generation and organizational AI pipelines; however, their security capabilities remain limited. Specifically, Fine-grained Access Control (FGAC) which is required to ensure that data access adheres to user-specific policies is not fully supported in modern vector databases. Unlike relational databases, vector databases combine structured and unstructured attributes to provide semantic, approximate query results, which complicates FGAC implementation. This creates an inherent tension between enforcing FGAC policies correctly, achieving high ANN search recall and maintaining low query latency. In this paper, we present a vision for Policy-aware Vector Search by formalizing the FGAC policy model in vector databases as well as the enforcement problem. We compare various enforcement strategies, present preliminary findings, and identify key open challenges for future research in policy-aware vector search.",
+      "source": "arxiv",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
