@@ -1,0 +1,248 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-21T21:19:34.566920+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 2,
+    "quick_skim_target": 11,
+    "quick_selected": 2
+  },
+  "deep_dive": [
+    {
+      "id": "2606.16494v1",
+      "source": "arxiv",
+      "title": "Lost at the End: Primacy Bias in Multimodal Retrieval-Augmented Question Answering",
+      "abstract": "Knowledge-based visual question answering (KB-VQA) lets vision-language systems answer questions that exceed their parametric knowledge by conditioning a reader on passages retrieved from a Wikipedia-scale knowledge base. In pure-text long-context LLMs, retrieved-context use follows the U-shaped \"lost-in-the-middle\" effect of Liu et al. (2024): information at the start and end of context is used, the middle is lost. Whether this transfers to deployed multimodal KB-VQA is open. To close this gap, we design the first controlled probe of reader-side position dependence in multimodal KB-VQA: a gold-position protocol in which only the gold passage's prompt slot varies within question. We run it on three open-source 7B/8B VLM readers and two KB-VQA benchmarks at k up to 20. The shape flips from U to primacy: gold-at-first beats gold-at-last by 16 to 26 points on every reader-by-benchmark cell, an effect we call \"Lost at the End\". Three targeted ablations narrow the cause: a text-only control shows the multimodal setting amplifies an already-present text-mode primacy 2.2 to 4.5 times, and image-position and distractor-shuffle ablations together pin the locus to prompt slot 0 of the instruction-tuned reader. On a frozen reader, three retrieval-side fixes (MMR, oracle reranking, rank-based reordering) all leave the gap intact (no separable improvement). Our findings indicate that recall@k is the wrong metric for deployed KB-VQA and that closing the gap requires reader-side intervention; we release our protocol as a controlled instrument for evaluating such interventions.",
+      "authors": [
+        "Jieyuan Liu",
+        "Jianyang Gu",
+        "Shijie Chen",
+        "Jefferson Chen",
+        "Zhen Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-06-15T09:57:48+00:00",
+      "link": "https://arxiv.org/pdf/2606.16494v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "First controlled probe of position dependence in multimodal retrieval-augmented QA, revealing primacy bias where only the start of retrieved context is used.",
+      "llm_evidence_cn": "首个控制性探究多模态检索增强问答中位置依赖性，揭示首因偏差（仅使用检索上下文开头）。",
+      "llm_evidence": "首个控制性探究多模态检索增强问答中位置依赖性，揭示首因偏差（仅使用检索上下文开头）。",
+      "canonical_evidence": "首个控制性探究多模态检索增强问答中位置依赖性，揭示首因偏差（仅使用检索上下文开头）。",
+      "llm_tldr_en": "In multimodal RAG for KB-VQA, a controlled study finds a primacy bias: models almost exclusively use the first retrieved passage, ignoring middle information, contrary to the lost-in-the-middle pattern in text-only LLMs.",
+      "llm_tldr_cn": "基于知识库的视觉问答中多模态检索增强生成面临阅读器位置依赖问题，通过首个控制性实验设计，发现模型存在首因偏差：仅利用检索到的第一条黄金段落，中间信息被忽略，与文本LLM的“迷失在中段”效应截然不同。这一发现对设计更有效的多模态RAG系统具有重要启示。",
+      "llm_tldr": "基于知识库的视觉问答中多模态检索增强生成面临阅读器位置依赖问题，通过首个控制性实验设计，发现模型存在首因偏差：仅利用检索到的第一条黄金段落，中间信息被忽略，与文本LLM的“迷失在中段”效应截然不同。这一发现对设计更有效的多模态RAG系统具有重要启示。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19667v1",
+      "source": "arxiv",
+      "title": "CacheWeaver: Cache-Aware Evidence Ordering for Efficient Grounded RAG Inference",
+      "abstract": "Retrieval-Augmented Generation (RAG) improves factual grounding, but it also lengthens prompts and raises prefill cost. Prefix caching in serving engines such as vLLM reduces this cost only when requests share the same token prefix. In grounded generation, however, adjacent queries may retrieve overlapping evidence in different orders, so set overlap does not become reusable prefix overlap. We present CacheWeaver, a lightweight prompt-layer method for cache-aware evidence ordering. The method keeps a prefix tree over recently served evidence sequences and uses a greedy walk to place the most reusable prefix first, while leaving the serving engine and retrieved evidence set unchanged. Across three vLLM configurations, the method lowers median time-to-first-token (TTFT) by about 20-33 percent relative to retrieval-order prefix caching, without hurting answer quality in our QA tests. The greedy policy reaches 97.5 percent of the median TTFT gain from oracle ordering, indicating that most reusable prefix locality can be recovered by a simple scheduling layer between retrieval and inference.",
+      "authors": [
+        "Kaizhen Tan",
+        "Rong Gu",
+        "Mingyuan Li"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-18T00:38:46+00:00",
+      "link": "https://arxiv.org/pdf/2606.19667v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "cache-aware evidence ordering reduces RAG inference cost",
+      "llm_evidence_cn": "缓存感知的证据排序降低RAG推理成本",
+      "llm_evidence": "缓存感知的证据排序降低RAG推理成本",
+      "canonical_evidence": "缓存感知的证据排序降低RAG推理成本",
+      "llm_tldr_en": "CacheWeaver is a prompt-layer method that reorders retrieved evidence to maximize prefix cache reuse in RAG, reducing time to first token without changing the serving engine or evidence set.",
+      "llm_tldr_cn": "检索增强生成虽然改善事实性，但延长提示词并增加预填成本。现有前缀缓存仅在请求共享同一前缀时有效，而在扎根式生成中，重叠证据的顺序不同导致无法复用。CacheWeaver 提出一种缓存感知的证据排序方法，通过维护证据序列的前缀树和贪心游走，将可复用前缀置于首位。在三种 vLLM 配置下，该方法将中位到首令牌时间降低，且无需修改服务引擎或证据集，提升了 RAG 推理效率。",
+      "llm_tldr": "检索增强生成虽然改善事实性，但延长提示词并增加预填成本。现有前缀缓存仅在请求共享同一前缀时有效，而在扎根式生成中，重叠证据的顺序不同导致无法复用。CacheWeaver 提出一种缓存感知的证据排序方法，通过维护证据序列的前缀树和贪心游走，将可复用前缀置于首位。在三种 vLLM 配置下，该方法将中位到首令牌时间降低，且无需修改服务引擎或证据集，提升了 RAG 推理效率。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19692v1",
+      "source": "arxiv",
+      "title": "When Global Gating Is Enough: Admission-Time Hubness Control in Anisotropic Vector Retrieval Systems",
+      "abstract": "Vector hubness, where a few points become nearest neighbors of many queries, creates a poisoning risk in retrieval-augmented generation (RAG): one injected document can influence unrelated requests. Existing defenses use periodic reverse-kNN scans, leaving an exposure window and repeated corpus-wide work. We study admission-time control, scoring each candidate against sentinel queries and quarantining hub-like documents before insertion. Across two 100,000-document corpora, five encoders, and disjoint attacker and defender query sets, a global gate achieves recall 1.0 at the decisive embedding-space point (>=0.92 across the effective range) and 0.91 +/- 0.07 on HotFlip attacks, with 1% false positives on general documents. A per-topic gate provides no reliable benefit, consistent with anisotropy coupling local and global visibility. Thresholds are maintained incrementally, with corpus-size-independent insertion cost and amortized deletion cost. On HNSW, admission adds about 3.1% to ingestion latency, scoring remains flat to 10^6 vectors, and 1.2% of decisions flip under approximate indexing, none involving attacks. Provenance complements the gate for natural or tight-domain hubs.",
+      "authors": [
+        "Prashant Kumar Pathak",
+        "Tarun Kumar Sharma"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.DB",
+        "cs.IR"
+      ],
+      "published": "2026-06-18T01:40:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.19692v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "admission-time hubness control to prevent poisoning in RAG vector retrieval",
+      "llm_evidence_cn": "通过入站时中枢控制防止RAG向量检索中的投毒风险",
+      "llm_evidence": "通过入站时中枢控制防止RAG向量检索中的投毒风险",
+      "canonical_evidence": "通过入站时中枢控制防止RAG向量检索中的投毒风险",
+      "llm_tldr_en": "Proposes admission-time hubness control using a global gate to quarantine hub-like documents, preventing poisoning in RAG vector retrieval.",
+      "llm_tldr_cn": "向量检索中的中枢现象可能导致检索增强生成中的投毒风险，即少量文档成为大量查询的最近邻。本文研究入站时控制方法，在文档插入向量数据库前通过哨兵查询进行筛选，隔离中枢候选文档。实验在两个10万文档的语料库和五种编码器上验证，全局门控在决定性嵌入空间点召回率达到1.0，对HotFlip攻击具有鲁棒性，且误报率仅1%。该方法为RAG系统提供了高效的防投毒保障。",
+      "llm_tldr": "向量检索中的中枢现象可能导致检索增强生成中的投毒风险，即少量文档成为大量查询的最近邻。本文研究入站时控制方法，在文档插入向量数据库前通过哨兵查询进行筛选，隔离中枢候选文档。实验在两个10万文档的语料库和五种编码器上验证，全局门控在决定性嵌入空间点召回率达到1.0，对HotFlip攻击具有鲁棒性，且误报率仅1%。该方法为RAG系统提供了高效的防投毒保障。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "novel methods for retrieval augmented generation",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.20245v1",
+      "source": "arxiv",
+      "title": "Navigating Unreliable Parametric and Contextual Knowledge: Explicit Knowledge Conflict Resolution for LLM Inference",
+      "abstract": "Large language models (LLMs) have achieved strong performance across a wide range of language-based tasks by leveraging both extensive parametric knowledge and in-context learning ability, enabling them to incorporate external information provided in the input prompt. However, the integration of external knowledge can introduce conflicts, not only between the model's internal parametric knowledge and the external information, but also among multiple pieces of external contexts. Existing approaches typically assume that either the model or the provided context is reliable, overlooking the possibility that both sources may contain errors, and avoid conflicts by privileging one source over the other, rather than actively resolving inconsistencies. To address these limitations, we propose a novel framework MACR for LLM knowledge conflict resolution that moves beyond the conventional binary choice paradigm and incorporates an explicit conflict-resolution mechanism based on a multi-agent reasoning approach. Specifically, we first propose an adaptive knowledge assessment and retrieval approach that employs a modified semantic entropy measure to quantify an LLM's confidence in its answer to a given query. Based on this confidence estimation, MACR either externalizes the model's internal knowledge as textual representations or retrieves relevant external knowledge when internal knowledge is insufficient, generating basic contexts for subsequent reasoning. Then we introduce an inductive multi-agent reasoning framework with three specialized agents that, respectively, induce explicit rules, analyze potential conflicts, and resolve inconsistencies across all available contexts. Empirical results demonstrate that MACR significantly outperforms state-of-the-art baselines across benchmarks, while also providing interpretable resolutions of explicit conflicts.",
+      "authors": [
+        "Huang Peng",
+        "Jiuyang Tang",
+        "Weixin Zeng",
+        "Hao Xu",
+        "Xiang Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-18T13:56:31+00:00",
+      "link": "https://arxiv.org/pdf/2606.20245v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Tackles knowledge conflicts in LLMs that integrate external context, proposing an explicit conflict resolution mechanism for reliable inference; relevant to LLMs combined with retrieval.",
+      "llm_evidence_cn": "解决集成外部上下文的LLM中的知识冲突，提出显式冲突解决机制以提升推理可靠性；与结合检索的LLM直接相关。",
+      "llm_evidence": "解决集成外部上下文的LLM中的知识冲突，提出显式冲突解决机制以提升推理可靠性；与结合检索的LLM直接相关。",
+      "canonical_evidence": "解决集成外部上下文的LLM中的知识冲突，提出显式冲突解决机制以提升推理可靠性；与结合检索的LLM直接相关。",
+      "llm_tldr_en": "The paper addresses the challenge of unreliable parametric and contextual knowledge in LLMs, proposing an explicit mechanism to resolve conflicts, improving inference reliability when using external information.",
+      "llm_tldr_cn": "针对LLM在集成外部上下文时可能面临的参数知识与上下文信息之间的冲突，该论文提出了一种显式知识冲突解决机制，通过识别和调和矛盾来源提升推理可靠性。实验表明其优于简单信任单一来源的策略。贡献在于为检索增强生成场景下的知识整合提供了鲁棒性方法。",
+      "llm_tldr": "针对LLM在集成外部上下文时可能面临的参数知识与上下文信息之间的冲突，该论文提出了一种显式知识冲突解决机制，通过识别和调和矛盾来源提升推理可靠性。实验表明其优于简单信任单一来源的策略。贡献在于为检索增强生成场景下的知识整合提供了鲁棒性方法。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "large language models combined with retrieval mechanisms",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.19847v1",
+      "source": "arxiv",
+      "title": "AtomMem: Building Simple and Effective Memory System for LLM Agents via Atomic Facts",
+      "abstract": "Large language models (LLMs) demonstrate strong reasoning and generation abilities, but their fixed context windows limit long-term information accumulation and reuse across multi-session interactions. Existing memory-augmented systems often construct memory in a coarse and unstable manner, relying on inefficient memory representations or unstable unconstrained updates. To address these challenges, we propose AtomMem, a long-term memory system designed for value-dense storage and stable memory evolution. AtomMem introduces a Fact Executor, which selectively extracts high value atomic facts from long form interactions to serve as highly efficient memory representations. Subsequently, AtomMem organizes these facts into hierarchical event structures and temporal profiles, capturing coherent episodic contexts and tracking dynamically evolving user attributes over time. During retrieval, the system activates an associative memory graph to connect fragmented memories. Experiments on the LoCoMo benchmark confirm that AtomMem achieves state-of-the-art performance across various reasoning tasks, offering a scalable and economically viable solution for deploying intelligent personalized agents.",
+      "authors": [
+        "Yanyu Yao",
+        "Shangze Li",
+        "Zhi Zheng",
+        "Hui Zheng",
+        "Qi Liu",
+        "Tong Xu",
+        "Enhong Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-18T06:56:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.19847v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "long-term memory system extracting atomic facts for efficient knowledge retrieval in LLM agents",
+      "llm_evidence_cn": "构建从交互中提取原子事实的记忆系统，实现LLM智能体的知识检索",
+      "llm_evidence": "构建从交互中提取原子事实的记忆系统，实现LLM智能体的知识检索",
+      "canonical_evidence": "构建从交互中提取原子事实的记忆系统，实现LLM智能体的知识检索",
+      "llm_tldr_en": "To overcome LLMs' context window limits, AtomMem extracts atomic facts from long interactions and organizes them hierarchically, enabling value-dense storage and stable memory evolution for efficient multi-session knowledge reuse.",
+      "llm_tldr_cn": "大型语言模型固定上下文窗口限制了跨会话的长期信息积累与复用。为此，本文提出AtomMem记忆系统，通过Fact Executor从长篇交互中抽取高价值原子事实，并分层组织为事件结构，实现高密度存储与稳定记忆演化。实验表明，AtomMem能有效支持多会话任务中的知识重用，提升了LLM智能体的长期交互能力。该工作为构建高效持久的外部记忆系统提供了新方案。",
+      "llm_tldr": "大型语言模型固定上下文窗口限制了跨会话的长期信息积累与复用。为此，本文提出AtomMem记忆系统，通过Fact Executor从长篇交互中抽取高价值原子事实，并分层组织为事件结构，实现高密度存储与稳定记忆演化。实验表明，AtomMem能有效支持多会话任务中的知识重用，提升了LLM智能体的长期交互能力。该工作为构建高效持久的外部记忆系统提供了新方案。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval techniques for language models",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.15416v1",
+      "source": "arxiv",
+      "title": "Encode Errors: Representational Retrieval of In-Context Demonstrations for Multilingual Grammatical Error Correction",
+      "abstract": "Grammatical Error Correction (GEC) involves detecting and correcting the wrong usage of grammar. While large language models (LLMs) with in-context learning (ICL) capabilities have shown significant progress on various natural language processing (NLP) tasks, their few-shot performance on GEC remains suboptimal. This is mainly due to the challenge of retrieving suitable in-context demonstrations that capture error patterns instead of semantic similarity. In this paper, we demonstrate that LLMs can inherently capture information related to grammatical errors through their internal states. From these states, we extract the Grammatical Error Representation (GER), an informative and semantically neutral encoding of grammatical errors. Our novel GER-based retrieval method significantly boosts performance in ICL settings on multilingual GEC datasets, improving the precision of correction. For high-resource languages, our results on 8B-sized open-source models match those of closed-source models such as Deepseek2.5 and GPT-4o-mini. For low-resource languages, our $F_{0.5}$ scores surpass the baseline by up to a factor of 1.20. This method provides a more precise and resource-efficient solution for multilingual GEC, offering a promising direction for interpretable GEC research.",
+      "authors": [
+        "Guangyue Peng",
+        "Wei Li",
+        "Wen Luo",
+        "Houfeng Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-13T18:00:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.15416v1",
+      "tags": [
+        "keyword:rag-llm",
+        "query:rag-llm"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "retrieves in-context demonstrations via internal LLM grammatical error representations",
+      "llm_evidence_cn": "通过LLM内部语法错误表征检索上下文示例",
+      "llm_evidence": "通过LLM内部语法错误表征检索上下文示例",
+      "canonical_evidence": "通过LLM内部语法错误表征检索上下文示例",
+      "llm_tldr_en": "For grammatical error correction, this work extracts Grammatical Error Representations from LLM states to retrieve semantically neutral demonstrations that capture error patterns, improving few-shot performance.",
+      "llm_tldr_cn": "大语言模型少样本语法纠错性能不佳，主要源于难以检索到捕捉错误模式而非语义相似性的合适示例。本文从 LLM 内部状态中提取语法错误表征，该表征信息丰富且语义中性，用于检索上下文示例。实验表明该方法能有效改善多语言语法纠错的少样本性能，为知识检索在特定 NLP 任务中的应用提供了新思路。",
+      "llm_tldr": "大语言模型少样本语法纠错性能不佳，主要源于难以检索到捕捉错误模式而非语义相似性的合适示例。本文从 LLM 内部状态中提取语法错误表征，该表征信息丰富且语义中性，用于检索上下文示例。实验表明该方法能有效改善多语言语法纠错的少样本性能，为知识检索在特定 NLP 任务中的应用提供了新思路。",
+      "llm_tags": [
+        "query:rag-llm"
+      ],
+      "matched_query_tag": "query:rag-llm",
+      "matched_query_text": "knowledge retrieval approaches for natural language processing",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
